@@ -1,0 +1,2645 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="IT站点, 一站到底">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="IT站点" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="// ******* Repeater MANAGER ******** // $axure.internal(function($ax) {     var _repeaterManager = {};     $ax.repeater = _repeaterManager;      //This is a mapping of current editItems     var repea">
+<meta name="keywords" content="IT站点, 一站到底">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IT站点">
+<meta property="og:url" content="http://itsite.cn/其他/外包/ATMEX/原型/resources/scripts/axure/repeater/index.html">
+<meta property="og:site_name" content="IT站点">
+<meta property="og:description" content="// ******* Repeater MANAGER ******** // $axure.internal(function($ax) {     var _repeaterManager = {};     $ax.repeater = _repeaterManager;      //This is a mapping of current editItems     var repea">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2015-02-24T21:12:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IT站点">
+<meta name="twitter:description" content="// ******* Repeater MANAGER ******** // $axure.internal(function($ax) {     var _repeaterManager = {};     $ax.repeater = _repeaterManager;      //This is a mapping of current editItems     var repea">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://itsite.cn/其他/外包/ATMEX/原型/resources/scripts/axure/repeater/">
+
+
+
+
+
+  <title> | IT站点</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c5074ca51b610e0c4ba4fac7b24abea2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IT站点</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一站到底</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://itsite.cn/其他/外包/ATMEX/原型/resources/scripts/axure/repeater/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Leguang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/favicon.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT站点">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-03T21:38:57+08:00">
+                2019-03-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/其他/外包/ATMEX/原型/resources/scripts/axure/repeater/" class="leancloud_visitors" data-flag-title>
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  5.4k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  33
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+// ******* Repeater MANAGER ******** //
+$axure.internal(function($ax) {
+    var _repeaterManager = {};
+    $ax.repeater = _repeaterManager;
+
+    //This is a mapping of current editItems
+    var repeaterToEditItems = {};
+    //This is a mapping of current filters
+    var repeaterToFilters = {};
+    // This is a mapping of current sorts
+    var repeaterToSorts = {};
+    // This is a mapping of repeater page info
+    var repeaterToPageInfo = {};
+
+    //Hopefully this can be simplified, but for now I think 3 are needed.
+    //This is the data set that is owned by this repeater. The repeater may or may not reference this data set, and others can reference it.
+    var repeaterToLocalDataSet = {};
+    //This is the data set referenced by the repeater. It is not a copy of the local data set, but a reference to a local data set (or eventually a global data set could be referenced).
+    var repeaterToCurrentDataSet = {};
+    //This is a copy of the current data set, that is replaced whenever a set or refresh is done.
+    var repeaterToActiveDataSet = {};
+    var _loadRepeaters = function() {
+        $ax(function(obj) {
+            return obj.type == 'repeater';
+        }).each(function(obj, repeaterId) {
+            repeaterToLocalDataSet[repeaterId] = $ax.deepCopy(obj.data);
+            repeaterToLocalDataSet[repeaterId].props = obj.dataProps;
+            repeaterToEditItems[repeaterId] = [];
+
+            _initPageInfo(obj, repeaterId);
+
+            _setRepeaterDataSet(repeaterId, repeaterId);
+
+        });
+    };
+    _repeaterManager.load = _loadRepeaters;
+
+    var _loaded = {};
+    var _initRepeaters = function() {
+        $ax(function(obj, repeaterId) {
+            return obj.type == 'repeater' && !_loaded[repeaterId];
+        }).each(function(obj, repeaterId) {
+            _refreshRepeater(repeaterId);
+        });
+    };
+    _repeaterManager.init = _initRepeaters;
+
+    var repeatersHaveNewDataSet = [];
+    var _setRepeaterDataSet = function(repeaterId, dataSetId) {
+        //TODO: No idea about how global data sets will be handled...
+        repeaterToCurrentDataSet[repeaterId] = repeaterToLocalDataSet[dataSetId];
+        repeaterToActiveDataSet[repeaterId] = repeaterToCurrentDataSet[repeaterId];
+        repeaterToFilters[repeaterId] = [];
+        repeaterToSorts[repeaterId] = [];
+
+
+        // Not using this currently
+        //        if(repeatersHaveNewDataSet.indexOf(repeaterId) == -1) repeatersHaveNewDataSet[repeatersHaveNewDataSet.length] = repeaterId;
+    };
+    _repeaterManager.setDataSet = _setRepeaterDataSet;
+
+    var _refreshRepeater = function(repeaterId, eventInfo) {
+        // Don't show if you have a parent rdos thats limboed.
+        var rdoPath = $ax.getPathFromScriptId(repeaterId);
+        var view = $ax.adaptive.currentViewId;
+        var chain = $ax.adaptive.getAdaptiveIdChain(view);
+        var testView = view;
+        // Check each parent rdo through appropriate views to see if you are limboed
+        while (rdoPath.length > 0) {
+            var testingChain = testView;
+            var rdoObj = $obj($ax.getScriptIdFromPath(rdoPath));
+            var style = testView ? rdoObj.adaptiveStyles && rdoObj.adaptiveStyles[testView] : rdoObj.style;
+            if(style && typeof (style.limbo) != 'undefined') {
+                if(style.limbo) {
+                    removeItems(repeaterId);
+                    return;
+                }
+                // Otherwise this chain is good, move up rdo again
+                testingChain = false;
+            }
+
+            if(testingChain) {
+                var viewIndex = chain.indexOf(testView);
+                testView = viewIndex == 0 ? '' : chain[viewIndex - 1];
+            } else {
+                $ax.splice(rdoPath, rdoPath.length - 1, 1);
+                testView = view;
+            }
+        }
+
+        _loaded[repeaterId] = true;
+        $ax.action.refreshStart(repeaterId);
+        $ax.style.ClearCacheForRepeater(repeaterId);
+
+        if($ax.visibility.limboIds[repeaterId]) {
+            removeItems(repeaterId);
+            $ax.dynamicPanelManager.fitParentPanel(repeaterId);
+            return;
+        }
+
+        var path = $ax.getPathFromScriptId(repeaterId);
+        path.pop();
+
+        if(eventInfo) {
+            eventInfo = $ax.eventCopy(eventInfo);
+        }
+
+        var obj = $ax.getObjectFromScriptId(repeaterId);
+
+        var html = $('#' + repeaterId + '_script').html();
+        //        var container = $('<div></div>');
+        //        container.html(html);
+        //        container.attr('id', '' + repeaterId + '_container');
+        //        container.css({ position: 'absolute' });
+        //        container.offset({ left: -obj.x, top: -obj.y });
+
+        var div = $('<div></div>');
+        div.html(html);
+
+        var top = 0;
+        var left = 0;
+
+        //If there is no wrap, then set it to be above the number of rows
+        var propMap = obj.repeaterPropMap;
+        var viewId = $ax.adaptive.currentViewId || '';
+        var wrap = _getAdaptiveProp(propMap, 'wrap', viewId);
+        var vertical = _getAdaptiveProp(propMap, 'vertical', viewId);
+        var offset = propMap[viewId];
+        var xOffset = offset.width + _getAdaptiveProp(propMap, 'horizontalSpacing', viewId);
+        var yOffset = offset.height + _getAdaptiveProp(propMap, 'verticalSpacing', viewId);
+        div.css({
+            width: offset.width,
+            height: offset.height
+        });
+
+        var background = _getAdaptiveProp(propMap, 'backColor', viewId);
+        _applyColorCss(background, div);
+        var hasAltColor = _getAdaptiveProp(propMap, 'hasAltColor', viewId);
+        var altDiv = div;
+        if(hasAltColor) altDiv = _applyColorCss(hasAltColor ? _getAdaptiveProp(propMap, 'altColor', viewId) : background, div.clone());
+
+        var orderedIds = getOrderedIds(repeaterId, eventInfo);
+
+        // Hide repeater, if shown, while updating.
+        var shown = $ax.visibility.IsIdVisible(repeaterId);
+        if(shown) document.getElementById(repeaterId).style.visibility = 'hidden';
+
+        var bounds = _getVisibleDataBounds(repeaterToPageInfo[repeaterId], orderedIds.length);
+        var start = bounds[0];
+        var end = bounds[1];
+        var useAlt = false;
+
+        var resized = $ax.getItemIdsForRepeater(repeaterId).length != (end - start);
+
+        //clean up old items as late as possible
+        removeItems(repeaterId);
+
+        var i = 0;
+        var ids = [];
+        for(var pos = start; pos < end; pos++) {
+            var itemId = orderedIds[pos];
+
+            var itemElementId = _createElementId(repeaterId, itemId);
+            $ax.addItemIdToRepeater(itemId, repeaterId);
+
+            ids.push(itemElementId);
+            var processId = function(full, prop, id, suffix) {
+                var elementId = _createElementId('u' + id, itemId);
+                //If there is a suffix (ex. _img), then don't push the id.
+                if(!suffix) ids.push(elementId);
+                return prop + '="' + elementId + '"';
+            };
+
+            var copy = (useAlt ? altDiv : div).clone();
+            useAlt = !useAlt;
+            copy.attr('id', itemElementId);
+            copy.html(div.html().replace(/(id|for)="?u([0-9]+(_[_a-z0-9]*)?)"?/g, processId));
+
+            copy.css({
+                'position': 'absolute',
+                'top': top + 'px',
+                'left': left + 'px',
+                'width': obj.width + 'px',
+                'height': obj.height + 'px'
+            });
+            $('#' + repeaterId).append(copy);
+
+            i++;
+            if(wrap != -1 && i % wrap == 0) {
+                if(vertical) {
+                    top = 0;
+                    left += xOffset;
+                } else {
+                    left = 0;
+                    top += yOffset;
+                }
+            } else if(vertical) top += yOffset;
+            else left += xOffset;
+        }
+
+        var query = $ax(function(diagramObject, elementId) {
+            // All objects with the repeater as their parent, except the repeater itself.
+            var scriptId = _getScriptIdFromElementId(elementId);
+            return $ax.getParentRepeaterFromScriptId(scriptId) == repeaterId && scriptId != repeaterId;
+        });
+        if(viewId) $ax.adaptive.applyView(viewId, query);
+        else {
+            var limbo = {};
+            var hidden = {};
+            query.each(function(diagramObject, elementId) {
+                // sigh, javascript. we need the === here because undefined means not overriden
+                if(diagramObject.style.visible === false) hidden[elementId] = true;
+                //todo: **mas** check if the limboed widgets are hidden by default by the generator
+                if(diagramObject.style.limbo) limbo[elementId] = true;
+            });
+            $ax.visibility.addLimboAndHiddenIds(limbo, hidden, query);
+            $ax.dynamicPanelManager.updatePercentPanelCache(query);
+        }
+        $ax.annotation.InitializeAnnotations(query);
+
+        for(var index = 0; index < ids.length; index++) {
+            var id = ids[index];
+            var childObj = $obj(id);
+            var childJobj = $jobj(id);
+            var childItemId = _getItemIdFromElementId(id);
+            if(obj.repeaterPropMap.isolateRadio && childObj.type == 'radioButton') {
+                var input = $jobj(_applySuffixToElementId(id, '_input'));
+                input.attr('name', _createElementId(input.attr('name'), childItemId));
+                if($ax.ieColorManager) $ax.ieColorManager.applyBackground($ax('#' + id));
+            }
+            if(obj.repeaterPropMap.isolateSelection && childJobj.attr('selectiongroup')) {
+                childJobj.attr('selectiongroup', _createElementId(childJobj.attr('selectiongroup'), childItemId));
+            }
+            $ax.initializeObjectEvents($ax('#' + id));
+            $ax.dynamicPanelManager.initFitPanels($ax('#' + id));
+            $ax.style.initializeObjectTextAlignment($ax('#' + id));
+            $ax.applyHighlight($ax('#' + id), true);
+        }
+
+        //$ax.event.raiseSyntheticEvent(itemElementId, 'onLoad', true);
+        //$ax.loadDynamicPanelsAndMasters(obj.objects, path, itemId);
+
+        // Now load
+        for(pos = start; pos < end; pos++) {
+            itemId = orderedIds[pos];
+            itemElementId = _createElementId(repeaterId, itemId);
+
+            $ax.event.raiseSyntheticEvent(itemElementId, 'onItemLoad', true);
+            $ax.loadDynamicPanelsAndMasters(obj.objects, path, itemId);
+        }
+
+        // Reshow repeater if it was originally shown (load is complete by now)
+        if(shown) document.getElementById(repeaterId).style.visibility = 'visible';
+
+        $ax.dynamicPanelManager.fitParentPanel(repeaterId);
+
+        // If number of items changed, you need to resize the repeater
+        if(resized) {
+            var count = end - start;
+
+            // When getting assume not vertical first. Get how many items wide and high it is.
+            var yCount = wrap == -1 ? 1 : Math.ceil(count / wrap);
+            var xCount = wrap == -1 ? count : count % wrap;
+            if(xCount == 0) xCount = wrap;
+            // Now swap if vertical
+            if(vertical) {
+                var temp = xCount;
+                xCount = yCount;
+                yCount = temp;
+            }
+
+            // xOffset includes, the spacing, but first time that should be ignored. So just add the width/height once, and all the other times add the offset.
+            $jobj(repeaterId).css('width', offset.width + (xCount - 1) * xOffset);
+            $jobj(repeaterId).css('height', offset.height + (yCount - 1) * yOffset);
+        }
+
+        // Right now we assume only one refresh at a time. If we can manually trigger refreshes, that may possibly change.
+        $ax.action.refreshEnd();
+    };
+    _repeaterManager.refreshRepeater = _refreshRepeater;
+
+    _repeaterManager.refreshAllRepeaters = function() {
+        $ax('*').each(function(diagramObject, elementId) {
+            if(diagramObject.type != 'repeater') return;
+
+            _initPageInfo(diagramObject, elementId);
+            _refreshRepeater(elementId, $ax.getEventInfoFromEvent($ax.getjBrowserEvent()));
+        });
+    };
+
+    _repeaterManager.refreshRepeaters = function(ids, eventInfo) {
+        for(var i = 0; i < ids.length; i++) _refreshRepeater(ids[i], eventInfo);
+    };
+
+    var _initPageInfo = function(obj, elementId) {
+        var pageInfo = {};
+        var map = obj.repeaterPropMap;
+
+        var currentViewId = $ax.adaptive.currentViewId || '';
+        var itemsPerPage = _getAdaptiveProp(map, 'itemsPerPage', currentViewId);
+        if(itemsPerPage == -1) pageInfo.noLimit = true;
+        else {
+            pageInfo.itemsPerPage = itemsPerPage;
+            pageInfo.currPage = _getAdaptiveProp(map, 'currPage', currentViewId);
+        }
+        repeaterToPageInfo[elementId] = pageInfo;
+    };
+
+    var _applyColorCss = function(json, div) {
+        var args = json.r + ', ' + json.g + ', ' + json.b;
+        var background = json.a == 0 ? '' : json.a == 1 ? 'rgb(' + args + ')' : 'rgba(' + args + ', ' + json.a + ')';
+        if($ax.ieColorManager && json.a != 0 && json.a != 1) {
+            var ieColor = $ax.ieColorManager.getColorFromArgb(json.a * 255, json.r, json.g, json.b, true);
+            if(ieColor) background = ieColor;
+        }
+        div.css('background-color', background);
+        return div;
+    };
+
+    var _getAdaptiveProp = _repeaterManager.getAdaptiveProp = function(map, prop, viewId) {
+        var viewChain = $ax.adaptive.getAdaptiveIdChain(viewId);
+        for(var i = viewChain.length - 1; i >= 0; i--) {
+            viewId = viewChain[i];
+            var viewProps = map[viewId];
+            if(viewProps.hasOwnProperty(prop)) return viewProps[prop];
+        }
+
+        var base = map[''];
+        if(base.hasOwnProperty(prop)) return base[prop];
+        return map['default'][prop];
+    };
+
+    _repeaterManager.getItemCount = function(repeaterId) {
+        var data = repeaterToActiveDataSet[repeaterId].length;
+        var info = repeaterToPageInfo[repeaterId];
+        if(!info.noLimit) {
+            var start = Math.min(data, info.itemsPerPage * info.currPage);
+            var end = Math.min(data, start + info.itemsPerPage);
+            data = end - start;
+        }
+        return data;
+    };
+
+    _repeaterManager.setDisplayProps = function(obj, repeaterId, itemIndex) {
+        var data = repeaterToActiveDataSet[repeaterId];
+        var info = repeaterToPageInfo[repeaterId];
+        var start = 0;
+        var end = data.length;
+        if(!info.noLimit) {
+            start = Math.min(end, info.itemsPerPage * (info.currPage - 1));
+            end = Math.min(end, start + info.itemsPerPage);
+        }
+        var count = end - start;
+        var index = -1;
+        for(var i = 0; i < count; i++) {
+            if(data[start + i].index == itemIndex) index = i + 1;
+        }
+        if(index == -1) return;
+        obj.index = index;
+        obj.isfirst = index == 1;
+        obj.islast = index == end - start;
+        obj.iseven = index % 2 == 0;
+        obj.isodd = index % 2 == 1;
+    };
+
+    var _getVisibleDataBounds = function(pageInfo, count) {
+        var retval = [0, count];
+        if(!pageInfo.noLimit) {
+            var end = pageInfo.itemsPerPage * pageInfo.currPage;
+            var start = end - pageInfo.itemsPerPage;
+
+            // If past the end, move to last page
+            if(start >= count) {
+                pageInfo.currPage = Math.floor((count - 1) / pageInfo.itemsPerPage) + 1;
+                if(pageInfo.currPage <= 1 0) pageinfo.currpage="1;" end="pageInfo.itemsPerPage" * pageinfo.currpage; start="end" - pageinfo.itemsperpage; } count); retval[0]="start;" retval[1]="end;" return retval; }; _repeatermanager.getvisibledatacount="function(repeaterId)" { var bounds="_getVisibleDataBounds(repeaterToPageInfo[repeaterId]," repeatertoactivedataset[repeaterid].length); bounds[1] bounds[0]; _repeatermanager.getdatacount="function(repeaterId)" repeatertocurrentdataset[repeaterid].length; _getfiltereddatacount="_repeaterManager.getFilteredDataCount" = function(repeaterid) repeatertoactivedataset[repeaterid].length; _repeatermanager.getpagecount="function(repeaterId)" info="repeaterToPageInfo[repeaterId];" info.nolimit ? : math.ceil(_getfiltereddatacount(repeaterid) info.itemsperpage); _repeatermanager.getpageindex="function(repeaterId)" info.currpage; getactivedataset="function(repeaterId)" active="$ax.deepCopy(repeaterToCurrentDataSet[repeaterId]);" set up indexing each item. for(var i="0;" < active.length; i++) active[i].index="i" + 1; active; getorderedids="function(repeaterId," eventinfo) data="repeaterToActiveDataSet[repeaterId]" getactivedataset(repeaterid); filter first so less to sort applyfilter(repeaterid, data, eventinfo); next sorts="repeaterToSorts[repeaterId]" || []; if(sorts.length !="0" && data.length> 1) {
+            // TODO: Make this generic and factor out if we want to use it elsewhere...
+            // Compare is a function that takes 2 arguments, and returns a number. A high number means the second should go first
+            // Otherwise the first stays first.
+            var mergesort = function(list, start, end, compare) {
+                var middle = Math.floor((start + end) / 2);
+                if(middle - start > 1) mergesort(list, start, middle, compare);
+                if(end - middle > 1) mergesort(list, middle, end, compare);
+                var index1 = start;
+                var index2 = middle;
+                var tempList = [];
+                while(index1 < middle && index2 < end) {
+                    tempList[tempList.length] = list[compare(list[index1], list[index2]) > 0 ? index2++ : index1++];
+                }
+                while(index1 < middle) tempList[tempList.length] = list[index1++];
+                while(index2 < end) tempList[tempList.length] = list[index2++];
+
+                // transfer from temp list to the real list.
+                for(var i = 0; i < tempList.length; i++) list[start + i] = tempList[i];
+            };
+            // Compare is the tie breaking function to us if necessary.
+            var getComparator = function(columnName, ascending, type, compare) {
+                // If this needs to be sped up, break up into several smaller functions conditioned off of type
+                return function(row1, row2) {
+                    // If column undefined, no way to measure this, so call it a tie.
+                    if(row1[columnName] === undefined || row2[columnName] === undefined) return 0;
+
+                    var text1 = row1[columnName].text;
+                    var text2 = row2[columnName].text;
+
+                    // This means we are case insensitive, so lowercase everything to kill casing
+                    if(type == 'Text') {
+                        text1 = text1.toLowerCase();
+                        text2 = text2.toLowerCase();
+                    }
+
+                    //If tied, go to tie breaker
+                    if(text1 == text2) {
+                        if(compare) return compare(row1, row2);
+                        // Actually a tie.
+                        return 0;
+                    }
+                    if(type == 'Text' || type == 'Text (Case Sensitive)') {
+                        if(text1 < text2 ^ ascending) return 1;
+                        else return -1;
+                    } else if(type == 'Number') {
+                        var num1 = Number(text1);
+                        var num2 = Number(text2);
+
+                        if(isNaN(num1) && isNaN(num2)) return 0;
+                        if(isNaN(num1) || isNaN(num2)) return isNaN(num1) ? 1 : -1;
+                        if(num1 < num2 ^ ascending) return 1;
+                        else return -1;
+                    } else if(type == 'Date - YYYY-MM-DD' || type == 'Date - MM/DD/YYYY') {
+                        var func = type == 'Date - YYYY-MM-DD' ? getDate1 : getDate2;
+                        var date1 = func(text1);
+                        var date2 = func(text2);
+                        if(!date1.valid && !date2.valid) return 0;
+                        if(!date1.valid || !date2.valid) return date1.valid ? -1 : 1;
+                        var diff = date2.year - date1.year;
+                        if(diff == 0) diff = date2.month - date1.month;
+                        if(diff == 0) diff = date2.day - date1.day;
+                        if(diff == 0) return 0;
+                        return diff > 0 ^ ascending ? 1 : -1;
+                    }
+                    console.log('unhandled sort type');
+                    return 0;
+                };
+            };
+            var compareFunc = null;
+            for(var i = 0; i < sorts.length; i++) compareFunc = getComparator(sorts[i].columnName, sorts[i].ascending, sorts[i].sortType, compareFunc);
+
+            mergesort(data, 0, data.length, compareFunc);
+        }
+
+        var ids = [];
+        for(i = 0; i < data.length; i++) ids[i] = data[i].index;
+
+        return ids;
+    };
+
+    var getDate1 = function(text) {
+        var date = { valid: false };
+        var sections = text.split('-');
+        if(sections.length == 1) sections = text.split('/');
+        if(sections.length != 3) return date;
+        date.year = Number(sections[0]);
+        date.month = Number(sections[1]);
+        date.day = Number(sections[2]);
+        date.valid = !isNaN(date.year);
+        date.valid &= !isNaN(date.month) && date.month > 0 && date.month <= 12; date.valid &="!isNaN(date.day)" && date.day> 0 && date.day <= dayspermonth(date.month, date.year); return date; }; var getdate2="function(text)" { date="{" valid: false sections="text.split('-');" if(sections.length="=" 1) !="3)" date.month="Number(sections[0]);" date.day="Number(sections[1]);" date.year="Number(sections[2]);" date.valid="!isNaN(date.year);" &="!isNaN(date.month)" &&> 0 && date.month <= 12; date.valid &="!isNaN(date.day)" && date.day> 0 && date.day <= 0 4 6 9 29 100 400="=" dayspermonth(date.month, date.year); return date; }; var dayspermonth="function(month," year) { if(month="=" || month="=" 11) 30; !="2)" 31; if(year % 28; 29; year ? : applyfilter="function(repeaterId," data, eventinfo) datafiltered="[];" filters="repeaterToFilters[repeaterId]" []; if(filters.length oldsrc="eventInfo.srcElement;" oldthis="eventInfo.thiswidget;" outer: for(var i="1;" <="data.length;" i++) j="0;" filters.length; j++) eventinfo.targetelement="_createElementId(repeaterId," i); eventinfo.srcelement="filters[j].thisId;" eventinfo.thiswidget="$ax.getWidgetInfo(eventInfo.srcElement);" if($ax.expr.evaluateexpr(filters[j].filter, ) continue outer; } datafiltered[datafiltered.length]="data[i" - 1]; for(i="0;" datafiltered.length; data[i]="dataFiltered[i];" while(data.length> dataFiltered.length) data.pop();
+
+            eventInfo.srcElement = oldSrc;
+            eventInfo.thiswidget = oldThis;
+        }
+    };
+
+    var _addFilter = function(repeaterId, label, filter, thisId) {
+        var filterList = repeaterToFilters[repeaterId];
+        if(!filterList) repeaterToFilters[repeaterId] = filterList = [];
+
+        var filterObj = { filter: filter, thisId: thisId };
+        if(label) filterObj.label = label;
+        filterList[filterList.length] = filterObj;
+    };
+    _repeaterManager.addFilter = _addFilter;
+
+    var _removeFilter = function(repeaterId, label) {
+        var filterList = repeaterToFilters[repeaterId];
+        // If no list, nothing to remove
+        if(!filterList) return;
+
+        // If no label, remove everything
+        if(!label) {
+            repeaterToFilters[repeaterId] = [];
+            return;
+        }
+
+        for(var i = filterList.length - 1; i >= 0; i--) {
+            var filterObj = filterList[i];
+            if(filterObj.label && filterObj.label == label) $ax.splice(filterList, i, 1);
+        }
+    };
+    _repeaterManager.removeFilter = _removeFilter;
+
+    var _addSort = function(repeaterId, label, columnName, ascending, toggle, sortType) {
+        var sortList = repeaterToSorts[repeaterId];
+        if(!sortList) repeaterToSorts[repeaterId] = sortList = [];
+
+        for(var i = 0; i < sortList.length; i++) {
+            if(columnName == sortList[i].columnName) {
+                var lastSortObj = $ax.splice(sortList, i, 1)[0];
+                if(toggle) ascending = !lastSortObj.ascending;
+                break;
+            }
+        }
+
+        var sortObj = { columnName: columnName, ascending: ascending, sortType: sortType };
+
+        if(label) sortObj.label = label;
+        sortList[sortList.length] = sortObj;
+    };
+    _repeaterManager.addSort = _addSort;
+
+    var _removeSort = function(repeaterId, label) {
+        var sortList = repeaterToSorts[repeaterId];
+        // If no list, nothing to remove
+        if(!sortList) return;
+
+        // If no label, remove everything
+        if(!label) {
+            repeaterToSorts[repeaterId] = [];
+            return;
+        }
+
+        for(var i = sortList.length - 1; i >= 0; i--) {
+            var sortObj = sortList[i];
+            if(sortObj.label && sortObj.label == label) $ax.splice(sortList, i, 1);
+        }
+    };
+    _repeaterManager.removeSort = _removeSort;
+
+    var _setRepeaterToPage = function(repeaterId, type, value, eventInfo) {
+        var pageInfo = repeaterToPageInfo[repeaterId];
+        // page doesn't matter if there is no limit.
+        if(pageInfo.noLimit) return;
+
+        var dataSet = repeaterToActiveDataSet[repeaterId];
+        if(!dataSet) dataSet = repeaterToCurrentDataSet[repeaterId];
+        var lastPage = Math.max(1, Math.ceil(dataSet.length / pageInfo.itemsPerPage));
+
+        if(type == 'Value') {
+            var val = Number($ax.expr.evaluateExpr(value, eventInfo));
+            // if invalid, default to 1, otherwise, clamp the value
+            if(isNaN(val)) val = 1;
+            else if(val < 1) val = 1;
+            else if(val > lastPage) val = lastPage;
+
+            pageInfo.currPage = val;
+        } else if(type == 'Previous') {
+            if(pageInfo.currPage > 1) pageInfo.currPage--;
+        } else if(type == 'Next') {
+            if(pageInfo.currPage < lastPage) pageInfo.currPage++;
+        } else if(type == 'Last') {
+            pageInfo.currPage = lastPage;
+        } else {
+            console.log('Unknown type');
+        }
+    };
+    _repeaterManager.setRepeaterToPage = _setRepeaterToPage;
+
+    var _setNoItemLimit = function(repeaterId) {
+        var pageInfo = repeaterToPageInfo[repeaterId];
+        delete pageInfo.currPage;
+        delete pageInfo.itemsPerPage;
+        pageInfo.noLimit = true;
+    };
+    _repeaterManager.setNoItemLimit = _setNoItemLimit;
+
+    var _setItemLimit = function(repeaterId, value, eventInfo) {
+        var pageInfo = repeaterToPageInfo[repeaterId];
+
+        if(pageInfo.noLimit) {
+            pageInfo.noLimit = false;
+            pageInfo.currPage = 1;
+        }
+
+        var oldTarget = eventInfo.targetElement;
+        eventInfo.targetElement = repeaterId;
+        var itemLimit = Number($ax.expr.evaluateExpr(value, eventInfo));
+        eventInfo.targetElement = oldTarget;
+        if(isNaN(itemLimit)) itemLimit = 20;
+        else if(itemLimit < 1) itemLimit = 1;
+        pageInfo.itemsPerPage = itemLimit;
+    };
+    _repeaterManager.setItemLimit = _setItemLimit;
+
+    var removeItems = function(repeaterId) {
+        var elementIds = $ax.getChildElementIdsForRepeater(repeaterId);
+        for(var i = 0; i < elementIds.length; i++) $('#' + elementIds[i]).remove();
+        $ax.visibility.clearLimboAndHiddenIds(elementIds);
+        $ax.clearItemsForRepeater(repeaterId);
+    };
+
+    var _getDataFromDataSet = function(repeaterId, itemId, propName, type) {
+        var itemNum = Number(itemId) - 1;
+        // Default to obj with text as empty string, as we don't generate the data for empty props
+        var data = repeaterToCurrentDataSet[repeaterId][itemNum][propName] || { text: '' };
+        //For now text is always the default. May change this to depend on context.
+        return type == 'data' && data.type != 'text' ? data : (type && data[type]) || data['text'];
+    };
+    _repeaterManager.getData = _getDataFromDataSet;
+
+    _repeaterManager.hasData = function(id, propName) {
+        if(!_getItemIdFromElementId(id)) return false;
+        var repeaterId = $ax.getParentRepeaterFromScriptId(_getScriptIdFromElementId(id));
+        return Boolean(repeaterToCurrentDataSet[repeaterId] && repeaterToCurrentDataSet[repeaterId].props.indexOf(propName) != -1);
+    };
+
+    var _addItemToDataSet = function(repeaterId, row, itemEventInfo) {
+        itemEventInfo.data = true;
+        var oldTarget = itemEventInfo.targetElement;
+        itemEventInfo.targetElement = repeaterId;
+        var dataSet = repeaterToLocalDataSet[repeaterId];
+
+        for(var propName in row) {
+            if(!row.hasOwnProperty(propName)) continue;
+            var prop = row[propName];
+            if(prop.type == 'literal') {
+                var retval = $ax.expr.evaluateExpr(prop.literal, itemEventInfo);
+                if(typeof (retval) == 'string') retval = { type: 'text', text: retval };
+                row[propName] = retval;
+            }
+        }
+
+        itemEventInfo.targetElement = oldTarget;
+        dataSet[dataSet.length] = row;
+        itemEventInfo.data = false;
+    };
+    _repeaterManager.addItem = _addItemToDataSet;
+
+    var _deleteItemsFromDataSet = function(repeaterId, eventInfo, type, rule) {
+        var dataSet = repeaterToCurrentDataSet[repeaterId];
+        var items;
+
+        // Should always be this, marked, or rule.
+        if(type == 'this') items = [_getItemIdFromElementId(eventInfo.srcElement)];
+        else if(type == 'marked') items = repeaterToEditItems[repeaterId];
+        else {
+            // This should be rule
+            var visibleData = repeaterToCurrentDataSet[repeaterId];
+            var items = [];
+            var oldTarget = eventInfo.targetElement;
+            for(var i = 0; i < visibleData.length; i++) {
+                var index = i + 1;
+                eventInfo.targetElement = _createElementId(repeaterId, index);
+                if($ax.expr.evaluateExpr(rule, eventInfo).toLowerCase() != 'true') continue;
+                items.push(index);
+            }
+            eventInfo.targetElement = oldTarget;
+        }
+        // Want them decending
+        items.sort(function(a, b) { return b - a; });
+
+        for(i = 0; i < items.length; i++) {
+            var itemId = items[i];
+            $ax.splice(dataSet, itemId - 1, 1);
+        }
+        repeaterToEditItems[repeaterId] = [];
+    };
+    _repeaterManager.deleteItems = _deleteItemsFromDataSet;
+
+    var _updateEditItemsInDataSet = function(repeaterId, propMap, eventInfo, type, rule) {
+        var oldTarget = eventInfo.targetElement;
+        var dataSet = repeaterToCurrentDataSet[repeaterId];
+        var items;
+
+        // Should always be this, marked, or rule.
+        if(type == 'this') items = [_getItemIdFromElementId(eventInfo.srcElement)];
+        else if(type == 'marked') items = repeaterToEditItems[repeaterId];
+        else {
+            // This should be rule
+            var currData = repeaterToCurrentDataSet[repeaterId];
+            var items = [];
+            var oldTarget = eventInfo.targetElement;
+            for(var i = 0; i < currData.length; i++) {
+                var index = i + 1;
+                eventInfo.targetElement = _createElementId(repeaterId, index);
+                if($ax.expr.evaluateExpr(rule, eventInfo).toLowerCase() != 'true') continue;
+                items.push(index);
+            }
+            eventInfo.targetElement = oldTarget;
+        }
+
+        eventInfo.data = true;
+        for(var prop in propMap) {
+            if(!propMap.hasOwnProperty(prop)) continue;
+            for(var i = 0; i < items.length; i++) {
+                var data = propMap[prop];
+                var item = items[i];
+                if(data.type == 'literal') {
+                    eventInfo.targetElement = _createElementId(repeaterId, item);
+                    data = $ax.expr.evaluateExpr(data.literal, eventInfo);
+                    if(typeof (data) == 'object' && data.isWidget) data = data.text;
+                    if(typeof (data) == 'string') data = { type: 'text', text: data };
+                }
+                dataSet[item - 1][prop] = data;
+            }
+        }
+        eventInfo.targetElement = oldTarget;
+        eventInfo.data = false;
+    };
+    _repeaterManager.updateEditItems = _updateEditItemsInDataSet;
+
+    var _getAllItemIds = function(repeaterId) {
+        var retval = [];
+        var currDataSet = repeaterToCurrentDataSet[repeaterId];
+        for(var i = 0; i < currDataSet.length; i++) retval.push(i + 1);
+        return retval;
+    };
+    _repeaterManager.getAllItemIds = _getAllItemIds;
+
+    var _addEditItemToRepeater = function(repeaterId, itemIds) {
+        for(var i = 0; i < itemIds.length; i++) {
+            var itemId = Number(itemIds[i]);
+            var items = repeaterToEditItems[repeaterId];
+            if(items.indexOf(itemId) == -1) items[items.length] = itemId;
+        }
+    };
+    _repeaterManager.addEditItems = _addEditItemToRepeater;
+
+    var _removeEditItemFromRepeater = function(repeaterId, itemIds) {
+        for(var i = 0; i < itemIds.length; i++) {
+            var itemId = itemIds[i];
+            var items = repeaterToEditItems[repeaterId];
+            var index = items.indexOf(Number(itemId));
+            if(index != -1) $ax.splice(items, index, 1);
+        }
+    };
+    _repeaterManager.removeEditItems = _removeEditItemFromRepeater;
+
+    _repeaterManager.isEditItem = function(repeaterId, itemId) {
+        var items = repeaterToEditItems[repeaterId];
+        return items.indexOf(Number(itemId)) != -1;
+    };
+
+    var _createElementId = function(scriptId, itemId) {
+        if(!itemId) return scriptId;
+        var i = scriptId.indexOf('_');
+        var sections = i > -1 ? [scriptId.substring(0, i), scriptId.substring(i + 1)] : [scriptId];
+        var retval = sections[0] + '-' + itemId;
+        return sections.length > 1 ? retval + '_' + sections[1] : retval;
+    };
+    _repeaterManager.createElementId = _createElementId;
+
+    var _getElementId = function(scriptId, childId) {
+        var elementId = scriptId;
+        if($ax.getParentRepeaterFromScriptId(scriptId)) {
+            // Must be in the same item as the child
+            var itemId = $ax.repeater.getItemIdFromElementId(childId);
+            elementId = $ax.repeater.createElementId(scriptId, itemId);
+        }
+        return elementId;
+    };
+    _repeaterManager.getElementId = _getElementId;
+
+    var _getScriptIdFromElementId = function(elementId) {
+        if(!elementId) return elementId;
+        var sections = elementId.split('-');
+        var retval = sections[0];
+        if(sections.length <= 1) return retval; sections="sections[1].split('_');" sections.length> 1 ? retval + '_' + sections[1] : retval;
+    };
+    _repeaterManager.getScriptIdFromElementId = _getScriptIdFromElementId;
+
+    var _getItemIdFromElementId = function(elementId) {
+        var sections = elementId.split('-');
+        if(sections.length < 2) return '';
+        sections = sections[1].split('_');
+        return sections[0];
+    };
+    _repeaterManager.getItemIdFromElementId = _getItemIdFromElementId;
+
+    // TODO: Just inline this if we keep it this way.
+    var _applySuffixToElementId = function(id, suffix) {
+        return id + suffix;
+        //        return _createElementId(_getScriptIdFromElementId(id) + suffix, _getItemIdFromElementId(id));
+    };
+    _repeaterManager.applySuffixToElementId = _applySuffixToElementId;
+
+    //    var _getRepeaterSize = function(repeaterId) {
+    //        var itemCount = ($ax.getItemIdsForRepeater(repeaterId) || []).length;
+    //        if(itemCount == 0) return { width: 0, height: 0 };
+
+    //        var repeater = $obj(repeaterId);
+    //        // Width and height per item;
+    //        var width = repeater.width;
+    //        var height = repeater.height;
+
+    //        var viewId = $ax.adaptive.currentViewId || '';
+    //        var widthIncrement = width + _getAdaptiveProp(repeater.repeaterPropMap, 'horizontalSpacing', viewId);
+    //        var heightIncrement = height + _getAdaptiveProp(repeater.repeaterPropMap, 'verticalSpacing', viewId);
+
+    //        var wrap = _getAdaptiveProp(repeater.repeaterPropMap, 'wrap', viewId);
+    //        var vertical = _getAdaptiveProp(repeater.repeaterPropMap, 'vertical', viewId);
+
+    //        if(wrap == -1 || itemCount <= wrap) { if(vertical) height +="heightIncrement" * (itemcount - 1); else width } var primarydim="wrap;" secondarydim="Math.ceil(itemCount" primarydim); (primarydim (secondarydim return width: width, height: }; _repeatermanager.getrepeatersize="_getRepeaterSize;" }); ******* dynamic panel manager ******** $axure.internal(function($ax) todo: probably a lot of the functions from pagescript should be moved here at some point... _dynamicpanelmanager="$ax.dynamicPanelManager" = {}; _isidfittocontent="_dynamicPanelManager.isIdFitToContent" function(id) obj="$obj(id);" if(!obj || obj.type !="dynamicPanel" !obj.fittocontent) false; jobj="$jobj($ax.visibility.GetPanelState(id));" jobj.css('position')="=" 'relative'; _fitparentpanel="function(widgetId)" find parent if there is one. parentpanelinfo="getParentPanel(widgetId);" if(!parentpanelinfo) return; parentid="parentPanelInfo.parent;" if(_updatefitpanel(parentid, parentpanelinfo.state)) _fitparentpanel(parentid); _dynamicpanelmanager.fitparentpanel="_fitParentPanel;" _dynamicpanelmanager.initialize="function()" _dynamicpanelmanager.initfitpanels($ax('*')); $axure.resize(_handleresize); _dynamicpanelmanager.initfitpanels="function(query)" fittocontent="[];" query.each(function(obj, elementid) if(obj.type="=" 'dynamicpanel' && obj.fittocontent) fittocontent[fittocontent.length]="elementId;" for(var i="fitToContent.length" 1;>= 0; i--) {
+            var panelId = fitToContent[i];
+            var stateCount = $obj(panelId).diagrams.length;
+            for(var j = 0; j < stateCount; j++) {
+                // Traverse through children to find what size it should be.
+                var stateId = $ax.repeater.applySuffixToElementId(panelId, '_state' + j);
+                var stateContentId = stateId + '_content';
+                var stateQuery = $jobj(stateId);
+                var size = getContainerSize(stateContentId);
+                if(!$obj(panelId).percentWidth) stateQuery.width(size.width);
+                stateQuery.height(size.height);
+            }
+        }
+    };
+
+    var percentPanelToLeftCache = [];
+    var percentPanelsInitialized = false;
+    var _handleResize = function() {
+        if(percentPanelsInitialized) {
+            for(var key in percentPanelToLeftCache) {
+                //could optimize to only update non-contained panels
+                _updatePanelPercentWidth(key);
+            }
+        } else {
+            $ax('*').each(function(obj, elementId) {
+                if(_isPercentWidthPanel(obj)) _updatePanelPercentWidth(elementId);
+            });
+            percentPanelsInitialized = true;
+        }
+    };
+
+    var _isPercentWidthPanel = _dynamicPanelManager.isPercentWidthPanel = function(obj) {
+        return obj && obj.type == 'dynamicPanel' && obj.percentWidth;
+    };
+
+    _dynamicPanelManager.updatePanelContentPercentWidth = function(elementId) {
+        //        if(_isPercentWidthPanel($obj(elementId))) return;
+        var stateChildrenQuery = $jobj(elementId).children('.panel_state');
+        stateChildrenQuery.children('.panel_state_content').each(
+            function() {
+                $(this).children('.ax_dynamic_panel').each(
+                    function() { _updatePanelPercentWidth(this.id); }
+                );
+            }
+        );
+    };
+
+    _dynamicPanelManager.updatePercentPanelCache = function(query) {
+        query.each(function(obj, elementId) {
+            if(_isPercentWidthPanel(obj)) {
+                if(_updatePercentPanelToLeftCache(obj, elementId, true)) {
+                    _updatePanelPercentWidth(elementId);
+                }
+            }
+        });
+    };
+
+    _dynamicPanelManager.resetFixedPanel = function(obj, domElement) {
+        if(obj.fixedHorizontal == 'center') domElement.style.marginLeft = "";
+        if(obj.fixedVertical == 'middle') domElement.style.marginTop = "";
+    };
+
+    _dynamicPanelManager.resetAdaptivePercentPanel = function(obj, domElement) {
+        if(!_isPercentWidthPanel(obj)) return;
+
+        if(obj.fixedHorizontal == 'center') domElement.style.marginLeft = "";
+        else if(obj.fixedHorizontal == 'right') domElement.style.width = "";
+    };
+
+    var _updatePercentPanelToLeftCache = function(obj, elementId, overwrite) {
+        var wasUpdated = false;
+        var jObj = $jobj(elementId);
+        if(percentPanelToLeftCache[elementId] == undefined || overwrite) {
+            if(obj.fixedHorizontal == 'center') percentPanelToLeftCache[elementId] = Number(jObj.css('margin-left').replace("px", ""));
+            else if(obj.fixedHorizontal == 'right') percentPanelToLeftCache[elementId] = jObj.width() + Number(jObj.css('right').replace("px", ""));
+            else percentPanelToLeftCache[elementId] = Number(jObj.css('left').replace("px", ""));
+            wasUpdated = true;
+        }
+
+        if(obj.fixedHorizontal == 'right' && _isIdFitToContent(elementId)) {
+            var fitWidth = getContainerSize($ax.visibility.GetPanelState(elementId) + '_content').width;
+            percentPanelToLeftCache[elementId] = fitWidth + Number(jObj.css('right').replace("px", ""));
+            wasUpdated = true;
+        }
+        return wasUpdated;
+    };
+
+    var _updatePanelPercentWidth = _dynamicPanelManager.updatePanelPercentWidth = function(elementId) {
+        var obj = $obj(elementId);
+        if(!_isPercentWidthPanel(obj)) return;
+
+        _updatePercentPanelToLeftCache(obj, elementId, false);
+
+        var width;
+        var x;
+
+        if(obj.fixedHorizontal) {
+            x = 0;
+            width = $(window).width();
+        } else {
+            var parentPanelInfo = getParentPanel(elementId);
+            if(parentPanelInfo) {
+                var parentId = parentPanelInfo.parent;
+                width = $jobj(parentId).width();
+                var parentObj = $obj(parentId);
+                if(parentObj.percentWidth) {
+                    var stateId = $ax.repeater.applySuffixToElementId(parentId, '_state' + parentPanelInfo.state);
+                    var stateContentId = stateId + '_content';
+                    x = -Number($jobj(stateContentId).css('margin-left').replace("px", ""));
+                } else x = 0;
+            } else {
+                var parentRepeater = $ax.getParentRepeaterFromScriptId($ax.repeater.getScriptIdFromElementId(elementId));
+                if(parentRepeater) {
+                    var itemId = $ax.repeater.getItemIdFromElementId(elementId);
+                    var itemContainerId = $ax.repeater.createElementId(parentRepeater, itemId);
+                    x = 0;
+                    width = $jobj(itemContainerId).width();
+                } else {
+                    var $window = $(window);
+                    width = $window.width();
+                    var bodyLeft = Number($('body').css('left').replace("px", ""));
+                    var bodyWidth = Number($('body').css('width').replace("px", ""));
+                    var isCenter = $ax.adaptive.getPageStyle().pageAlignment == 'center';
+                    width = Math.max(width, bodyWidth);
+                    x = isCenter ? -(width - bodyWidth) / 2 - bodyLeft : 0;
+                }
+            }
+        }
+
+        var jObj = $jobj(elementId);
+        if(obj.fixedHorizontal == 'left') jObj.css('left', x + 'px');
+        else if(obj.fixedHorizontal == 'center') {
+            jObj.css('left', x + 'px');
+            jObj.css('margin-left', 0 + 'px');
+        } else jObj.css('left', x + 'px');
+
+        jObj.css('width', width + 'px');
+
+        var panelLeft = percentPanelToLeftCache[elementId];
+        var stateChildrenQuery = jObj.children('.panel_state');
+        stateChildrenQuery.css('width', width + 'px');
+
+        if(obj.fixedHorizontal == 'center')
+            stateChildrenQuery.children('.panel_state_content').css('left', '50%').css('margin-left', panelLeft + 'px');
+        else if(obj.fixedHorizontal == 'right')
+            stateChildrenQuery.children('.panel_state_content').css('left', width - panelLeft + 'px');
+        else stateChildrenQuery.children('.panel_state_content').css('margin-left', panelLeft - x + 'px');
+    };
+
+    _dynamicPanelManager.updateAllFitPanels = function() {
+        var fitToContent = [];
+        $ax('*').each(function(obj, elementId) {
+            if(obj.type == 'dynamicPanel' && obj.fitToContent) fitToContent[fitToContent.length] = elementId;
+        });
+        for(var i = fitToContent.length - 1; i >= 0; i--) {
+            var panelId = fitToContent[i];
+            var stateCount = $obj(panelId).diagrams.length;
+            for(var j = 0; j < stateCount; j++) {
+                $ax.dynamicPanelManager.setFitToContentCss(panelId, true);
+                _updateFitPanel(panelId, j, true);
+            }
+        }
+    };
+
+    _dynamicPanelManager.setFitToContentCss = function(elementId, fitToContent, oldWidth, oldHeight) {
+
+        if($ax.dynamicPanelManager.isIdFitToContent(elementId) == fitToContent) return;
+
+        var panel = $jobj(elementId);
+        var stateCss;
+        var scrollbars = $obj(elementId).scrollbars;
+
+        if(fitToContent) {
+            panel.attr('style', '');
+            stateCss = {};
+            stateCss.position = 'relative';
+            if(scrollbars != 'none') {
+                stateCss.overflow = 'visible';
+                stateCss['-webkit-overflow-scrolling'] = 'visible';
+            }
+            if(scrollbars == 'verticalAsNeeded') {
+                stateCss['overflow-x'] = 'visible';
+                stateCss['-ms-overflow-x'] = 'visible';
+            } else if(scrollbars == 'horizontalAsNeeded') {
+                stateCss['overflow-y'] = 'visible';
+                stateCss['-ms-overflow-y'] = 'visible';
+            }
+            panel.children().css(stateCss);
+        } else {
+            var panelCss = { width: oldWidth, height: oldHeight };
+            stateCss = { width: oldWidth, height: oldHeight };
+            panelCss.overflow = 'hidden';
+            stateCss.position = 'absolute';
+            if(scrollbars != 'none') {
+                stateCss.overflow = 'auto';
+                stateCss['-webkit-overflow-scrolling'] = 'touch';
+            }
+            if(scrollbars == 'verticalAsNeeded') {
+                stateCss['overflow-x'] = 'hidden';
+                stateCss['-ms-overflow-x'] = 'hidden';
+            } else if(scrollbars == 'horizontalAsNeeded') {
+                stateCss['overflow-y'] = 'hidden';
+                stateCss['-ms-overflow-y'] = 'hidden';
+            }
+            panel.css(panelCss);
+            panel.children().css(stateCss);
+        }
+    };
+
+    // TODO: [ben] This should be used in a lot more places...
+    var _getPanelJobj = _dynamicPanelManager.getPanelJobj = function(id) {
+        // Try for container first
+        var container = $jobj(id + '_container');
+        return container.length ? container : $jobj(id);
+    };
+
+    var _getShownState = function(id) {
+        var obj = $obj(id);
+        if(!obj || obj.type != 'dynamicPanel') return $jobj(id);
+
+        var children = $jobj(id).children();
+        for(var i = 0; i < children.length; i++) {
+            var child = children[i];
+            if(child && child.style && child.style.display != 'none') return $jobj(child.id);
+        }
+
+        return $jobj(id);
+    };
+
+    var _getClamp = function(id) {
+        var obj = $obj(id);
+        if(!obj) return _getPanelJobj(id);
+        if(obj.type == 'dynamicPanel') return _getShownState(id);
+        return $jobj(id);
+    };
+
+    var _updateFitPanel = function(panelId, stateIndex, initializingView) {
+        if(!panelId) return false;
+
+        // Only fit if fitToContent is true
+        if(!$ax.dynamicPanelManager.isIdFitToContent(panelId)) return false;
+
+        // Traverse through children to find what size it should be.
+        var stateId = $ax.repeater.applySuffixToElementId(panelId, '_state' + stateIndex);
+        var stateContentId = stateId + '_content';
+        var stateQuery = $jobj(stateId);
+        var size = getContainerSize(stateContentId);
+
+        // Skip if size hasn't changed
+        var oldWidth = stateQuery.width();
+        var oldHeight = stateQuery.height();
+        if(oldWidth == size.width && oldHeight == size.height) return false;
+
+        if(!$obj(panelId).percentWidth) stateQuery.width(size.width);
+        stateQuery.height(size.height);
+
+        //updatePercentWidth on all child panels
+        $jobj(stateContentId).children('.ax_dynamic_panel').each(
+            function() { _updatePanelPercentWidth(this.id); }
+        );
+
+        //do the following only if it is the current state
+        if(stateId != $ax.visibility.GetPanelState(panelId)) return false;
+
+        if(!initializingView) _adjustFixed(panelId, oldWidth, oldHeight, size.width, size.height);
+        else if(stateIndex != 0) {
+            var state0 = $jobj($ax.repeater.applySuffixToElementId(panelId, '_state0'));
+            _adjustFixed(panelId, state0.width(), state0.height(), size.width, size.height);
+        }
+
+        $ax.event.raiseSyntheticEvent(panelId, 'onResize');
+        $ax.flyoutManager.updateFlyout(panelId);
+
+        return true;
+    };
+
+    // widgetId is the one that crawls up masters until it finds a parent panel, targetId is the original widgetId (not the crawling master)
+    var getParentPanel = function(widgetId, path, targetId) {
+        path = path || $ax.getPathFromScriptId($ax.repeater.getScriptIdFromElementId(widgetId));
+
+        var obj = $obj(widgetId);
+        if(obj.parentDynamicPanel) {
+            path[path.length - 1] = obj.parentDynamicPanel;
+            var parentId = $ax.getScriptIdFromPath(path);
+            parentId = $ax.repeater.getElementId(parentId, widgetId);
+            var parentObj = $obj(parentId);
+            var retVal = { parent: parentId };
+            for(var i = 0; i < parentObj.diagrams.length; i++) {
+                var stateId = $ax.repeater.applySuffixToElementId(parentId, '_state' + i);
+                var stateQuery = $jobj(stateId);
+                if(stateQuery.find('#' + (targetId || widgetId)).length != 0) {
+                    retVal.state = i;
+                    break;
+                }
+            }
+            return retVal;
+        }
+
+        if(path.length == 1) return undefined;
+
+        path.pop();
+        var parentMaster = $ax.getScriptIdFromPath(path);
+        parentMaster = $ax.repeater.getElementId(parentMaster, widgetId);
+
+        return getParentPanel(parentMaster, path, targetId || widgetId);
+    };
+
+    // TODO: May be a better location for this. Used currently for rdo and panel state containers
+    var getContainerSize = function(containerId) {
+        var containerQuery = containerId ? $jobj(containerId) : $('#base');
+        var children = containerQuery.children();
+        // Default size
+        var size = { width: 0, height: 0 };
+        for(var i = 0; i < children.length; i++) {
+            var child = $(children[i]);
+            var childId = child.attr('id');
+
+            var childObj = $obj(childId);
+            if(!childObj) {
+                // On the body there are some children that should be ignored, as they are not objects.
+                if(!child.hasClass('basiclink') || child.get(0).tagName.toLowerCase() != 'a') continue;
+
+                // Otherwise it should be a basic link
+                var linkChildren = child.children();
+                if(!linkChildren.length) continue;
+                child = $(linkChildren[0]);
+                childId = child.attr('id');
+                childObj = $obj(childId);
+            }
+
+            if(!childId || $ax.visibility.limboIds[childId] || !$ax.visibility.IsIdVisible(childId)) continue;
+
+            // Ignore fixed
+            if(childObj.type == 'dynamicPanel' && childObj.fixedHorizontal) continue;
+
+            var position = { left: Number(child.css('left').replace('px', '')), top: Number(child.css('top').replace('px', '')) };
+
+            // Default width and height (adjusted for widgets that are special)
+            var width = child.width();
+            var height = child.height();
+            if(childObj.type == 'master') {
+                var masterSize = getContainerSize(childId);
+                width = masterSize.width;
+                height = masterSize.height;
+                //            } else if(childObj.type == 'repeater') {
+                //                var repeaterSize = $ax.repeater.getRepeaterSize(childId);
+                //                width = repeaterSize.width;
+                //                height = repeaterSize.height;
+
+                //                if(width == 0 && height == 0) continue;
+
+                //                position.left += childObj.x;
+                //                position.top += childObj.y;
+            } else if(childObj.type == 'dynamicPanel') {
+                if($ax.dynamicPanelManager.isIdFitToContent(childId)) {
+                    var stateQuery = $jobj($ax.visibility.GetPanelState(childId));
+                    width = stateQuery.width();
+                    height = stateQuery.height();
+                }
+            }
+
+            size.width = Math.max(size.width, position.left + width);
+            size.height = Math.max(size.height, position.top + height);
+        }
+
+        return size;
+    };
+
+    var _adjustFixed = _dynamicPanelManager.adjustFixed = function(panelId, oldWidth, oldHeight, width, height) {
+        var loc = _getFixedPosition(panelId, oldWidth, oldHeight, width, height);
+        if(loc) {
+            $ax.action.addAnimation(panelId, function() {
+                $ax.move.MoveWidget(panelId, loc[0], loc[1], 'none', 0, false, null, true);
+            });
+        }
+    };
+
+    var _getFixedPosition = _dynamicPanelManager.getFixedPosition = function(panelId, oldWidth, oldHeight, width, height) {
+        var panelObj = $obj(panelId);
+        var x = 0;
+        var y = 0;
+        if(panelObj.fixedHorizontal == 'center') {
+            x = (oldWidth - width) / 2;
+        }
+        if(panelObj.fixedVertical == 'middle') {
+            y = (oldHeight - height) / 2;
+        }
+        return x == 0 && y == 0 ? undefined : [x, y];
+    };
+
+    _dynamicPanelManager.getFixedInfo = function(panelId) {
+        var panelObj = $obj(panelId);
+        if(!panelObj || panelObj.type != 'dynamicPanel') return {};
+        var jobj = $jobj(panelId);
+        if(jobj.css('position') == 'absolute') return {};
+
+        var info = {};
+        var horizontal = panelObj.fixedHorizontal;
+        if(!horizontal) return info;
+
+        info.fixed = true;
+        info.horizontal = horizontal;
+        info.vertical = panelObj.fixedVertical;
+
+        if(info.horizontal == 'left') info.x = Number(jobj.css('left').replace('px', ''));
+        else if(info.horizontal == 'center') info.x = Number(jobj.css('margin-left').replace('px', ''));
+        else if(info.horizontal == 'right') info.x = Number(jobj.css('right').replace('px', ''));
+
+        if(info.vertical == 'top') info.y = Number(jobj.css('top').replace('px', ''));
+        else if(info.vertical == 'middle') info.y = Number(jobj.css('margin-top').replace('px', ''));
+        else if(info.vertical == 'bottom') info.y = Number(jobj.css('bottom').replace('px', ''));
+
+        return info;
+    };
+
+    // Show isn't necessary if this is always done before toggling (which is currently true), but I don't want that
+    //  change (if it happened) to break this.
+    var _compressToggle = function(id, vert, show, easing, duration) {
+        var panelJobj = _getPanelJobj(id);
+        var threshold = Number(panelJobj.css(vert ? 'top' : 'left').replace('px', ''));
+        var delta = _getShownState(id)[vert ? 'height' : 'width']();
+
+        if(!show) {
+            // Need to make threshold bottom/right
+            threshold += delta;
+            // Delta is in the opposite direction
+            delta *= -1;
+        }
+
+        _compress(id, vert, threshold, delta, easing, duration);
+    };
+    _dynamicPanelManager.compressToggle = _compressToggle;
+
+    // Used when setting state of dynamic panel
+    var _compressDelta = function(id, oldState, newState, vert, easing, duration) {
+        var panelQuery = $jobj(id);
+        var oldQuery = $jobj(oldState);
+        var newQuery = $jobj(newState);
+
+        var thresholdProp = vert ? 'top' : 'left';
+        var thresholdOffset = vert ? 'height' : 'width';
+        var threshold = Number(panelQuery.css(thresholdProp).replace('px', ''));
+        threshold += oldQuery[thresholdOffset]();
+
+        var delta = newQuery[thresholdOffset]() - oldQuery[thresholdOffset]();
+
+        var clampProp = vert ? 'left' : 'top';
+        var clampOffset = vert ? 'width' : 'height';
+        var clamp = [Number(panelQuery.css(clampProp).replace('px', ''))];
+        clamp[1] = clamp[0] + Math.max(oldQuery[clampOffset](), newQuery[clampOffset]());
+
+        _compress(id, vert, threshold, delta, easing, duration, clamp);
+    };
+    _dynamicPanelManager.compressDelta = _compressDelta;
+
+    var _compress = function(id, vert, threshold, delta, easing, duration, clamp) {
+        if(!easing) {
+            easing = 'none';
+            duration = 0;
+        }
+        var parent = $ax('#' + id).getParents()[0];
+        var obj = $ax.getObjectFromElementId(parent);
+        while(obj && obj.type == 'referenceDiagramObject') {
+            parent = $ax('#' + parent).getParents()[0];
+            obj = $ax.getObjectFromElementId(parent);
+        }
+
+        var clampLoc = _getPanelJobj(id);
+        var clampDim = _getClamp(id);
+
+        // If below, a horizantal clamp, otherwise a vertical clamp
+        var clampProp = vert ? 'left' : 'top';
+        var clampOffset = vert ? 'width' : 'height';
+        if(!clamp) {
+            clamp = [Number(clampLoc.css(clampProp).replace('px', ''))];
+            clamp[1] = clamp[0] + clampDim[clampOffset]();
+        }
+
+        // If clamps, threshold, or delta is not a number, can't compress.
+        if(isNaN(clamp[0]) || isNaN(clamp[1]) || isNaN(threshold) || isNaN(delta)) return;
+
+        // Note: If parent is body, some of these aren't widgets
+        if(parent && $jobj(parent + '_content').length > 0) parent = parent + '_content';
+        var children = $(parent ? '#' + parent : '#base').children();
+        for(var i = 0; i < children.length; i++) {
+            var child = $(children[i]);
+
+            // Check for basic links
+            if(child[0] && child[0].tagName == 'A' && child.hasClass('basiclink')) child = child.children();
+
+            var childId = child.attr('id');
+            // Don't move self, and check id to make sure it is a widget.
+            if(childId == id || !childId || childId[0] != 'u') continue;
+            var numbers = childId.substring(1).split('-');
+            if(numbers.length < 1 || isNaN(Number(numbers[0])) || (numbers.length == 2 && isNaN(Number(numbers[1]))) || numbers.length > 2) continue;
+
+            var markerProp = vert ? 'top' : 'left';
+            var marker = Number(child.css(markerProp).replace('px', ''));
+
+            var childClamp = [Number(child.css(clampProp).replace('px', ''))];
+
+            // Dynamic panels are not reporting correct size sometimes, so pull it from the state. Get shown state just returns the widget if it is not a dynamic panel.
+            var sizeChild = _getShownState(childId);
+            childClamp[1] = childClamp[0] + sizeChild[clampOffset]();
+            if(isNaN(marker) || isNaN(childClamp[0]) || isNaN(childClamp[1]) ||
+               marker < threshold || childClamp[1] <= clamp[0] || childclamp[0]>= clamp[1]) continue;
+
+            //marker += delta;
+
+            //var props = {};
+            //props[markerProp] = marker;
+            $ax('#' + childId).moveBy(vert ? 0 : delta, vert ? delta : 0, easing == 'none' ? {} : { duration: duration, easing: easing });
+            //if(easing == 'none') child.css(props);
+            //else child.animate(props, duration, easing);
+        }
+    };
+
+    var _parentHandlesStyles = function(id) {
+        var parents = $ax('#' + id).getParents(true)[0];
+        if(!parents) return false;
+        var directParent = true;
+        for(var i = 0; i < parents.length; i++) {
+            var parentId = parents[i];
+            // Because state parent panel id is the active state, must strip off the end of it.
+            var itemId = $ax.repeater.getItemIdFromElementId(parentId);
+            parentId = parentId.split('_')[0];
+            if(itemId) parentId = $ax.repeater.createElementId(parentId, itemId);
+            var parentObj = $obj(parentId);
+            if(parentObj.type != 'dynamicPanel') continue;
+            if(!parentObj.propagate) {
+                directParent = false;
+                continue;
+            }
+            return { id: parentId, direct: directParent };
+        }
+        return false;
+    };
+    _dynamicPanelManager.parentHandlesStyles = _parentHandlesStyles;
+
+    var _propagateMouseOver = function(id, value) {
+        propagate(id, true, value);
+    };
+    _dynamicPanelManager.propagateMouseOver = _propagateMouseOver;
+
+    var _propagateMouseDown = function(id, value) {
+        propagate(id, false, value);
+    };
+    _dynamicPanelManager.propagateMouseDown = _propagateMouseDown;
+
+    var propagate = function(id, hover, value) {
+        var hoverChildren = function(children) {
+            if(!children) return;
+            for(var i = 0; i < children.length; i++) {
+                var elementId = children[i].id;
+                var obj = $obj(elementId);
+                if(obj == null) {
+                    elementId = elementId.split('_')[0];
+                    obj = $obj(elementId);
+                }
+                if(obj == null) continue;
+                if(obj.type == 'dynamicPanel' && !obj.propagate) continue;
+
+                if(hover) $ax.style.SetWidgetHover(elementId, value);
+                else $ax.style.SetWidgetMouseDown(elementId, value);
+                $ax.annotation.updateLinkLocations($ax.style.GetTextIdFromShape(elementId));
+
+                hoverChildren(children[i].children);
+            }
+        };
+        hoverChildren($ax('#' + id).getChildren(true)[0].children);
+    };
+});
+</=></=></=></=></=></=></=></=>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>谢谢阁下赏识</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="Leguang WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.png" alt="Leguang Alipay">
+        <p>Alipay</p>
+      </div>
+    
+
+    
+      <div id="bitcoin" style="display: inline-block">
+        <img id="bitcoin_qr" src="/images/bitcoin.png" alt="Leguang Bitcoin">
+        <p>Bitcoin</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Leguang
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://itsite.cn/其他/外包/ATMEX/原型/resources/scripts/axure/repeater/" title>http://itsite.cn/其他/外包/ATMEX/原型/resources/scripts/axure/repeater/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/其他/外包/ATMEX/原型/resources/scripts/axure/move/" rel="next" title>
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/其他/外包/ATMEX/原型/resources/scripts/axure/sto/" rel="prev" title>
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/favicon.ico" alt="Leguang">
+          <p class="site-author-name" itemprop="name">Leguang</p>
+           
+              <p class="site-description motion-element" itemprop="description">浮生若戏悲欢聚 笑看天风扫寰宇</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">204</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/leguang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:langmanleguang@qq.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Leguang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 访问总量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("UUrijxLg3YUcx9WIg5UlJchI-gzGzoHsz", "m6wXtGXT8NUa5W4TiErrXWpO");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

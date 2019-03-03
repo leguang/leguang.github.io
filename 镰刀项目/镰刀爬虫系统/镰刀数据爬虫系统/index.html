@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="IT站点, 一站到底">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="IT站点" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="镰刀数据爬虫系统整体框架 程序设计及运行程序代码： 运行环境：python3.6 centos7进程管理：supervisor运行：服务器克隆代码后安装python依赖库（虚拟环境同）pip3 install -r requirements.txt把子进程配置文件拷贝到supervisor的配置文件路径下，通过supervisor管理程序 使用工具及数据库rabbitmqRabbitMQ是一个消息">
+<meta name="keywords" content="IT站点, 一站到底">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IT站点">
+<meta property="og:url" content="http://itsite.cn/镰刀项目/镰刀爬虫系统/镰刀数据爬虫系统/index.html">
+<meta property="og:site_name" content="IT站点">
+<meta property="og:description" content="镰刀数据爬虫系统整体框架 程序设计及运行程序代码： 运行环境：python3.6 centos7进程管理：supervisor运行：服务器克隆代码后安装python依赖库（虚拟环境同）pip3 install -r requirements.txt把子进程配置文件拷贝到supervisor的配置文件路径下，通过supervisor管理程序 使用工具及数据库rabbitmqRabbitMQ是一个消息">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://itsite.cn/镰刀项目/镰刀爬虫系统/镰刀数据爬虫系统/image/preview.png">
+<meta property="og:image" content="http://itsite.cn/镰刀项目/镰刀爬虫系统/镰刀数据爬虫系统/image/program-tree.png">
+<meta property="og:image" content="http://itsite.cn/镰刀项目/镰刀爬虫系统/镰刀数据爬虫系统/image/mqshow.png">
+<meta property="og:image" content="http://itsite.cn/镰刀项目/镰刀爬虫系统/镰刀数据爬虫系统/image/liandaoMQ.png">
+<meta property="og:image" content="http://itsite.cn/镰刀项目/镰刀爬虫系统/镰刀数据爬虫系统/image/sites.jpg">
+<meta property="og:updated_time" content="2019-02-25T06:41:56.828Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IT站点">
+<meta name="twitter:description" content="镰刀数据爬虫系统整体框架 程序设计及运行程序代码： 运行环境：python3.6 centos7进程管理：supervisor运行：服务器克隆代码后安装python依赖库（虚拟环境同）pip3 install -r requirements.txt把子进程配置文件拷贝到supervisor的配置文件路径下，通过supervisor管理程序 使用工具及数据库rabbitmqRabbitMQ是一个消息">
+<meta name="twitter:image" content="http://itsite.cn/镰刀项目/镰刀爬虫系统/镰刀数据爬虫系统/image/preview.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://itsite.cn/镰刀项目/镰刀爬虫系统/镰刀数据爬虫系统/">
+
+
+
+
+
+  <title> | IT站点</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c5074ca51b610e0c4ba4fac7b24abea2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IT站点</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一站到底</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://itsite.cn/镰刀项目/镰刀爬虫系统/镰刀数据爬虫系统/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Leguang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/favicon.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT站点">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-03T21:38:45+08:00">
+                2019-03-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/镰刀项目/镰刀爬虫系统/镰刀数据爬虫系统/" class="leancloud_visitors" data-flag-title>
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  2.6k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  11
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="镰刀数据爬虫系统"><a href="#镰刀数据爬虫系统" class="headerlink" title="镰刀数据爬虫系统"></a>镰刀数据爬虫系统</h1><h2 id="整体框架"><a href="#整体框架" class="headerlink" title="整体框架"></a>整体框架</h2><p><img src="./image/preview.png" alt="Alt text"></p>
+<h2 id="程序设计及运行"><a href="#程序设计及运行" class="headerlink" title="程序设计及运行"></a>程序设计及运行</h2><p>程序代码：<br><img src="./image/program-tree.png" alt="Alt text"></p>
+<p>运行环境：python3.6 centos7<br>进程管理：supervisor<br>运行：服务器克隆代码后安装python依赖库（虚拟环境同）<code>pip3 install -r requirements.txt</code><br>把子进程配置文件拷贝到supervisor的配置文件路径下，通过supervisor管理程序</p>
+<h2 id="使用工具及数据库"><a href="#使用工具及数据库" class="headerlink" title="使用工具及数据库"></a>使用工具及数据库</h2><h3 id="rabbitmq"><a href="#rabbitmq" class="headerlink" title="rabbitmq"></a>rabbitmq</h3><p>RabbitMQ是一个消息代理 - 一个消息系统的媒介。它可以为你的应用提供一个通用的消息发送和接收平台，并且保证消息在传输过程中的安全。<br><a href="http://rabbitmq.mr-ping.com/" target="_blank" rel="noopener">RabbitMQ 中文文档</a><br>python客户端使用 <a href="https://pika.readthedocs.io/en/stable/" target="_blank" rel="noopener">pika</a><br>系统采用“发布/订阅”模式 —— 分发一个消息给多个消费者。<br>图示说明：<br><img src="./image/mqshow.png" alt="Alt text"></p>
+<p>镰刀mq系统的设计及参数如图：<br><img src="./image/liandaoMQ.png" alt="Alt text"><br>|注：红色路径表示爬虫源数据的流通；蓝色路径表示一般items数据的流通；绿色路径表示热点数据的流通。</p>
+<h3 id="supervisor"><a href="#supervisor" class="headerlink" title="supervisor"></a>supervisor</h3><p>supervisor是用Python开发的一个client/server服务，是Linux/Unix系统下的一个进程管理工具。可以很方便的监听、启动、停止、重启一个或多个进程。用supervisor管理的进程，当一个进程意外被杀死，supervisor监听到进程死后，会自动将它重启，很方便的做到进程自动恢复的功能，不再需要自己写shell脚本来控制。<br>参考文档：<a href="http://www.supervisord.org/" target="_blank" rel="noopener">supervisor 文档</a><br>安装好后在/etc/会生成一个supervisord.conf文件及一个supervisord.d文件目录，supervisord.conf是一些默认配置，代码里面supervisorIni路径下有修改后的supervisord.conf，可拷贝使用。supervisord.d目录用来存放用户自定义的进程配置，本系统暂时开启三个子进程，分别是爬取数据的sickle.ini，分析数据的newsparse.ini和提取热点数据的hotparse.ini。可拷贝至supervisord.d目录下进行管理。<br><strong>子进程配置：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[program:sickle]</span><br><span class="line">command=/usr/bin/python3 /home/nio/sickle/sickle/run_in.py</span><br><span class="line">directory=/home/nio/sickle/sickle</span><br><span class="line">autostart = true</span><br><span class="line">autorestart = true</span><br><span class="line">startsecs = 5</span><br><span class="line">priority = 1</span><br><span class="line">stopasgroup = true</span><br><span class="line">killasgroup = true</span><br></pre></td></tr></table></figure></p>
+<p>具体文件路径根据实际拷贝的代码文件路径填写。<strong>注意因为爬虫部分要翻墙的原因，国内爬取数据运行run_in.py，国外运行run_out.py。</strong></p>
+<p><strong>supervisor常用命令</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">supervisorctl status：查看所有进程的状态</span><br><span class="line">supervisorctl stop sickle：停止sickle</span><br><span class="line">supervisorctl start sickle：启动sickle</span><br><span class="line">supervisorctl restart sickle: 重启sickle</span><br><span class="line">supervisorctl update ：配置文件修改后可以使用该命令加载新的配置</span><br><span class="line">supervisorctl reload: 重新启动配置中的所有程序</span><br></pre></td></tr></table></figure></p>
+<h3 id="日志logging"><a href="#日志logging" class="headerlink" title="日志logging"></a>日志logging</h3><p>使用<a href="https://docs.python.org/3.6/library/logging.html" target="_blank" rel="noopener">logging模块</a>。<br>日志保存在log路径下，按天保存，只保存最近30天的日志。</p>
+<p><strong>日志分类</strong><br>调度器日志–scheduler.log<br>爬虫日志–sickle.log<br>数据日志–items.log<br>分析源数据日志–parseItem.log<br> 分析源数据出错日志–parseError.log<br> 提取热点数据日志–hotItem.log<br> 提取热点数据出错日志–hotError.log</p>
+<h3 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h3><p>使用<a href="https://pymysql.readthedocs.io/en/latest/" target="_blank" rel="noopener">pymysql模块</a>。<br><strong>使用数据</strong><br>标签信息及相关词：sickle_tag 币种分析匹配，分析数据时使用<br>爬虫数据源：sickle_spider_source Twitter、微博等数据源，根据此数据爬取社交数据<br>币种及交易所热度：sickle_spider_heat 提取热点数据时使用</p>
+<h3 id="MongoDB"><a href="#MongoDB" class="headerlink" title="MongoDB"></a>MongoDB</h3><p>使用<a href="https://github.com/mongodb/mongo-python-driver" target="_blank" rel="noopener">pymongo模块</a>。<br>MongoDB作为存储数据的数据库使用，所有新闻资讯都保存在MongoDB中。<br>New_raw存储爬虫爬取的原始数据。<br>New_push存储经过分析后的有效数据。<br>News_hot存储热点数据。<br>News_detail存储有详情页的内容详情数据。</p>
+<h3 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h3><p>使用<a href="https://github.com/andymccurdy/redis-py" target="_blank" rel="noopener">redis模块</a>。<br>redis用来保存爬虫爬取网站数据的状态。使得已爬取的数据不会再处理，只获取新的数据。</p>
+<h3 id="OSS对象存储"><a href="#OSS对象存储" class="headerlink" title="OSS对象存储"></a>OSS对象存储</h3><p>使用阿里云<a href="https://github.com/aliyun/aliyun-oss-python-sdk" target="_blank" rel="noopener">oss2模块</a>。<br>OSS对象存储主要保存一些多媒体资源，爬虫中主要是：1、微博视频；2、Twitter用户头像；3、Twitter图片及视频</p>
+<h3 id="翻译工具"><a href="#翻译工具" class="headerlink" title="翻译工具"></a>翻译工具</h3><ul>
+<li><p><strong>Google</strong></p>
+<blockquote>
+<p>url：<a href="http://translate.google.cn/translate_a/single" target="_blank" rel="noopener">http://translate.google.cn/translate_a/single</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">params: &#123;</span><br><span class="line">        &apos;q&apos;: text,</span><br><span class="line">        &apos;sl&apos;: &apos;auto&apos;,</span><br><span class="line">        &apos;tl&apos;: &apos;zh_Ch&apos;,</span><br><span class="line">        &apos;client&apos;: &apos;gtx&apos;,</span><br><span class="line">        &apos;dt&apos;: &apos;t&apos;,</span><br><span class="line">        &apos;dj&apos;: 1,</span><br><span class="line">        &apos;ie&apos;: &apos;UTF-8&apos;,</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p><a href="http://fanyi-api.baidu.com/api/trans/product/apidoc" target="_blank" rel="noopener"><strong>百度翻译平台</strong></a></p>
+<blockquote>
+<p>url: <a href="http://api.fanyi.baidu.com/api/trans/vip/translate" target="_blank" rel="noopener">http://api.fanyi.baidu.com/api/trans/vip/translate</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">params: &#123;</span><br><span class="line">        &apos;q&apos;: q,</span><br><span class="line">        &apos;from&apos;: &apos;auto&apos;,</span><br><span class="line">        &apos;to&apos;: &apos;zh&apos;,</span><br><span class="line">        &apos;appid&apos;: appid,</span><br><span class="line">        &apos;salt&apos;: salt,</span><br><span class="line">        &apos;sign&apos;: sign</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<h2 id="网站爬虫spiders"><a href="#网站爬虫spiders" class="headerlink" title="网站爬虫spiders"></a>网站爬虫spiders</h2><p>镰刀数据来源主要分两类：一是爬虫从各个网站爬取而来，二是人工编辑。暂时网站爬取的数据占有效数据的绝大多数，因各个网站数据来源或分类不同暂时把它们分三大类：快讯文章公告爬虫、社交资讯爬虫和转账监控爬虫。<br><img src="./image/sites.jpg" alt="Alt text"></p>
+<h3 id="快讯文章公告spiders-API接口"><a href="#快讯文章公告spiders-API接口" class="headerlink" title="快讯文章公告spiders API接口"></a>快讯文章公告spiders API接口</h3><ul>
+<li><strong>币世界快讯</strong><br>获取是否有新数据：<blockquote>
+<p>url：<a href="http://m.bishijie.com/api/app/getNewNum/?last_newsid=%s" target="_blank" rel="noopener">http://m.bishijie.com/api/app/getNewNum/?last_newsid=%s</a><br>method：get</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">headers：&#123;&apos;Host&apos;: &apos;m.bishijie.com&apos;,</span><br><span class="line">          &apos;Connection&apos;: &apos;Keep-Alive&apos;,</span><br><span class="line">          &apos;Referer&apos;: &apos;http://m.bishijie.com/kuaixun?fm=082411 &apos;,</span><br><span class="line">          &apos;User-Agent&apos;: &apos;Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Mobile Safari/537.36&apos;</span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<p>获取新数据：</p>
+<blockquote>
+<p>url：<a href="http://api.bishijie.com/news/?client=android&amp;size=20" target="_blank" rel="noopener">http://api.bishijie.com/news/?client=android&amp;size=20</a><br>method：get<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">headers：&#123;&apos;Host&apos;: &apos;api.bishijie.com&apos;,</span><br><span class="line">          &apos;User-Agent&apos;: &apos;okhttp/3.8.1&apos;&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<ul>
+<li><p><strong>金色财经快讯</strong><br>获取新数据：</p>
+<blockquote>
+<p>url：<a href="https://api.jinse.com/v4/live/list?reading=false&amp;_source=m&amp;limit=10&amp;flag=up&amp;id=%s" target="_blank" rel="noopener">https://api.jinse.com/v4/live/list?reading=false&amp;_source=m&amp;limit=10&amp;flag=up&amp;id=%s</a><br>method：get</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">headers：&#123;&apos;User-Agent&apos;: 手机端浏览器&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p><strong>币响快讯</strong><br>获取新数据：</p>
+<blockquote>
+<p>url：<a href="http://tui.yingshe.com/live/info" target="_blank" rel="noopener">http://tui.yingshe.com/live/info</a><br>method：post</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">headers：&#123;&apos;Host&apos;: &apos;tui.yingshe.com&apos;,</span><br><span class="line">          &apos;Connection&apos;: &apos;Keep-Alive&apos;,</span><br><span class="line">         &apos;User-Agent&apos;: 手机端浏览器,</span><br><span class="line">         &apos;Content-Type&apos;: &apos;application/x-www-form-urlencoded&apos;</span><br><span class="line">     &#125;</span><br><span class="line">post data：&#123;</span><br><span class="line">            &apos;p&apos;: &apos;1&apos;,</span><br><span class="line">            &apos;type&apos;: &apos;1&apos;,</span><br><span class="line">            &apos;unique&apos;: &apos;865166020927318&apos;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p><strong>非小号交易所公告</strong><br>获取新数据：</p>
+<blockquote>
+<p>url：<a href="http://app.fxh.io/api/news/exchange?direction=before&amp;time=0" target="_blank" rel="noopener">http://app.fxh.io/api/news/exchange?direction=before&amp;time=0</a><br>method：get</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">headers：&#123;&apos;User-Agent&apos;: &apos;FeiXiaoHao/1.4.1 (iPhone; iOS 11.4.1; Scale/2.00)&apos;,</span><br><span class="line">          &apos;Host&apos;: &apos;app.fxh.io&apos;,</span><br><span class="line">          &apos;Referer&apos;: &apos;m.feixiaohao.com&apos;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<p>获取detail数据：</p>
+<blockquote>
+<p>url：detailurl(<a href="http://m.feixiaohao.com/notice/3606214.html" target="_blank" rel="noopener">http://m.feixiaohao.com/notice/3606214.html</a>)<br>method：get<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">headers：&#123;</span><br><span class="line">          &apos;User-Agent&apos;: 手机端浏览器,</span><br><span class="line">          &apos;Host&apos;: &apos;m.feixiaohao.com&apos;,</span><br><span class="line">          &apos;Referer&apos;: detailurl</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<ul>
+<li><strong>币牛牛交易所公告</strong><br>获取新数据：<blockquote>
+<p>url：<a href="https://api.coinbull.one/pc/web/announcement/list?limit=20" target="_blank" rel="noopener">https://api.coinbull.one/pc/web/announcement/list?limit=20</a><br>method：get</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">headers：&#123;</span><br><span class="line">           `User-Agent&apos;: &apos;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36&apos;,</span><br><span class="line">           &apos;x-app-info&apos;: &apos;2.4.0/offical/web&apos;,</span><br><span class="line">           &apos;origin&apos;: &apos;https://www.coinbull.one&apos;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<p>获取detail数据：</p>
+<blockquote>
+<p>url：<a href="https://api.finbtc.net/app/announcement/detail?id=%s" target="_blank" rel="noopener">https://api.finbtc.net/app/announcement/detail?id=%s</a><br>method：get<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">headers：&#123;</span><br><span class="line">          &apos;User-Agent&apos;: &apos;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36&apos;,</span><br><span class="line">          &apos;x-app-info&apos;: &apos;2.4.0/offical/web&apos;,</span><br><span class="line">          &apos;origin&apos;: &apos;https://www.coinbull.one&apos;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<ul>
+<li><strong>金色财经文章</strong><br>获取新数据：<blockquote>
+<p>url：<a href="https://api.jinse.com/v6/information/list?catelogue_key=www&amp;limit=20&amp;information_id=0&amp;flag=down&amp;version=9.9.9&amp;_source=m" target="_blank" rel="noopener">https://api.jinse.com/v6/information/list?catelogue_key=www&amp;limit=20&amp;information_id=0&amp;flag=down&amp;version=9.9.9&amp;_source=m</a><br>method：get</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">headers：&#123;&apos;User-Agent&apos;: 手机端浏览器&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<p>获取detail数据：</p>
+<blockquote>
+<p>url：detailurl(<a href="https://m.jinse.com/news/bitcoin/284031.html" target="_blank" rel="noopener">https://m.jinse.com/news/bitcoin/284031.html</a>)<br>method：get<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">headers：&#123;&apos;User-Agent&apos;: 手机端浏览器&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<ul>
+<li><strong>巴比特文章</strong><br>获取新数据：<blockquote>
+<p>url：<a href="https://app.blockmeta.com/news?&amp;num=20" target="_blank" rel="noopener">https://app.blockmeta.com/news?&amp;num=20</a><br>method：get</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">headers：&#123;</span><br><span class="line">           &apos;User-Agent&apos;: &apos;8btc/1.2.3 (com.8btc.bbs; build:47; iOS 11.4.0) Alamofire/4.7.3&apos;,</span><br><span class="line">           &apos;token&apos;: &apos;d7f48d5c2e9787d3cd6224d427f483453f5c4187&apos;,</span><br><span class="line">           &apos;from&apos;: &apos;ios&apos;</span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<p>获取detail数据：</p>
+<blockquote>
+<p>url：<a href="https://app.blockmeta.com/news?id=%s" target="_blank" rel="noopener">https://app.blockmeta.com/news?id=%s</a><br>method：get<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">headers：&#123;</span><br><span class="line">          &apos;User-Agent&apos;: &apos;8btc/1.2.3 (com.8btc.bbs; build:47; iOS 11.4.0) Alamofire/4.7.3&apos;,</span><br><span class="line">          &apos;token&apos;: &apos;d7f48d5c2e9787d3cd6224d427f483453f5c4187&apos;,</span><br><span class="line">          &apos;from&apos;: &apos;ios&apos;</span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<ul>
+<li><strong>火星财经文章</strong><br>获取新数据：<blockquote>
+<p>url：<a href="http://www.huoxing24.com/info/news/shownews" target="_blank" rel="noopener">http://www.huoxing24.com/info/news/shownews</a><br>method：get</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">headers：&#123;</span><br><span class="line">           &apos;User-Agent&apos;: 手机端浏览器,</span><br><span class="line">           &apos;sign-param&apos;: &apos;eyJwbGF0Zm9ybSI6ImlvcyIsIm5vbmNlIjoiYXNmYXNmZ2FxIiwidGltZXN0YW1wIjoiMTUzNzE3MDYyNDg0MyIsInNpZyI6IjYxMzczZjIxZjY3YmUwM2RhNjE3NWU2NzE5MTgzOGMyIn0=&apos;</span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<p>获取detail数据：</p>
+<blockquote>
+<p>url：<a href="http://www.huoxing24.com/info/news/getbyid?id=%s" target="_blank" rel="noopener">http://www.huoxing24.com/info/news/getbyid?id=%s</a><br>method：post<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">headers：&#123;</span><br><span class="line">          &apos;User-Agent&apos;: 手机端浏览器,</span><br><span class="line">          &apos;sign-param&apos;: &apos;eyJwbGF0Zm9ybSI6ImlvcyIsIm5vbmNlIjoiYXNmYXNmZ2FxIiwidGltZXN0YW1wIjoiMTUzNzE3MDYyNDg0MyIsInNpZyI6IjYxMzczZjIxZjY3YmUwM2RhNjE3NWU2NzE5MTgzOGMyIn0=&apos;</span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<ul>
+<li><p><strong>cointelegraph文章</strong><br>获取新数据：</p>
+<blockquote>
+<p>url：<a href="https://api.cointelegraph.com/api/v1/mobile/feed?&amp;language=CN&amp;withHtml=1" target="_blank" rel="noopener">https://api.cointelegraph.com/api/v1/mobile/feed?&amp;language=CN&amp;withHtml=1</a><br>method：get</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">headers：&#123;&apos;User-Agent&apos;: 手机端浏览器&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p><strong>newsnow文章</strong><br>获取新数据（HTML解析）：</p>
+<blockquote>
+<p>url：<a href="https://www.newsnow.co.uk/h/Business+&amp;+Finance/Cryptocurrencies" target="_blank" rel="noopener">https://www.newsnow.co.uk/h/Business+&amp;+Finance/Cryptocurrencies</a><br>method：get</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">headers：&#123;</span><br><span class="line">         &apos;User-Agent&apos;: &apos;Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Mobile Safari/537.36&apos;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<h3 id="社交资讯social"><a href="#社交资讯social" class="headerlink" title="社交资讯social"></a>社交资讯social</h3><ul>
+<li><strong>币世界币圈项目</strong><br>获取新数据：<blockquote>
+<p>url：<a href="http://iapi.bishijie.com/project/articleList" target="_blank" rel="noopener">http://iapi.bishijie.com/project/articleList</a><br>method：get</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">headers：&#123;</span><br><span class="line">            &apos;User-Agent&apos;: 手机端浏览器&#125;`</span><br><span class="line">params: 具体加密步骤看代码</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<p>获取detail数据：</p>
+<blockquote>
+<p>url：<a href="http://iapi.bishijie.com/iarticle/detail" target="_blank" rel="noopener">http://iapi.bishijie.com/iarticle/detail</a><br>method：get<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">headers：`&#123;</span><br><span class="line">            &apos;User-Agent&apos;: 手机端浏览器&#125;`</span><br><span class="line">params: 具体加密步骤看代码</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p><strong>微博</strong><br>获取新数据：</p>
+<blockquote>
+<p>url：<a href="https://m.weibo.cn/api/container/getIndex?type=uid&amp;containerid=107603%s" target="_blank" rel="noopener">https://m.weibo.cn/api/container/getIndex?type=uid&amp;containerid=107603%s</a><br>method：get<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">headers：`&#123;&apos;User-Agent&apos;: 手机端浏览器&#125;`</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>获取detail数据：</p>
+<blockquote>
+<p>url：<a href="https://m.weibo.cn/statuses/show?id=%s（bid）" target="_blank" rel="noopener">https://m.weibo.cn/statuses/show?id=%s（bid）</a><br>method：get<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">headers：`&#123;&apos;User-Agent&apos;: 手机端浏览器&#125;`</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p><strong>Twitter</strong><br>使用Twitter api获取更新，python库用<a href="http://docs.tweepy.org/en/v3.5.0/" target="_blank" rel="noopener">tweepy</a>。<br>数据获取方法：注册Twitter开发者，获取开发api密钥和token，新建一个list，把要监控Twitter对象添加到list中（add_list_member），获取该list的更新数据（list_timeline）。</p>
+<h3 id="转账监控monitors"><a href="#转账监控monitors" class="headerlink" title="转账监控monitors"></a>转账监控monitors</h3><p><strong>比特币网络监控</strong><br>使用第三方库<a href="https://github.com/blockchain/api-v1-client-python/blob/master/docs/blockexplorer.md" target="_blank" rel="noopener">blockchain</a>。</p>
+<pre><code>from blockchain import blockexplorer
+latest_block_hash = blockexplorer.get_latest_block().hash  # 获取最近区块哈希
+block = blockexplorer.get_block(latest_block_hash)  # 获取区块信息
+transactions = block.transactions # 获取区块交易信息
+</code></pre><p><strong>chainext监控</strong><br>获取数据：</p>
+<blockquote>
+<p>url：<a href="https://api.chainext.io/v1/largement_alert" target="_blank" rel="noopener">https://api.chainext.io/v1/largement_alert</a><br>method：get</p>
+</blockquote>
+<h2 id="数据分析提取"><a href="#数据分析提取" class="headerlink" title="数据分析提取"></a>数据分析提取</h2><p>源数据要经过分析过滤提取得到有效数据再给服务器推送。以下整理了数据的分析推送策略。</p>
+<h3 id="NewsParse"><a href="#NewsParse" class="headerlink" title="NewsParse"></a>NewsParse</h3><p><strong>快讯</strong><br>内容去重——“币响、币世界、金色财经”关键字检测——标题关键字与tag相关词匹配检测<br><strong>文章</strong><br>标题关键字与tag相关词匹配检测——“币响、币世界、金色财经”关键字检测——内容去重<br><strong>交易所公告</strong><br>币牛牛爬取的交易所公告直接推送<br>非小号爬取的需要检测标题关键字与tag相关词匹配<br><strong>转账交易</strong><br>chainext中以太坊交易数量小于19999，比特币交易数量小于1999的不推送，其他的都直接推送<br><strong>社交资讯</strong><br>直接推送</p>
+<h3 id="HotParse"><a href="#HotParse" class="headerlink" title="HotParse"></a>HotParse</h3><p><strong>策略</strong><br>币牛牛爬取的交易所公告热度4<br>其他交易所公告中币种上线类型的数据根据交易所热度设置<br>快讯中监控关键词“主网”+“上线”根据币种热度设置<br>社交资讯中监控关键词“主网”+“上线”根据币种热度设置<br>其他的可在管理后台编辑热点</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>谢谢阁下赏识</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="Leguang WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.png" alt="Leguang Alipay">
+        <p>Alipay</p>
+      </div>
+    
+
+    
+      <div id="bitcoin" style="display: inline-block">
+        <img id="bitcoin_qr" src="/images/bitcoin.png" alt="Leguang Bitcoin">
+        <p>Bitcoin</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Leguang
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://itsite.cn/镰刀项目/镰刀爬虫系统/镰刀数据爬虫系统/" title>http://itsite.cn/镰刀项目/镰刀爬虫系统/镰刀数据爬虫系统/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/开放平台/支付系统/支付系统/" rel="next" title>
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/镰刀项目/镰刀通知方案/镰刀通知方案/" rel="prev" title>
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/favicon.ico" alt="Leguang">
+          <p class="site-author-name" itemprop="name">Leguang</p>
+           
+              <p class="site-description motion-element" itemprop="description">浮生若戏悲欢聚 笑看天风扫寰宇</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">204</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/leguang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:langmanleguang@qq.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#镰刀数据爬虫系统"><span class="nav-number">1.</span> <span class="nav-text">镰刀数据爬虫系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#整体框架"><span class="nav-number">1.1.</span> <span class="nav-text">整体框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#程序设计及运行"><span class="nav-number">1.2.</span> <span class="nav-text">程序设计及运行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用工具及数据库"><span class="nav-number">1.3.</span> <span class="nav-text">使用工具及数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#rabbitmq"><span class="nav-number">1.3.1.</span> <span class="nav-text">rabbitmq</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#supervisor"><span class="nav-number">1.3.2.</span> <span class="nav-text">supervisor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#日志logging"><span class="nav-number">1.3.3.</span> <span class="nav-text">日志logging</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL"><span class="nav-number">1.3.4.</span> <span class="nav-text">MySQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MongoDB"><span class="nav-number">1.3.5.</span> <span class="nav-text">MongoDB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#redis"><span class="nav-number">1.3.6.</span> <span class="nav-text">redis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OSS对象存储"><span class="nav-number">1.3.7.</span> <span class="nav-text">OSS对象存储</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#翻译工具"><span class="nav-number">1.3.8.</span> <span class="nav-text">翻译工具</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网站爬虫spiders"><span class="nav-number">1.4.</span> <span class="nav-text">网站爬虫spiders</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#快讯文章公告spiders-API接口"><span class="nav-number">1.4.1.</span> <span class="nav-text">快讯文章公告spiders API接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#社交资讯social"><span class="nav-number">1.4.2.</span> <span class="nav-text">社交资讯social</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#转账监控monitors"><span class="nav-number">1.4.3.</span> <span class="nav-text">转账监控monitors</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据分析提取"><span class="nav-number">1.5.</span> <span class="nav-text">数据分析提取</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NewsParse"><span class="nav-number">1.5.1.</span> <span class="nav-text">NewsParse</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HotParse"><span class="nav-number">1.5.2.</span> <span class="nav-text">HotParse</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Leguang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 访问总量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("UUrijxLg3YUcx9WIg5UlJchI-gzGzoHsz", "m6wXtGXT8NUa5W4TiErrXWpO");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

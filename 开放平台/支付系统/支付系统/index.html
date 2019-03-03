@@ -1,0 +1,2129 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="IT站点, 一站到底">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="IT站点" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="打币系统商家支付sdk概述第三方应用可以通过接入支付sdk的方式，使用虚拟货币进行充值，提现功能。进一步活跃社区，赋能商户，丰富生态。为了提高数据的安全性，降低中途被截获篡改的风险，强烈建议由发起调用的应用对应的服务端按照要求对数据进行二次封装加密后，再调用支付中心服务。 阅读对象产品经理，开发人员，测试人员，区块链工程师，其他有关人员。 主要流程为提供一套安全，高性能，可伸缩的商户支付服务，经过">
+<meta name="keywords" content="IT站点, 一站到底">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IT站点">
+<meta property="og:url" content="http://itsite.cn/开放平台/支付系统/支付系统/index.html">
+<meta property="og:site_name" content="IT站点">
+<meta property="og:description" content="打币系统商家支付sdk概述第三方应用可以通过接入支付sdk的方式，使用虚拟货币进行充值，提现功能。进一步活跃社区，赋能商户，丰富生态。为了提高数据的安全性，降低中途被截获篡改的风险，强烈建议由发起调用的应用对应的服务端按照要求对数据进行二次封装加密后，再调用支付中心服务。 阅读对象产品经理，开发人员，测试人员，区块链工程师，其他有关人员。 主要流程为提供一套安全，高性能，可伸缩的商户支付服务，经过">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://itsite.cn/开放平台/支付系统/支付系统/media/%E6%94%AF%E4%BB%98%E4%BA%A4%E4%BA%92%E6%B5%81%E7%A8%8B.png">
+<meta property="og:image" content="http://itsite.cn/开放平台/支付系统/支付系统/media/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%A1%AE%E8%AE%A4%E8%AE%A2%E5%8D%95%E6%B5%81%E7%A8%8B.png">
+<meta property="og:image" content="http://itsite.cn/开放平台/支付系统/支付系统/media/%E6%94%AF%E4%BB%98%E4%B8%AD%E5%BF%83%E6%95%B0%E6%8D%AE%E5%BA%93.jpg">
+<meta property="og:image" content="http://itsite.cn/开放平台/支付系统/支付系统/media/%E8%AE%A2%E5%8D%95%E7%8A%B6%E6%80%81%E6%9C%BA.png">
+<meta property="og:updated_time" content="2019-02-25T01:35:14.270Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IT站点">
+<meta name="twitter:description" content="打币系统商家支付sdk概述第三方应用可以通过接入支付sdk的方式，使用虚拟货币进行充值，提现功能。进一步活跃社区，赋能商户，丰富生态。为了提高数据的安全性，降低中途被截获篡改的风险，强烈建议由发起调用的应用对应的服务端按照要求对数据进行二次封装加密后，再调用支付中心服务。 阅读对象产品经理，开发人员，测试人员，区块链工程师，其他有关人员。 主要流程为提供一套安全，高性能，可伸缩的商户支付服务，经过">
+<meta name="twitter:image" content="http://itsite.cn/开放平台/支付系统/支付系统/media/%E6%94%AF%E4%BB%98%E4%BA%A4%E4%BA%92%E6%B5%81%E7%A8%8B.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://itsite.cn/开放平台/支付系统/支付系统/">
+
+
+
+
+
+  <title> | IT站点</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c5074ca51b610e0c4ba4fac7b24abea2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IT站点</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一站到底</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://itsite.cn/开放平台/支付系统/支付系统/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Leguang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/favicon.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT站点">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-03T21:38:45+08:00">
+                2019-03-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/开放平台/支付系统/支付系统/" class="leancloud_visitors" data-flag-title>
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  6.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  24
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="打币系统"><a href="#打币系统" class="headerlink" title="打币系统"></a>打币系统</h1><h2 id="商家支付sdk"><a href="#商家支付sdk" class="headerlink" title="商家支付sdk"></a>商家支付sdk</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>第三方应用可以通过接入支付sdk的方式，使用虚拟货币进行充值，提现功能。进一步活跃社区，赋能商户，丰富生态。<br>为了提高数据的安全性，降低中途被截获篡改的风险，强烈建议由发起调用的应用对应的服务端按照要求对数据进行二次封装加密后，再调用支付中心服务。</p>
+<h3 id="阅读对象"><a href="#阅读对象" class="headerlink" title="阅读对象"></a>阅读对象</h3><p>产品经理，开发人员，测试人员，区块链工程师，其他有关人员。</p>
+<h3 id="主要流程"><a href="#主要流程" class="headerlink" title="主要流程"></a>主要流程</h3><p>为提供一套安全，高性能，可伸缩的商户支付服务，经过多轮讨论之后，需要由以下几套主体流程结合完成。</p>
+<ol>
+<li><p>支付交互流程<br><img src="media/%E6%94%AF%E4%BB%98%E4%BA%A4%E4%BA%92%E6%B5%81%E7%A8%8B.png" alt="支付交互流程"></p>
+</li>
+<li><p>服务端确认订单流程<br><img src="media/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%A1%AE%E8%AE%A4%E8%AE%A2%E5%8D%95%E6%B5%81%E7%A8%8B.png" alt="服务端确认订单流程"><br>以上是与链交互的主体流程。</p>
+<h3 id="数据库设计"><a href="#数据库设计" class="headerlink" title="数据库设计"></a>数据库设计</h3><p><img src="media/%E6%94%AF%E4%BB%98%E4%B8%AD%E5%BF%83%E6%95%B0%E6%8D%AE%E5%BA%93.jpg" alt="支付中心数据库"></p>
+</li>
+</ol>
+<h4 id="merchant-t"><a href="#merchant-t" class="headerlink" title="merchant_t"></a>merchant_t</h4><p>商户信息，应用接入开放平台时，首先需要注册成为平台商户。<br>包括商户编号，商户名称(不能重名)，邮箱地址，商户描述信息，是否有效，创建时间，修改时间。<br>无效的商户不能再对接开放平台，不能调用接口。<br>未来需要开放商户注册服务，从安全和功能丰富性角度考虑，建议完善手机注册认证等功能。</p>
+<h4 id="merchant-account-t"><a href="#merchant-account-t" class="headerlink" title="merchant_account_t"></a>merchant_account_t</h4><p>商户账户，一个商户可以有多个商户账号，一币一账，支持多币种。<br>包括商户账号ID，应用ID，商户ID，币种，商户账号地址，可提现额度，累计提现额度，是否有效，创建时间，修改时间。<br>累计提现额度用于记录该币种账户上历史累计提现总数；可提现额度用于记录该币种账户当前可以提现的额度，订单完成后，金额存储在中转账户上，商户需要发起提现，才能将交易所得转到商户账户上。</p>
+<h4 id="merchant-secret-t"><a href="#merchant-secret-t" class="headerlink" title="merchant_secret_t"></a>merchant_secret_t</h4><p>商户加密配置，为了保证交易的安全性，支付中心采用商户秘钥和平台私钥两对秘钥进行加签，确保数据不被篡改，保证数据安全性。<br>包括应用加密配置ID，应用编号，商户编号，商户私钥，商户公钥，平台公钥，平台私钥，是否有效，创建时间，修改时间。<br>为了保证秘钥对本身的安全性，建议在存储上做一些改进，比如公司公私钥分开存储。</p>
+<h4 id="product-t"><a href="#product-t" class="headerlink" title="product_t"></a>product_t</h4><p>产品信息，用于存储产品的基本信息。包括产品编号，产品名称，产品名称，产品描述，是否有效，创建见时间，修改时间。<br>产品信息和单品信息，建议由商户接入应用自身维护，中心只维护一些特殊商品，比如授权销售商品等。</p>
+<h4 id="product-item-t"><a href="#product-item-t" class="headerlink" title="product_item_t"></a>product_item_t</h4><p>单品信息，SKU，用于存储商品唯一性信息。包括单品ID，产品ID，币种，价格，是否有效，创建时间，修改时间。</p>
+<h4 id="trade-t"><a href="#trade-t" class="headerlink" title="trade_t"></a>trade_t</h4><p>订单信息，存储订单的基本信息。<br>包括统一订单号(建议采用格式如yyyyMMdd+10位流水累计，如201801020000000001，由于时间原因，暂时按uuid方式进行存储的)，应用ID，商户ID，币种，额度，扩展信息(可以用于描述交易的具体商品，此处的作用与trade_item_t相同，只有详细和具体的区别)，用户编号(若买家为系统统一用户，则完善填入本值)，买家信息(json结构，用于存储三方应用的用户信息)，支付账户(记录用户用于支付的钱包地址)，订单完成时间，订单状态，是否有效，创建时间，修改时间，中转块哈希。</p>
+<h4 id="trade-item-t"><a href="#trade-item-t" class="headerlink" title="trade_item_t"></a>trade_item_t</h4><p>交易单品信息，存储一些需要平台特殊处理的商品(比如授权销售商品)。<br>包括订单单品条目，单品编号，数量，币种，额度，创建时间，修改时间，是否有效。</p>
+<h4 id="refund-t"><a href="#refund-t" class="headerlink" title="refund_t"></a>refund_t</h4><p>退款单，记录退款的概要信息。<br>包括退货单编号，订单编号，币种，退款金额，扩展信息(描述为什么退款)，退货单状态，是否有效，创建时间，修改时间，退款块哈希。<br>失去了退款等业务，就失去了一个商业系统的完整性。所以，未来我们也需要退款功能。</p>
+<h4 id="refund-item-t"><a href="#refund-item-t" class="headerlink" title="refund_item_t"></a>refund_item_t</h4><p>退款单品信息，存储一些需要平台特殊处理的商品(比如授权销售商品)。<br>包括退款单品条目编号，单品编号，单品数量，币种，金额，是否有效，创建时间，修改时间。</p>
+<h4 id="withdraw-t"><a href="#withdraw-t" class="headerlink" title="withdraw_t"></a>withdraw_t</h4><p>提现表，记录商户的每一笔提现记录。交易从开始到完成，交易款项都是在用户账户和中转账户中进行。交易完成后，商户需要申请提现，才能将交易的收益打到自己的商户账户上。<br>包括提现编号，商户账户ID，币种，提现金额，提现状态，是否有效，创建时间，修改时间，提现块哈希。</p>
+<h3 id="基础参数"><a href="#基础参数" class="headerlink" title="基础参数"></a>基础参数</h3><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>变量名</th>
+<th>必填</th>
+<th>类型</th>
+<th>示例</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>应用ID</td>
+<td>appID</td>
+<td>是</td>
+<td>String(32)</td>
+<td>支付中心分配给开发者的应用ID，一个商户号可以拥有多个应用</td>
+<td>2014072300007148</td>
+</tr>
+<tr>
+<td>商户ID</td>
+<td>merchantID</td>
+<td>是</td>
+<td>String(32)</td>
+<td>1230000109</td>
+<td>支付中心分配的商户号</td>
+</tr>
+<tr>
+<td>编码格式</td>
+<td>charset</td>
+<td>是</td>
+<td>String(10)</td>
+<td>utf-8</td>
+<td>请求使用的编码格式，如utf-8,gbk,gb2312等</td>
+</tr>
+<tr>
+<td>签名类型</td>
+<td>signType</td>
+<td>是</td>
+<td>String(10)</td>
+<td>RSA2</td>
+<td>商户生成签名字符串所使用的签名算法类型，目前支持RSA2和RSA，推荐使用RSA2</td>
+</tr>
+<tr>
+<td>签名</td>
+<td>sign</td>
+<td>是</td>
+<td>String</td>
+<td>xxxxx</td>
+<td>采用应用私钥对对参数进行非签名外的其他参数进行加密的到的签名数据</td>
+</tr>
+<tr>
+<td>请求时间戳</td>
+<td>timestamp</td>
+<td>是</td>
+<td>String(19)</td>
+<td>2014-07-24 03:07:50</td>
+<td>发送请求的时间，格式”yyyy-MM-dd HH:mm:ss”</td>
+</tr>
+<tr>
+<td>回调通知链接</td>
+<td>notifyUrl</td>
+<td>否</td>
+<td>String(256)</td>
+<td><a href="https://api.xx.com/receive_notify.htm" target="_blank" rel="noopener">https://api.xx.com/receive_notify.htm</a></td>
+<td>支付中心主动通知商户服务器里指定的页面http/https路径，建议商户使用https</td>
+</tr>
+</tbody>
+</table>
+<h3 id="接口定义"><a href="#接口定义" class="headerlink" title="接口定义"></a>接口定义</h3><p>支付中心主要提供以下几个接口</p>
+<table>
+<thead>
+<tr>
+<th>接口</th>
+<th>地址</th>
+<th>方法</th>
+<th>描述</th>
+<th>使用对象</th>
+<th>加签</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>统一下单</td>
+<td><a href="https://api.xxx.com/pay/unifiedorder" target="_blank" rel="noopener">https://api.xxx.com/pay/unifiedorder</a></td>
+<td>POST</td>
+<td>创建预支付订单</td>
+<td>商户服务端</td>
+<td>是</td>
+</tr>
+<tr>
+<td>获取统一订单</td>
+<td><a href="https://api.xxx.com/pay/unifiedorder" target="_blank" rel="noopener">https://api.xxx.com/pay/unifiedorder</a></td>
+<td>GET</td>
+<td>根据prepay_id获取预支付订单信息</td>
+<td>钱包应用</td>
+<td>是</td>
+</tr>
+<tr>
+<td>中转支付</td>
+<td><a href="https://api.xxx.com/pay/transfer" target="_blank" rel="noopener">https://api.xxx.com/pay/transfer</a></td>
+<td>POST</td>
+<td>向中转账户打款</td>
+<td>钱包应用</td>
+<td>否</td>
+</tr>
+<tr>
+<td>查询订单</td>
+<td><a href="https://api.xxx.com/pay/orderquery" target="_blank" rel="noopener">https://api.xxx.com/pay/orderquery</a></td>
+<td>GET</td>
+<td>查询单笔订单信息</td>
+<td>商户应用</td>
+<td>否</td>
+</tr>
+<tr>
+<td>关闭订单</td>
+<td><a href="https://api.xxx.com/pay/closeorder" target="_blank" rel="noopener">https://api.xxx.com/pay/closeorder</a></td>
+<td>PATCH</td>
+<td>支付失败或支付超时需要关闭原订单</td>
+<td>商户应用</td>
+<td>是</td>
+</tr>
+<tr>
+<td>完成订单确认</td>
+<td><a href="https://api.xxx.com/pay/confirmorder" target="_blank" rel="noopener">https://api.xxx.com/pay/confirmorder</a></td>
+<td>POST</td>
+<td>用户收到商品，确认无误后可以调用本接口进行确认完成，或者在系统指定时间内自动确认</td>
+<td>商户服务端</td>
+<td>是</td>
+</tr>
+<tr>
+<td>商户提现</td>
+<td><a href="https://api.xxx.com/pay/withdraw" target="_blank" rel="noopener">https://api.xxx.com/pay/withdraw</a></td>
+<td>POST</td>
+<td>交易确认完成之后，商户可以将商户平台账户上的金额提现到商户账户上</td>
+<td>商户服务端</td>
+<td>是</td>
+</tr>
+<tr>
+<td>申请退款</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>退款处理</td>
+<td><a href="https://api.xxx.com/pay/refund" target="_blank" rel="noopener">https://api.xxx.com/pay/refund</a></td>
+<td>POST</td>
+<td>商户退款给用户</td>
+<td>商户应用</td>
+<td>是</td>
+</tr>
+<tr>
+<td>查询退款</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>下载对账单</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h4 id="创建预支付"><a href="#创建预支付" class="headerlink" title="创建预支付"></a>创建预支付</h4><h5 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h5><p>商户应用发起交易后，首先在商户服务端创建商户订单，然后在支付中心创建预支付交易订单。 返回预支付交易会话标识prepayId和对应的签名给商户服务端。</p>
+<h5 id="状态机"><a href="#状态机" class="headerlink" title="状态机"></a>状态机</h5><p>支付状态转变如下：<br><img src="media/%E8%AE%A2%E5%8D%95%E7%8A%B6%E6%80%81%E6%9C%BA.png" alt="订单状态机"></p>
+<h5 id="接口连接"><a href="#接口连接" class="headerlink" title="接口连接"></a>接口连接</h5><p>POST <a href="https://api.xxx.com/pay/unifiedorder" target="_blank" rel="noopener">https://api.xxx.com/pay/unifiedorder</a></p>
+<h5 id="请求参数"><a href="#请求参数" class="headerlink" title="请求参数"></a>请求参数</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	&quot;appID&quot;:&quot;2014072300007148&quot;,</span><br><span class="line">	&quot;merchantID&quot;:&quot;1230000109&quot;,</span><br><span class="line">	&quot;charset&quot;:&quot;UTF-8&quot;,</span><br><span class="line">	&quot;signType&quot;:&quot;RSA2&quot;,</span><br><span class="line">	&quot;timestamp&quot;:&quot;1540266193&quot;,</span><br><span class="line">	&quot;merchantTrade&quot;:&quot;20150806125346&quot;,</span><br><span class="line">	&quot;current&quot;:&quot;MOL&quot;,</span><br><span class="line">	&quot;amount&quot;:&quot;300&quot;,</span><br><span class="line">	&quot;tradeIp&quot;:&quot;127.0.0.1&quot;,</span><br><span class="line">	&quot;startAt&quot;:&quot;20091225091010&quot;,</span><br><span class="line">	&quot;expireAt&quot;:&quot;20091225091010&quot;,</span><br><span class="line">	&quot;userID&quot;:&quot;8d331065d34211e89b0b00163e007a48&quot;,</span><br><span class="line">	&quot;buyer&quot;:&#123;</span><br><span class="line">		&quot;name&quot;:&quot;李大嘴&quot;,</span><br><span class="line">		&quot;countryCode&quot;:&quot;0086&quot;,</span><br><span class="line">		&quot;phoneNumber&quot;:&quot;13888888888&quot;</span><br><span class="line">	&#125;</span><br><span class="line">	&quot;external&quot;:&quot;订阅&quot;,</span><br><span class="line">	&quot;products&quot;:[</span><br><span class="line">		&#123;</span><br><span class="line">			&quot;productID&quot;:&quot;11r23&quot;,</span><br><span class="line">			&quot;price&quot;:&quot;100&quot;,</span><br><span class="line">			&quot;current&quot;:&quot;MOL&quot;,</span><br><span class="line">			&quot;quantity&quot;:&quot;3&quot;,</span><br><span class="line">			&quot;amount&quot;:&quot;300&quot;</span><br><span class="line">		&#125;</span><br><span class="line">	],</span><br><span class="line">	&quot;sign&quot;:&quot;xxxxxxx&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>变量名</th>
+<th>必填</th>
+<th>类型</th>
+<th>示例</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>应用ID</td>
+<td>appID</td>
+<td>是</td>
+<td>String(32)</td>
+<td>2014072300007148</td>
+<td>支付中心分配给开发者的应用ID，一个商户号可以拥有多个应用</td>
+</tr>
+<tr>
+<td>商户ID</td>
+<td>merchantID</td>
+<td>是</td>
+<td>String(32)</td>
+<td>1230000109</td>
+<td>支付中心分配的商户号</td>
+</tr>
+<tr>
+<td>编码格式</td>
+<td>charset</td>
+<td>是</td>
+<td>String(10)</td>
+<td>utf-8</td>
+<td>请求使用的编码格式，如utf-8,gbk,gb2312等</td>
+</tr>
+<tr>
+<td>签名类型</td>
+<td>signType</td>
+<td>是</td>
+<td>String(10)</td>
+<td>RSA2</td>
+<td>商户生成签名字符串所使用的签名算法类型，目前支持RSA2和RSA，推荐使用RSA2</td>
+</tr>
+<tr>
+<td>请求时间戳</td>
+<td>timestamp</td>
+<td>是</td>
+<td>String(19)</td>
+<td>1540266193</td>
+<td>发送请求的时间，格式”yyyy-MM-dd HH:mm:ss”</td>
+</tr>
+<tr>
+<td>商户订单号</td>
+<td>merchantTrade</td>
+<td>是</td>
+<td>String(32)</td>
+<td>20150806125346</td>
+<td>商户系统内部订单号，要求32个字符内，只能是数字、大小写字母_-且在同一个商户号下唯一</td>
+</tr>
+<tr>
+<td>币种</td>
+<td>currency</td>
+<td>是</td>
+<td>String(16)</td>
+<td>MOL</td>
+<td>支付币种，默认为mol</td>
+</tr>
+<tr>
+<td>金额</td>
+<td>amount</td>
+<td>是</td>
+<td>Decimal(15,3)</td>
+<td>10</td>
+<td>支付额度，与币种对应</td>
+</tr>
+<tr>
+<td>终端IP</td>
+<td>tradeIp</td>
+<td>是</td>
+<td>String(39)</td>
+<td>127.0.0.1</td>
+<td>交易ip，支持ipv4和ipv6</td>
+</tr>
+<tr>
+<td>交易开始时间</td>
+<td>startAt</td>
+<td>是</td>
+<td>String(14)</td>
+<td>20091225091010</td>
+<td>订单生成时间，格式为yyyyMMddHHmmss，如2009年12月25日9点10分10秒表示为20091225091010。</td>
+</tr>
+<tr>
+<td>交易失效时间</td>
+<td>expireAt</td>
+<td>是</td>
+<td>String(14)</td>
+<td>20091225091010</td>
+<td>订单失效时间，格式为yyyyMMddHHmmss，如2009年12月27日9点10分10秒表示为20091227091010。订单失效时间是针对订单号而言的，由于在请求支付的时候有一个必传参数prepayId只有两小时的有效期，所以在重入时间超过2小时的时候需要重新请求下单接口获取新的prepayId。</td>
+</tr>
+<tr>
+<td>用户标识</td>
+<td>userID</td>
+<td>是</td>
+<td>String(32)</td>
+<td>8d331065d34211e89b0b00163e007a48</td>
+<td>发起支付的用户id</td>
+</tr>
+<tr>
+<td>商品信息</td>
+<td>products</td>
+<td>否</td>
+<td>jsonArray</td>
+<td>[{“productID”:”11r23”,”price”:”100”,”currency”:”MOL”,”quantity”:”3”,”sum”:”300”}]</td>
+<td>商品信息列表</td>
+</tr>
+<tr>
+<td>签名</td>
+<td>sign</td>
+<td>是</td>
+<td>String</td>
+<td>xxxxx</td>
+<td>采用应用私钥对对参数进行非签名外的其他参数进行加密的到的签名数据</td>
+</tr>
+</tbody>
+</table>
+<h5 id="签名算法"><a href="#签名算法" class="headerlink" title="签名算法"></a>签名算法</h5><p>参数明按照字典序进行排序，使用URL键值对的格式(即key1=value1&amp;key2=value2…)拼接成字符串<br>请按如下规则进行处理：</p>
+<ul>
+<li>排除不加入签名的属性</li>
+<li>如果参数值为空则不参与签名</li>
+<li>参数名字典序排序</li>
+<li>参数名区分大小写</li>
+</ul>
+<p>具体步骤如下：</p>
+<ol>
+<li><p>传入原始参数</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;amount&quot;: &quot;1&quot;,</span><br><span class="line">    &quot;appID&quot;: &quot;6dd50bbfdc3711e898a000163e002b60&quot;,</span><br><span class="line">    &quot;buyer&quot;: &#123;</span><br><span class="line">      &quot;countryCode&quot;: &quot;0086&quot;,</span><br><span class="line">      &quot;name&quot;: &quot;Oxford&quot;,</span><br><span class="line">      &quot;phoneNumber&quot;: &quot;13828770003&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;charset&quot;: &quot;UTF-8&quot;,</span><br><span class="line">    &quot;currency&quot;: &quot;mol&quot;,</span><br><span class="line">    &quot;external&quot;: &quot;下订单&quot;,</span><br><span class="line">    &quot;items&quot;: [</span><br><span class="line">      &#123;</span><br><span class="line">        &quot;amount&quot;: &quot;1&quot;,</span><br><span class="line">        &quot;currency&quot;: &quot;mol&quot;,</span><br><span class="line">        &quot;price&quot;: &quot;1&quot;,</span><br><span class="line">        &quot;productID&quot;: &quot;00001&quot;,</span><br><span class="line">        &quot;productItemID&quot;: &quot;11111&quot;,</span><br><span class="line">        &quot;quantity&quot;: &quot;1&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    ],</span><br><span class="line">    &quot;merchantID&quot;: &quot;5ae0d007dc3711e898a000163e002b60&quot;,</span><br><span class="line">    &quot;merchantTrade&quot;: &quot;1100113&quot;,</span><br><span class="line">    &quot;signType&quot;: &quot;RSA2&quot;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将原始参数中值为json块的数据进行属性名按字典序unicde编码<br>buyer:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%7B%22countryCode%22%3A%220086%22%2C%22name%22%3A%22Oxford%22%2C%22phoneNumber%22%3A%2213828770003%22%7D</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>items:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%5B%7B%22amount%22%3A%221%22%2C%22currency%22%3A%22mol%22%2C%22price%22%3A%221%22%2C%22productID%22%3A%2200001%22%2C%22productItemID%22%3A%2211111%22%2C%22quantity%22%3A%221%22%7D%5D</span><br></pre></td></tr></table></figure></p>
+<ol start="3">
+<li><p>然后将最外层的属性值按key=value的组合后，属性名按字典序用&amp;进行拼接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">amount=1&amp;appID=6dd50bbfdc3711e898a000163e002b60&amp;buyer=%257B%2522countryCode%2522%253A%25220086%2522%252C%2522name%2522%253A%2522Oxford%2522%252C%2522phoneNumber%2522%253A%252213828770003%2522%257D&amp;charset=UTF-8&amp;currency=mol&amp;external=%E4%B8%8B%E8%AE%A2%E5%8D%95&amp;items=%255B%257B%2522amount%2522%253A%25221%2522%252C%2522currency%2522%253A%2522mol%2522%252C%2522price%2522%253A%25221%2522%252C%2522productID%2522%253A%252200001%2522%252C%2522productItemID%2522%253A%252211111%2522%252C%2522quantity%2522%253A%25221%2522%257D%255D&amp;merchantID=5ae0d007dc3711e898a000163e002b60&amp;merchantTrade=1100113&amp;signType=RSA2</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用商户私钥对上述拼接好的字符串进行RSA签名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EtMYFy5LYZBMXD9lCdYq+i0NwpHUOYL+OjWiwm3hJTLcOFaI+EKYZHUUyusP9LTFCd3V3oZpnU85pY/WiVH1isgWgaGCBtAeZqOrKfG+O9rhLRU6opWdIg/Ckv/Jqb3GXdiP4VrFZmawQFgh0T7eqNQj6y30w7YmkHaBhCl07N/c3G7MQaU4W+5xV6YgsEIRAzdX28bGFcOujOnCPF7IsjUnVv4uG8gLAzHg9BLLNUpjC0PzIBU8mgJnYBXUyeSs3z1eHBUPVfB2YuYdRjm9O2hMqmlJR3JbrsPyJnIi8Eet/2Y+JQndgo6UMQghETxK0Dy4mgVyx9feMlMws0NPbA==</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重新分装请求参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;amount&quot;: &quot;1&quot;,</span><br><span class="line">    &quot;appID&quot;: &quot;6dd50bbfdc3711e898a000163e002b60&quot;,</span><br><span class="line">    &quot;buyer&quot;: &#123;</span><br><span class="line">      &quot;countryCode&quot;: &quot;0086&quot;,</span><br><span class="line">      &quot;name&quot;: &quot;Oxford&quot;,</span><br><span class="line">      &quot;phoneNumber&quot;: &quot;13828770003&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;charset&quot;: &quot;UTF-8&quot;,</span><br><span class="line">    &quot;currency&quot;: &quot;mol&quot;,</span><br><span class="line">    &quot;external&quot;: &quot;下订单&quot;,</span><br><span class="line">    &quot;items&quot;: [</span><br><span class="line">      &#123;</span><br><span class="line">        &quot;amount&quot;: &quot;1&quot;,</span><br><span class="line">        &quot;currency&quot;: &quot;mol&quot;,</span><br><span class="line">        &quot;price&quot;: &quot;1&quot;,</span><br><span class="line">        &quot;productID&quot;: &quot;00001&quot;,</span><br><span class="line">        &quot;productItemID&quot;: &quot;11111&quot;,</span><br><span class="line">        &quot;quantity&quot;: &quot;1&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    ],</span><br><span class="line">    &quot;merchantID&quot;: &quot;5ae0d007dc3711e898a000163e002b60&quot;,</span><br><span class="line">    &quot;merchantTrade&quot;: &quot;1100113&quot;,</span><br><span class="line">    &quot;signType&quot;: &quot;RSA2&quot;,</span><br><span class="line">    &quot;sign&quot;: &quot;EtMYFy5LYZBMXD9lCdYq+i0NwpHUOYL+OjWiwm3hJTLcOFaI+EKYZHUUyusP9LTFCd3V3oZpnU85pY/WiVH1isgWgaGCBtAeZqOrKfG+O9rhLRU6opWdIg/Ckv/Jqb3GXdiP4VrFZmawQFgh0T7eqNQj6y30w7YmkHaBhCl07N/c3G7MQaU4W+5xV6YgsEIRAzdX28bGFcOujOnCPF7IsjUnVv4uG8gLAzHg9BLLNUpjC0PzIBU8mgJnYBXUyeSs3z1eHBUPVfB2YuYdRjm9O2hMqmlJR3JbrsPyJnIi8Eet/2Y+JQndgo6UMQghETxK0Dy4mgVyx9feMlMws0NPbA==&quot;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h5 id="返回结果"><a href="#返回结果" class="headerlink" title="返回结果"></a>返回结果</h5><p>成功返回值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	&quot;code&quot;:200000,</span><br><span class="line">	&quot;message&quot;:&quot;OK&quot;,</span><br><span class="line">	&quot;data&quot;:&#123;</span><br><span class="line">		&quot;prepayID&quot;:&quot;2014072300007148&quot;,</span><br><span class="line">		&quot;appID&quot;:&quot;2014072300007148&quot;,</span><br><span class="line">		&quot;merchantID&quot;:&quot;1230000109&quot;,</span><br><span class="line">		&quot;paylink&quot;:&quot;mol://pay?prepayID=$&#123;prepayID&#125;&amp;appID=$&#123;appID&#125;&amp;merchantID=$&#123;merchantID&#125;&amp;sign=$&#123;sign&#125;&quot;,</span><br><span class="line">		&quot;sign&quot;:&quot;C380BEC2BFD727A4B6845133519F3AD6&quot;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>失败返回值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	&quot;code&quot;:400001,</span><br><span class="line">	&quot;message&quot;:&quot;缺少prepayID参数&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>变量名</th>
+<th>必填</th>
+<th>类型</th>
+<th>示例</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>返回状态码</td>
+<td>code</td>
+<td>是</td>
+<td>Integer(6)</td>
+<td>200000</td>
+<td>200000,500000等 此字段是通信标识，非交易标识，交易是否成功需要查看code来判断</td>
+</tr>
+<tr>
+<td>返回信息</td>
+<td>message</td>
+<td>是</td>
+<td>String(128)</td>
+<td>OK</td>
+<td>当code为200000时返回OK，否则返回信息为错误原因 ，例如签名失败 参数格式校验错误</td>
+</tr>
+<tr>
+<td>结果数据</td>
+<td>data</td>
+<td>是</td>
+<td>json</td>
+<td>{}</td>
+<td>code为200000时，本参数书才有值，无返回值或者非200000时，本参数为null或者没有data返回</td>
+</tr>
+</tbody>
+</table>
+<p>当code为200000时，data结构</p>
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>变量名</th>
+<th>必填</th>
+<th>类型</th>
+<th>示例</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>预支付ID</td>
+<td>prepayID</td>
+<td>是</td>
+<td>String(32)</td>
+<td>2014072300007148</td>
+<td>交易会话的预支付ID</td>
+</tr>
+<tr>
+<td>应用ID</td>
+<td>appID</td>
+<td>是</td>
+<td>String(32)</td>
+<td>2014072300007148</td>
+<td>调用接口提交的应用ID</td>
+</tr>
+<tr>
+<td>商户ID</td>
+<td>merchantID</td>
+<td>否</td>
+<td>String(32)</td>
+<td>1230000109</td>
+<td>支付中心分配的商户号</td>
+</tr>
+<tr>
+<td>签名</td>
+<td>sign</td>
+<td>是</td>
+<td>String(32)</td>
+<td>C380BEC2BFD727A4B6845133519F3AD6</td>
+<td>支付中心返回的签名值</td>
+</tr>
+</tbody>
+</table>
+<h5 id="错误码"><a href="#错误码" class="headerlink" title="错误码"></a>错误码</h5><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+<th>原因</th>
+<th>解决方案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NO_AUTH</td>
+<td>商户无此接口权限</td>
+<td>商户未开通此接口权限</td>
+<td>请商户前往申请此接口权限</td>
+</tr>
+<tr>
+<td>NOT_ENOUGH</td>
+<td>余额不足</td>
+<td>用户帐号余额不足</td>
+<td>用户帐号余额不足，请用户充值或更换支付卡后再支付</td>
+</tr>
+<tr>
+<td>ORDER_PAID</td>
+<td>商户订单已支付</td>
+<td>商户订单已支付，无需重复操作</td>
+<td>商户订单已支付，无需更多操作</td>
+</tr>
+<tr>
+<td>ORDER_CLOSED</td>
+<td>订单已关闭</td>
+<td>当前订单已关闭，无法支付</td>
+<td>当前订单已关闭，请重新下单</td>
+</tr>
+<tr>
+<td>SYSTEM_ERROR</td>
+<td>系统错误</td>
+<td>系统超时</td>
+<td>系统异常，请用相同参数重新调用</td>
+</tr>
+<tr>
+<td>APPID_NOT_EXIST</td>
+<td>APPID不存在</td>
+<td>参数中缺少APPID</td>
+<td>请检查APPID是否正确</td>
+</tr>
+<tr>
+<td>MCHID_NOT_EXIST</td>
+<td>MCHID不存在</td>
+<td>参数中缺少MCHID</td>
+<td>请检查MCHID是否正确</td>
+</tr>
+<tr>
+<td>APPID_MCHID_NOT_MATCH</td>
+<td>appid和mch_id不匹配</td>
+<td>appid和mch_id不匹配</td>
+<td>请确认appid和mch_id是否匹配</td>
+</tr>
+<tr>
+<td>LACK_PARAMS</td>
+<td>缺少参数</td>
+<td>缺少必要的请求参数</td>
+<td>请检查参数是否齐全</td>
+</tr>
+<tr>
+<td>OUT_TRADE_NO_USED</td>
+<td>商户订单号重复</td>
+<td>同一笔交易不能多次提交</td>
+<td>请核实商户订单号是否重复提交</td>
+</tr>
+<tr>
+<td>SIGN_ERROR</td>
+<td>签名错误</td>
+<td>参数签名结果不正确</td>
+<td>请检查签名参数和方法是否都符合签名算法要求</td>
+</tr>
+<tr>
+<td>REQUIRE_POST_METHOD</td>
+<td>请使用post方法</td>
+<td>未使用post传递参数</td>
+<td>请检查请求参数是否通过post方法提交</td>
+</tr>
+<tr>
+<td>POST_DATA_EMPTY</td>
+<td>post数据为空</td>
+<td>post数据不能为空</td>
+<td>请检查post数据是否为空</td>
+</tr>
+<tr>
+<td>NOT_UTF8</td>
+<td>编码格式错误</td>
+<td>未使用指定编码格式</td>
+<td>请使用UTF-8编码格式</td>
+</tr>
+</tbody>
+</table>
+<h4 id="获取统一订单"><a href="#获取统一订单" class="headerlink" title="获取统一订单"></a>获取统一订单</h4><h5 id="应用场景-1"><a href="#应用场景-1" class="headerlink" title="应用场景"></a>应用场景</h5><p>商户应用调起钱包后，钱包应用将传递过来的prepayID，appID，调用本接口发送至支付中心，获取统一订单信息</p>
+<h5 id="接口连接-1"><a href="#接口连接-1" class="headerlink" title="接口连接"></a>接口连接</h5><p>GET <a href="https://api.xxx.com/pay/unifiedorder" target="_blank" rel="noopener">https://api.xxx.com/pay/unifiedorder</a></p>
+<h5 id="请求参数-1"><a href="#请求参数-1" class="headerlink" title="请求参数"></a>请求参数</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">prepayID=014072300007148&amp;appID=2014072300007148&amp;merchantID=134352&amp;sign=adae13isg</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>变量名</th>
+<th>必填</th>
+<th>类型</th>
+<th>示例</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>预支付ID</td>
+<td>prepayID</td>
+<td>是</td>
+<td>String(32)</td>
+<td>2014072300007148</td>
+<td>交易会话的预支付ID</td>
+</tr>
+<tr>
+<td>应用ID</td>
+<td>appID</td>
+<td>是</td>
+<td>String(32)</td>
+<td>2014072300007148</td>
+<td>支付中心分配给开发者的应用ID，一个商户号可以拥有多个应用</td>
+</tr>
+</tbody>
+</table>
+<h5 id="返回结果-1"><a href="#返回结果-1" class="headerlink" title="返回结果"></a>返回结果</h5><p>成功返回值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	&quot;code&quot;:200000,</span><br><span class="line">	&quot;message&quot;:&quot;OK&quot;,</span><br><span class="line">	&quot;data&quot;:&#123;</span><br><span class="line">		&quot;prepayID&quot;:&quot;2014072300007148&quot;,</span><br><span class="line">		&quot;sender&quot;:&quot;mol_1mrj9xomsiaykauks9f731ux651g8yk35sg6nzt6dwqfkrbs5ygirw1hq5kn&quot;,</span><br><span class="line">		&quot;userID&quot;:&quot;8d331065d34211e89b0b00163e007a48&quot;,</span><br><span class="line">		&quot;buyer&quot;:&#123;</span><br><span class="line">			&quot;name&quot;:&quot;李大嘴&quot;,</span><br><span class="line">			&quot;countryCode&quot;:&quot;0086&quot;,</span><br><span class="line">			&quot;phoneNumber&quot;:&quot;13888888888&quot;</span><br><span class="line">		&#125;,</span><br><span class="line">		&quot;current&quot;:&quot;mol&quot;,</span><br><span class="line">		&quot;amount&quot;:&quot;300&quot;,</span><br><span class="line">		&quot;merchant&quot;: &#123;</span><br><span class="line">			&quot;merchantID&quot;:&quot;merchantID&quot;,</span><br><span class="line">			&quot;merchantName&quot;:&quot;电器之家&quot;</span><br><span class="line">		&#125;,</span><br><span class="line">		&quot;app&quot;:&#123;</span><br><span class="line">			&quot;appID&quot;:&quot;2014072300007148&quot;,</span><br><span class="line">			&quot;appName&quot;:&quot;镰刀&quot;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>失败返回值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	&quot;code&quot;:400001,</span><br><span class="line">	&quot;message&quot;:&quot;缺少prepayID参数&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>变量名</th>
+<th>必填</th>
+<th>类型</th>
+<th>示例</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>返回状态码</td>
+<td>code</td>
+<td>是</td>
+<td>Integer(6)</td>
+<td>200000</td>
+<td>200000,500000等 此字段是通信标识，非交易标识，交易是否成功需要查看code来判断</td>
+</tr>
+<tr>
+<td>返回信息</td>
+<td>message</td>
+<td>是</td>
+<td>String(128)</td>
+<td>OK</td>
+<td>当code为200000时返回OK，否则返回信息为错误原因 ，例如签名失败 参数格式校验错误</td>
+</tr>
+<tr>
+<td>结果数据</td>
+<td>data</td>
+<td>是</td>
+<td>json</td>
+<td>{}</td>
+<td>code为200000时，本参数书才有值，无返回值或者非200000时，本参数为null或者没有data返回</td>
+</tr>
+</tbody>
+</table>
+<p>当code为200000时，data结构</p>
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>变量名</th>
+<th>必填</th>
+<th>类型</th>
+<th>示例</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>预支付ID</td>
+<td>prepayID</td>
+<td>是</td>
+<td>String(32)</td>
+<td>2014072300007148</td>
+<td>交易会话的预支付ID</td>
+</tr>
+<tr>
+<td>中转账户</td>
+<td>sender</td>
+<td>是</td>
+<td>String(64)</td>
+<td>mol_1mrj9xomsiaykauks9f731ux651g8yk35sg6nzt6dwqfkrbs5ygirw1hq5kn</td>
+<td>支付中心发布出来供商户中转用的区块链地址</td>
+</tr>
+<tr>
+<td>用户标识</td>
+<td>userID</td>
+<td>是</td>
+<td>String(32)</td>
+<td>8d331065d34211e89b0b00163e007a48</td>
+<td>发起支付的用户id</td>
+</tr>
+<tr>
+<td>币种</td>
+<td>currency</td>
+<td>是</td>
+<td>String(16)</td>
+<td>MOL</td>
+<td>支付币种，默认为mol</td>
+</tr>
+<tr>
+<td>金额</td>
+<td>amount</td>
+<td>是</td>
+<td>Decimal(15,3)</td>
+<td>300</td>
+<td>支付额度，与币种对应</td>
+</tr>
+<tr>
+<td>商户信息</td>
+<td>merchant</td>
+<td>是</td>
+<td>json</td>
+<td><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">|应用信息 | app | 是 | json |```&#123;&quot;appID&quot;:&quot;2014072300007148&quot;,&quot;appName&quot;:&quot;镰刀&quot;&#125;```|应用信息，需要包括应用ID和应用名称，用来后台服务确认，及前端展现 |</span><br><span class="line"></span><br><span class="line">##### 错误码</span><br><span class="line">#### 中转支付</span><br><span class="line">##### 应用场景</span><br><span class="line">钱包应用封装process块信息。然后将块信息，预支付ID，调用中转支付接口，从用户账户往中转账户上打指定额度的款项。</span><br><span class="line">##### 状态机</span><br><span class="line">##### 接口连接</span><br><span class="line">POST https://api.xxx.com/pay/transfer</span><br><span class="line">##### 请求参数</span><br><span class="line">| 参数 | 变量名 | 必填 | 类型 | 示例 | 描述 |</span><br><span class="line">| --- | --- | --- | --- | --- | --- |</span><br><span class="line">|预支付ID|prepayID | 是 | String(32) | 2014072300007148|交易会话的预支付ID|</span><br><span class="line">|process块信息| block | 是 | String(500) |详见process块参数介绍|支付中心调用process rpc|</span><br><span class="line">process块参数</span><br></pre></td></tr></table></figure></td>
+</tr>
+</tbody>
+</table>
+<p>{<br>  “action”: “process”,<br>  “block”: “{<br>    \”type\”: \”state\”,<br>    \”account\”: \”xrb_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z\”,<br>    \”previous\”: \”6CDDA48608C7843A0AC1122BDD46D9E20E21190986B19EAC23E7F33F2E6A6766\”,<br>    \”representative\”: \”xrb_3pczxuorp48td8645bs3m6c3xotxd3idskrenmi65rbrga5zmkemzhwkaznh\”,<br>    \”balance\”: \”40200000001000000000000000000000000\”,<br>    \”link\”: \”87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9\”,<br>    \”link_as_account\”: \”xrb_33t5by1653nt196hfwm5q3wq7oxtaix97r7bhox5zn8eratrzoqsny49ftsd\”,<br>    \”signature\”: \”A5DB164F6B81648F914E49CAB533900C389FAAD64FBB24F6902F9261312B29F730D07E9BCCD21D918301419B4E05B181637CF8419ED4DCBF8EF2539EB2467F07\”<br>  }”<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">完整参数</span><br></pre></td></tr></table></figure></p>
+<p>{<br>    “prepayID”:”1235235”,<br>    “appID”:”2014072300007148”,<br>    “merchantID”:”1230000109”,<br>    “action”: “process”,<br>    “block”: “{<br>        \”type\”: \”state\”,<br>        \”account\”: \”xrb_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z\”,<br>        \”previous\”: \”6CDDA48608C7843A0AC1122BDD46D9E20E21190986B19EAC23E7F33F2E6A6766\”,<br>        \”representative\”: \”xrb_3pczxuorp48td8645bs3m6c3xotxd3idskrenmi65rbrga5zmkemzhwkaznh\”,<br>        \”balance\”: \”40200000001000000000000000000000000\”,<br>        \”link\”: \”87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9\”,<br>        \”link_as_account\”: \”xrb_33t5by1653nt196hfwm5q3wq7oxtaix97r7bhox5zn8eratrzoqsny49ftsd\”,<br>        \”signature\”: \”A5DB164F6B81648F914E49CAB533900C389FAAD64FBB24F6902F9261312B29F730D07E9BCCD21D918301419B4E05B181637CF8419ED4DCBF8EF2539EB2467F07\”<br>      }”<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">##### 返回结果</span><br><span class="line">成功返回值</span><br></pre></td></tr></table></figure></p>
+<p>{<br>    “code”:200000,<br>    “message”:”OK”<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">失败返回值</span><br></pre></td></tr></table></figure></p>
+<p>{<br>    “code”:400001,<br>    “message”:”缺少prepayID参数”<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">|字段名|	变量名|	必填|	类型|	示例|描述|</span><br><span class="line">| --- | --- | --- | --- | --- | --- |</span><br><span class="line">|返回状态码|	code|	是|	Integer(6)|200000|200000,500000等 此字段是通信标识，非交易标识，交易是否成功需要查看code来判断|</span><br><span class="line">|返回信息	|message	|是|String(128)|OK|当code为200000时返回OK，否则返回信息为错误原因 ，例如签名失败 参数格式校验错误|</span><br><span class="line"></span><br><span class="line">若调用中转接口成功，支付中心将从中转账户向商户账户打款，并将余款返回给用户账户。</span><br><span class="line">##### 错误码</span><br><span class="line">|	名称	|	描述	|	原因	|	解决方案|</span><br><span class="line">| --- | --- | --- | --- |</span><br><span class="line">|	NOT_ENOUGH	|	余额不足	|	用户帐号余额不足|用户帐号余额不足，请用户充值或更换支付卡后再支付	|</span><br><span class="line">|	ORDER_PAID	|	商户订单已支付|商户订单已支付，无需重复操作|商户订单已支付，无需更多操作	|</span><br><span class="line">|	ORDER_CLOSED	|	订单已关闭	|当前订单已关闭，无法支付|当前订单已关闭，请重新下单	|</span><br><span class="line">|	SYSTEM_ERROR	|	系统错误	|系统超时|系统异常，请用相同参数重新调用|</span><br><span class="line">|	APPID_NOT_EXIST	|	APPID不存在|参数中缺少APPID|请检查APPID是否正确|</span><br><span class="line">|	PREPAYID_NOT_EXIST	|	PrepayID不存在|参数中缺少PrepayID|请检查PrepayID是否正确|</span><br><span class="line">|	PREPAYID_SENDER_NOT_MATCH	|	sender和交易会话中的中转账户不匹配|sender和交易会话中的中转账户不匹配|	请确认sender是否正确|</span><br><span class="line">|	LACK_PARAMS	|	缺少参数	|	缺少必要的请求参数|请检查参数是否齐全|</span><br><span class="line">|	OUT_TRADE_NO_USED	|	商户订单号重复|同一笔交易不能多次提交|请核实商户订单号是否重复提交	|</span><br><span class="line">|	REQUIRE_POST_METHOD	|	请使用post方法|未使用post传递参数 |请检查请求参数是否通过post方法提交	|</span><br><span class="line">|	POST_DATA_EMPTY	|	post数据为空|post数据不能为空|请检查post数据是否为空|</span><br><span class="line">#### 查询订单</span><br><span class="line">##### 应用场景</span><br><span class="line">该接口提供所有的订单查询，商户可以通过查询订单接口主动查询订单状态，完成进一步的业务逻辑。</span><br><span class="line">需要调用查询接口的情况：</span><br><span class="line">* 当商户服务端、网络、服务器等出现异常，商户系统未收到支付通知</span><br><span class="line">* 调用支付接口后，返回系统错误或未知交易窗台</span><br><span class="line">* 调用关单或撤销接口API之前，需要确认支付状态</span><br><span class="line"></span><br><span class="line">##### 状态机</span><br><span class="line">请查阅统一下单接口。</span><br><span class="line">##### 接口连接</span><br><span class="line">GET https://api.xxx.com/pay/orderquery</span><br><span class="line">##### 请求参数</span><br></pre></td></tr></table></figure></p>
+<p>appID=014072300007148&amp;merchantID=1230000109&amp;charset=UTF-8&amp;signType=RSA2&amp;transactionID=1009660380201506130728806387&amp;merchantTrade=20150806125346&amp;sign=xxxxxxx<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">| 参数 | 变量名 | 必填 | 类型 | 示例 | 描述 |</span><br><span class="line">| --- | --- | --- | --- | --- | --- |</span><br><span class="line">|应用ID| appID | 是 | String(32) |2014072300007148|支付中心分配给开发者的应用ID，一个商户号可以拥有多个应用|</span><br><span class="line">|商户ID|merchantID|是|String(32)|1230000109|支付中心分配的商户号|</span><br><span class="line">|编码格式|charset|是|String(10)|utf-8|请求使用的编码格式，如utf-8,gbk,gb2312等|</span><br><span class="line">|签名类型|signType | 是 | String(10) | RSA2 | 商户生成签名字符串所使用的签名算法类型，目前支持RSA2和RSA，推荐使用RSA2 |</span><br><span class="line">| 支付中心订单号 | transactionID | 是 | String(32) | 1009660380201506130728806387 | 支付中心订单号，查询时，可以与商户订单号进行二选一，建议优先使用支付中心订单号 |</span><br><span class="line">| 商户订单号 | merchantTrade | 是 | String(32) | 20150806125346 | 商户系统内部订单号，要求32个字符内，只能是数字、大小写字母_-且在同一个商户号下唯一 |</span><br><span class="line">|签名|sign | 是 | String | xxxxx | 采用应用私钥对对参数进行非签名外的其他参数进行加密的到的签名数据 |</span><br><span class="line">##### 返回结果</span><br><span class="line">成功返回值</span><br></pre></td></tr></table></figure></p>
+<p>{<br>    “code”:200000,<br>    “message”:”OK”,<br>    “data”:{<br>        “appID”:”2014072300007148”,<br>        “merchantID”:”1230000109”,<br>        “transactionID”:”1009660380201506130728806387”,<br>        “merchantTrade”:”20150806125346”,<br>        “tradeState”:”SUCCESS”<br>        “userID”:”8d331065d34211e89b0b00163e007a48”,<br>        “current”:”MOL”,<br>        “amount”:”300”,<br>        “tradeIp”:”127.0.0.1”,<br>        “startAt”:”20091225091010”,<br>        “finishAt”:”20091225091010”,<br>        “buyer”:{<br>            “name”:”李大嘴”,<br>            “countryCode”:”0086”,<br>            “phoneNumber”:”13888888888”<br>        }<br>        “external”:”订阅”,<br>        “products”:[<br>            {<br>                “productID”:”11r23”,<br>                “price”:”100”,<br>                “current”:”MOL”,<br>                “quantity”:”3”,<br>                “amount”:”300”<br>            }<br>        ],<br>        “sign”:”23olkfaieoaj”<br>    }<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">失败返回值</span><br></pre></td></tr></table></figure></p>
+<p>{<br>    “code”:400001,<br>    “message”:”缺少merchantID参数”<br>}<br><code>`</code></p>
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>变量名</th>
+<th>必填</th>
+<th>类型</th>
+<th>示例</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>返回状态码</td>
+<td>code</td>
+<td>是</td>
+<td>Integer(6)</td>
+<td>200000</td>
+<td>200000,500000等 此字段是通信标识，非交易标识，交易是否成功需要查看code来判断</td>
+</tr>
+<tr>
+<td>返回信息</td>
+<td>message</td>
+<td>是</td>
+<td>String(128)</td>
+<td>OK</td>
+<td>当code为200000时返回OK，否则返回信息为错误原因 ，例如签名失败 参数格式校验错误</td>
+</tr>
+<tr>
+<td>结果数据</td>
+<td>data</td>
+<td>是</td>
+<td>json</td>
+<td>{}</td>
+<td>code为200000时，本参数书才有值，无返回值或者非200000时，本参数为null或者没有data返回</td>
+</tr>
+</tbody>
+</table>
+<p>当code为200000时，data结构</p>
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>变量名</th>
+<th>必填</th>
+<th>类型</th>
+<th>示例</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>应用ID</td>
+<td>appID</td>
+<td>是</td>
+<td>String(32)</td>
+<td>2014072300007148</td>
+<td>调用接口提交的应用ID</td>
+</tr>
+<tr>
+<td>商户ID</td>
+<td>merchantID</td>
+<td>否</td>
+<td>String(32)</td>
+<td>1230000109</td>
+<td>支付中心分配的商户号</td>
+</tr>
+<tr>
+<td>支付中心订单号</td>
+<td>transactionID</td>
+<td>是</td>
+<td>String(32)</td>
+<td>1009660380201506130728806387</td>
+<td>支付中心订单号，查询时，可以与商户订单号进行二选一，建议优先使用支付中心订单号</td>
+</tr>
+<tr>
+<td>商户订单号</td>
+<td>merchantTrade</td>
+<td>是</td>
+<td>String(32)</td>
+<td>20150806125346</td>
+<td>商户系统内部订单号，要求32个字符内，只能是数字、大小写字母_-且在同一个商户号下唯一</td>
+</tr>
+<tr>
+<td>交易状态</td>
+<td>tradeState</td>
+<td>是</td>
+<td>String(32)</td>
+<td>SUCCESS</td>
+<td><code>SUCCESS——支付成功`</code>REFUND——转入退款<code>NO_TPAY——未支付</code>CLOSED——已关闭<code>USER_PAYING——用户支付中</code>PAY_ERROR——支付失败(其他原因，如块返回失败)`</td>
+</tr>
+<tr>
+<td>用户标识</td>
+<td>userID</td>
+<td>是</td>
+<td>String(32)</td>
+<td>8d331065d34211e89b0b00163e007a48</td>
+<td>发起支付的用户id</td>
+</tr>
+<tr>
+<td>交易开始时间</td>
+<td>startAt</td>
+<td>是</td>
+<td>String(14)</td>
+<td>20091225091010</td>
+<td>订单生成时间，格式为yyyyMMddHHmmss，如2009年12月25日9点10分10秒表示为20091225091010。</td>
+</tr>
+<tr>
+<td>交易完成时间</td>
+<td>finishAt</td>
+<td>是</td>
+<td>String(14)</td>
+<td>20091225091010</td>
+<td>订单失效时间，格式为yyyyMMddHHmmss，如2009年12月27日9点10分10秒表示为20091227091010。</td>
+</tr>
+<tr>
+<td>币种</td>
+<td>currency</td>
+<td>是</td>
+<td>String(16)</td>
+<td>MOL</td>
+<td>支付币种，默认为mol</td>
+</tr>
+<tr>
+<td>金额</td>
+<td>amount</td>
+<td>是</td>
+<td>Decimal(15,3)</td>
+<td>10</td>
+<td>支付额度，与币种对应</td>
+</tr>
+<tr>
+<td>商品信息</td>
+<td>products</td>
+<td>是</td>
+<td>jsonArray</td>
+<td>[{“productID”:”11r23”,”price”:”100”,”currency”:”MOL”,”quantity”:”3”,”sum”:”300”}]</td>
+<td>商品信息列表</td>
+</tr>
+<tr>
+<td>签名</td>
+<td>sign</td>
+<td>是</td>
+<td>String(32)</td>
+<td>C380BEC2BFD727A4B6845133519F3AD6</td>
+<td>微信返回的签名值</td>
+</tr>
+</tbody>
+</table>
+<h5 id="错误码-1"><a href="#错误码-1" class="headerlink" title="错误码"></a>错误码</h5><p>参考上述的错误描述</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>谢谢阁下赏识</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="Leguang WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.png" alt="Leguang Alipay">
+        <p>Alipay</p>
+      </div>
+    
+
+    
+      <div id="bitcoin" style="display: inline-block">
+        <img id="bitcoin_qr" src="/images/bitcoin.png" alt="Leguang Bitcoin">
+        <p>Bitcoin</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Leguang
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://itsite.cn/开放平台/支付系统/支付系统/" title>http://itsite.cn/开放平台/支付系统/支付系统/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/开放平台/打币系统/打币系统/" rel="next" title>
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/镰刀项目/镰刀爬虫系统/镰刀数据爬虫系统/" rel="prev" title>
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/favicon.ico" alt="Leguang">
+          <p class="site-author-name" itemprop="name">Leguang</p>
+           
+              <p class="site-description motion-element" itemprop="description">浮生若戏悲欢聚 笑看天风扫寰宇</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">204</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/leguang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:langmanleguang@qq.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#打币系统"><span class="nav-number">1.</span> <span class="nav-text">打币系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#商家支付sdk"><span class="nav-number">1.1.</span> <span class="nav-text">商家支付sdk</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-number">1.1.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#阅读对象"><span class="nav-number">1.1.2.</span> <span class="nav-text">阅读对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主要流程"><span class="nav-number">1.1.3.</span> <span class="nav-text">主要流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库设计"><span class="nav-number">1.1.4.</span> <span class="nav-text">数据库设计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#merchant-t"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">merchant_t</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#merchant-account-t"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">merchant_account_t</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#merchant-secret-t"><span class="nav-number">1.1.4.3.</span> <span class="nav-text">merchant_secret_t</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#product-t"><span class="nav-number">1.1.4.4.</span> <span class="nav-text">product_t</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#product-item-t"><span class="nav-number">1.1.4.5.</span> <span class="nav-text">product_item_t</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#trade-t"><span class="nav-number">1.1.4.6.</span> <span class="nav-text">trade_t</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#trade-item-t"><span class="nav-number">1.1.4.7.</span> <span class="nav-text">trade_item_t</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#refund-t"><span class="nav-number">1.1.4.8.</span> <span class="nav-text">refund_t</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#refund-item-t"><span class="nav-number">1.1.4.9.</span> <span class="nav-text">refund_item_t</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#withdraw-t"><span class="nav-number">1.1.4.10.</span> <span class="nav-text">withdraw_t</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基础参数"><span class="nav-number">1.1.5.</span> <span class="nav-text">基础参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接口定义"><span class="nav-number">1.1.6.</span> <span class="nav-text">接口定义</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建预支付"><span class="nav-number">1.1.6.1.</span> <span class="nav-text">创建预支付</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#应用场景"><span class="nav-number">1.1.6.1.1.</span> <span class="nav-text">应用场景</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#状态机"><span class="nav-number">1.1.6.1.2.</span> <span class="nav-text">状态机</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#接口连接"><span class="nav-number">1.1.6.1.3.</span> <span class="nav-text">接口连接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#请求参数"><span class="nav-number">1.1.6.1.4.</span> <span class="nav-text">请求参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#签名算法"><span class="nav-number">1.1.6.1.5.</span> <span class="nav-text">签名算法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回结果"><span class="nav-number">1.1.6.1.6.</span> <span class="nav-text">返回结果</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#错误码"><span class="nav-number">1.1.6.1.7.</span> <span class="nav-text">错误码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取统一订单"><span class="nav-number">1.1.6.2.</span> <span class="nav-text">获取统一订单</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#应用场景-1"><span class="nav-number">1.1.6.2.1.</span> <span class="nav-text">应用场景</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#接口连接-1"><span class="nav-number">1.1.6.2.2.</span> <span class="nav-text">接口连接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#请求参数-1"><span class="nav-number">1.1.6.2.3.</span> <span class="nav-text">请求参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回结果-1"><span class="nav-number">1.1.6.2.4.</span> <span class="nav-text">返回结果</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#错误码-1"><span class="nav-number">1.1.6.2.5.</span> <span class="nav-text">错误码</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Leguang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 访问总量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("UUrijxLg3YUcx9WIg5UlJchI-gzGzoHsz", "m6wXtGXT8NUa5W4TiErrXWpO");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
