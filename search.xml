@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[11]]></title>
+    <url>%2F11%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[11]]></title>
+    <url>%2FJava%2FJavaWeb%E6%A8%A1%E6%9D%BF%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83%2F</url>
+    <content type="text"><![CDATA[Java Web开发模板——效率为王前言 没有对错，只有习惯 Java Web 的 MVC 模式开发已经具备一定的模板性，但是由于人与人的习惯问题，对代码的细节会有一定的差异性，为了减少这种差异性，我们规定一套模板出来，同一个小组、部分甚至公司都可以按照这么一套最佳实践出来的模板抄，这样未来其他人员接手时会很容易明白你的套路，找到亲切感以减少不必要的心理负担。 公共规范环境 IDE 统一使用IntelliJ IDEA作为开发IDE，Eclipse 虽然也可以，但是如果要做到统一的话，还是尽量使用更现代化、更先进的 IDE ，IntelliJ IDEA 在 Java 开发体系中已经超过 Eclipse 成为最主流的 IDE 了。同时要对 IDEA 做一些配置：idea安装完成后要做的几件事 。 JDK 统一使用 JDK8+ 以上 JDK 版本，可以使用一些新特性。 构建统一使用 Maven 构建系统，与之对比的是 Gradle 构建，谷歌在 Android 上固定使用 Gradle 作为构建系统，Gradle 也具有更强大更灵活的功能，同时脚本即配置，相较于 Maven 的 XML 文件来说是更简洁清晰的，但是标准有标准的好处，自由也有自由的代价，Gradle 的上手成本远高于 Maven ，如果未来 Gradle 成为 Java 构建的主流，我们再切换也不迟。 Spring Boot + Spring Cloud统一使用 Spring Boot 作为 Java Web 开发的首选。现阶段做 Java Web 开发的，Struct 已经不需要考虑了，Spring MVC 也有 Spring Boot 做为更好的选择，如果有 Spring MVC 的经验的话，上手 Spring Boot 是很简单的事儿。同时 Spring Boot 是作为 Spring Cloud 的基础，所以使用这一套是趋势。 项目初始化要求每一个项目（可执行服务）的结构是模块化的结构，即最外层 Maven 作为项目顶层父 Project 依赖配置都写在该层的 pom.xml 文件中，然后根据 MVC 分三层，每一层都以 Module 形式构建依次向下依赖，同时加一个 Common 公共层 Module 作为最底层依赖。搭建如下图所示： 名称 用途 依赖关系 common 公共层，作为最底层的依赖 依赖父 Project dao 数据持久层 依赖 common service 服务层，即业务逻辑层，调用 依赖 dao api 接口层，处理参数和调用 service 完成业务响应 依赖 service SwaggerSwagger 是项目的默认需求，同时要求 Swagger 能在开发环境中打开，在生产环境是关闭的。 i18n国际化能力也是每一个项目默认需求，Spring Boot 对这一部分有了很好的支持。这个要提前考虑，如果一开始不考虑，项目突然有需要的时候就很麻烦和被动了。 空格和冗余不要随意空行，也不要出现多余的东西。写代码时勤快按 Ctrl+Alt+L 和 Ctrl+Alt+O ，这样会格式化代码同时删除不必要的引用，让代码美观。同时不要随意空格，现在Android Studio是用的谷歌的 Java 模板 Style ，都有相关规定。XML 文件中也是如此，写完代码后勤快格式化，删除多余空行。 命名规范具体参考：https://github.com/leguang/Article/blob/master/阿里巴巴Java开发手册(终极版).pdf 注释 类注释写在文件头注释中，每一个类文件都必须要有文件头注释。如下所示： 类的成员变量如果需要注释，则用单行注释写在末尾，如果较长一行写不下，考虑到美观问题则写在成员变量的上面。对于成员变量的注释尽量不要用多行注释。如下所示： 成员方法尽量写注释，如果实在不需要的，可不写。如下所示： 方法出现的位置和顺序在方法从上至下的调用顺序就决定了方法从上至下书写的位置。如下所示： 包管理MVC中的模板ControllerController 层作为视图或 API 的入口，除了面向接口编程等基本要求外，只做以下三件事： 参数、请求方法等校验； 调用业务层代码； 拼装响应对象； 如下图所示： ServiceService 层业务逻辑层，除了面向接口编程等基本要求外，只做以下三件事： 参数校验； 调用 DAO 层代码，完成业务逻辑处理； 相关处理并返回相关数据； 如下图所示： DAODAO 我们统一使用 MyBatis 套件，因此可以利用 MyBatis 提供的生成器去生成大部分代码，具体的可以利用 generator 这个目录下的工具完成，如下图所示： 其他/建议 规定 XxxUtils 类是指不依赖第三方，只需要 JDK 就能运行的类，也就是说随便复制到哪个 Java 项目都能直接用，改都不用改一下。 规定 XxxHelper 类是依赖的第三方的 Utils 类，只需要添加了依赖就可以直接用。 建议配合 lombok 使用，以减少代码。 建议使用 Optional 和 Stream 等 JDK8+ 中的新特性。 总结之所以定义这样的模板代码，主要是为了规范编码范式，使每个模块都“长得一样”，一套好的模板代码可以让开发者受益，也可以让后来接手的人很快找到套路并理解融入进去。]]></content>
+  </entry>
+</search>
