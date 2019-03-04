@@ -328,7 +328,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://itsite.cn/开放平台/支付系统/支付系统/">
+    <link itemprop="mainEntityOfPage" href="http://itsite.cn/摩尔钱包/摩尔钱包国际版接口文档/摩尔钱包国际版接口文档/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Leguang">
@@ -347,7 +347,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/开放平台/支付系统/支付系统/" itemprop="url">打币系统</a></h1>
+                <a class="post-title-link" href="/摩尔钱包/摩尔钱包国际版接口文档/摩尔钱包国际版接口文档/" itemprop="url">摩尔钱包（国际版）接口文档</a></h1>
         
 
         <div class="post-meta">
@@ -377,7 +377,7 @@
 
           
           
-             <span id="/开放平台/支付系统/支付系统/" class="leancloud_visitors" data-flag-title="打币系统">
+             <span id="/摩尔钱包/摩尔钱包国际版接口文档/摩尔钱包国际版接口文档/" class="leancloud_visitors" data-flag-title="摩尔钱包（国际版）接口文档">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -402,7 +402,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  6.2k
+                  3k
                 </span>
               
 
@@ -418,7 +418,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  24
+                  13
                 </span>
               
             </div>
@@ -441,15 +441,17 @@
       
         
           
-          打币系统
+          摩尔钱包（国际版）接口文档
 Author：Leguang
 E-Mail：langmanleguang@qq.com
 
-商家支付sdk概述第三方应用可以通过接入支付sdk的方式，使用虚拟货币进行充值，提现功能。进一步活跃社区，赋能商户，丰富生态。为了提高数据的安全性，降低中途被截获篡改的风险，强烈建议由发起调用的应用对
+登录（获取token和用户信息）该接口用于登陆获取token和部分用户信息，由于我们暂时定义的是通过短信来注册+登录，因此没有密码这些。
+
+地址：https://api.xxx.co
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/开放平台/支付系统/支付系统/#more" rel="contents">
+            <a class="btn" href="/摩尔钱包/摩尔钱包国际版接口文档/摩尔钱包国际版接口文档/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -500,7 +502,7 @@ E-Mail：langmanleguang@qq.com
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://itsite.cn/镰刀项目/镰刀爬虫系统/镰刀数据爬虫系统/">
+    <link itemprop="mainEntityOfPage" href="http://itsite.cn/公共部分/MOL交易系统/MOL交易系统接口文档/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Leguang">
@@ -519,7 +521,7 @@ E-Mail：langmanleguang@qq.com
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/镰刀项目/镰刀爬虫系统/镰刀数据爬虫系统/" itemprop="url">镰刀数据爬虫系统</a></h1>
+                <a class="post-title-link" href="/公共部分/MOL交易系统/MOL交易系统接口文档/" itemprop="url">MOL交易系统接口文档</a></h1>
         
 
         <div class="post-meta">
@@ -549,7 +551,7 @@ E-Mail：langmanleguang@qq.com
 
           
           
-             <span id="/镰刀项目/镰刀爬虫系统/镰刀数据爬虫系统/" class="leancloud_visitors" data-flag-title="镰刀数据爬虫系统">
+             <span id="/公共部分/MOL交易系统/MOL交易系统接口文档/" class="leancloud_visitors" data-flag-title="MOL交易系统接口文档">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -574,7 +576,7 @@ E-Mail：langmanleguang@qq.com
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  2.6k
+                  1.7k
                 </span>
               
 
@@ -590,7 +592,7 @@ E-Mail：langmanleguang@qq.com
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  11
+                  7
                 </span>
               
             </div>
@@ -613,17 +615,191 @@ E-Mail：langmanleguang@qq.com
       
         
           
-          镰刀数据爬虫系统
+          MOL交易系统接口文档
 Author：Leguang
 E-Mail：langmanleguang@qq.com
 
-整体框架
-程序设计及运行程序代码：
-运行环境：python3.6 centos7进程管理：supervisor运行：服务器克隆代码后安装python依赖库（虚拟环境同）pip3 install
+业务简介本模块设计成一个通用的、独立的模块，以后所有业务中与链进行交互都使用该模块完成，用户提现实际上是我们从链上某个地址打币给用户的地址，充值实际上是用户的地址打币到链上指定账户。
+项
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/镰刀项目/镰刀爬虫系统/镰刀数据爬虫系统/#more" rel="contents">
+            <a class="btn" href="/公共部分/MOL交易系统/MOL交易系统接口文档/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://itsite.cn/公共部分/公共接口文档/公共接口文档/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Leguang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/favicon.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT站点">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/公共部分/公共接口文档/公共接口文档/" itemprop="url">公共接口</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-01T00:00:00+08:00">
+                2018-08-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/公共部分/公共接口文档/公共接口文档/" class="leancloud_visitors" data-flag-title="公共接口">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  2.4k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  10
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          公共接口
+Author：Leguang
+E-Mail：langmanleguang@qq.com
+
+该文档描述的是一些公共的接口，如：App的更新，设备信息的搜集等。
+初始化信息此接口目的是为了向后台提交设备的信息、App信息、用户信息，以便后台运用。
+
+地址：https://api.xxx.com
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/公共部分/公共接口文档/公共接口文档/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -798,179 +974,6 @@ E-Mail：langmanleguang@qq.com
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/公共部分/MOL积分系统/MOL积分系统接口文档/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://itsite.cn/公共部分/MOL交易系统/MOL交易系统接口文档/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Leguang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/favicon.ico">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="IT站点">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/公共部分/MOL交易系统/MOL交易系统接口文档/" itemprop="url">MOL交易系统接口文档</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-01T00:00:00+08:00">
-                2018-08-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/公共部分/MOL交易系统/MOL交易系统接口文档/" class="leancloud_visitors" data-flag-title="MOL交易系统接口文档">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  1.7k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  7
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          MOL交易系统接口文档
-Author：Leguang
-E-Mail：langmanleguang@qq.com
-
-业务简介本模块设计成一个通用的、独立的模块，以后所有业务中与链进行交互都使用该模块完成，用户提现实际上是我们从链上某个地址打币给用户的地址，充值实际上是用户的地址打币到链上指定账户。
-项
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/公共部分/MOL交易系统/MOL交易系统接口文档/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
