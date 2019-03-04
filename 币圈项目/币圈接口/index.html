@@ -1,0 +1,3530 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="IT站点, 一站到底">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="IT站点" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="币圈接口设计 Author：Leguang E-Mail：langmanleguang@qq.com  要求目标 接口“粒度”争取设计得足够小，争取在业务发生变化后，后台接口不需要增减，只需要前端组合接口仍然能满足新的业务需求。 任何一个接口都可以获取到数据，哪怕没传参数。  命名规范一名二姓三风水，四积阴德五读书，名不正则言不顺，言不顺则事难成。软件开发其实就是门命名的艺术，所以首先定义一些规范">
+<meta name="keywords" content="IT站点, 一站到底">
+<meta property="og:type" content="article">
+<meta property="og:title" content="币圈接口设计">
+<meta property="og:url" content="http://itsite.cn/币圈项目/币圈接口/index.html">
+<meta property="og:site_name" content="IT站点">
+<meta property="og:description" content="币圈接口设计 Author：Leguang E-Mail：langmanleguang@qq.com  要求目标 接口“粒度”争取设计得足够小，争取在业务发生变化后，后台接口不需要增减，只需要前端组合接口仍然能满足新的业务需求。 任何一个接口都可以获取到数据，哪怕没传参数。  命名规范一名二姓三风水，四积阴德五读书，名不正则言不顺，言不顺则事难成。软件开发其实就是门命名的艺术，所以首先定义一些规范">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.imgur.com/jJyWCzo.png">
+<meta property="og:image" content="https://i.imgur.com/ITaMSBX.png">
+<meta property="og:image" content="https://i.imgur.com/aQ3qb4f.png">
+<meta property="og:updated_time" content="2019-03-04T02:15:17.983Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="币圈接口设计">
+<meta name="twitter:description" content="币圈接口设计 Author：Leguang E-Mail：langmanleguang@qq.com  要求目标 接口“粒度”争取设计得足够小，争取在业务发生变化后，后台接口不需要增减，只需要前端组合接口仍然能满足新的业务需求。 任何一个接口都可以获取到数据，哪怕没传参数。  命名规范一名二姓三风水，四积阴德五读书，名不正则言不顺，言不顺则事难成。软件开发其实就是门命名的艺术，所以首先定义一些规范">
+<meta name="twitter:image" content="https://i.imgur.com/jJyWCzo.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://itsite.cn/币圈项目/币圈接口/">
+
+
+
+
+
+  <title>币圈接口设计 | IT站点</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c5074ca51b610e0c4ba4fac7b24abea2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IT站点</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一站到底</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://itsite.cn/币圈项目/币圈接口/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Leguang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/favicon.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT站点">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">币圈接口设计</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-23T21:44:43+08:00">
+                2018-04-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/币圈项目/币圈接口/" class="leancloud_visitors" data-flag-title="币圈接口设计">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  12.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  53
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="币圈接口设计"><a href="#币圈接口设计" class="headerlink" title="币圈接口设计"></a>币圈接口设计</h1><blockquote>
+<p>Author：Leguang</p>
+<p>E-Mail：<a href="mailto:langmanleguang@qq.com" target="_blank" rel="noopener">langmanleguang@qq.com</a></p>
+</blockquote>
+<h2 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h2><h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><ul>
+<li>接口“粒度”争取设计得足够小，争取在业务发生变化后，后台接口不需要增减，只需要前端组合接口仍然能满足新的业务需求。</li>
+<li>任何一个接口都可以获取到数据，哪怕没传参数。</li>
+</ul>
+<h3 id="命名规范"><a href="#命名规范" class="headerlink" title="命名规范"></a>命名规范</h3><p>一名二姓三风水，四积阴德五读书，名不正则言不顺，言不顺则事难成。软件开发其实就是门命名的艺术，所以首先定义一些规范，提出一些硬性要求，大家在命名的时候尽量多花点心思，多参考优秀的命名风格。</p>
+<ul>
+<li>强烈推荐参考：<a href="https://github.com/leguang/Article/blob/master/阿里巴巴Android开发手册.pdf" target="_blank" rel="noopener">阿里巴巴Java开发手册</a>，<a href="https://www.baidu.com/s?ie=utf-8&amp;f=3&amp;rsv_bp=1&amp;ch=3&amp;tn=98010089_dg&amp;wd=iOS%E5%BC%80%E5%8F%91%E7%BC%96%E7%A0%81%E5%8F%8A%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83&amp;oq=ios%25E5%25BC%2580%25E5%258F%2591%25E5%2591%25BD%25E5%2590%258D%25E8%25A7%2584%25E8%258C%2583&amp;rsv_pq=861604950004ebc0&amp;rsv_t=58c07RTbI99q5XYs9eJyxgRtHHUk%2FLDHkwLo0Z86N1kK3GeDd1ktZqvYuIIsSazuXxg&amp;rqlang=cn&amp;rsv_enter=1&amp;inputT=3905&amp;rsv_sug3=17&amp;rsv_sug1=16&amp;rsv_sug7=100&amp;rsv_n=2&amp;bs=ios%E5%BC%80%E5%8F%91%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83" title="iOS开发编码及命名规范" target="_blank" rel="noopener">iOS开发手册</a>。</li>
+<li>一个单词尽量选择5–7个字母的，这样才最优美。</li>
+<li>首字母缩写的单词尽量每个字母都用大写，例如ID。用个小写，人家还以为是一个单词。当然uri、url、urn这种除外，因为大家都知道这个是什么。</li>
+<li>规范并统一公司的基础包名与项目的关系。</li>
+<li>前后端的某些名称概念要统一用某一个单词，比如支付的统一订单，支付宝用的是order，微信用的是unifiedorder，那我们统一对订单这个概念用order这个词。再比如主机：后台用gateway，现在我们统一用host。这单词不统一很容易分裂。</li>
+</ul>
+<h3 id="URI规范"><a href="#URI规范" class="headerlink" title="URI规范"></a>URI规范</h3><p>URI 表示资源，资源一般对应服务器端领域模型中的实体类，要求如下：</p>
+<ul>
+<li>不用大写</li>
+<li>尽量不用横杠分隔符，万一要用，请使用中杠-不用下杠_</li>
+<li>参数列表要encode</li>
+<li>URI中的名词表示资源集合，使用复数形式</li>
+<li>路径仅表示资源的路径（位置），以及一些特殊的actions操作。</li>
+<li>以复数（名词）进行命名资源，不管返回单个或者多个资源。</li>
+<li>资源的路径从父到子依次如：/{resource}/{resource_id}/{sub_resource}/{sub_resource_id}/{sub_resource_property}。</li>
+<li>使用?来进行资源的过滤、搜索以及分页等。</li>
+<li>使用版本号，且版本号在资源路径之前。</li>
+<li>优先使用内容协商来区分表述格式，而不是使用后缀来区分表述格式。</li>
+<li>url最好越简短越好，结果过滤，排序，搜索相关的功能都应该通过参数实现。</li>
+<li>url失效则返回404 not found 或 410 gone；对迁移的API，返回 301 重定向。</li>
+</ul>
+<h3 id="JSON规范"><a href="#JSON规范" class="headerlink" title="JSON规范"></a>JSON规范</h3><p>暂时只考虑json的数据格式，要求如下：</p>
+<ul>
+<li>不要使用缩写</li>
+<li>统一用驼峰命名法</li>
+<li>不要使用_或者-</li>
+<li>用名词复数表示集合类型</li>
+<li>为了方便以后的扩展兼容，如果返回的是数组，强烈建议用一个包含如items属性的对象进行包裹。如：{“items”:[{},{}]}</li>
+<li>建议对每个字段设置默认值（数组型可设置为[],字符串型可设置为””，数值可设置为0，对象可设置为{}）,这一条是为了方便前端/客户端进行判断字段存不存在操作。</li>
+<li>建议资源使用UUID最为唯一标识。同时建议命名为id或者uid。</li>
+<li>采用UTF-8编码。</li>
+<li>数据应该拿来就能用，不应该还要进行转换操作。</li>
+</ul>
+<blockquote>
+<p><strong>草稿：json返回的格式是分门别类按对象来划分，还是铺大饼的形式铺开，两者利弊各异，比如url，可能一个接口中返回多个url，如果分json对象装的话，则key都可以叫url，否则的话key就得命名成xxxUrl。这个有待商议</strong></p>
+</blockquote>
+<h2 id="业务简介"><a href="#业务简介" class="headerlink" title="业务简介"></a>业务简介</h2><p>本项目是在Telegram上的二次开发，新增了部分业务，竞品对象是币用。</p>
+<h3 id="业务模块"><a href="#业务模块" class="headerlink" title="业务模块"></a>业务模块</h3><p>总体功能模块划分如下图所示：<br><img src="https://i.imgur.com/jJyWCzo.png" alt="模块划分"></p>
+<h2 id="Http部分"><a href="#Http部分" class="headerlink" title="Http部分"></a>Http部分</h2><h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><ul>
+<li>App的初始化数据尽量都用http协议获取。</li>
+<li>页面的初始化数据尽量都用http协议获取。</li>
+</ul>
+<h3 id="URL结构"><a href="#URL结构" class="headerlink" title="URL结构"></a>URL结构</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://&#123;serviceRoot&#125;/&#123;collection&#125;/&#123;id&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>{serviceRoot} – 域名+端口号 (site URL) + 根目录</li>
+<li>{collection} – 要访问的资源</li>
+<li>{id} – 要访问的资源的唯一编号</li>
+</ul>
+<h3 id="公共请求头"><a href="#公共请求头" class="headerlink" title="公共请求头"></a>公共请求头</h3><p>通过Content-Type指定请求与返回的数据格式有json和xml,暂时我们只管json的。其中请求数据还要指定Accept。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Accept: application/json</span><br><span class="line">Content-Type: application/json;charset=UTF-8</span><br></pre></td></tr></table></figure></p>
+<h3 id="公共参数"><a href="#公共参数" class="headerlink" title="公共参数"></a>公共参数</h3><p>公共参数是指每一个接口应该传的参数，同时后端要指定公共参数的默认值，<strong>且要保证没有传公共参数不会报错，所以需要一定的容错性，比如priceDes这个参数值，如果是用的是全部小写的，只要是不冲突，则可认为是准确的参数并且表达了按价格降序排列这个语意</strong>。我个人建议公共参数放到请求头里，但最终商议结果是放在请求参数里面，因此定义固定格式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;extra&quot;: &quot;你想填什么就填什么&quot;,</span><br><span class="line">    &quot;token&quot;: &quot;token_523523523&quot;,</span><br><span class="line">    &quot;page&quot;: 0,</span><br><span class="line">    &quot;pageSize&quot;: 20,</span><br><span class="line">    &quot;data&quot;: &#123;</span><br><span class="line">        &quot;uid&quot;: &quot;23523523523523&quot;</span><br><span class="line">		其他个性参数……</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<table>
+<thead>
+<tr>
+<th>params</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>extra</td>
+<td>String</td>
+<td>额外扩展字段</td>
+</tr>
+<tr>
+<td>token</td>
+<td>String</td>
+<td>检测权限、标识登录状态</td>
+</tr>
+<tr>
+<td>page</td>
+<td>int</td>
+<td>页码，不传则默认为0</td>
+</tr>
+<tr>
+<td>pageSize</td>
+<td>int</td>
+<td>要求每一页返回最大个数，不传则默认为20</td>
+</tr>
+<tr>
+<td>data</td>
+<td>Json对象</td>
+<td>需要传的具体个性参数</td>
+</tr>
+</tbody>
+</table>
+<h3 id="个性参数"><a href="#个性参数" class="headerlink" title="个性参数"></a>个性参数</h3><p>个性参数就是除了公共参数之外的，看能否考虑统一用json将公共参数和个性参数浓缩成一个参数，把想要表达的参数通过json中的key-value形式传递。例如：</p>
+<p><a href="https://api.xxx.com/both/v1/search/products?params={&quot;extra&quot;:&quot;你想填什么呢&quot;,&quot;token&quot;:&quot;token_523523523&quot;,&quot;data&quot;:{&quot;uid&quot;:&quot;23523523523523&quot;}}" target="_blank" rel="noopener">https://api.xxx.com/both/v1/search/products?params={&quot;extra&quot;:&quot;你想填什么呢&quot;,&quot;token&quot;:&quot;token_523523523&quot;,&quot;data&quot;:{&quot;uid&quot;:&quot;23523523523523&quot;}}</a><br>或者考虑与业务相关的参数就用json形式包装，而与业务无关的个性参数就还是用传统的方式另立一个参数。例如：<br><a href="https://api.xxx.com/both/v1/search/products?limit=10&amp;offset=10&amp;params={&quot;keyword&quot;:&quot;方便面&quot;,&quot;sort&quot;:&quot;des&quot;}" target="_blank" rel="noopener">https://api.xxx.com/both/v1/search/products?limit=10&amp;offset=10&amp;params={&quot;keyword&quot;:&quot;方便面&quot;,&quot;sort&quot;:&quot;des&quot;}</a></p>
+<h3 id="公共响应头"><a href="#公共响应头" class="headerlink" title="公共响应头"></a>公共响应头</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Content-Type:application/json; charset=utf-8</span><br><span class="line">Status:200 OK</span><br></pre></td></tr></table></figure>
+<p>其中状态码要与公共响应体里的json中的code字段一样。</p>
+<h3 id="公共响应体"><a href="#公共响应体" class="headerlink" title="公共响应体"></a>公共响应体</h3><p>默认会有以下字段，不需要全部都有。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;message&quot;: &quot;居然被你查询成功了&quot;,</span><br><span class="line">    &quot;code&quot;: 200,</span><br><span class="line">    &quot;page&quot;: 0,</span><br><span class="line">    &quot;pageSize&quot;: 20,</span><br><span class="line">    &quot;first&quot;: &quot;https://...&quot;,</span><br><span class="line">    &quot;next&quot;: &quot;https://...&quot;,</span><br><span class="line">    &quot;previous&quot;: &quot;https://...&quot;,</span><br><span class="line">    &quot;last&quot;: &quot;https://...&quot;,</span><br><span class="line">    &quot;data&quot;: &#123;</span><br><span class="line">        &quot;uid&quot;: &quot;6565656565665&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>返回给接口调用者的描述，有可能用于显示到界面上，需要进行国际化处理</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>这个与请求头中的状态码一致，是为了满足部分开发者的习惯</td>
+</tr>
+<tr>
+<td>page</td>
+<td>int</td>
+<td>分页请求中请求的当前页的页码</td>
+</tr>
+<tr>
+<td>pageSize</td>
+<td>int</td>
+<td>分页请求中一页的个数，默认为20</td>
+</tr>
+<tr>
+<td>first</td>
+<td>String</td>
+<td>分页请求中第一页的url ，如果没有则返回空字符串</td>
+</tr>
+<tr>
+<td>next</td>
+<td>String</td>
+<td>分页请求中下一页的url，如果没有则返回空字符串</td>
+</tr>
+<tr>
+<td>previous</td>
+<td>String</td>
+<td>分页请求中上一页的url，如果没有则返回空字符串</td>
+</tr>
+<tr>
+<td>last</td>
+<td>String</td>
+<td>分页请求中最后一页的url，如果没有则返回空字符串</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>当前接口的具体数据由该json对象承载</td>
+</tr>
+<tr>
+<td>uid</td>
+<td>String</td>
+<td><strong>对于每一个资源对象，在返回的时候，都应该返回操作这个资源对象的唯一码</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="HTTP动词表示操作。"><a href="#HTTP动词表示操作。" class="headerlink" title="HTTP动词表示操作。"></a>HTTP动词表示操作。</h3><p>常用的HTTP动词有下面五个（括号里是对应的SQL命令）。</p>
+<ul>
+<li>GET（SELECT）：从服务器取出资源（一项或多项）。<br>例如:GET /zoos：列出所有动物园。</li>
+<li>POST（CREATE）：在服务器新建一个资源。<br>例如:POST /zoos：新建一个动物园。</li>
+<li>PUT（UPDATE）：在服务器更新资源（客户端提供改变后的完整资源）。<br>例如:PUT /zoos/ID：更新某个指定动物园的信息（提供该动物园的全部信息）。</li>
+<li>DELETE（DELETE）：从服务器删除资源。<br>例如:DELETE /zoos/ID：删除某个动物园。</li>
+</ul>
+<h3 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h3><p>作为 API 的设计者，正确的将 API 执行结果和失败原因用清晰简洁的方式传达给客户程序是十分关键的一步。 我们确实可以在 HTTP 的相应内容中描述是否成功，如果出错是因为什么，然而，这就意味着用户需要进行内容解析，才知道执行结果和错误原因。因此，HTTP响应代码可以保证客户端在第一时间用最高效的方式获知 API 运行结果，并采取相应动作。下表列出了比较常用的响应代码。<br>常用的http状态码及使用场景：</p>
+<table>
+<thead>
+<tr>
+<th>响应代码</th>
+<th>代码含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>已创建，请求成功且服务器已创建了新的资源。</td>
+</tr>
+<tr>
+<td>201</td>
+<td>是否只显示处于警告状态的应用实例。</td>
+</tr>
+<tr>
+<td>301</td>
+<td>重定向 , 请求的网页已被永久移动到新位置。服务器返回此响应时，会自动将请求者转到新位置。</td>
+</tr>
+<tr>
+<td>302</td>
+<td>重定向 , 请求的网页临时移动到新位置，但求者应继续使用原有位置来进行以后的请求。302 会自动将请求者转到不同的临时位置。</td>
+</tr>
+<tr>
+<td>304</td>
+<td>未修改，自从上次请求后，请求的网页未被修改过。服务器返回此响应时，不会返回网页内容。</td>
+</tr>
+<tr>
+<td>400</td>
+<td>错误请求 , 服务器不理解请求的语法。</td>
+</tr>
+<tr>
+<td>401</td>
+<td>未授权 , 请求要求进行身份验证。</td>
+</tr>
+<tr>
+<td>403</td>
+<td>已禁止 , 服务器拒绝请求。</td>
+</tr>
+<tr>
+<td>404</td>
+<td>未找到 , 服务器找不到请求的网页。</td>
+</tr>
+<tr>
+<td>405</td>
+<td>方法禁用 , 禁用请求中所指定的方法。</td>
+</tr>
+<tr>
+<td>406</td>
+<td>不接受 , 无法使用请求的内容特性来响应请求的网页。</td>
+</tr>
+<tr>
+<td>408</td>
+<td>请求超时 , 服务器等候请求时超时。</td>
+</tr>
+<tr>
+<td>410</td>
+<td>已删除 , 如果请求的资源已被永久删除，那么，服务器会返回此响应。</td>
+</tr>
+<tr>
+<td>412</td>
+<td>未满足前提条件 , 服务器未满足请求者在请求中设置的其中一个前提条件。</td>
+</tr>
+<tr>
+<td>415</td>
+<td>不支持的媒体类型 , 请求的格式不受请求页面的支持。</td>
+</tr>
+<tr>
+<td>500</td>
+<td>内部服务器错误。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h3><p>分页适用于GET类型且返回集合数据的请求，根据如下参数进行分页操作。分页返回的数据见公共响应体。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;extra&quot;: &quot;你想填什么就填什么&quot;,</span><br><span class="line">    &quot;token&quot;: &quot;token_523523523&quot;,</span><br><span class="line">    &quot;page&quot;: 0,</span><br><span class="line">    &quot;pageSize&quot;: 20,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<table>
+<thead>
+<tr>
+<th>params</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>page</td>
+<td>int</td>
+<td>页码</td>
+</tr>
+<tr>
+<td>pageSize</td>
+<td>int</td>
+<td>分页请求中一页的个数，该值固定,默认为20</td>
+</tr>
+</tbody>
+</table>
+<h3 id="项目url预览"><a href="#项目url预览" class="headerlink" title="项目url预览"></a>项目url预览</h3><p><img src="https://i.imgur.com/ITaMSBX.png" alt="url预览"></p>
+<p>站在数据的角度，若想满足各大模块的功能需求，可以将接口分成如下几类：</p>
+<blockquote>
+<p>base url：<a href="https://api.xxx.com/both/v1/" target="_blank" rel="noopener">https://api.xxx.com/both/v1/</a></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>分类</th>
+<th>接口</th>
+<th>参数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>注册、用户/个人信息users</td>
+<td>地址：<a href="https://api.xxx.com/both/v1/users" target="_blank" rel="noopener">https://api.xxx.com/both/v1/users</a></td>
+<td>keyword、sort等</td>
+</tr>
+<tr>
+<td>鉴权、登录、登出等tokens</td>
+<td>地址：<a href="https://api.xxx.com/both/v1/tokens" target="_blank" rel="noopener">https://api.xxx.com/both/v1/tokens</a></td>
+<td>keyword、category等</td>
+</tr>
+<tr>
+<td>密码管理passwords</td>
+<td>地址：<a href="https://api.xxx.com/both/v1/passwords" target="_blank" rel="noopener">https://api.xxx.com/both/v1/passwords</a></td>
+<td>password、authcode等</td>
+</tr>
+<tr>
+<td>验证码grantCodes</td>
+<td>地址：<a href="https://api.xxx.com/both/v1/grantCodes" target="_blank" rel="noopener">https://api.xxx.com/both/v1/grantCodes</a></td>
+<td>type等</td>
+</tr>
+<tr>
+<td>类型types</td>
+<td>地址：<a href="https://api.xxx.com/both/v1/types" target="_blank" rel="noopener">https://api.xxx.com/both/v1/types</a></td>
+<td>sort、uid、keyword等</td>
+</tr>
+<tr>
+<td>资讯news</td>
+<td>地址：<a href="https://api.xxx.com/both/v1/news" target="_blank" rel="noopener">https://api.xxx.com/both/v1/news</a></td>
+<td>uid、keyword、sort等</td>
+</tr>
+<tr>
+<td>群groups</td>
+<td>地址：<a href="https://api.xxx.com/both/v1/groups" target="_blank" rel="noopener">https://api.xxx.com/both/v1/groups</a></td>
+<td>uid、recommend、newest、sort等</td>
+</tr>
+<tr>
+<td>规则rules</td>
+<td>地址：<a href="https://api.xxx.com/both/v1/rules" target="_blank" rel="noopener">https://api.xxx.com/both/v1/rules</a></td>
+<td>uid、type、keyword、sort等</td>
+</tr>
+<tr>
+<td>交易记录trades</td>
+<td>地址：<a href="https://api.xxx.com/both/v1/trades" target="_blank" rel="noopener">https://api.xxx.com/both/v1/trades</a></td>
+<td>uid、keyword、type等</td>
+</tr>
+<tr>
+<td>发现discovery</td>
+<td>地址：<a href="https://api.xxx.com/both/v1/discovery" target="_blank" rel="noopener">https://api.xxx.com/both/v1/discovery</a></td>
+<td></td>
+</tr>
+<tr>
+<td>钱包wallets</td>
+<td>地址：<a href="https://api.xxx.com/both/v1/wallets" target="_blank" rel="noopener">https://api.xxx.com/both/v1/wallets</a></td>
+<td>uid、keyword等</td>
+</tr>
+</tbody>
+</table>
+<h3 id="登录部分接口"><a href="#登录部分接口" class="headerlink" title="登录部分接口"></a>登录部分接口</h3><p>创建token（登录）、删除token（登出）、刷新token和获取token状态（鉴权）。</p>
+<h4 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h4><p>地址：<a href="https://api.xxx.com/both/v1/tokens" target="_blank" rel="noopener">https://api.xxx.com/both/v1/tokens</a></p>
+<h6 id="请求头"><a href="#请求头" class="headerlink" title="请求头"></a>请求头</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">POST /both/v1/tokens</span><br><span class="line">Accept: application/json</span><br><span class="line">Content-Type: application/json;charset=UTF-8</span><br></pre></td></tr></table></figure>
+<h6 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h6><ul>
+<li>密码创建token</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;extra&quot;: &quot;你想填什么就填什么&quot;,</span><br><span class="line">    &quot;token&quot;: &quot;&quot;,</span><br><span class="line">    &quot;page&quot;: 0,</span><br><span class="line">    &quot;pageSize&quot;: 20,</span><br><span class="line">    &quot;data&quot;: &#123;</span><br><span class="line">        &quot;account&quot;: 18012345678,</span><br><span class="line">        &quot;password&quot;: 123456,</span><br><span class="line">        &quot;grantType&quot;: &quot;password&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>extra</td>
+<td>String</td>
+<td>额外扩展字段</td>
+</tr>
+<tr>
+<td>token</td>
+<td>String</td>
+<td>此处传空或者不传</td>
+</tr>
+<tr>
+<td>page</td>
+<td>int</td>
+<td>页码，不传则默认为0</td>
+</tr>
+<tr>
+<td>pageSize</td>
+<td>int</td>
+<td>要求每一页返回最大个数，不传则默认为20</td>
+</tr>
+<tr>
+<td>data</td>
+<td>Json对象</td>
+<td>需要传的具体个性参数</td>
+</tr>
+<tr>
+<td>data.account</td>
+<td>String</td>
+<td>账号</td>
+</tr>
+<tr>
+<td>data.password</td>
+<td>String</td>
+<td>密码</td>
+</tr>
+<tr>
+<td>data.grantType</td>
+<td>String</td>
+<td>授权类型，OAuth 2.0中的授权方式，此处填password</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>短信验证码创建token</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;extra&quot;: &quot;你想填什么就填什么&quot;,</span><br><span class="line">    &quot;token&quot;: &quot;&quot;,</span><br><span class="line">    &quot;page&quot;: 0,</span><br><span class="line">    &quot;pageSize&quot;: 20,</span><br><span class="line">    &quot;data&quot;: &#123;</span><br><span class="line">        &quot;account&quot;: 18012345678,</span><br><span class="line">        &quot;grantCode&quot;: 123456,</span><br><span class="line">        &quot;grantType&quot;: &quot;smsCode&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>extra</td>
+<td>String</td>
+<td>额外扩展字段</td>
+</tr>
+<tr>
+<td>token</td>
+<td>String</td>
+<td>此处传空或者不传</td>
+</tr>
+<tr>
+<td>page</td>
+<td>int</td>
+<td>页码，不传则默认为0</td>
+</tr>
+<tr>
+<td>pageSize</td>
+<td>int</td>
+<td>要求每一页返回最大个数，不传则默认为20</td>
+</tr>
+<tr>
+<td>data</td>
+<td>Json对象</td>
+<td>需要传的具体个性参数</td>
+</tr>
+<tr>
+<td>data.account</td>
+<td>String</td>
+<td>账号</td>
+</tr>
+<tr>
+<td>data.password</td>
+<td>String</td>
+<td>密码</td>
+</tr>
+<tr>
+<td>data.grantType</td>
+<td>String</td>
+<td>授权类型，OAuth 2.0中的授权方式，此处填smsCode</td>
+</tr>
+</tbody>
+</table>
+<h6 id="响应头"><a href="#响应头" class="headerlink" title="响应头"></a>响应头</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type:application/json; charset=utf-8</span><br><span class="line">Cache-Control: no-store</span><br><span class="line">Pragma: no-cache</span><br></pre></td></tr></table></figure>
+<h6 id="响应"><a href="#响应" class="headerlink" title="响应"></a>响应</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;message&quot;: &quot;居然被你创建了token&quot;,</span><br><span class="line">    &quot;code&quot;: 200,</span><br><span class="line">    &quot;data&quot;: &#123;</span><br><span class="line">        &quot;token&quot;: &quot;token_1224124124&quot;,</span><br><span class="line">        &quot;expires&quot;: 30,</span><br><span class="line">        &quot;user&quot;: &quot;这个user信息需不需要在这里给，可以商量&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>随便写，也可以作为服务器给前端固定提示的内容</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>与响应头里的Status一样</td>
+</tr>
+<tr>
+<td>data.token</td>
+<td>String</td>
+<td>获取的token</td>
+</tr>
+<tr>
+<td>data.expires</td>
+<td>int</td>
+<td>期限</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h4 id="登出"><a href="#登出" class="headerlink" title="登出"></a>登出</h4><p>地址：<a href="https://api.xxx.com/both/v1/tokens" target="_blank" rel="noopener">https://api.xxx.com/both/v1/tokens</a></p>
+<h6 id="请求头-1"><a href="#请求头-1" class="headerlink" title="请求头"></a>请求头</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DELETE /both/v1/tokens</span><br><span class="line">Accept: application/json</span><br><span class="line">Content-Type: application/json;charset=UTF-8</span><br></pre></td></tr></table></figure>
+<h6 id="参数-1"><a href="#参数-1" class="headerlink" title="参数"></a>参数</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;extra&quot;: &quot;你想填什么就填什么&quot;,</span><br><span class="line">    &quot;token&quot;: &quot;token_3523235&quot;,</span><br><span class="line">    &quot;page&quot;: 0,</span><br><span class="line">    &quot;pageSize&quot;: 20,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>token</td>
+<td>String</td>
+<td>用户现在使用的token</td>
+</tr>
+</tbody>
+</table>
+<h6 id="响应头-1"><a href="#响应头-1" class="headerlink" title="响应头"></a>响应头</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type:application/json; charset=utf-8</span><br><span class="line">Cache-Control: no-store</span><br><span class="line">Pragma: no-cache</span><br></pre></td></tr></table></figure>
+<h6 id="响应-1"><a href="#响应-1" class="headerlink" title="响应"></a>响应</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;message&quot;: &quot;居然被你删除成功&quot;,</span><br><span class="line">    &quot;code&quot;: 200,</span><br><span class="line">    &quot;data&quot;: &#123;</span><br><span class="line">        &quot;token&quot;: &quot;token_1224124124&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>随便写，也可以作为服务器给前端固定提示的内容</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>与响应头里的Status一样</td>
+</tr>
+<tr>
+<td>data.token</td>
+<td>String</td>
+<td>这一次请求成功被删除掉的token</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h4 id="刷新token"><a href="#刷新token" class="headerlink" title="刷新token"></a>刷新token</h4><p>对token的期限进行刷新等<br>地址：<a href="https://api.xxx.com/both/v1/tokens" target="_blank" rel="noopener">https://api.xxx.com/both/v1/tokens</a></p>
+<h6 id="请求头-2"><a href="#请求头-2" class="headerlink" title="请求头"></a>请求头</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PUT /both/v1/tokens</span><br><span class="line">Accept: application/json</span><br><span class="line">Content-Type: application/json;charset=UTF-8</span><br></pre></td></tr></table></figure>
+<h6 id="参数-2"><a href="#参数-2" class="headerlink" title="参数"></a>参数</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;extra&quot;: &quot;你想填什么就填什么&quot;,</span><br><span class="line">    &quot;token&quot;: &quot;token_3523235&quot;,</span><br><span class="line">    &quot;page&quot;: 0,</span><br><span class="line">    &quot;pageSize&quot;: 20,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>token</td>
+<td>String</td>
+<td>用户现在使用的token</td>
+</tr>
+</tbody>
+</table>
+<h6 id="响应头-2"><a href="#响应头-2" class="headerlink" title="响应头"></a>响应头</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type:application/json; charset=utf-8</span><br><span class="line">Cache-Control: no-store</span><br><span class="line">Pragma: no-cache</span><br></pre></td></tr></table></figure>
+<h6 id="响应-2"><a href="#响应-2" class="headerlink" title="响应"></a>响应</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;message&quot;: &quot;居然被你创建了token&quot;,</span><br><span class="line">    &quot;code&quot;: 200,</span><br><span class="line">    &quot;data&quot;: &#123;</span><br><span class="line">        &quot;token&quot;: &quot;token_1224124124&quot;,</span><br><span class="line">        &quot;expires&quot;: 30,</span><br><span class="line">        &quot;user&quot;: &quot;这个user信息需不需要在这里给，可以商量&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>随便写，也可以作为服务器给前端固定提示的内容</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>与响应头里的Status一样</td>
+</tr>
+<tr>
+<td>data.token</td>
+<td>String</td>
+<td>获取的token</td>
+</tr>
+<tr>
+<td>data.expires</td>
+<td>int</td>
+<td>期限</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h4 id="查询token状态"><a href="#查询token状态" class="headerlink" title="查询token状态"></a>查询token状态</h4><p>地址：<a href="https://api.xxx.com/both/v1/tokens/token_255235235" target="_blank" rel="noopener">https://api.xxx.com/both/v1/tokens/token_255235235</a></p>
+<h6 id="请求头-3"><a href="#请求头-3" class="headerlink" title="请求头"></a>请求头</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GET /both/v1/tokens/token_255235235</span><br><span class="line">Accept: application/json</span><br><span class="line">Content-Type: application/json;charset=UTF-8</span><br></pre></td></tr></table></figure>
+<h6 id="参数-3"><a href="#参数-3" class="headerlink" title="参数"></a>参数</h6><p>无</p>
+<h6 id="响应头-3"><a href="#响应头-3" class="headerlink" title="响应头"></a>响应头</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type:application/json; charset=utf-8</span><br><span class="line">Cache-Control: no-store</span><br><span class="line">Pragma: no-cache</span><br></pre></td></tr></table></figure>
+<h6 id="响应-3"><a href="#响应-3" class="headerlink" title="响应"></a>响应</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;message&quot;: &quot;居然被你创建了token&quot;,</span><br><span class="line">    &quot;code&quot;: 200,</span><br><span class="line">    &quot;data&quot;: &#123;</span><br><span class="line">        &quot;token&quot;: &quot;token_1224124124&quot;,</span><br><span class="line">        &quot;expires&quot;: 30,</span><br><span class="line">        &quot;user&quot;: &quot;这个user信息需不需要在这里给，可以商量&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>data对象不为空则表示该token是合法的。</strong></p>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>随便写，也可以作为服务器给前端固定提示的内容</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>与响应头里的Status一样</td>
+</tr>
+<tr>
+<td>data.token</td>
+<td>String</td>
+<td>获取的token</td>
+</tr>
+<tr>
+<td>data.expires</td>
+<td>int</td>
+<td>期限</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="用户部分接口"><a href="#用户部分接口" class="headerlink" title="用户部分接口"></a>用户部分接口</h3><p>注册（新增或者创建用户）、查询用户信息和修改用户信息。</p>
+<h4 id="注册-修改用户"><a href="#注册-修改用户" class="headerlink" title="注册/修改用户"></a>注册/修改用户</h4><p>由于该项目业务的特殊性，将注册和修改用一个接口，后台对前端传过来的数据，先从数据库中查询，如果有该用户就是修改，如果没有该用户就新增（即注册）。<br>地址：<a href="https://api.xxx.com/both/v1/users" target="_blank" rel="noopener">https://api.xxx.com/both/v1/users</a></p>
+<h6 id="请求头-4"><a href="#请求头-4" class="headerlink" title="请求头"></a>请求头</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">POST /both/v1/users</span><br><span class="line">Accept: application/json</span><br><span class="line">Content-Type: application/json;charset=UTF-8</span><br></pre></td></tr></table></figure>
+<h6 id="参数-4"><a href="#参数-4" class="headerlink" title="参数"></a>参数</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;extra&quot;: &quot;你想填什么就填什么&quot;,</span><br><span class="line">    &quot;token&quot;: &quot;&quot;,</span><br><span class="line">    &quot;data&quot;: &#123;</span><br><span class="line">        &quot;nickname&quot;: &quot;一声笑&quot;,</span><br><span class="line">        &quot;userID&quot;: &quot;123456&quot;,</span><br><span class="line">        &quot;firstname&quot;: &quot;一&quot;,</span><br><span class="line">        &quot;lastname&quot;: &quot;声笑&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>参数都不是必传的</p>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>extra</td>
+<td>String</td>
+<td>额外扩展字段</td>
+</tr>
+<tr>
+<td>token</td>
+<td>String</td>
+<td>此处传空或者不传</td>
+</tr>
+<tr>
+<td>data</td>
+<td>Json对象</td>
+<td>需要传的具体个性参数</td>
+</tr>
+<tr>
+<td>data.nickname</td>
+<td>String</td>
+<td>用户昵称</td>
+</tr>
+<tr>
+<td>data.userID</td>
+<td>String</td>
+<td>用户唯一ID</td>
+</tr>
+<tr>
+<td>data.firstname</td>
+<td>String</td>
+<td>用户姓</td>
+</tr>
+<tr>
+<td>data.lastname</td>
+<td>String</td>
+<td>用户名</td>
+</tr>
+</tbody>
+</table>
+<h6 id="响应头-4"><a href="#响应头-4" class="headerlink" title="响应头"></a>响应头</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type:application/json; charset=utf-8</span><br><span class="line">Cache-Control: no-store</span><br><span class="line">Pragma: no-cache</span><br></pre></td></tr></table></figure>
+<h6 id="响应-4"><a href="#响应-4" class="headerlink" title="响应"></a>响应</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;message&quot;: &quot;居然被你创建了token&quot;,</span><br><span class="line">    &quot;code&quot;: 200,</span><br><span class="line">    &quot;data&quot;: &#123;</span><br><span class="line">        &quot;uid&quot;: &quot;23523525235&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>随便写，也可以作为服务器给前端固定提示的内容</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>与响应头里的Status一样</td>
+</tr>
+<tr>
+<td>uid</td>
+<td>String</td>
+<td>新增/或者修改的这条用户的主键</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h4 id="查询用户信息"><a href="#查询用户信息" class="headerlink" title="查询用户信息"></a>查询用户信息</h4><p>地址：<a href="https://api.xxx.com/both/v1/users/324553534534" target="_blank" rel="noopener">https://api.xxx.com/both/v1/users/324553534534</a></p>
+<h6 id="请求头-5"><a href="#请求头-5" class="headerlink" title="请求头"></a>请求头</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GET /both/v1/users/324553534534</span><br><span class="line">Accept: application/json</span><br><span class="line">Content-Type: application/json;charset=UTF-8</span><br></pre></td></tr></table></figure>
+<h6 id="参数-5"><a href="#参数-5" class="headerlink" title="参数"></a>参数</h6><p>无</p>
+<h6 id="响应头-5"><a href="#响应头-5" class="headerlink" title="响应头"></a>响应头</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type:application/json; charset=utf-8</span><br><span class="line">Cache-Control: no-store</span><br><span class="line">Pragma: no-cache</span><br></pre></td></tr></table></figure>
+<h6 id="响应-5"><a href="#响应-5" class="headerlink" title="响应"></a>响应</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;message&quot;: &quot;居然被你创建了token&quot;,</span><br><span class="line">    &quot;code&quot;: 200,</span><br><span class="line">    &quot;data&quot;: &#123;</span><br><span class="line">        &quot;nickname&quot;: &quot;一声笑&quot;,</span><br><span class="line">        &quot;userID&quot;: &quot;123456&quot;,</span><br><span class="line">        &quot;firstname&quot;: &quot;一&quot;,</span><br><span class="line">        &quot;lastname&quot;: &quot;声笑&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>extra</td>
+<td>String</td>
+<td>额外扩展字段</td>
+</tr>
+<tr>
+<td>token</td>
+<td>String</td>
+<td>此处传空或者不传</td>
+</tr>
+<tr>
+<td>data</td>
+<td>Json对象</td>
+<td>需要传的具体个性参数</td>
+</tr>
+<tr>
+<td>data.nickname</td>
+<td>String</td>
+<td>用户昵称</td>
+</tr>
+<tr>
+<td>data.userID</td>
+<td>String</td>
+<td>用户唯一ID</td>
+</tr>
+<tr>
+<td>data.firstname</td>
+<td>String</td>
+<td>用户姓</td>
+</tr>
+<tr>
+<td>data.lastname</td>
+<td>String</td>
+<td>用户名</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="密码管理部分接口"><a href="#密码管理部分接口" class="headerlink" title="密码管理部分接口"></a>密码管理部分接口</h3><p>该接口对用户的密码进行管理，包括修改账户密码和支付密码,由于密码与用户是一对一的关系，新增密码和更新密码是一个语义，因此需要一个接口即可，也就是创建于修改统一用POST。<br>地址：<a href="https://api.xxx.com/both/v1/passwords" target="_blank" rel="noopener">https://api.xxx.com/both/v1/passwords</a></p>
+<h6 id="请求头-6"><a href="#请求头-6" class="headerlink" title="请求头"></a>请求头</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">POST /both/v1/passwords</span><br><span class="line">Accept: application/json</span><br><span class="line">Content-Type: application/json;charset=UTF-8</span><br></pre></td></tr></table></figure>
+<h6 id="参数-6"><a href="#参数-6" class="headerlink" title="参数"></a>参数</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;extra&quot;: &quot;你想填什么就填什么&quot;,</span><br><span class="line">    &quot;token&quot;: &quot;token_235235235&quot;,</span><br><span class="line">    &quot;data&quot;: &#123;</span><br><span class="line">        &quot;password&quot;: &quot;123456&quot;,</span><br><span class="line">        &quot;type&quot;: &quot;payment&quot;,</span><br><span class="line">        &quot;grantType&quot;: &quot;sms&quot;,</span><br><span class="line">        &quot;grantCode&quot;: &quot;1234&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>extra</td>
+<td>String</td>
+<td>额外扩展字段</td>
+</tr>
+<tr>
+<td>token</td>
+<td>String</td>
+<td>此处传空或者不传</td>
+</tr>
+<tr>
+<td>data</td>
+<td>Json对象</td>
+<td>需要传的具体个性参数</td>
+</tr>
+<tr>
+<td>data.password</td>
+<td>String</td>
+<td>新密码</td>
+</tr>
+<tr>
+<td>data.type</td>
+<td>枚举</td>
+<td>密码类型，payment：支付密码，user：用户登录密码，我们暂时只有支付密码，此处填payment即可</td>
+</tr>
+<tr>
+<td>data.grantType</td>
+<td>枚举</td>
+<td>sms：短信验证，password：密码验证</td>
+</tr>
+<tr>
+<td>data.grantCode</td>
+<td>String</td>
+<td>短信验证填短信验证码，密码验证填旧密码</td>
+</tr>
+</tbody>
+</table>
+<h6 id="响应头-6"><a href="#响应头-6" class="headerlink" title="响应头"></a>响应头</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type:application/json; charset=utf-8</span><br></pre></td></tr></table></figure>
+<h6 id="响应-6"><a href="#响应-6" class="headerlink" title="响应"></a>响应</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;message&quot;: &quot;居然被你修改成功&quot;,</span><br><span class="line">    &quot;code&quot;: 200</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>随便写，也可以作为服务器给前端固定提示的内容</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>与响应头里的Status一样</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="验证码-授权码"><a href="#验证码-授权码" class="headerlink" title="验证码/授权码"></a>验证码/授权码</h3><p>该接口用于获取验证码，如短信验证码，邮箱验证码，在接口设计上并未做<br>地址：<a href="https://api.xxx.com/both/v1/grantCodes" target="_blank" rel="noopener">https://api.xxx.com/both/v1/grantCodes</a></p>
+<h6 id="请求头-7"><a href="#请求头-7" class="headerlink" title="请求头"></a>请求头</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">POST /both/v1/grantCodes</span><br><span class="line">Accept: application/json</span><br><span class="line">Content-Type: application/json;charset=UTF-8</span><br></pre></td></tr></table></figure>
+<h6 id="参数-7"><a href="#参数-7" class="headerlink" title="参数"></a>参数</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;extra&quot;: &quot;你想填什么就填什么&quot;,</span><br><span class="line">    &quot;token&quot;: &quot;&quot;,</span><br><span class="line">    &quot;data&quot;: &#123;</span><br><span class="line">        &quot;type&quot;: &quot;sms&quot;,</span><br><span class="line">        &quot;receiver&quot;: &quot;13812345678&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>extra</td>
+<td>String</td>
+<td>额外扩展字段</td>
+</tr>
+<tr>
+<td>token</td>
+<td>String</td>
+<td>此处传空或者不传</td>
+</tr>
+<tr>
+<td>data</td>
+<td>Json对象</td>
+<td>需要传的具体个性参数</td>
+</tr>
+<tr>
+<td>data.type</td>
+<td>枚举</td>
+<td>验证码类型，sms：短信验证码，email：邮箱验证码</td>
+</tr>
+<tr>
+<td>data.receiver</td>
+<td>String</td>
+<td>接收方，可以是短信或者邮件地址等</td>
+</tr>
+</tbody>
+</table>
+<h6 id="响应头-7"><a href="#响应头-7" class="headerlink" title="响应头"></a>响应头</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type:application/json; charset=utf-8</span><br></pre></td></tr></table></figure>
+<h6 id="响应-7"><a href="#响应-7" class="headerlink" title="响应"></a>响应</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;message&quot;: &quot;居然被你修改成功&quot;,</span><br><span class="line">    &quot;code&quot;: 200</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>随便写，也可以作为服务器给前端固定提示的内容</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>与响应头里的Status一样</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h3><p>该接口用于描述邀请好友奖励等规则，由于只有获取规则，所以只列举了GET。<br>地址：<a href="https://api.xxx.com/both/v1/rules" target="_blank" rel="noopener">https://api.xxx.com/both/v1/rules</a></p>
+<h6 id="请求头-8"><a href="#请求头-8" class="headerlink" title="请求头"></a>请求头</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GET /both/v1/rules</span><br><span class="line">Accept: application/json</span><br><span class="line">Content-Type: application/json;charset=UTF-8</span><br></pre></td></tr></table></figure>
+<h6 id="参数-8"><a href="#参数-8" class="headerlink" title="参数"></a>参数</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;extra&quot;: &quot;你想填什么就填什么&quot;,</span><br><span class="line">    &quot;token&quot;: &quot;token_2432344&quot;,</span><br><span class="line">    &quot;data&quot;: &#123;</span><br><span class="line">        &quot;type&quot;: &quot;invitation&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>extra</td>
+<td>String</td>
+<td>额外扩展字段</td>
+</tr>
+<tr>
+<td>token</td>
+<td>String</td>
+<td>此处传空或者不传</td>
+</tr>
+<tr>
+<td>data</td>
+<td>Json对象</td>
+<td>需要传的具体个性参数</td>
+</tr>
+<tr>
+<td>data.type</td>
+<td>枚举</td>
+<td>规则类型，invitation：表示邀请好友奖励的规则，暂时只有这一个</td>
+</tr>
+</tbody>
+</table>
+<h6 id="响应头-8"><a href="#响应头-8" class="headerlink" title="响应头"></a>响应头</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type:application/json; charset=utf-8</span><br></pre></td></tr></table></figure>
+<h6 id="响应-8"><a href="#响应-8" class="headerlink" title="响应"></a>响应</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;message&quot;: &quot;居然被你修改成功&quot;,</span><br><span class="line">    &quot;code&quot;: 200,</span><br><span class="line">    &quot;data&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;key&quot;: &quot;邀请好友&quot;,</span><br><span class="line">            &quot;value&quot;: &quot;5%&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;key&quot;: &quot;登录&quot;,</span><br><span class="line">            &quot;value&quot;: &quot;5%&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>之所以设计成这样是为了方便扩展，其实全部用date里的key也可以，value可以不用管。</p>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>随便写，也可以作为服务器给前端固定提示的内容</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>与响应头里的Status一样</td>
+</tr>
+<tr>
+<td>data</td>
+<td>Json对象</td>
+<td>需要传的具体个性参数</td>
+</tr>
+<tr>
+<td>data.key</td>
+<td>String</td>
+<td>奖励类目</td>
+</tr>
+<tr>
+<td>data.value</td>
+<td>String</td>
+<td>奖励值</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="类型部分接口"><a href="#类型部分接口" class="headerlink" title="类型部分接口"></a>类型部分接口</h3><p>该接口用于描述一些分类字段，比如新闻资讯的分类；奖励类型等，由于是只获取，所以只列举了GET。<br>地址：<a href="https://api.xxx.com/both/v1/types" target="_blank" rel="noopener">https://api.xxx.com/both/v1/types</a></p>
+<h6 id="请求头-9"><a href="#请求头-9" class="headerlink" title="请求头"></a>请求头</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GET /both/v1/types</span><br><span class="line">Accept: application/json</span><br><span class="line">Content-Type: application/json;charset=UTF-8</span><br></pre></td></tr></table></figure>
+<h6 id="参数-9"><a href="#参数-9" class="headerlink" title="参数"></a>参数</h6><p>?params={“extra”:”你想填什么就填什么”,”token”:”token_2432344”,”keyword”:”group”,”sort”:”des”,”page”:0,”pageSize”:20}</p>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>extra</td>
+<td>String</td>
+<td>额外扩展字段</td>
+</tr>
+<tr>
+<td>token</td>
+<td>String</td>
+<td>此处传空或者不传</td>
+</tr>
+<tr>
+<td>keyword</td>
+<td>string</td>
+<td>用于过滤的关键字，news:资讯的分类，group:群组分类</td>
+</tr>
+<tr>
+<td>sort</td>
+<td>枚举</td>
+<td>排序，des：降序，asc升序</td>
+</tr>
+<tr>
+<td>page</td>
+<td>int</td>
+<td>页码，不传则默认为0</td>
+</tr>
+<tr>
+<td>pageSize</td>
+<td>int</td>
+<td>要求每一页返回最大个数，不传则默认为20</td>
+</tr>
+</tbody>
+</table>
+<h6 id="响应头-9"><a href="#响应头-9" class="headerlink" title="响应头"></a>响应头</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type:application/json; charset=utf-8</span><br></pre></td></tr></table></figure>
+<h6 id="响应-9"><a href="#响应-9" class="headerlink" title="响应"></a>响应</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;message&quot;: &quot;居然被你查询成功了&quot;,</span><br><span class="line">    &quot;code&quot;: 200,</span><br><span class="line">    &quot;page&quot;: 0,</span><br><span class="line">    &quot;pageSize&quot;: 20,</span><br><span class="line">    &quot;first&quot;: &quot;https://...&quot;,</span><br><span class="line">    &quot;next&quot;: &quot;https://...&quot;,</span><br><span class="line">    &quot;previous&quot;: &quot;https://...&quot;,</span><br><span class="line">    &quot;last&quot;: &quot;https://...&quot;,</span><br><span class="line">    &quot;data&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;type&quot;: &quot;课程&quot;,</span><br><span class="line">            &quot;uid&quot;: &quot;2342423233&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;type&quot;: &quot;区块链知识&quot;,</span><br><span class="line">            &quot;uid&quot;: &quot;3646346434&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;type&quot;: &quot;新闻资讯&quot;,</span><br><span class="line">            &quot;uid&quot;: &quot;3634634633&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>之所以设计成这样是为了方便扩展，其实全部用date里的key也可以，value可以不用管。</p>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>随便写，也可以作为服务器给前端固定提示的内容</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>与响应头里的Status一样</td>
+</tr>
+<tr>
+<td>data</td>
+<td>Json对象</td>
+<td>需要传的具体个性参数</td>
+</tr>
+<tr>
+<td>data.type</td>
+<td>String</td>
+<td>该分类的具体意义名称</td>
+</tr>
+<tr>
+<td>data.uid</td>
+<td>String</td>
+<td>该分类的主键</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="资讯部分接口"><a href="#资讯部分接口" class="headerlink" title="资讯部分接口"></a>资讯部分接口</h3><p>该接口用于描述一些分类字段，比如新闻资讯的分类；奖励类型等，由于是只获取，所以只列举了GET。</p>
+<h4 id="获取资讯列表"><a href="#获取资讯列表" class="headerlink" title="获取资讯列表"></a>获取资讯列表</h4><p>地址：<a href="https://api.xxx.com/both/v1/news" target="_blank" rel="noopener">https://api.xxx.com/both/v1/news</a></p>
+<h6 id="请求头-10"><a href="#请求头-10" class="headerlink" title="请求头"></a>请求头</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GET /both/v1/news</span><br><span class="line">Accept: application/json</span><br><span class="line">Content-Type: application/json;charset=UTF-8</span><br></pre></td></tr></table></figure>
+<h6 id="参数-10"><a href="#参数-10" class="headerlink" title="参数"></a>参数</h6><p>?params={“extra”:”你想填什么就填什么”,”token”:”token_2432344”,”keyword”:”方便面”,”sort”:”des”,”page”:0,”pageSize”:20,”data”:{“type”:”235523532”}}</p>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>extra</td>
+<td>String</td>
+<td>额外扩展字段</td>
+</tr>
+<tr>
+<td>token</td>
+<td>String</td>
+<td>此处传空或者不传</td>
+</tr>
+<tr>
+<td>keyword</td>
+<td>string</td>
+<td>用于过滤的关键字</td>
+</tr>
+<tr>
+<td>sort</td>
+<td>枚举</td>
+<td>排序，des：降序，asc:升序</td>
+</tr>
+<tr>
+<td>page</td>
+<td>int</td>
+<td>页码，不传则默认为0</td>
+</tr>
+<tr>
+<td>pageSize</td>
+<td>int</td>
+<td>要求每一页返回最大个数，不传则默认为20</td>
+</tr>
+<tr>
+<td>data</td>
+<td>Object</td>
+<td>请求参数Json对象</td>
+</tr>
+<tr>
+<td>data.type</td>
+<td>String</td>
+<td>请求咨询类型，默认或者不传则表示获取全部，根据类型接口返回的内容中的uid来传这个参数</td>
+</tr>
+</tbody>
+</table>
+<h6 id="响应头-10"><a href="#响应头-10" class="headerlink" title="响应头"></a>响应头</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type:application/json; charset=utf-8</span><br></pre></td></tr></table></figure>
+<h6 id="响应-10"><a href="#响应-10" class="headerlink" title="响应"></a>响应</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;message&quot;: &quot;居然被你查询成功了&quot;,</span><br><span class="line">    &quot;code&quot;: 200,</span><br><span class="line">    &quot;page&quot;: 0,</span><br><span class="line">    &quot;pageSize&quot;: 20,</span><br><span class="line">    &quot;first&quot;: &quot;https://...&quot;,</span><br><span class="line">    &quot;next&quot;: &quot;https://...&quot;,</span><br><span class="line">    &quot;previous&quot;: &quot;https://...&quot;,</span><br><span class="line">    &quot;last&quot;: &quot;https://...&quot;,</span><br><span class="line">    &quot;data&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;uid&quot;: &quot;2342423233&quot;,</span><br><span class="line">            &quot;title&quot;: &quot;牛市要来了，赶紧上车&quot;,</span><br><span class="line">            &quot;description&quot;: &quot;牛牛牛，你牛什么牛，牛牛牛，你牛什么牛，牛牛牛，你牛什么牛&quot;,</span><br><span class="line">            &quot;source&quot;: &quot;币世界&quot;,</span><br><span class="line">            &quot;author&quot;: &quot;币老爷&quot;,</span><br><span class="line">            &quot;time&quot;: &quot;2018-04-23 20:00&quot;,</span><br><span class="line">            &quot;url&quot;: &quot;https://www.baidu.com/&quot;,</span><br><span class="line">            &quot;type&quot;: &quot;课程&quot;,</span><br><span class="line">            &quot;image&quot;: &quot;http://a3.peoplecdn.cn/fbcba40035ae5f2ad90c19abe58560a2.jpg&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;uid&quot;: &quot;2342423233&quot;,</span><br><span class="line">            &quot;title&quot;: &quot;牛市要来了，赶紧上车&quot;,</span><br><span class="line">            &quot;description&quot;: &quot;牛牛牛，你牛什么牛，牛牛牛，你牛什么牛，牛牛牛，你牛什么牛&quot;,</span><br><span class="line">            &quot;source&quot;: &quot;币世界&quot;,</span><br><span class="line">            &quot;author&quot;: &quot;币老爷&quot;,</span><br><span class="line">            &quot;time&quot;: &quot;2018-04-23 20:00&quot;,</span><br><span class="line">            &quot;url&quot;: &quot;https://www.baidu.com/&quot;,</span><br><span class="line">            &quot;type&quot;: &quot;课程&quot;,</span><br><span class="line">            &quot;image&quot;: &quot;http://a3.peoplecdn.cn/fbcba40035ae5f2ad90c19abe58560a2.jpg&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;uid&quot;: &quot;2342423233&quot;,</span><br><span class="line">            &quot;title&quot;: &quot;牛市要来了，赶紧上车&quot;,</span><br><span class="line">            &quot;description&quot;: &quot;牛牛牛，你牛什么牛，牛牛牛，你牛什么牛，牛牛牛，你牛什么牛&quot;,</span><br><span class="line">            &quot;source&quot;: &quot;币世界&quot;,</span><br><span class="line">            &quot;author&quot;: &quot;币老爷&quot;,</span><br><span class="line">            &quot;time&quot;: &quot;2018-04-23 20:00&quot;,</span><br><span class="line">            &quot;url&quot;: &quot;https://www.baidu.com/&quot;,</span><br><span class="line">            &quot;type&quot;: &quot;课程&quot;,</span><br><span class="line">            &quot;image&quot;: &quot;http://a3.peoplecdn.cn/fbcba40035ae5f2ad90c19abe58560a2.jpg&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>随便写，也可以作为服务器给前端固定提示的内容</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>与响应头里的Status一样</td>
+</tr>
+<tr>
+<td>page</td>
+<td>int</td>
+<td>分页请求中请求的当前页的页码</td>
+</tr>
+<tr>
+<td>pageSize</td>
+<td>int</td>
+<td>分页请求中一页的个数，默认为20</td>
+</tr>
+<tr>
+<td>first</td>
+<td>String</td>
+<td>分页请求中第一页的url ，如果没有则返回空字符串</td>
+</tr>
+<tr>
+<td>next</td>
+<td>String</td>
+<td>分页请求中下一页的url，如果没有则返回空字符串</td>
+</tr>
+<tr>
+<td>previous</td>
+<td>String</td>
+<td>分页请求中上一页的url，如果没有则返回空字符串</td>
+</tr>
+<tr>
+<td>last</td>
+<td>String</td>
+<td>分页请求中最后一页的url，如果没有则返回空字符串</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>当前接口的具体数据由该json对象承载</td>
+</tr>
+<tr>
+<td>data.uid</td>
+<td>String</td>
+<td>该条资讯的唯一标示，可用于获取详情</td>
+</tr>
+<tr>
+<td>data.title</td>
+<td>String</td>
+<td>文章标题</td>
+</tr>
+<tr>
+<td>data.description</td>
+<td>String</td>
+<td>文章描述</td>
+</tr>
+<tr>
+<td>data.source</td>
+<td>String</td>
+<td>文章来源</td>
+</tr>
+<tr>
+<td>data.author</td>
+<td>String</td>
+<td>文章作者</td>
+</tr>
+<tr>
+<td>data.time</td>
+<td>String</td>
+<td>时间</td>
+</tr>
+<tr>
+<td>data.url</td>
+<td>String</td>
+<td>该条资讯web连接</td>
+</tr>
+<tr>
+<td>data.type</td>
+<td>String</td>
+<td>所属的类型名称，对应着类型接口中的名称</td>
+</tr>
+<tr>
+<td>data.image</td>
+<td>String</td>
+<td>文章配图</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h4 id="获取资讯详情"><a href="#获取资讯详情" class="headerlink" title="获取资讯详情"></a>获取资讯详情</h4><p>地址：<a href="https://api.xxx.com/both/v1/news/34636436" target="_blank" rel="noopener">https://api.xxx.com/both/v1/news/34636436</a></p>
+<h6 id="请求头-11"><a href="#请求头-11" class="headerlink" title="请求头"></a>请求头</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GET /both/v1/news/34636436</span><br><span class="line">Accept: application/json</span><br><span class="line">Content-Type: application/json;charset=UTF-8</span><br></pre></td></tr></table></figure>
+<h6 id="参数-11"><a href="#参数-11" class="headerlink" title="参数"></a>参数</h6><p>无</p>
+<h6 id="响应头-11"><a href="#响应头-11" class="headerlink" title="响应头"></a>响应头</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type:application/json; charset=utf-8</span><br></pre></td></tr></table></figure>
+<h6 id="响应-11"><a href="#响应-11" class="headerlink" title="响应"></a>响应</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;message&quot;: &quot;居然被你查询成功了&quot;,</span><br><span class="line">    &quot;code&quot;: 200,</span><br><span class="line">    &quot;data&quot;: &#123;</span><br><span class="line">        &quot;uid&quot;: &quot;2342423233&quot;,</span><br><span class="line">        &quot;title&quot;: &quot;牛市要来了，赶紧上车&quot;,</span><br><span class="line">        &quot;description&quot;: &quot;牛牛牛，你牛什么牛，牛牛牛，你牛什么牛，牛牛牛，你牛什么牛&quot;,</span><br><span class="line">        &quot;source&quot;: &quot;币世界&quot;,</span><br><span class="line">        &quot;author&quot;: &quot;币老爷&quot;,</span><br><span class="line">        &quot;time&quot;: &quot;2018-04-23 20:00&quot;,</span><br><span class="line">        &quot;url&quot;: &quot;https://www.baidu.com/&quot;,</span><br><span class="line">        &quot;type&quot;: &quot;课程&quot;,</span><br><span class="line">        &quot;image&quot;: &quot;http://a3.peoplecdn.cn/fbcba40035ae5f2ad90c19abe58560a2.jpg&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>之所以设计成这样是为了方便扩展，其实全部用date里的key也可以，value可以不用管。</p>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>随便写，也可以作为服务器给前端固定提示的内容</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>与响应头里的Status一样</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>当前接口的具体数据由该json对象承载</td>
+</tr>
+<tr>
+<td>data.uid</td>
+<td>String</td>
+<td>该条资讯的唯一标示，可用于获取详情</td>
+</tr>
+<tr>
+<td>data.title</td>
+<td>String</td>
+<td>文章标题</td>
+</tr>
+<tr>
+<td>data.description</td>
+<td>String</td>
+<td>文章描述</td>
+</tr>
+<tr>
+<td>data.source</td>
+<td>String</td>
+<td>文章来源</td>
+</tr>
+<tr>
+<td>data.author</td>
+<td>String</td>
+<td>文章作者</td>
+</tr>
+<tr>
+<td>data.time</td>
+<td>String</td>
+<td>时间</td>
+</tr>
+<tr>
+<td>data.url</td>
+<td>String</td>
+<td>该条资讯web连接</td>
+</tr>
+<tr>
+<td>data.type</td>
+<td>String</td>
+<td>所属的类型名称，对应着类型接口中的名称</td>
+</tr>
+<tr>
+<td>data.image</td>
+<td>String</td>
+<td>文章配图</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="群组部分接口"><a href="#群组部分接口" class="headerlink" title="群组部分接口"></a>群组部分接口</h3><h4 id="获取群列表"><a href="#获取群列表" class="headerlink" title="获取群列表"></a>获取群列表</h4><p>地址：<a href="https://api.xxx.com/both/v1/groups" target="_blank" rel="noopener">https://api.xxx.com/both/v1/groups</a></p>
+<h6 id="请求头-12"><a href="#请求头-12" class="headerlink" title="请求头"></a>请求头</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GET /both/v1/groups</span><br><span class="line">Accept: application/json</span><br><span class="line">Content-Type: application/json;charset=UTF-8</span><br></pre></td></tr></table></figure>
+<h6 id="参数-12"><a href="#参数-12" class="headerlink" title="参数"></a>参数</h6><p>?params={“extra”:”你想填什么就填什么”,”token”:”token_2432344”,”keyword”:”方便面”,”sort”:”recommend”,”page”:0,”pageSize”:20,”data”:{“type”:”recommend”}}</p>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>extra</td>
+<td>String</td>
+<td>额外扩展字段</td>
+</tr>
+<tr>
+<td>token</td>
+<td>String</td>
+<td>此处传空或者不传</td>
+</tr>
+<tr>
+<td>keyword</td>
+<td>string</td>
+<td>用于过滤的关键字</td>
+</tr>
+<tr>
+<td>sort</td>
+<td>枚举</td>
+<td>排序，des：降序，asc:升序</td>
+</tr>
+<tr>
+<td>page</td>
+<td>int</td>
+<td>页码，不传则默认为0</td>
+</tr>
+<tr>
+<td>pageSize</td>
+<td>int</td>
+<td>要求每一页返回最大个数，不传则默认为20</td>
+</tr>
+<tr>
+<td>data</td>
+<td>Object</td>
+<td>请求参数Json对象</td>
+</tr>
+<tr>
+<td>data.type</td>
+<td>String</td>
+<td>recommend：热度，newest：新旧</td>
+</tr>
+</tbody>
+</table>
+<h6 id="响应头-12"><a href="#响应头-12" class="headerlink" title="响应头"></a>响应头</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type:application/json; charset=utf-8</span><br></pre></td></tr></table></figure>
+<h6 id="响应-12"><a href="#响应-12" class="headerlink" title="响应"></a>响应</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;message&quot;: &quot;居然被你查询成功了&quot;,</span><br><span class="line">    &quot;code&quot;: 200,</span><br><span class="line">    &quot;page&quot;: 0,</span><br><span class="line">    &quot;pageSize&quot;: 20,</span><br><span class="line">    &quot;first&quot;: &quot;https://...&quot;,</span><br><span class="line">    &quot;next&quot;: &quot;https://...&quot;,</span><br><span class="line">    &quot;previous&quot;: &quot;https://...&quot;,</span><br><span class="line">    &quot;last&quot;: &quot;https://...&quot;,</span><br><span class="line">    &quot;data&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;uid&quot;: &quot;2342423233&quot;,</span><br><span class="line">            &quot;type&quot;: &quot;recommend&quot;,</span><br><span class="line">            &quot;weight&quot;: &quot;9999&quot;,</span><br><span class="line">            &quot;time&quot;: &quot;2018-04-23 15:12:05&quot;,</span><br><span class="line">            &quot;image&quot;: &quot;http://a3.peoplecdn.cn/fbcba40035ae5f2ad90c19abe58560a2.jpg&quot;,</span><br><span class="line">            &quot;name&quot;: &quot;MOL链官方群&quot;,</span><br><span class="line">            &quot;description&quot;: &quot;MOL链官方群是个牛B哄哄的群&quot;,</span><br><span class="line">            &quot;memberAmount&quot;: &quot;1000&quot;,</span><br><span class="line">            &quot;state&quot;: &quot;已删除&quot;,</span><br><span class="line">            &quot;groupLink&quot;: &quot;t.me/molmol&quot;,</span><br><span class="line">            &quot;action&quot;: &#123;</span><br><span class="line">                &quot;type&quot;: &quot;group&quot;,</span><br><span class="line">                &quot;param&quot;: &quot;https://www.baidu.com/&quot;</span><br><span class="line">            &#125;,</span><br><span class="line">            &quot;reward&quot;: &#123;</span><br><span class="line">                &quot;isReward&quot;: true,</span><br><span class="line">                &quot;remainder&quot;: &quot;56322&quot;,</span><br><span class="line">                &quot;deadline&quot;: &quot;2018-04-23 15:12:05&quot;,</span><br><span class="line">                &quot;reward&quot;: &quot;10&quot;,</span><br><span class="line">                &quot;currency&quot;: &quot;mol&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;uid&quot;: &quot;2342423233&quot;,</span><br><span class="line">            &quot;type&quot;: &quot;recommend&quot;,</span><br><span class="line">            &quot;weight&quot;: &quot;9999&quot;,</span><br><span class="line">            &quot;time&quot;: &quot;2018-04-23 15:12:05&quot;,</span><br><span class="line">            &quot;image&quot;: &quot;http://a3.peoplecdn.cn/fbcba40035ae5f2ad90c19abe58560a2.jpg&quot;,</span><br><span class="line">            &quot;name&quot;: &quot;MOL链官方群&quot;,</span><br><span class="line">            &quot;description&quot;: &quot;MOL链官方群是个牛B哄哄的群&quot;,</span><br><span class="line">            &quot;memberAmount&quot;: &quot;1000&quot;,</span><br><span class="line">            &quot;state&quot;: &quot;已删除&quot;,</span><br><span class="line">            &quot;action&quot;: &#123;</span><br><span class="line">                &quot;type&quot;: &quot;group&quot;,</span><br><span class="line">                &quot;param&quot;: &quot;https://www.baidu.com/&quot;</span><br><span class="line">            &#125;,</span><br><span class="line">            &quot;reward&quot;: &#123;</span><br><span class="line">                &quot;isReward&quot;: true,</span><br><span class="line">                &quot;remainder&quot;: &quot;56322&quot;,</span><br><span class="line">                &quot;deadline&quot;: &quot;2018-04-23 15:12:05&quot;,</span><br><span class="line">                &quot;reward&quot;: &quot;10&quot;,</span><br><span class="line">                &quot;currency&quot;: &quot;mol&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>随便写，也可以作为服务器给前端固定提示的内容</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>与响应头里的Status一样</td>
+</tr>
+<tr>
+<td>page</td>
+<td>int</td>
+<td>分页请求中请求的当前页的页码</td>
+</tr>
+<tr>
+<td>pageSize</td>
+<td>int</td>
+<td>分页请求中一页的个数，默认为20</td>
+</tr>
+<tr>
+<td>first</td>
+<td>String</td>
+<td>分页请求中第一页的url ，如果没有则返回空字符串</td>
+</tr>
+<tr>
+<td>next</td>
+<td>String</td>
+<td>分页请求中下一页的url，如果没有则返回空字符串</td>
+</tr>
+<tr>
+<td>previous</td>
+<td>String</td>
+<td>分页请求中上一页的url，如果没有则返回空字符串</td>
+</tr>
+<tr>
+<td>last</td>
+<td>String</td>
+<td>分页请求中最后一页的url，如果没有则返回空字符串</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>当前接口的具体数据由该json对象承载</td>
+</tr>
+<tr>
+<td>data.uid</td>
+<td>String</td>
+<td>该群组的主键</td>
+</tr>
+<tr>
+<td>data.type</td>
+<td>枚举</td>
+<td>recommend：热度，newest：新旧</td>
+</tr>
+<tr>
+<td>data.weight</td>
+<td>String</td>
+<td>权重</td>
+</tr>
+<tr>
+<td>data.time</td>
+<td>String</td>
+<td>申请时间</td>
+</tr>
+<tr>
+<td>data.image</td>
+<td>String</td>
+<td>群头像</td>
+</tr>
+<tr>
+<td>data.name</td>
+<td>String</td>
+<td>群名称</td>
+</tr>
+<tr>
+<td>data.description</td>
+<td>String</td>
+<td>群描述</td>
+</tr>
+<tr>
+<td>data.memberAmount</td>
+<td>String</td>
+<td>群成员总数</td>
+</tr>
+<tr>
+<td>data.state</td>
+<td>枚举</td>
+<td>deleted：已删除</td>
+</tr>
+<tr>
+<td>data.action</td>
+<td>Object</td>
+<td>跳转动作</td>
+</tr>
+<tr>
+<td>data.action.type</td>
+<td>String</td>
+<td>跳转类型，group：加群，web：跳转到网页</td>
+</tr>
+<tr>
+<td>data.action.param</td>
+<td>String</td>
+<td>跳转所需参数，如加群连接，web连接</td>
+</tr>
+<tr>
+<td>data.reward.isReward</td>
+<td>String</td>
+<td>是否奖励</td>
+</tr>
+<tr>
+<td>data.reward.remainder</td>
+<td>String</td>
+<td>剩余奖励总数</td>
+</tr>
+<tr>
+<td>data.reward.deadline</td>
+<td>String</td>
+<td>奖励截止时间</td>
+</tr>
+<tr>
+<td>data.reward.reward</td>
+<td>String</td>
+<td>单个奖励币数量</td>
+</tr>
+<tr>
+<td>data.reward.currency</td>
+<td>String</td>
+<td>奖励币种</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h4 id="获取群详情"><a href="#获取群详情" class="headerlink" title="获取群详情"></a>获取群详情</h4><p>地址：<a href="https://api.xxx.com/both/v1/groups/23532523" target="_blank" rel="noopener">https://api.xxx.com/both/v1/groups/23532523</a><br>后面省略</p>
+<hr>
+<h4 id="申请（上传）推荐群（允许批量操作）"><a href="#申请（上传）推荐群（允许批量操作）" class="headerlink" title="申请（上传）推荐群（允许批量操作）"></a>申请（上传）推荐群（允许批量操作）</h4><p>地址：<a href="https://api.xxx.com/both/v1/groups" target="_blank" rel="noopener">https://api.xxx.com/both/v1/groups</a></p>
+<h6 id="请求头-13"><a href="#请求头-13" class="headerlink" title="请求头"></a>请求头</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">POST /both/v1/groups</span><br><span class="line">Accept: application/json</span><br><span class="line">Content-Type: application/json;charset=UTF-8</span><br></pre></td></tr></table></figure>
+<h6 id="参数-13"><a href="#参数-13" class="headerlink" title="参数"></a>参数</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;extra&quot;: &quot;扩展字段，你想填什么就填什么&quot;,</span><br><span class="line">    &quot;token&quot;: &quot;token_312331&quot;,</span><br><span class="line">    &quot;data&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;time&quot;: &quot;2018-04-23 15:12:05&quot;,</span><br><span class="line">            &quot;image&quot;: &quot;http://a3.peoplecdn.cn/fbcba40035ae5f2ad90c19abe58560a2.jpg&quot;,</span><br><span class="line">            &quot;name&quot;: &quot;MOL链官方群&quot;,</span><br><span class="line">            &quot;groupLink&quot;: &quot;t.me/molmol&quot;,</span><br><span class="line">            &quot;memberAmount&quot;: &quot;1000&quot;,</span><br><span class="line">            &quot;reward&quot;: &#123;</span><br><span class="line">                &quot;remainder&quot;: &quot;56322&quot;,</span><br><span class="line">                &quot;deadline&quot;: &quot;2018-04-23 15:12:05&quot;,</span><br><span class="line">                &quot;reward&quot;: &quot;10&quot;,</span><br><span class="line">                &quot;currency&quot;: &quot;mol&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;time&quot;: &quot;2018-04-23 15:12:05&quot;,</span><br><span class="line">            &quot;image&quot;: &quot;http://a3.peoplecdn.cn/fbcba40035ae5f2ad90c19abe58560a2.jpg&quot;,</span><br><span class="line">            &quot;name&quot;: &quot;MOL链官方群&quot;,</span><br><span class="line">            &quot;groupLink&quot;: &quot;t.me/molmol&quot;,</span><br><span class="line">            &quot;memberAmount&quot;: &quot;1000&quot;,</span><br><span class="line">            &quot;reward&quot;: &#123;</span><br><span class="line">                &quot;remainder&quot;: &quot;56322&quot;,</span><br><span class="line">                &quot;deadline&quot;: &quot;2018-04-23 15:12:05&quot;,</span><br><span class="line">                &quot;reward&quot;: &quot;10&quot;,</span><br><span class="line">                &quot;currency&quot;: &quot;mol&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>extra</td>
+<td>String</td>
+<td>扩展字段</td>
+</tr>
+<tr>
+<td>token</td>
+<td>String</td>
+<td>权限标志</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>当前接口的具体数据由该json对象承载</td>
+</tr>
+<tr>
+<td>data.uid</td>
+<td>String</td>
+<td>该群组的主键</td>
+</tr>
+<tr>
+<td>data.time</td>
+<td>String</td>
+<td>申请时间</td>
+</tr>
+<tr>
+<td>data.image</td>
+<td>String</td>
+<td>群头像</td>
+</tr>
+<tr>
+<td>data.name</td>
+<td>String</td>
+<td>群名称</td>
+</tr>
+<tr>
+<td>data.memberAmount</td>
+<td>String</td>
+<td>群成员总数</td>
+</tr>
+<tr>
+<td>data.groupLink</td>
+<td>String</td>
+<td>文章配图</td>
+</tr>
+<tr>
+<td>data.reward.remainder</td>
+<td>String</td>
+<td>剩余奖励总数</td>
+</tr>
+<tr>
+<td>data.reward.deadline</td>
+<td>String</td>
+<td>奖励截止时间</td>
+</tr>
+<tr>
+<td>data.reward.reward</td>
+<td>String</td>
+<td>单个奖励币数量</td>
+</tr>
+<tr>
+<td>data.reward.currency</td>
+<td>String</td>
+<td>奖励币种</td>
+</tr>
+</tbody>
+</table>
+<h6 id="响应头-13"><a href="#响应头-13" class="headerlink" title="响应头"></a>响应头</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type:application/json; charset=utf-8</span><br></pre></td></tr></table></figure>
+<h6 id="响应-13"><a href="#响应-13" class="headerlink" title="响应"></a>响应</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;message&quot;: &quot;居然被你上传成功了&quot;,</span><br><span class="line">    &quot;code&quot;: 200,</span><br><span class="line">    &quot;data&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;uid&quot;: &quot;2342423233&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;uid&quot;: &quot;2342423233&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>随便写，也可以作为服务器给前端固定提示的内容</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>与响应头里的Status一样</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>当前接口的具体数据由该json对象承载</td>
+</tr>
+<tr>
+<td>data.uid</td>
+<td>String</td>
+<td>上传成功的群组的主键</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h4 id="钱包部分接口"><a href="#钱包部分接口" class="headerlink" title="钱包部分接口"></a>钱包部分接口</h4><h4 id="获取钱包列表"><a href="#获取钱包列表" class="headerlink" title="获取钱包列表"></a>获取钱包列表</h4><p>地址：<a href="https://api.xxx.com/both/v1/wallets" target="_blank" rel="noopener">https://api.xxx.com/both/v1/wallets</a></p>
+<h6 id="请求头-14"><a href="#请求头-14" class="headerlink" title="请求头"></a>请求头</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GET /both/v1/wallets</span><br><span class="line">Accept: application/json</span><br><span class="line">Content-Type: application/json;charset=UTF-8</span><br></pre></td></tr></table></figure>
+<h6 id="参数-14"><a href="#参数-14" class="headerlink" title="参数"></a>参数</h6><p>?params={“extra”:”你想填什么就填什么”,”token”:”token_2432344”,”keyword”:”摩尔币”,”sort”:”des”,”page”:0,”pageSize”:20,”data”:{“currency”:”CNY”}}</p>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>extra</td>
+<td>String</td>
+<td>额外扩展字段</td>
+</tr>
+<tr>
+<td>token</td>
+<td>String</td>
+<td>此处传空或者不传</td>
+</tr>
+<tr>
+<td>keyword</td>
+<td>string</td>
+<td>用于过滤的关键字</td>
+</tr>
+<tr>
+<td>sort</td>
+<td>枚举</td>
+<td>排序，des：降序，asc:升序</td>
+</tr>
+<tr>
+<td>page</td>
+<td>int</td>
+<td>页码，不传则默认为0</td>
+</tr>
+<tr>
+<td>pageSize</td>
+<td>int</td>
+<td>要求每一页返回最大个数，不传则默认为20</td>
+</tr>
+<tr>
+<td>data</td>
+<td>Object</td>
+<td>请求参数Json对象</td>
+</tr>
+<tr>
+<td>data.currency</td>
+<td>String</td>
+<td>请求折算的币种</td>
+</tr>
+</tbody>
+</table>
+<h6 id="响应头-14"><a href="#响应头-14" class="headerlink" title="响应头"></a>响应头</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type:application/json; charset=utf-8</span><br></pre></td></tr></table></figure>
+<h6 id="响应-14"><a href="#响应-14" class="headerlink" title="响应"></a>响应</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;message&quot;: &quot;居然被你查询成功了&quot;,</span><br><span class="line">    &quot;code&quot;: 200,</span><br><span class="line">    &quot;page&quot;: 0,</span><br><span class="line">    &quot;pageSize&quot;: 20,</span><br><span class="line">    &quot;first&quot;: &quot;https://...&quot;,</span><br><span class="line">    &quot;next&quot;: &quot;https://...&quot;,</span><br><span class="line">    &quot;previous&quot;: &quot;https://...&quot;,</span><br><span class="line">    &quot;last&quot;: &quot;https://...&quot;,</span><br><span class="line">    &quot;data&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;uid&quot;: &quot;235235235&quot;,</span><br><span class="line">            &quot;name&quot;: &quot;MOL币钱包&quot;,</span><br><span class="line">            &quot;amount&quot;: &quot;565.0989&quot;,</span><br><span class="line">            &quot;currency&quot;: &quot;MOL&quot;,</span><br><span class="line">            &quot;image&quot;: &quot;http://a3.peoplecdn.cn/fbcba40035ae5f2ad90c19abe58560a2.jpg&quot;,</span><br><span class="line">            &quot;worth&quot;: &#123;</span><br><span class="line">                &quot;price&quot;: &quot;0.12&quot;,</span><br><span class="line">                &quot;value&quot;: &quot;0.24&quot;,</span><br><span class="line">                &quot;currency&quot;: &quot;￥ &quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;uid&quot;: &quot;235235235&quot;,</span><br><span class="line">            &quot;name&quot;: &quot;以太币钱包&quot;,</span><br><span class="line">            &quot;amount&quot;: &quot;565.0989&quot;,</span><br><span class="line">            &quot;currency&quot;: &quot;MOL&quot;,</span><br><span class="line">            &quot;image&quot;: &quot;http://a3.peoplecdn.cn/fbcba40035ae5f2ad90c19abe58560a2.jpg&quot;,</span><br><span class="line">            &quot;worth&quot;: &#123;</span><br><span class="line">                &quot;price&quot;: &quot;0.12&quot;,</span><br><span class="line">                &quot;value&quot;: &quot;0.24&quot;,</span><br><span class="line">                &quot;currency&quot;: &quot;￥ &quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>随便写，也可以作为服务器给前端固定提示的内容</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>与响应头里的Status一样</td>
+</tr>
+<tr>
+<td>page</td>
+<td>int</td>
+<td>分页请求中请求的当前页的页码</td>
+</tr>
+<tr>
+<td>pageSize</td>
+<td>int</td>
+<td>分页请求中一页的个数，默认为20</td>
+</tr>
+<tr>
+<td>first</td>
+<td>String</td>
+<td>分页请求中第一页的url ，如果没有则返回空字符串</td>
+</tr>
+<tr>
+<td>next</td>
+<td>String</td>
+<td>分页请求中下一页的url，如果没有则返回空字符串</td>
+</tr>
+<tr>
+<td>previous</td>
+<td>String</td>
+<td>分页请求中上一页的url，如果没有则返回空字符串</td>
+</tr>
+<tr>
+<td>last</td>
+<td>String</td>
+<td>分页请求中最后一页的url，如果没有则返回空字符串</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>当前接口的具体数据由该json对象承载</td>
+</tr>
+<tr>
+<td>data.uid</td>
+<td>String</td>
+<td>钱包主键</td>
+</tr>
+<tr>
+<td>data.name</td>
+<td>String</td>
+<td>该币钱包名称</td>
+</tr>
+<tr>
+<td>data.amount</td>
+<td>String</td>
+<td>该币总数</td>
+</tr>
+<tr>
+<td>data.currency</td>
+<td>String</td>
+<td>该币符号</td>
+</tr>
+<tr>
+<td>data.image</td>
+<td>String</td>
+<td>该币图标</td>
+</tr>
+<tr>
+<td>data.worth.price</td>
+<td>String</td>
+<td>该币单价</td>
+</tr>
+<tr>
+<td>data.worth.value</td>
+<td>String</td>
+<td>用户所拥有总价值</td>
+</tr>
+<tr>
+<td>data.worth.currency</td>
+<td>枚举</td>
+<td>对应的币种符号</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h4 id="获取钱包详情"><a href="#获取钱包详情" class="headerlink" title="获取钱包详情"></a>获取钱包详情</h4><p>地址：<a href="https://api.xxx.com/both/v1/wallets/23423423" target="_blank" rel="noopener">https://api.xxx.com/both/v1/wallets/23423423</a><br>后面省略</p>
+<hr>
+<h3 id="交易部分接口"><a href="#交易部分接口" class="headerlink" title="交易部分接口"></a>交易部分接口</h3><h4 id="获取交易记录列表"><a href="#获取交易记录列表" class="headerlink" title="获取交易记录列表"></a>获取交易记录列表</h4><p>地址：<a href="https://api.xxx.com/both/v1/trades" target="_blank" rel="noopener">https://api.xxx.com/both/v1/trades</a></p>
+<h6 id="请求头-15"><a href="#请求头-15" class="headerlink" title="请求头"></a>请求头</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GET /both/v1/trades</span><br><span class="line">Accept: application/json</span><br><span class="line">Content-Type: application/json;charset=UTF-8</span><br></pre></td></tr></table></figure>
+<h6 id="参数-15"><a href="#参数-15" class="headerlink" title="参数"></a>参数</h6><p>?params={“extra”:”你想填什么就填什么”,”token”:”token_2432344”,”keyword”:”摩尔币”,”sort”:”des”,”page”:0,”pageSize”:20,”data”:{“category”:”invitation”}}</p>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>extra</td>
+<td>String</td>
+<td>额外扩展字段</td>
+</tr>
+<tr>
+<td>token</td>
+<td>String</td>
+<td>此处传空或者不传</td>
+</tr>
+<tr>
+<td>keyword</td>
+<td>string</td>
+<td>用于过滤的关键字</td>
+</tr>
+<tr>
+<td>sort</td>
+<td>枚举</td>
+<td>排序，des：降序，asc:升序</td>
+</tr>
+<tr>
+<td>page</td>
+<td>int</td>
+<td>页码，不传则默认为0</td>
+</tr>
+<tr>
+<td>pageSize</td>
+<td>int</td>
+<td>要求每一页返回最大个数，不传则默认为20</td>
+</tr>
+<tr>
+<td>data</td>
+<td>Object</td>
+<td>请求参数Json对象</td>
+</tr>
+<tr>
+<td>data.category</td>
+<td>String</td>
+<td>交易记录的类型，默认或者不传则表示获取全部，invitation0：邀请好友的奖励（其中0表示自己这一级，同理1表示自己的好友邀请好友注册的奖励），register：自己注册奖励，signin：自己签到奖励</td>
+</tr>
+</tbody>
+</table>
+<h6 id="响应头-15"><a href="#响应头-15" class="headerlink" title="响应头"></a>响应头</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type:application/json; charset=utf-8</span><br></pre></td></tr></table></figure>
+<h6 id="响应-15"><a href="#响应-15" class="headerlink" title="响应"></a>响应</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;message&quot;: &quot;居然被你查询成功了&quot;,</span><br><span class="line">    &quot;code&quot;: 200,</span><br><span class="line">    &quot;page&quot;: 0,</span><br><span class="line">    &quot;pageSize&quot;: 20,</span><br><span class="line">    &quot;first&quot;: &quot;https://...&quot;,</span><br><span class="line">    &quot;next&quot;: &quot;https://...&quot;,</span><br><span class="line">    &quot;previous&quot;: &quot;https://...&quot;,</span><br><span class="line">    &quot;last&quot;: &quot;https://...&quot;,</span><br><span class="line">    &quot;data&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;uid&quot;: &quot;235235235&quot;,</span><br><span class="line">            &quot;title&quot;: &quot;邀请好友&quot;,</span><br><span class="line">            &quot;description&quot;: &quot;二级好友邀请好友一根韭菜&quot;,</span><br><span class="line">            &quot;amount&quot;: &quot;-50&quot;,</span><br><span class="line">            &quot;image&quot;: &quot;http://a3.peoplecdn.cn/fbcba40035ae5f2ad90c19abe58560a2.jpg&quot;,</span><br><span class="line">            &quot;currency&quot;: &quot;MOL&quot;,</span><br><span class="line">            &quot;time&quot;: &quot;2018-04-23 17:38:44&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;uid&quot;: &quot;235235235&quot;,</span><br><span class="line">            &quot;title&quot;: &quot;邀请好友&quot;,</span><br><span class="line">            &quot;description&quot;: &quot;二级好友邀请好友一根韭菜&quot;,</span><br><span class="line">            &quot;amount&quot;: &quot;-50&quot;,</span><br><span class="line">            &quot;image&quot;: &quot;http://a3.peoplecdn.cn/fbcba40035ae5f2ad90c19abe58560a2.jpg&quot;,</span><br><span class="line">            &quot;currency&quot;: &quot;MOL&quot;,</span><br><span class="line">            &quot;time&quot;: &quot;2018-04-23 17:38:44&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>随便写，也可以作为服务器给前端固定提示的内容</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>与响应头里的Status一样</td>
+</tr>
+<tr>
+<td>page</td>
+<td>int</td>
+<td>分页请求中请求的当前页的页码</td>
+</tr>
+<tr>
+<td>pageSize</td>
+<td>int</td>
+<td>分页请求中一页的个数，默认为20</td>
+</tr>
+<tr>
+<td>first</td>
+<td>String</td>
+<td>分页请求中第一页的url ，如果没有则返回空字符串</td>
+</tr>
+<tr>
+<td>next</td>
+<td>String</td>
+<td>分页请求中下一页的url，如果没有则返回空字符串</td>
+</tr>
+<tr>
+<td>previous</td>
+<td>String</td>
+<td>分页请求中上一页的url，如果没有则返回空字符串</td>
+</tr>
+<tr>
+<td>last</td>
+<td>String</td>
+<td>分页请求中最后一页的url，如果没有则返回空字符串</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>当前接口的具体数据由该json对象承载</td>
+</tr>
+<tr>
+<td>data.uid</td>
+<td>String</td>
+<td>该条交易主键</td>
+</tr>
+<tr>
+<td>data.title</td>
+<td>String</td>
+<td>交易标题名称</td>
+</tr>
+<tr>
+<td>data.description</td>
+<td>String</td>
+<td>交易描述</td>
+</tr>
+<tr>
+<td>data.amount</td>
+<td>String</td>
+<td>该笔交易金额</td>
+</tr>
+<tr>
+<td>data.image</td>
+<td>String</td>
+<td>交易图标</td>
+</tr>
+<tr>
+<td>data.currency</td>
+<td>String</td>
+<td>交易币种</td>
+</tr>
+<tr>
+<td>data.time</td>
+<td>String</td>
+<td>交易时间</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h4 id="获取交易记录详情"><a href="#获取交易记录详情" class="headerlink" title="获取交易记录详情"></a>获取交易记录详情</h4><p>地址：<a href="https://api.xxx.com/both/v1/trades/234324" target="_blank" rel="noopener">https://api.xxx.com/both/v1/trades/234324</a><br>后面省略</p>
+<hr>
+<h3 id="发现页部分接口"><a href="#发现页部分接口" class="headerlink" title="发现页部分接口"></a>发现页部分接口</h3><p>本来该接口是不需要的，可以通过多个接口拼凑出我们想要的数据，但是考虑到性能问题，设计出一个集合接口来。<br>地址：<a href="https://api.xxx.com/both/v1/discovery" target="_blank" rel="noopener">https://api.xxx.com/both/v1/discovery</a></p>
+<h6 id="请求头-16"><a href="#请求头-16" class="headerlink" title="请求头"></a>请求头</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GET /both/v1/discovery</span><br><span class="line">Accept: application/json</span><br><span class="line">Content-Type: application/json;charset=UTF-8</span><br></pre></td></tr></table></figure>
+<h6 id="参数-16"><a href="#参数-16" class="headerlink" title="参数"></a>参数</h6><p>无</p>
+<h6 id="响应头-16"><a href="#响应头-16" class="headerlink" title="响应头"></a>响应头</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type:application/json; charset=utf-8</span><br></pre></td></tr></table></figure>
+<h6 id="响应-16"><a href="#响应-16" class="headerlink" title="响应"></a>响应</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;message&quot;: &quot;居然被你查询成功了&quot;,</span><br><span class="line">    &quot;code&quot;: 200,</span><br><span class="line">    &quot;data&quot;: &#123;</span><br><span class="line">        &quot;ads&quot;: [</span><br><span class="line">            &#123;</span><br><span class="line">                &quot;image&quot;: &quot;http://ww3.sinaimg.cn/large/0060lm7Tly1fo6vt0p500j30af0ad758.jpg&quot;,</span><br><span class="line">                &quot;title&quot;: &quot;安防小卫士&quot;,</span><br><span class="line">                &quot;uid&quot;: &quot;13212133313&quot;,</span><br><span class="line">                &quot;action&quot;: &#123;</span><br><span class="line">                    &quot;type&quot;: &quot;web&quot;,</span><br><span class="line">                    &quot;param&quot;: &quot;https://www.baidu.com/&quot;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                &quot;image&quot;: &quot;http://ww3.sinaimg.cn/large/0060lm7Tly1fo6vt0p500j30af0ad758.jpg&quot;,</span><br><span class="line">                &quot;title&quot;: &quot;安防小卫士&quot;,</span><br><span class="line">                &quot;uid&quot;: &quot;13212133313&quot;,</span><br><span class="line">                &quot;action&quot;: &#123;</span><br><span class="line">                    &quot;type&quot;: &quot;web&quot;,</span><br><span class="line">                    &quot;param&quot;: &quot;https://www.baidu.com/&quot;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                &quot;image&quot;: &quot;http://ww3.sinaimg.cn/large/0060lm7Tly1fo6vt0p500j30af0ad758.jpg&quot;,</span><br><span class="line">                &quot;title&quot;: &quot;安防小卫士&quot;,</span><br><span class="line">                &quot;uid&quot;: &quot;13212133313&quot;,</span><br><span class="line">                &quot;action&quot;: &#123;</span><br><span class="line">                    &quot;type&quot;: &quot;web&quot;,</span><br><span class="line">                    &quot;param&quot;: &quot;https://www.baidu.com/&quot;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        ],</span><br><span class="line">        &quot;recommendations&quot;: &#123;</span><br><span class="line">            &quot;title&quot;: &quot;热门推荐群&quot;,</span><br><span class="line">            &quot;groups&quot;: [</span><br><span class="line">                &#123;</span><br><span class="line">                    &quot;uid&quot;: &quot;2342423233&quot;,</span><br><span class="line">                    &quot;type&quot;: &quot;recommend&quot;,</span><br><span class="line">                    &quot;weight&quot;: &quot;9999&quot;,</span><br><span class="line">                    &quot;time&quot;: &quot;2018-04-23 15:12:05&quot;,</span><br><span class="line">                    &quot;image&quot;: &quot;http://a3.peoplecdn.cn/fbcba40035ae5f2ad90c19abe58560a2.jpg&quot;,</span><br><span class="line">                    &quot;name&quot;: &quot;MOL链官方群&quot;,</span><br><span class="line">                    &quot;description&quot;: &quot;MOL链官方群是个牛B哄哄的群&quot;,</span><br><span class="line">                    &quot;memberAmount&quot;: &quot;1000&quot;,</span><br><span class="line">                    &quot;state&quot;: &quot;已删除&quot;,</span><br><span class="line">                    &quot;reward&quot;: &#123;</span><br><span class="line">                        &quot;isReward&quot;: true,</span><br><span class="line">                        &quot;remainder&quot;: &quot;56322&quot;,</span><br><span class="line">                        &quot;deadline&quot;: &quot;2018-04-23 15:12:05&quot;,</span><br><span class="line">                        &quot;reward&quot;: &quot;10&quot;,</span><br><span class="line">                        &quot;currency&quot;: &quot;mol&quot;</span><br><span class="line">                    &#125;,</span><br><span class="line">                    &quot;action&quot;: &#123;</span><br><span class="line">                        &quot;type&quot;: &quot;web&quot;,</span><br><span class="line">                        &quot;param&quot;: &quot;t.me/molmol&quot;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    &quot;uid&quot;: &quot;2342423233&quot;,</span><br><span class="line">                    &quot;type&quot;: &quot;recommend&quot;,</span><br><span class="line">                    &quot;weight&quot;: &quot;9999&quot;,</span><br><span class="line">                    &quot;time&quot;: &quot;2018-04-23 15:12:05&quot;,</span><br><span class="line">                    &quot;image&quot;: &quot;http://a3.peoplecdn.cn/fbcba40035ae5f2ad90c19abe58560a2.jpg&quot;,</span><br><span class="line">                    &quot;name&quot;: &quot;MOL链官方群&quot;,</span><br><span class="line">                    &quot;description&quot;: &quot;MOL链官方群是个牛B哄哄的群&quot;,</span><br><span class="line">                    &quot;memberAmount&quot;: &quot;1000&quot;,</span><br><span class="line">                    &quot;state&quot;: &quot;已删除&quot;,</span><br><span class="line">                    &quot;reward&quot;: &#123;</span><br><span class="line">                        &quot;isReward&quot;: true,</span><br><span class="line">                        &quot;remainder&quot;: &quot;56322&quot;,</span><br><span class="line">                        &quot;deadline&quot;: &quot;2018-04-23 15:12:05&quot;,</span><br><span class="line">                        &quot;reward&quot;: &quot;10&quot;,</span><br><span class="line">                        &quot;currency&quot;: &quot;mol&quot;</span><br><span class="line">                    &#125;,</span><br><span class="line">                    &quot;action&quot;: &#123;</span><br><span class="line">                        &quot;type&quot;: &quot;web&quot;,</span><br><span class="line">                        &quot;param&quot;: &quot;t.me/molmol&quot;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;discoverys&quot;: [</span><br><span class="line">            &#123;</span><br><span class="line">                &quot;uid&quot;: &quot;32523523&quot;,</span><br><span class="line">                &quot;image&quot;: &quot;http://a3.peoplecdn.cn/fbcba40035ae5f2ad90c19abe58560a2.jpg&quot;,</span><br><span class="line">                &quot;title&quot;: &quot;币圈咨询&quot;,</span><br><span class="line">                &quot;action&quot;: &#123;</span><br><span class="line">                    &quot;type&quot;: &quot;web&quot;,</span><br><span class="line">                    &quot;param&quot;: &quot;https://www.baidu.com/&quot;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                &quot;uid&quot;: &quot;32523523&quot;,</span><br><span class="line">                &quot;image&quot;: &quot;http://a3.peoplecdn.cn/fbcba40035ae5f2ad90c19abe58560a2.jpg&quot;,</span><br><span class="line">                &quot;title&quot;: &quot;币圈咨询&quot;,</span><br><span class="line">                &quot;action&quot;: &#123;</span><br><span class="line">                    &quot;type&quot;: &quot;web&quot;,</span><br><span class="line">                    &quot;param&quot;: &quot;https://www.baidu.com/&quot;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>随便写，也可以作为服务器给前端固定提示的内容</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>与响应头里的Status一样</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>当前接口的具体数据由该json对象承载</td>
+</tr>
+<tr>
+<td>data.ads</td>
+<td>Object数组</td>
+<td>广告对象</td>
+</tr>
+<tr>
+<td>data.ads.image</td>
+<td>String</td>
+<td>轮播图图片链接</td>
+</tr>
+<tr>
+<td>data.ads.title</td>
+<td>String</td>
+<td>轮播图描述</td>
+</tr>
+<tr>
+<td>data.ads.uid</td>
+<td>String</td>
+<td>该广告主键</td>
+</tr>
+<tr>
+<td>data.ads.action</td>
+<td>Object</td>
+<td>动作对象，用于描述跳转这类的动作</td>
+</tr>
+<tr>
+<td>data.ads.action.type</td>
+<td>String</td>
+<td>动作类型，web：跳转到web</td>
+</tr>
+<tr>
+<td>data.ads.action.param</td>
+<td>String</td>
+<td>执行该动作所需要的参数，例如跳转web的链接</td>
+</tr>
+<tr>
+<td>data.recommendations</td>
+<td>Object</td>
+<td>广告对象</td>
+</tr>
+<tr>
+<td>data.recommendations.title</td>
+<td>String</td>
+<td>该分类的标题，比如此处的“热门群推荐”</td>
+</tr>
+<tr>
+<td>data.recommendations.groups</td>
+<td>Object数组</td>
+<td>描述推荐的群列表</td>
+</tr>
+<tr>
+<td>data.recommendations.groups.uid</td>
+<td>String</td>
+<td>该群组的主键</td>
+</tr>
+<tr>
+<td>data.recommendations.groups.type</td>
+<td>枚举</td>
+<td>recommend：热度，newest：新旧</td>
+</tr>
+<tr>
+<td>data.recommendations.groups.weight</td>
+<td>String</td>
+<td>权重</td>
+</tr>
+<tr>
+<td>data.recommendations.groups.time</td>
+<td>String</td>
+<td>申请时间</td>
+</tr>
+<tr>
+<td>data.recommendations.groups.image</td>
+<td>String</td>
+<td>群头像</td>
+</tr>
+<tr>
+<td>data.recommendations.groups.name</td>
+<td>String</td>
+<td>群名称</td>
+</tr>
+<tr>
+<td>data.recommendations.groups.description</td>
+<td>String</td>
+<td>群描述</td>
+</tr>
+<tr>
+<td>data.recommendations.groups.memberAmount</td>
+<td>String</td>
+<td>群成员总数</td>
+</tr>
+<tr>
+<td>data.recommendations.groups.state</td>
+<td>枚举</td>
+<td>deleted：已删除</td>
+</tr>
+<tr>
+<td>data.recommendations.groups.action</td>
+<td>Object</td>
+<td>跳转动作</td>
+</tr>
+<tr>
+<td>data.recommendations.groups.action.type</td>
+<td>String</td>
+<td>跳转类型，group：加群，web：跳转到网页</td>
+</tr>
+<tr>
+<td>data.recommendations.groups.action.param</td>
+<td>String</td>
+<td>跳转所需参数，如加群连接，web连接</td>
+</tr>
+<tr>
+<td>data.recommendations.groups.reward.isReward</td>
+<td>String</td>
+<td>是否奖励</td>
+</tr>
+<tr>
+<td>data.recommendations.groups.reward.remainder</td>
+<td>String</td>
+<td>剩余奖励总数</td>
+</tr>
+<tr>
+<td>data.recommendations.groups.reward.deadline</td>
+<td>String</td>
+<td>奖励截止时间</td>
+</tr>
+<tr>
+<td>data.recommendations.groups.reward.reward</td>
+<td>String</td>
+<td>单个奖励币数量</td>
+</tr>
+<tr>
+<td>data.recommendations.groups.reward.currency</td>
+<td>String</td>
+<td>奖励币种</td>
+</tr>
+<tr>
+<td>data.items</td>
+<td>Object数组</td>
+<td>功能项数组</td>
+</tr>
+<tr>
+<td>data.items.uid</td>
+<td>String</td>
+<td>该功能项的主键</td>
+</tr>
+<tr>
+<td>data.items.image</td>
+<td>String</td>
+<td>该功能项的图标</td>
+</tr>
+<tr>
+<td>data.items.title</td>
+<td>String</td>
+<td>该功能项的标题</td>
+</tr>
+<tr>
+<td>data.items.groups.action</td>
+<td>Object</td>
+<td>跳转动作</td>
+</tr>
+<tr>
+<td>data.items.groups.action.type</td>
+<td>String</td>
+<td>跳转类型，group：加群，web：跳转到网页</td>
+</tr>
+<tr>
+<td>data.items.groups.action.param</td>
+<td>String</td>
+<td>跳转所需参数，如加群连接，web连接</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h4 id="代理服务器部分接口"><a href="#代理服务器部分接口" class="headerlink" title="代理服务器部分接口"></a>代理服务器部分接口</h4><p>该接口用于获取sokcs5服务器列表<br>地址：<a href="https://api.xxx.com/both/v1/servers" target="_blank" rel="noopener">https://api.xxx.com/both/v1/servers</a> </p>
+<h6 id="请求头-17"><a href="#请求头-17" class="headerlink" title="请求头"></a>请求头</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GET /both/v1/servers</span><br><span class="line">Accept: application/json</span><br><span class="line">Content-Type: application/json;charset=UTF-8</span><br></pre></td></tr></table></figure>
+<h6 id="参数-17"><a href="#参数-17" class="headerlink" title="参数"></a>参数</h6><p>?params={“extra”:”你想填什么就填什么”,”token”:”token_2432344”}</p>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>extra</td>
+<td>String</td>
+<td>额外扩展字段</td>
+</tr>
+<tr>
+<td>token</td>
+<td>String</td>
+<td>此处传空或者不传</td>
+</tr>
+</tbody>
+</table>
+<h6 id="响应头-17"><a href="#响应头-17" class="headerlink" title="响应头"></a>响应头</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type:application/json; charset=utf-8</span><br></pre></td></tr></table></figure>
+<h6 id="响应-17"><a href="#响应-17" class="headerlink" title="响应"></a>响应</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;message&quot;: &quot;居然被你查询成功了&quot;,</span><br><span class="line">    &quot;code&quot;: 200,</span><br><span class="line">    &quot;page&quot;: 0,</span><br><span class="line">    &quot;pageSize&quot;: 20,</span><br><span class="line">    &quot;first&quot;: &quot;https://...&quot;,</span><br><span class="line">    &quot;next&quot;: &quot;https://...&quot;,</span><br><span class="line">    &quot;previous&quot;: &quot;https://...&quot;,</span><br><span class="line">    &quot;last&quot;: &quot;https://...&quot;,</span><br><span class="line">    &quot;data&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;password&quot;: &quot;&quot;,</span><br><span class="line">            &quot;port&quot;: &quot;10497&quot;,</span><br><span class="line">            &quot;ip&quot;: &quot;13.251.28.110&quot;,</span><br><span class="line">            &quot;username&quot;: &quot;&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;password&quot;: &quot;&quot;,</span><br><span class="line">            &quot;port&quot;: &quot;10497&quot;,</span><br><span class="line">            &quot;ip&quot;: &quot;13.251.28.110&quot;,</span><br><span class="line">            &quot;username&quot;: &quot;&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;password&quot;: &quot;&quot;,</span><br><span class="line">            &quot;port&quot;: &quot;10497&quot;,</span><br><span class="line">            &quot;ip&quot;: &quot;13.251.28.110&quot;,</span><br><span class="line">            &quot;username&quot;: &quot;&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>随便写，也可以作为服务器给前端固定提示的内容</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>与响应头里的Status一样</td>
+</tr>
+<tr>
+<td>page</td>
+<td>int</td>
+<td>分页请求中请求的当前页的页码</td>
+</tr>
+<tr>
+<td>pageSize</td>
+<td>int</td>
+<td>分页请求中一页的个数，默认为20</td>
+</tr>
+<tr>
+<td>first</td>
+<td>String</td>
+<td>分页请求中第一页的url ，如果没有则返回空字符串</td>
+</tr>
+<tr>
+<td>next</td>
+<td>String</td>
+<td>分页请求中下一页的url，如果没有则返回空字符串</td>
+</tr>
+<tr>
+<td>previous</td>
+<td>String</td>
+<td>分页请求中上一页的url，如果没有则返回空字符串</td>
+</tr>
+<tr>
+<td>last</td>
+<td>String</td>
+<td>分页请求中最后一页的url，如果没有则返回空字符串</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>当前接口的具体数据由该json对象承载</td>
+</tr>
+<tr>
+<td>data.password</td>
+<td>String</td>
+<td>代理服务器密码</td>
+</tr>
+<tr>
+<td>data.port</td>
+<td>String</td>
+<td>代理服务器端口号</td>
+</tr>
+<tr>
+<td>data.ip</td>
+<td>String</td>
+<td>代理服务器IP地址</td>
+</tr>
+<tr>
+<td>data.user</td>
+<td>String</td>
+<td>代理服务器用户名</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="错误-异常处理"><a href="#错误-异常处理" class="headerlink" title="错误/异常处理"></a>错误/异常处理</h2><ul>
+<li>不要发生了错误但给2XX响应，客户端可能会缓存成功的http请求；</li>
+<li>正确设置http状态码，不要自定义；</li>
+<li>Response body 提供 1) 错误的代码（日志/问题追查）；2) 错误的描述文本（展示给用户）。</li>
+</ul>
+<p>对第三点的实现稍微多说一点：</p>
+<p>Java 服务器端一般用异常表示 RESTful API 的错误。API 可能抛出两类异常：业务异常和非业务异常。业务异常由自己的业务代码抛出，表示一个用例的前置条件不满足、业务规则冲突等，比如参数校验不通过、权限校验失败。非业务类异常表示不在预期内的问题，通常由类库、框架抛出，或由于自己的代码逻辑错误导致，比如数据库连接失败、空指针异常、除0错误等等。</p>
+<p>业务类异常必须提供2种信息：</p>
+<ol>
+<li>如果抛出该类异常，HTTP 响应状态码应该设成什么；</li>
+<li>异常的文本描述；</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">错误描述</span><br><span class="line">&#123;</span><br><span class="line">    &quot;message&quot;: &quot;又特么错了&quot;,</span><br><span class="line">    &quot;code&quot;: 500,</span><br><span class="line">    &quot;document&quot;: &quot;https://developer.xxx.com/v1/errors/500&quot;,</span><br><span class="line">    &quot;exception&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;code&quot;: &quot;NullValue&quot;,</span><br><span class="line">            &quot;target&quot;: &quot;PhoneNumber&quot;,</span><br><span class="line">            &quot;message&quot;: &quot;Phone number must not be null&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;code&quot;: &quot;NullValue&quot;,</span><br><span class="line">            &quot;target&quot;: &quot;LastName&quot;,</span><br><span class="line">            &quot;message&quot;: &quot;Last name must not be null&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;code&quot;: &quot;MalformedValue&quot;,</span><br><span class="line">            &quot;target&quot;: &quot;Address&quot;,</span><br><span class="line">            &quot;message&quot;: &quot;Address is not valid&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">错误请求头</span><br><span class="line">&#123;</span><br><span class="line">  &quot;date&quot;: &quot;Mon, 08 Jan 2018 03:07:08 GMT&quot;,</span><br><span class="line">  &quot;server&quot;: &quot;nginx/1.10.3 (Ubuntu)&quot;,</span><br><span class="line">  &quot;connection&quot;: &quot;keep-alive&quot;,</span><br><span class="line">  &quot;content-length&quot;: &quot;237&quot;,</span><br><span class="line">  &quot;content-type&quot;: &quot;application/json&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="接口版本（Versioning）"><a href="#接口版本（Versioning）" class="headerlink" title="接口版本（Versioning）"></a>接口版本（Versioning）</h2><p>个人倾向于将版本号放在HTTP头信息中，虽然不如放入URL中更直观，但是不方便我们统一管理，因为在前端URL是拼出来的String，请求头是统一个对象去设置，除非有特殊情况，某一个接口需1.0版本，某一个接口需2.0版本，这就另当别论，到时候统一商量，在拼这个URL的时候，放到固定目录（位置），如：api.xxx.com:8080/both<u><strong>/版本（一般用v1、v2）/</strong></u>user  统一放在一级目录，这样的前端在拼接的时候，统一放到某个位置，也就方便管理了。</p>
+<h2 id="URL失效"><a href="#URL失效" class="headerlink" title="URL失效"></a>URL失效</h2><p>随着系统发展，总有一些API失效或者迁移，对失效的API，返回404 not found 或 410 gone；对迁移的API，返回 301 重定向。</p>
+<h2 id="对于后台文档的要求"><a href="#对于后台文档的要求" class="headerlink" title="对于后台文档的要求"></a>对于后台文档的要求</h2><p><img src="https://i.imgur.com/aQ3qb4f.png" alt="文档要求"><br>文档要求描述详尽，尽可能的引导接口使用者理解接口设计，这样才能减少接口的改动，又能适应多变的业务。</p>
+<h2 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h2><p>待定</p>
+<h2 id="统计、历史记录等埋点业务"><a href="#统计、历史记录等埋点业务" class="headerlink" title="统计、历史记录等埋点业务"></a>统计、历史记录等埋点业务</h2><p>待定</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>谢谢阁下赏识</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="Leguang WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.png" alt="Leguang Alipay">
+        <p>Alipay</p>
+      </div>
+    
+
+    
+      <div id="bitcoin" style="display: inline-block">
+        <img id="bitcoin_qr" src="/images/bitcoin.png" alt="Leguang Bitcoin">
+        <p>Bitcoin</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Leguang
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://itsite.cn/币圈项目/币圈接口/" title="币圈接口设计">http://itsite.cn/币圈项目/币圈接口/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/技术选型/Android/Android端架构与技术选型/" rel="next" title="Android端架构与技术选型">
+                <i class="fa fa-chevron-left"></i> Android端架构与技术选型
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/摩尔钱包/摩尔钱包新闻模块接口文档/摩尔钱包新闻模块接口文档/" rel="prev" title="摩尔钱包新闻模块接口文档">
+                摩尔钱包新闻模块接口文档 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/favicon.ico" alt="Leguang">
+          <p class="site-author-name" itemprop="name">Leguang</p>
+           
+              <p class="site-description motion-element" itemprop="description">浮生若戏悲欢聚 笑看天风扫寰宇</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/leguang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:langmanleguang@qq.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#币圈接口设计"><span class="nav-number">1.</span> <span class="nav-text">币圈接口设计</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#要求"><span class="nav-number">1.1.</span> <span class="nav-text">要求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#目标"><span class="nav-number">1.1.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命名规范"><span class="nav-number">1.1.2.</span> <span class="nav-text">命名规范</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#URI规范"><span class="nav-number">1.1.3.</span> <span class="nav-text">URI规范</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSON规范"><span class="nav-number">1.1.4.</span> <span class="nav-text">JSON规范</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#业务简介"><span class="nav-number">1.2.</span> <span class="nav-text">业务简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#业务模块"><span class="nav-number">1.2.1.</span> <span class="nav-text">业务模块</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Http部分"><span class="nav-number">1.3.</span> <span class="nav-text">Http部分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用场景"><span class="nav-number">1.3.1.</span> <span class="nav-text">使用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#URL结构"><span class="nav-number">1.3.2.</span> <span class="nav-text">URL结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#公共请求头"><span class="nav-number">1.3.3.</span> <span class="nav-text">公共请求头</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#公共参数"><span class="nav-number">1.3.4.</span> <span class="nav-text">公共参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#个性参数"><span class="nav-number">1.3.5.</span> <span class="nav-text">个性参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#公共响应头"><span class="nav-number">1.3.6.</span> <span class="nav-text">公共响应头</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#公共响应体"><span class="nav-number">1.3.7.</span> <span class="nav-text">公共响应体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP动词表示操作。"><span class="nav-number">1.3.8.</span> <span class="nav-text">HTTP动词表示操作。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#状态码"><span class="nav-number">1.3.9.</span> <span class="nav-text">状态码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分页"><span class="nav-number">1.3.10.</span> <span class="nav-text">分页</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目url预览"><span class="nav-number">1.3.11.</span> <span class="nav-text">项目url预览</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#登录部分接口"><span class="nav-number">1.3.12.</span> <span class="nav-text">登录部分接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#登录"><span class="nav-number">1.3.12.1.</span> <span class="nav-text">登录</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#请求头"><span class="nav-number">1.3.12.1.0.1.</span> <span class="nav-text">请求头</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#参数"><span class="nav-number">1.3.12.1.0.2.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#响应头"><span class="nav-number">1.3.12.1.0.3.</span> <span class="nav-text">响应头</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#响应"><span class="nav-number">1.3.12.1.0.4.</span> <span class="nav-text">响应</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#登出"><span class="nav-number">1.3.12.2.</span> <span class="nav-text">登出</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#请求头-1"><span class="nav-number">1.3.12.2.0.1.</span> <span class="nav-text">请求头</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#参数-1"><span class="nav-number">1.3.12.2.0.2.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#响应头-1"><span class="nav-number">1.3.12.2.0.3.</span> <span class="nav-text">响应头</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#响应-1"><span class="nav-number">1.3.12.2.0.4.</span> <span class="nav-text">响应</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#刷新token"><span class="nav-number">1.3.12.3.</span> <span class="nav-text">刷新token</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#请求头-2"><span class="nav-number">1.3.12.3.0.1.</span> <span class="nav-text">请求头</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#参数-2"><span class="nav-number">1.3.12.3.0.2.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#响应头-2"><span class="nav-number">1.3.12.3.0.3.</span> <span class="nav-text">响应头</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#响应-2"><span class="nav-number">1.3.12.3.0.4.</span> <span class="nav-text">响应</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询token状态"><span class="nav-number">1.3.12.4.</span> <span class="nav-text">查询token状态</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#请求头-3"><span class="nav-number">1.3.12.4.0.1.</span> <span class="nav-text">请求头</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#参数-3"><span class="nav-number">1.3.12.4.0.2.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#响应头-3"><span class="nav-number">1.3.12.4.0.3.</span> <span class="nav-text">响应头</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#响应-3"><span class="nav-number">1.3.12.4.0.4.</span> <span class="nav-text">响应</span></a></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#用户部分接口"><span class="nav-number">1.3.13.</span> <span class="nav-text">用户部分接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#注册-修改用户"><span class="nav-number">1.3.13.1.</span> <span class="nav-text">注册/修改用户</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#请求头-4"><span class="nav-number">1.3.13.1.0.1.</span> <span class="nav-text">请求头</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#参数-4"><span class="nav-number">1.3.13.1.0.2.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#响应头-4"><span class="nav-number">1.3.13.1.0.3.</span> <span class="nav-text">响应头</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#响应-4"><span class="nav-number">1.3.13.1.0.4.</span> <span class="nav-text">响应</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询用户信息"><span class="nav-number">1.3.13.2.</span> <span class="nav-text">查询用户信息</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#请求头-5"><span class="nav-number">1.3.13.2.0.1.</span> <span class="nav-text">请求头</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#参数-5"><span class="nav-number">1.3.13.2.0.2.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#响应头-5"><span class="nav-number">1.3.13.2.0.3.</span> <span class="nav-text">响应头</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#响应-5"><span class="nav-number">1.3.13.2.0.4.</span> <span class="nav-text">响应</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#密码管理部分接口"><span class="nav-number">1.3.14.</span> <span class="nav-text">密码管理部分接口</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#请求头-6"><span class="nav-number">1.3.14.0.0.1.</span> <span class="nav-text">请求头</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#参数-6"><span class="nav-number">1.3.14.0.0.2.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#响应头-6"><span class="nav-number">1.3.14.0.0.3.</span> <span class="nav-text">响应头</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#响应-6"><span class="nav-number">1.3.14.0.0.4.</span> <span class="nav-text">响应</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证码-授权码"><span class="nav-number">1.3.15.</span> <span class="nav-text">验证码/授权码</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#请求头-7"><span class="nav-number">1.3.15.0.0.1.</span> <span class="nav-text">请求头</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#参数-7"><span class="nav-number">1.3.15.0.0.2.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#响应头-7"><span class="nav-number">1.3.15.0.0.3.</span> <span class="nav-text">响应头</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#响应-7"><span class="nav-number">1.3.15.0.0.4.</span> <span class="nav-text">响应</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#规则"><span class="nav-number">1.3.16.</span> <span class="nav-text">规则</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#请求头-8"><span class="nav-number">1.3.16.0.0.1.</span> <span class="nav-text">请求头</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#参数-8"><span class="nav-number">1.3.16.0.0.2.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#响应头-8"><span class="nav-number">1.3.16.0.0.3.</span> <span class="nav-text">响应头</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#响应-8"><span class="nav-number">1.3.16.0.0.4.</span> <span class="nav-text">响应</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类型部分接口"><span class="nav-number">1.3.17.</span> <span class="nav-text">类型部分接口</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#请求头-9"><span class="nav-number">1.3.17.0.0.1.</span> <span class="nav-text">请求头</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#参数-9"><span class="nav-number">1.3.17.0.0.2.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#响应头-9"><span class="nav-number">1.3.17.0.0.3.</span> <span class="nav-text">响应头</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#响应-9"><span class="nav-number">1.3.17.0.0.4.</span> <span class="nav-text">响应</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#资讯部分接口"><span class="nav-number">1.3.18.</span> <span class="nav-text">资讯部分接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取资讯列表"><span class="nav-number">1.3.18.1.</span> <span class="nav-text">获取资讯列表</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#请求头-10"><span class="nav-number">1.3.18.1.0.1.</span> <span class="nav-text">请求头</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#参数-10"><span class="nav-number">1.3.18.1.0.2.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#响应头-10"><span class="nav-number">1.3.18.1.0.3.</span> <span class="nav-text">响应头</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#响应-10"><span class="nav-number">1.3.18.1.0.4.</span> <span class="nav-text">响应</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取资讯详情"><span class="nav-number">1.3.18.2.</span> <span class="nav-text">获取资讯详情</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#请求头-11"><span class="nav-number">1.3.18.2.0.1.</span> <span class="nav-text">请求头</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#参数-11"><span class="nav-number">1.3.18.2.0.2.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#响应头-11"><span class="nav-number">1.3.18.2.0.3.</span> <span class="nav-text">响应头</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#响应-11"><span class="nav-number">1.3.18.2.0.4.</span> <span class="nav-text">响应</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#群组部分接口"><span class="nav-number">1.3.19.</span> <span class="nav-text">群组部分接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取群列表"><span class="nav-number">1.3.19.1.</span> <span class="nav-text">获取群列表</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#请求头-12"><span class="nav-number">1.3.19.1.0.1.</span> <span class="nav-text">请求头</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#参数-12"><span class="nav-number">1.3.19.1.0.2.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#响应头-12"><span class="nav-number">1.3.19.1.0.3.</span> <span class="nav-text">响应头</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#响应-12"><span class="nav-number">1.3.19.1.0.4.</span> <span class="nav-text">响应</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取群详情"><span class="nav-number">1.3.19.2.</span> <span class="nav-text">获取群详情</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#申请（上传）推荐群（允许批量操作）"><span class="nav-number">1.3.19.3.</span> <span class="nav-text">申请（上传）推荐群（允许批量操作）</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#请求头-13"><span class="nav-number">1.3.19.3.0.1.</span> <span class="nav-text">请求头</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#参数-13"><span class="nav-number">1.3.19.3.0.2.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#响应头-13"><span class="nav-number">1.3.19.3.0.3.</span> <span class="nav-text">响应头</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#响应-13"><span class="nav-number">1.3.19.3.0.4.</span> <span class="nav-text">响应</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#钱包部分接口"><span class="nav-number">1.3.19.4.</span> <span class="nav-text">钱包部分接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取钱包列表"><span class="nav-number">1.3.19.5.</span> <span class="nav-text">获取钱包列表</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#请求头-14"><span class="nav-number">1.3.19.5.0.1.</span> <span class="nav-text">请求头</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#参数-14"><span class="nav-number">1.3.19.5.0.2.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#响应头-14"><span class="nav-number">1.3.19.5.0.3.</span> <span class="nav-text">响应头</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#响应-14"><span class="nav-number">1.3.19.5.0.4.</span> <span class="nav-text">响应</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取钱包详情"><span class="nav-number">1.3.19.6.</span> <span class="nav-text">获取钱包详情</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#交易部分接口"><span class="nav-number">1.3.20.</span> <span class="nav-text">交易部分接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取交易记录列表"><span class="nav-number">1.3.20.1.</span> <span class="nav-text">获取交易记录列表</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#请求头-15"><span class="nav-number">1.3.20.1.0.1.</span> <span class="nav-text">请求头</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#参数-15"><span class="nav-number">1.3.20.1.0.2.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#响应头-15"><span class="nav-number">1.3.20.1.0.3.</span> <span class="nav-text">响应头</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#响应-15"><span class="nav-number">1.3.20.1.0.4.</span> <span class="nav-text">响应</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取交易记录详情"><span class="nav-number">1.3.20.2.</span> <span class="nav-text">获取交易记录详情</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发现页部分接口"><span class="nav-number">1.3.21.</span> <span class="nav-text">发现页部分接口</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#请求头-16"><span class="nav-number">1.3.21.0.0.1.</span> <span class="nav-text">请求头</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#参数-16"><span class="nav-number">1.3.21.0.0.2.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#响应头-16"><span class="nav-number">1.3.21.0.0.3.</span> <span class="nav-text">响应头</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#响应-16"><span class="nav-number">1.3.21.0.0.4.</span> <span class="nav-text">响应</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代理服务器部分接口"><span class="nav-number">1.3.21.1.</span> <span class="nav-text">代理服务器部分接口</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#请求头-17"><span class="nav-number">1.3.21.1.0.1.</span> <span class="nav-text">请求头</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#参数-17"><span class="nav-number">1.3.21.1.0.2.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#响应头-17"><span class="nav-number">1.3.21.1.0.3.</span> <span class="nav-text">响应头</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#响应-17"><span class="nav-number">1.3.21.1.0.4.</span> <span class="nav-text">响应</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#错误-异常处理"><span class="nav-number">1.4.</span> <span class="nav-text">错误/异常处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接口版本（Versioning）"><span class="nav-number">1.5.</span> <span class="nav-text">接口版本（Versioning）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#URL失效"><span class="nav-number">1.6.</span> <span class="nav-text">URL失效</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对于后台文档的要求"><span class="nav-number">1.7.</span> <span class="nav-text">对于后台文档的要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安全"><span class="nav-number">1.8.</span> <span class="nav-text">安全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#统计、历史记录等埋点业务"><span class="nav-number">1.9.</span> <span class="nav-text">统计、历史记录等埋点业务</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Leguang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 访问总量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("UUrijxLg3YUcx9WIg5UlJchI-gzGzoHsz", "m6wXtGXT8NUa5W4TiErrXWpO");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

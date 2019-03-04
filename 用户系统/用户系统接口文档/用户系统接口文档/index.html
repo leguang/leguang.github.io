@@ -1,0 +1,2712 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="IT站点, 一站到底">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="IT站点" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="用户系统接口文档 Author：Leguang E-Mail：langmanleguang@qq.com  发送短信验证码该接口用于向指定手机发送短信验证码，由于该接口是暴露在外的，因此需要尽量做到严格限制，比如一个手机号码一天只能发送多少条，一个IP地址最多只允许多少个手机号码发送短信。  地址：https://api.xxx.com/path/sms  请求头123456POST /path/">
+<meta name="keywords" content="IT站点, 一站到底">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用户系统接口文档">
+<meta property="og:url" content="http://itsite.cn/用户系统/用户系统接口文档/用户系统接口文档/index.html">
+<meta property="og:site_name" content="IT站点">
+<meta property="og:description" content="用户系统接口文档 Author：Leguang E-Mail：langmanleguang@qq.com  发送短信验证码该接口用于向指定手机发送短信验证码，由于该接口是暴露在外的，因此需要尽量做到严格限制，比如一个手机号码一天只能发送多少条，一个IP地址最多只允许多少个手机号码发送短信。  地址：https://api.xxx.com/path/sms  请求头123456POST /path/">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-04T02:04:30.567Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用户系统接口文档">
+<meta name="twitter:description" content="用户系统接口文档 Author：Leguang E-Mail：langmanleguang@qq.com  发送短信验证码该接口用于向指定手机发送短信验证码，由于该接口是暴露在外的，因此需要尽量做到严格限制，比如一个手机号码一天只能发送多少条，一个IP地址最多只允许多少个手机号码发送短信。  地址：https://api.xxx.com/path/sms  请求头123456POST /path/">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://itsite.cn/用户系统/用户系统接口文档/用户系统接口文档/">
+
+
+
+
+
+  <title>用户系统接口文档 | IT站点</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c5074ca51b610e0c4ba4fac7b24abea2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IT站点</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一站到底</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://itsite.cn/用户系统/用户系统接口文档/用户系统接口文档/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Leguang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/favicon.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT站点">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">用户系统接口文档</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-01T00:00:00+08:00">
+                2018-08-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/用户系统/用户系统接口文档/用户系统接口文档/" class="leancloud_visitors" data-flag-title="用户系统接口文档">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  4.7k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  22
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="用户系统接口文档"><a href="#用户系统接口文档" class="headerlink" title="用户系统接口文档"></a>用户系统接口文档</h1><blockquote>
+<p>Author：Leguang</p>
+<p>E-Mail：<a href="mailto:langmanleguang@qq.com" target="_blank" rel="noopener">langmanleguang@qq.com</a></p>
+</blockquote>
+<h3 id="发送短信验证码"><a href="#发送短信验证码" class="headerlink" title="发送短信验证码"></a>发送短信验证码</h3><p>该接口用于向指定手机发送短信验证码，由于该接口是暴露在外的，因此需要尽量做到严格限制，比如一个手机号码一天只能发送多少条，<strong>一个IP地址最多只允许多少个手机号码发送短信</strong>。</p>
+<blockquote>
+<p>地址：<a href="https://api.xxx.com/path/sms" target="_blank" rel="noopener">https://api.xxx.com/path/sms</a></p>
+</blockquote>
+<h5 id="请求头"><a href="#请求头" class="headerlink" title="请求头"></a>请求头</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">POST /path/sms</span><br><span class="line">Accept: application/json</span><br><span class="line">Content-Type: application/json;charset=UTF-8</span><br><span class="line">Token: token_G34G34G34G34G35G5</span><br><span class="line">Application: 应用:版本</span><br><span class="line">Platform: Android</span><br></pre></td></tr></table></figure>
+<h5 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;countryCode&quot;: &quot;0086&quot;,</span><br><span class="line">    &quot;phone&quot;: &quot;15297838217&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>params</th>
+<th>类型</th>
+<th>是否必要</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>countryCode</td>
+<td>String</td>
+<td>是</td>
+<td>国家区号</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>String</td>
+<td>是</td>
+<td>手机号码</td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应头"><a href="#响应头" class="headerlink" title="响应头"></a>响应头</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type:application/json; charset=utf-8</span><br></pre></td></tr></table></figure>
+<h5 id="响应"><a href="#响应" class="headerlink" title="响应"></a>响应</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;message&quot;: &quot;居然发成功了&quot;,</span><br><span class="line">    &quot;code&quot;: 200,</span><br><span class="line">    &quot;data&quot;: &#123;</span><br><span class="line">        &quot;uid&quot;: &quot;F2W34T23T23T23T23T&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>是否必要</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>是</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>code</td>
+<td>String</td>
+<td>是</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>data</td>
+<td>Json对象</td>
+<td>是</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>data.uid</td>
+<td>String</td>
+<td>是</td>
+<td>同上</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="登录（获取token和用户信息）"><a href="#登录（获取token和用户信息）" class="headerlink" title="登录（获取token和用户信息）"></a>登录（获取token和用户信息）</h3><p>该接口用于登陆获取token和部分用户信息，由于我们暂时定义的是通过短信来注册+登录，因此没有密码这些。</p>
+<blockquote>
+<p>地址：<a href="https://api.xxx.com/path/login" target="_blank" rel="noopener">https://api.xxx.com/path/login</a></p>
+</blockquote>
+<h5 id="请求头-1"><a href="#请求头-1" class="headerlink" title="请求头"></a>请求头</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">POST /path/login</span><br><span class="line">Accept: application/json</span><br><span class="line">Content-Type: application/json;charset=UTF-8</span><br><span class="line">Token: token_G34G34G34G34G35G5</span><br><span class="line">Application: 应用:版本</span><br><span class="line">Platform: Android</span><br></pre></td></tr></table></figure>
+<h5 id="参数-1"><a href="#参数-1" class="headerlink" title="参数"></a>参数</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;countryCode&quot;: &quot;0086&quot;,</span><br><span class="line">    &quot;phone&quot;: &quot;15297838217&quot;,</span><br><span class="line">    &quot;password&quot;: &quot;111111&quot;,</span><br><span class="line">    &quot;sms&quot;: &quot;348543&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>params</th>
+<th>类型</th>
+<th>是否必要</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>countryCode</td>
+<td>String</td>
+<td>是</td>
+<td>国家区号</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>String</td>
+<td>是</td>
+<td>手机号码</td>
+</tr>
+<tr>
+<td>password</td>
+<td>String</td>
+<td>否</td>
+<td>密码</td>
+</tr>
+<tr>
+<td>sms</td>
+<td>String</td>
+<td>否</td>
+<td>验证码</td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应头-1"><a href="#响应头-1" class="headerlink" title="响应头"></a>响应头</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type:application/json; charset=utf-8</span><br></pre></td></tr></table></figure>
+<h5 id="响应-1"><a href="#响应-1" class="headerlink" title="响应"></a>响应</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;message&quot;: &quot;成功&quot;,</span><br><span class="line">    &quot;code&quot;: 200,</span><br><span class="line">    &quot;data&quot;:&#123;</span><br><span class="line">         &quot;token&quot;:&quot;3811c92206b0436693c4c4d25&quot;</span><br><span class="line">         用户的部分信息……</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>是</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>是</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>data.token</td>
+<td>String</td>
+<td>是</td>
+<td>token值</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="退出登录（使token失效）"><a href="#退出登录（使token失效）" class="headerlink" title="退出登录（使token失效）"></a>退出登录（使token失效）</h3><p>该接口是退出登录状态,让token立马失效。</p>
+<blockquote>
+<p>地址：<a href="https://api.xxx.com/path/logout" target="_blank" rel="noopener">https://api.xxx.com/path/logout</a></p>
+</blockquote>
+<h5 id="请求头-2"><a href="#请求头-2" class="headerlink" title="请求头"></a>请求头</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">DELETE /path/logout</span><br><span class="line">Accept: application/json</span><br><span class="line">Content-Type: application/json;charset=UTF-8</span><br><span class="line">Token: token_G34G34G34G34G35G5</span><br><span class="line">Application: 应用:版本</span><br><span class="line">Platform: Android</span><br></pre></td></tr></table></figure>
+<h5 id="参数-2"><a href="#参数-2" class="headerlink" title="参数"></a>参数</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">无</span><br></pre></td></tr></table></figure>
+<h5 id="响应头-2"><a href="#响应头-2" class="headerlink" title="响应头"></a>响应头</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type:application/json; charset=utf-8</span><br></pre></td></tr></table></figure>
+<h5 id="响应-2"><a href="#响应-2" class="headerlink" title="响应"></a>响应</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;message&quot;: &quot;成功&quot;,</span><br><span class="line">    &quot;code&quot;: 200</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>是</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>是</td>
+<td>同上</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="注册-添加用户"><a href="#注册-添加用户" class="headerlink" title="注册(添加用户)"></a>注册(添加用户)</h3><blockquote>
+<p>地址：<a href="https://api.xxx.com/path/register" target="_blank" rel="noopener">https://api.xxx.com/path/register</a></p>
+</blockquote>
+<h5 id="请求头-3"><a href="#请求头-3" class="headerlink" title="请求头"></a>请求头</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">POST /path/register</span><br><span class="line">Accept: application/json</span><br><span class="line">Content-Type: application/json;charset=UTF-8</span><br><span class="line">Token: token_G34G34G34G34G35G5</span><br><span class="line">Application: 应用:版本</span><br><span class="line">Platform: Android</span><br></pre></td></tr></table></figure>
+<h5 id="参数-3"><a href="#参数-3" class="headerlink" title="参数"></a>参数</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">     &quot;countryCode&quot;: &quot;0086&quot;,</span><br><span class="line">     &quot;password&quot;: &quot;111111&quot;,</span><br><span class="line">     &quot;phone&quot;: &quot;15297838217&quot;,</span><br><span class="line">     &quot;smsCode&quot;: &quot;123829&quot;,</span><br><span class="line">     &quot;source&quot;: &quot;wallet&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>params</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>countryCode</td>
+<td>String</td>
+<td>是</td>
+<td>国家区号</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>String</td>
+<td>是</td>
+<td>手机号码</td>
+</tr>
+<tr>
+<td>password</td>
+<td>String</td>
+<td>是</td>
+<td>密码</td>
+</tr>
+<tr>
+<td>smsCode</td>
+<td>String</td>
+<td>是</td>
+<td>短信验证码</td>
+</tr>
+<tr>
+<td>source</td>
+<td>String</td>
+<td>是</td>
+<td>表示用户注册来源，值为wallet表示来自钱包的注册用户</td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应头-3"><a href="#响应头-3" class="headerlink" title="响应头"></a>响应头</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type:application/json; charset=utf-8</span><br></pre></td></tr></table></figure>
+<h5 id="响应-3"><a href="#响应-3" class="headerlink" title="响应"></a>响应</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;message&quot;: &quot;成功&quot;,</span><br><span class="line">    &quot;code&quot;: 200,</span><br><span class="line">    &quot;data&quot;: &#123;</span><br><span class="line">        &quot;uid&quot;: &quot;dec26723c4324bdb91cead673f8b77ab&quot;,</span><br><span class="line">        &quot;token&quot;: &quot;qf13r13r13r13r13r&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>是</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>是</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>data.uid</td>
+<td>String</td>
+<td>是</td>
+<td>返回用户创建的uid值</td>
+</tr>
+<tr>
+<td>data.token</td>
+<td>String</td>
+<td>是</td>
+<td>注册成功后就让其直接登录，因此返回token</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="查询用户"><a href="#查询用户" class="headerlink" title="查询用户"></a>查询用户</h3><p>该接口是给后台系统使用的，因此要控制要权限。</p>
+<h4 id="查询多个用户（批量操作）"><a href="#查询多个用户（批量操作）" class="headerlink" title="查询多个用户（批量操作）"></a>查询多个用户（批量操作）</h4><blockquote>
+<p>地址：<a href="https://api.xxx.com/path/users" target="_blank" rel="noopener">https://api.xxx.com/path/users</a></p>
+</blockquote>
+<h5 id="请求头-4"><a href="#请求头-4" class="headerlink" title="请求头"></a>请求头</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">GET /path/user</span><br><span class="line">Accept: application/json</span><br><span class="line">Content-Type: application/json;charset=UTF-8</span><br><span class="line">Token: token_G34G34G34G34G35G5</span><br><span class="line">Application: 应用:版本</span><br><span class="line">Platform: Android</span><br></pre></td></tr></table></figure>
+<h5 id="参数-4"><a href="#参数-4" class="headerlink" title="参数"></a>参数</h5><p>以下参数都是只是过滤作用</p>
+<p>?uid=05y45y3y34y086&amp;userName=用户名&amp;nickName=昵称&amp;countryCode=0086&amp;phone=13888888888&amp;enable=true</p>
+<table>
+<thead>
+<tr>
+<th>params</th>
+<th>类型</th>
+<th>是否必要</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>uid</td>
+<td>String</td>
+<td>否</td>
+<td>用户id</td>
+</tr>
+<tr>
+<td>userName</td>
+<td>String</td>
+<td>否</td>
+<td>用户名</td>
+</tr>
+<tr>
+<td>nickName</td>
+<td>String</td>
+<td>否</td>
+<td>昵称</td>
+</tr>
+<tr>
+<td>countryCode</td>
+<td>String</td>
+<td>否</td>
+<td>国家区号</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>String</td>
+<td>否</td>
+<td>手机号码</td>
+</tr>
+<tr>
+<td>enable</td>
+<td>boolean</td>
+<td>否</td>
+<td>该参数可以过滤出是否是黑名单的用户</td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应头-4"><a href="#响应头-4" class="headerlink" title="响应头"></a>响应头</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type:application/json; charset=utf-8</span><br></pre></td></tr></table></figure>
+<h5 id="响应-4"><a href="#响应-4" class="headerlink" title="响应"></a>响应</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;message&quot;: &quot;成功&quot;,</span><br><span class="line">    &quot;code&quot;: 200,</span><br><span class="line">    &quot;data&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;uid&quot;: &quot;2r323r23r32r&quot;,</span><br><span class="line">            &quot;userName&quot;: &quot;用户名&quot;,</span><br><span class="line">            &quot;nickName&quot;: &quot;昵称&quot;,</span><br><span class="line">            &quot;avatar&quot;: &quot;用户头像&quot;,</span><br><span class="line">            &quot;latestLogin&quot;: &quot;最后登录时间&quot;,</span><br><span class="line">            &quot;loginTimes&quot;: &quot;登录次数&quot;,</span><br><span class="line">            &quot;token&quot;: &quot;最新token&quot;,</span><br><span class="line">            &quot;source&quot;: &quot;来源&quot;,</span><br><span class="line">            &quot;createTime&quot;: &quot;创建时间&quot;,</span><br><span class="line">            &quot;enabled&quot;: &quot;是否有效&quot;,</span><br><span class="line">            &quot;countryCode&quot;: &quot;国家区号&quot;,</span><br><span class="line">            &quot;phone&quot;: &quot;手机号码&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;uid&quot;: &quot;2r323r23r32r&quot;,</span><br><span class="line">            &quot;userName&quot;: &quot;用户名&quot;,</span><br><span class="line">            &quot;nickName&quot;: &quot;昵称&quot;,</span><br><span class="line">            &quot;avatar&quot;: &quot;用户头像&quot;,</span><br><span class="line">            &quot;latestLogin&quot;: &quot;最后登录时间&quot;,</span><br><span class="line">            &quot;loginTimes&quot;: &quot;登录次数&quot;,</span><br><span class="line">            &quot;token&quot;: &quot;最新token&quot;,</span><br><span class="line">            &quot;source&quot;: &quot;来源&quot;,</span><br><span class="line">            &quot;createTime&quot;: &quot;创建时间&quot;,</span><br><span class="line">            &quot;enabled&quot;: &quot;是否有效&quot;,</span><br><span class="line">            &quot;countryCode&quot;: &quot;国家区号&quot;,</span><br><span class="line">            &quot;phone&quot;: &quot;手机号码&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>是否必要</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>是</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>是</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>data</td>
+<td>JSON数组</td>
+<td>是</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>data.uid</td>
+<td>String</td>
+<td>是</td>
+<td>uid值</td>
+</tr>
+<tr>
+<td>data.userName</td>
+<td>String</td>
+<td>是</td>
+<td>用户名</td>
+</tr>
+<tr>
+<td>data.nickName</td>
+<td>String</td>
+<td>是</td>
+<td>昵称</td>
+</tr>
+<tr>
+<td>data.avatar</td>
+<td>String</td>
+<td>是</td>
+<td>用户头像</td>
+</tr>
+<tr>
+<td>data.latestLogin</td>
+<td>String</td>
+<td>是</td>
+<td>最后登录时间</td>
+</tr>
+<tr>
+<td>data.loginTimes</td>
+<td>String</td>
+<td>是</td>
+<td>登录次数</td>
+</tr>
+<tr>
+<td>data.token</td>
+<td>String</td>
+<td>是</td>
+<td>最新token</td>
+</tr>
+<tr>
+<td>data.source</td>
+<td>String</td>
+<td>是</td>
+<td>来源</td>
+</tr>
+<tr>
+<td>data.createTime</td>
+<td>String</td>
+<td>是</td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td>data.enabled</td>
+<td>int</td>
+<td>是</td>
+<td>是否有效</td>
+</tr>
+<tr>
+<td>data.countryCode</td>
+<td>String</td>
+<td>是</td>
+<td>国家区号</td>
+</tr>
+<tr>
+<td>data.phone</td>
+<td>String</td>
+<td>是</td>
+<td>手机号码</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h4 id="查询单个用户"><a href="#查询单个用户" class="headerlink" title="查询单个用户"></a>查询单个用户</h4><blockquote>
+<p>地址：<a href="https://api.xxx.com/path/users/{uid}" target="_blank" rel="noopener">https://api.xxx.com/path/users/{uid}</a></p>
+</blockquote>
+<h5 id="请求头-5"><a href="#请求头-5" class="headerlink" title="请求头"></a>请求头</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">GET /path/user&#123;uid&#125;</span><br><span class="line">Accept: application/json</span><br><span class="line">Content-Type: application/json;charset=UTF-8</span><br><span class="line">Token: token_G34G34G34G34G35G5</span><br><span class="line">Application: 应用:版本</span><br><span class="line">Platform: Android</span><br></pre></td></tr></table></figure>
+<h5 id="参数-5"><a href="#参数-5" class="headerlink" title="参数"></a>参数</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">无</span><br></pre></td></tr></table></figure>
+<h5 id="响应头-5"><a href="#响应头-5" class="headerlink" title="响应头"></a>响应头</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type:application/json; charset=utf-8</span><br></pre></td></tr></table></figure>
+<h5 id="响应-5"><a href="#响应-5" class="headerlink" title="响应"></a>响应</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;message&quot;: &quot;成功&quot;,</span><br><span class="line">    &quot;code&quot;: 200,</span><br><span class="line">    &quot;data&quot;: &#123;</span><br><span class="line">        &quot;uid&quot;: &quot;2r323r23r32r&quot;,</span><br><span class="line">        &quot;userName&quot;: &quot;用户名&quot;,</span><br><span class="line">        &quot;nickName&quot;: &quot;昵称&quot;,</span><br><span class="line">        &quot;avatar&quot;: &quot;用户头像&quot;,</span><br><span class="line">        &quot;latestLogin&quot;: &quot;最后登录时间&quot;,</span><br><span class="line">        &quot;loginTimes&quot;: &quot;登录次数&quot;,</span><br><span class="line">        &quot;token&quot;: &quot;最新token&quot;,</span><br><span class="line">        &quot;source&quot;: &quot;来源&quot;,</span><br><span class="line">        &quot;createTime&quot;: &quot;创建时间&quot;,</span><br><span class="line">        &quot;enabled&quot;: &quot;是否有效&quot;,</span><br><span class="line">        &quot;countryCode&quot;: &quot;国家区号&quot;,</span><br><span class="line">        &quot;phone&quot;: &quot;手机号码&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>是否必要</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>是</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>是</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>data</td>
+<td>JSON数组</td>
+<td>是</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>data.uid</td>
+<td>String</td>
+<td>是</td>
+<td>uid值</td>
+</tr>
+<tr>
+<td>data.userName</td>
+<td>String</td>
+<td>是</td>
+<td>用户名</td>
+</tr>
+<tr>
+<td>data.nickName</td>
+<td>String</td>
+<td>是</td>
+<td>昵称</td>
+</tr>
+<tr>
+<td>data.avatar</td>
+<td>String</td>
+<td>是</td>
+<td>用户头像</td>
+</tr>
+<tr>
+<td>data.latestLogin</td>
+<td>String</td>
+<td>是</td>
+<td>最后登录时间</td>
+</tr>
+<tr>
+<td>data.loginTimes</td>
+<td>String</td>
+<td>是</td>
+<td>登录次数</td>
+</tr>
+<tr>
+<td>data.token</td>
+<td>String</td>
+<td>是</td>
+<td>最新token</td>
+</tr>
+<tr>
+<td>data.source</td>
+<td>String</td>
+<td>是</td>
+<td>来源</td>
+</tr>
+<tr>
+<td>data.createTime</td>
+<td>String</td>
+<td>是</td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td>data.enabled</td>
+<td>int</td>
+<td>是</td>
+<td>是否有效</td>
+</tr>
+<tr>
+<td>data.countryCode</td>
+<td>String</td>
+<td>是</td>
+<td>国家区号</td>
+</tr>
+<tr>
+<td>data.phone</td>
+<td>String</td>
+<td>是</td>
+<td>手机号码</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="修改用户信息（暂时不考虑批量操作）"><a href="#修改用户信息（暂时不考虑批量操作）" class="headerlink" title="修改用户信息（暂时不考虑批量操作）"></a>修改用户信息（暂时不考虑批量操作）</h3><blockquote>
+<p>地址：<a href="https://api.xxx.com/path/users/{uid}" target="_blank" rel="noopener">https://api.xxx.com/path/users/{uid}</a></p>
+</blockquote>
+<h5 id="请求头-6"><a href="#请求头-6" class="headerlink" title="请求头"></a>请求头</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PUT /path/users/&#123;uid&#125;</span><br><span class="line">Accept: application/json</span><br><span class="line">Content-Type: application/json;charset=UTF-8</span><br><span class="line">Token: token_G34G34G34G34G35G5</span><br><span class="line">Application: 应用:版本</span><br><span class="line">Platform: Android</span><br></pre></td></tr></table></figure>
+<h5 id="参数-6"><a href="#参数-6" class="headerlink" title="参数"></a>参数</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;userName&quot;: &quot;用户名&quot;,</span><br><span class="line">    &quot;nickName&quot;: &quot;昵称&quot;,</span><br><span class="line">    &quot;avatar&quot;: &quot;上传文件&quot;,</span><br><span class="line">    其他参数……</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>params</th>
+<th>类型</th>
+<th>是否必要</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>userName</td>
+<td>String</td>
+<td>否</td>
+<td>用户名</td>
+</tr>
+<tr>
+<td>nickName</td>
+<td>String</td>
+<td>否</td>
+<td>昵称</td>
+</tr>
+<tr>
+<td>avatar</td>
+<td>File</td>
+<td>否</td>
+<td>用户头像</td>
+</tr>
+<tr>
+<td>其他参数</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应头-6"><a href="#响应头-6" class="headerlink" title="响应头"></a>响应头</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type:application/json; charset=utf-8</span><br></pre></td></tr></table></figure>
+<h5 id="响应-6"><a href="#响应-6" class="headerlink" title="响应"></a>响应</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;message&quot;: &quot;成功&quot;,</span><br><span class="line">    &quot;code&quot;: 200,</span><br><span class="line">    &quot;data&quot;: &#123;</span><br><span class="line">        &quot;uid&quot;: &quot;23r235235235235&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>是</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>是</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>data</td>
+<td>JSON对象</td>
+<td>是</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>data.uid</td>
+<td>String</td>
+<td>是</td>
+<td>所操作的用户的唯一标识</td>
+</tr>
+</tbody>
+</table>
+<h3 id="查询用户设备信息"><a href="#查询用户设备信息" class="headerlink" title="查询用户设备信息"></a>查询用户设备信息</h3><blockquote>
+<p>地址：<a href="https://api.xxx.com/path/v1.0/users/{uid}/devices" target="_blank" rel="noopener">https://api.xxx.com/path/v1.0/users/{uid}/devices</a></p>
+</blockquote>
+<h5 id="请求头-7"><a href="#请求头-7" class="headerlink" title="请求头"></a>请求头</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">GET /path/users/&#123;uid&#125;/devices</span><br><span class="line">Accept: application/json</span><br><span class="line">Content-Type: application/json;charset=UTF-8</span><br><span class="line">Token: token_G34G34G34G34G35G5</span><br><span class="line">Application: 应用:版本</span><br><span class="line">Platform: Android</span><br></pre></td></tr></table></figure>
+<h5 id="参数-7"><a href="#参数-7" class="headerlink" title="参数"></a>参数</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">无</span><br></pre></td></tr></table></figure>
+<h5 id="响应头-7"><a href="#响应头-7" class="headerlink" title="响应头"></a>响应头</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type:application/json; charset=utf-8</span><br></pre></td></tr></table></figure>
+<h5 id="响应-7"><a href="#响应-7" class="headerlink" title="响应"></a>响应</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;message&quot;: &quot;成功&quot;,</span><br><span class="line">    &quot;code&quot;: 200,</span><br><span class="line">    &quot;data&quot;:&#123;</span><br><span class="line">       [ </span><br><span class="line">         &#123;</span><br><span class="line">            &quot;uid&quot;: &quot;uid&quot;,</span><br><span class="line">            &quot;appDebug&quot;: &quot;是否为debug版本&quot;,</span><br><span class="line">            &quot;appVersioncode&quot;: &quot;版本号&quot;,</span><br><span class="line">            &quot;appVersionname&quot;: &quot;版本名称（iOS中称为版本号），例如1.0.1&quot;,</span><br><span class="line">            &quot;deviceDisplay&quot;: &quot;系统屏幕信息&quot;,</span><br><span class="line">            &quot;deviceDisplayheight&quot;: &quot;屏幕像素高度&quot;,</span><br><span class="line">            &quot;deviceDisplaywidth&quot;: &quot;屏幕像素宽度&quot;,</span><br><span class="line">            &quot;deviceDrand&quot;: &quot;品牌信息，如小米、华为&quot;,</span><br><span class="line">            &quot;deviceFingerprint&quot;: &quot;设备指纹，一个综合的，唯一的关于设备的描述&quot;,</span><br><span class="line">            &quot;deviceManufacturer&quot;: &quot;生产厂商信息&quot;,</span><br><span class="line">            &quot;deviceModel&quot;: &quot;型号信息&quot;,</span><br><span class="line">            &quot;deviceProduct&quot;: &quot;G750-T01&quot;,</span><br><span class="line">            &quot;deviceid&quot;: &quot;根据综合信息生成的一个设备唯一ID&quot;,</span><br><span class="line">            &quot;osHost&quot;: &quot;本机ip地址&quot;,</span><br><span class="line">            &quot;osIsroot&quot;: &quot;手机系统是否有Root过&quot;,</span><br><span class="line">            &quot;osVersion&quot;: &quot;系统版本号，如19代表4.4&quot;,</span><br><span class="line">            &quot;networkIp&quot;: &quot;外网ip&quot; </span><br><span class="line">            &quot;createTime&quot;: &quot;创建时间&quot; </span><br><span class="line">            &quot;enabled&quot;: &quot;是否有效&quot; </span><br><span class="line">          &#125;</span><br><span class="line">        ] </span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>是</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>是</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>data.uid</td>
+<td>JSON对象</td>
+<td>是</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>data.uid</td>
+<td>String</td>
+<td>是</td>
+<td>uid值</td>
+</tr>
+<tr>
+<td>data.appDebug</td>
+<td>String</td>
+<td>是</td>
+<td>是否为debug版本</td>
+</tr>
+<tr>
+<td>data.appVersioncode</td>
+<td>String</td>
+<td>是</td>
+<td>版本号</td>
+</tr>
+<tr>
+<td>data.appVersionname</td>
+<td>String</td>
+<td>是</td>
+<td>版本名称（iOS中称为版本号），例如1.0.1</td>
+</tr>
+<tr>
+<td>data.deviceDisplay</td>
+<td>String</td>
+<td>是</td>
+<td>系统屏幕信息</td>
+</tr>
+<tr>
+<td>data.deviceDisplayheight</td>
+<td>String</td>
+<td>是</td>
+<td>屏幕像素高度</td>
+</tr>
+<tr>
+<td>data.deviceDisplaywidth</td>
+<td>String</td>
+<td>是</td>
+<td>屏幕像素宽度</td>
+</tr>
+<tr>
+<td>data.deviceDrand</td>
+<td>String</td>
+<td>是</td>
+<td>品牌信息，如小米、华为</td>
+</tr>
+<tr>
+<td>data.deviceFingerprint</td>
+<td>String</td>
+<td>是</td>
+<td>设备指纹，一个综合的，唯一的关于设备的描述</td>
+</tr>
+<tr>
+<td>data.deviceManufacturer</td>
+<td>String</td>
+<td>是</td>
+<td>生产厂商信息</td>
+</tr>
+<tr>
+<td>data.deviceModel</td>
+<td>String</td>
+<td>是</td>
+<td>型号信息</td>
+</tr>
+<tr>
+<td>data.deviceProduct</td>
+<td>String</td>
+<td>是</td>
+<td>G750-T01</td>
+</tr>
+<tr>
+<td>data.deviceid</td>
+<td>String</td>
+<td>是</td>
+<td>根据综合信息生成的一个设备唯一ID</td>
+</tr>
+<tr>
+<td>data.osHost</td>
+<td>String</td>
+<td>是</td>
+<td>手机系统是否有Root过</td>
+</tr>
+<tr>
+<td>data.osVersion</td>
+<td>String</td>
+<td>是</td>
+<td>系统版本号，如19代表4.4</td>
+</tr>
+<tr>
+<td>data.networkIp</td>
+<td>String</td>
+<td>是</td>
+<td>外网ip</td>
+</tr>
+<tr>
+<td>data.osVersion</td>
+<td>String</td>
+<td>是</td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td>data.osVersion</td>
+<td>String</td>
+<td>是</td>
+<td>是否有效</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="刷新token"><a href="#刷新token" class="headerlink" title="刷新token"></a>刷新token</h3><p>对token的期限进行刷新等<br>地址：<a href="https://api.xxx.com/path/v1/tokens" target="_blank" rel="noopener">https://api.xxx.com/path/v1/tokens</a></p>
+<h5 id="请求头-8"><a href="#请求头-8" class="headerlink" title="请求头"></a>请求头</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PUT /path/v1/tokens</span><br><span class="line">Accept: application/json</span><br><span class="line">Content-Type: application/json;charset=UTF-8</span><br><span class="line">Token: token_G34G34G34G34G35G5</span><br><span class="line">Application: 应用:版本</span><br><span class="line">Platform: Android</span><br></pre></td></tr></table></figure>
+<h5 id="参数-8"><a href="#参数-8" class="headerlink" title="参数"></a>参数</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;token&quot;: &quot;token_3523235&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>token</td>
+<td>String</td>
+<td>用户现在使用的token</td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应头-8"><a href="#响应头-8" class="headerlink" title="响应头"></a>响应头</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type:application/json; charset=utf-8</span><br><span class="line">Cache-Control: no-store</span><br><span class="line">Pragma: no-cache</span><br></pre></td></tr></table></figure>
+<h5 id="响应-8"><a href="#响应-8" class="headerlink" title="响应"></a>响应</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;message&quot;: &quot;居然被你创建了token&quot;,</span><br><span class="line">    &quot;code&quot;: 200,</span><br><span class="line">    &quot;data&quot;: &#123;</span><br><span class="line">        &quot;token&quot;: &quot;token_1224124124&quot;,</span><br><span class="line">        &quot;expires&quot;: &quot;3000&quot;,</span><br><span class="line">        &quot;user&quot;: &quot;这个user信息需不需要在这里给，可以商量&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>随便写，也可以作为服务器给前端固定提示的内容</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>与响应头里的Status一样</td>
+</tr>
+<tr>
+<td>data.token</td>
+<td>String</td>
+<td>获取的token</td>
+</tr>
+<tr>
+<td>data.expires</td>
+<td>String</td>
+<td>期限</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="查询token状态"><a href="#查询token状态" class="headerlink" title="查询token状态"></a>查询token状态</h3><p>地址：<a href="https://api.xxx.com/both/v1/tokens/token_255235235" target="_blank" rel="noopener">https://api.xxx.com/both/v1/tokens/token_255235235</a></p>
+<h5 id="请求头-9"><a href="#请求头-9" class="headerlink" title="请求头"></a>请求头</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">GET /both/v1/tokens/token_255235235</span><br><span class="line">Accept: application/json</span><br><span class="line">Content-Type: application/json;charset=UTF-8</span><br><span class="line">Token: token_G34G34G34G34G35G5</span><br><span class="line">Application: 应用:版本</span><br><span class="line">Platform: Android</span><br></pre></td></tr></table></figure>
+<h5 id="参数-9"><a href="#参数-9" class="headerlink" title="参数"></a>参数</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">无</span><br></pre></td></tr></table></figure>
+<h5 id="响应头-9"><a href="#响应头-9" class="headerlink" title="响应头"></a>响应头</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type:application/json; charset=utf-8</span><br><span class="line">Cache-Control: no-store</span><br><span class="line">Pragma: no-cache</span><br></pre></td></tr></table></figure>
+<h5 id="响应-9"><a href="#响应-9" class="headerlink" title="响应"></a>响应</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;message&quot;: &quot;居然被你创建了token&quot;,</span><br><span class="line">    &quot;code&quot;: 200,</span><br><span class="line">    &quot;data&quot;: &#123;</span><br><span class="line">        &quot;token&quot;: &quot;token_1224124124&quot;,</span><br><span class="line">        &quot;expires&quot;: &quot;3000&quot;,</span><br><span class="line">        &quot;user&quot;: &quot;这个user信息需不需要在这里给，可以商量&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>随便写，也可以作为服务器给前端固定提示的内容</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>与响应头里的Status一样</td>
+</tr>
+<tr>
+<td>data</td>
+<td>JSON对象</td>
+<td><strong>data对象不为空则表示该token是合法的。</strong></td>
+</tr>
+<tr>
+<td>data.token</td>
+<td>String</td>
+<td>获取的token</td>
+</tr>
+<tr>
+<td>data.expires</td>
+<td>String</td>
+<td>期限</td>
+</tr>
+</tbody>
+</table>
+<h4 id="添加用户设备信息"><a href="#添加用户设备信息" class="headerlink" title="添加用户设备信息"></a>添加用户设备信息</h4><blockquote>
+<p>地址：<a href="https://api.xxx.com/path/v1.0/users/{uid}/devices" target="_blank" rel="noopener">https://api.xxx.com/path/v1.0/users/{uid}/devices</a></p>
+</blockquote>
+<h6 id="请求头-10"><a href="#请求头-10" class="headerlink" title="请求头"></a>请求头</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">POST /path/users/&#123;uid&#125;/devices</span><br><span class="line">Accept: application/json</span><br><span class="line">Content-Type: application/json;charset=UTF-8</span><br><span class="line">Token: token_G34G34G34G34G35G5</span><br><span class="line">Application: 应用:版本</span><br><span class="line">Platform: Android</span><br></pre></td></tr></table></figure>
+<h6 id="参数-10"><a href="#参数-10" class="headerlink" title="参数"></a>参数</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"> &#123;</span><br><span class="line">        &quot;appDebug&quot;: &quot;是否为debug版本&quot;,</span><br><span class="line">        &quot;appVersioncode&quot;: &quot;版本号&quot;,</span><br><span class="line">        &quot;appVersionname&quot;: &quot;版本名称（iOS中称为版本号），例如1.0.1&quot;,</span><br><span class="line">        &quot;deviceDisplay&quot;: &quot;系统屏幕信息&quot;,</span><br><span class="line">        &quot;deviceDisplayheight&quot;: &quot;屏幕像素高度&quot;,</span><br><span class="line">        &quot;deviceDisplaywidth&quot;: &quot;屏幕像素宽度&quot;,</span><br><span class="line">        &quot;deviceDrand&quot;: &quot;品牌信息，如小米、华为&quot;,</span><br><span class="line">        &quot;deviceFingerprint&quot;: &quot;设备指纹，一个综合的，唯一的关于设备的描述&quot;,</span><br><span class="line">        &quot;deviceManufacturer&quot;: &quot;生产厂商信息&quot;,</span><br><span class="line">        &quot;deviceModel&quot;: &quot;型号信息&quot;,</span><br><span class="line">        &quot;deviceProduct&quot;: &quot;G750-T01&quot;,</span><br><span class="line">        &quot;deviceid&quot;: &quot;根据综合信息生成的一个设备唯一ID&quot;,</span><br><span class="line">        &quot;osHost&quot;: &quot;本机ip地址&quot;,</span><br><span class="line">        &quot;osIsroot&quot;: &quot;手机系统是否有Root过&quot;,</span><br><span class="line">        &quot;osVersion&quot;: &quot;系统版本号，如19代表4.4&quot; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>params</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>appDebug</td>
+<td>String</td>
+<td>是</td>
+<td>是否为debug版本</td>
+</tr>
+<tr>
+<td>appVersioncode</td>
+<td>String</td>
+<td>是</td>
+<td>版本号</td>
+</tr>
+<tr>
+<td>appVersionname</td>
+<td>String</td>
+<td>是</td>
+<td>版本名称（iOS中称为版本号），例如1.0.1</td>
+</tr>
+<tr>
+<td>deviceDisplay</td>
+<td>String</td>
+<td>是</td>
+<td>系统屏幕信息</td>
+</tr>
+<tr>
+<td>deviceDisplayheight</td>
+<td>String</td>
+<td>是</td>
+<td>屏幕像素高度</td>
+</tr>
+<tr>
+<td>deviceDisplaywidth</td>
+<td>String</td>
+<td>是</td>
+<td>屏幕像素宽度</td>
+</tr>
+<tr>
+<td>deviceDrand</td>
+<td>String</td>
+<td>是</td>
+<td>品牌信息，如小米、华为</td>
+</tr>
+<tr>
+<td>deviceFingerprint</td>
+<td>String</td>
+<td>是</td>
+<td>设备指纹，一个综合的，唯一的关于设备的描述</td>
+</tr>
+<tr>
+<td>deviceManufacturer</td>
+<td>String</td>
+<td>是</td>
+<td>生产厂商信息</td>
+</tr>
+<tr>
+<td>deviceModel</td>
+<td>String</td>
+<td>是</td>
+<td>型号信息</td>
+</tr>
+<tr>
+<td>deviceProduct</td>
+<td>String</td>
+<td>是</td>
+<td>G750-T01</td>
+</tr>
+<tr>
+<td>deviceid</td>
+<td>String</td>
+<td>是</td>
+<td>根据综合信息生成的一个设备唯一ID</td>
+</tr>
+<tr>
+<td>osHost</td>
+<td>String</td>
+<td>是</td>
+<td>手机系统是否有Root过</td>
+</tr>
+<tr>
+<td>osVersion</td>
+<td>String</td>
+<td>是</td>
+<td>系统版本号，如19代表4.4</td>
+</tr>
+<tr>
+<td>networkIp</td>
+<td>String</td>
+<td>是</td>
+<td>外网IP地址</td>
+</tr>
+<tr>
+<td>osVersion</td>
+<td>String</td>
+<td>是</td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td>osVersion</td>
+<td>String</td>
+<td>是</td>
+<td>是否有效</td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应头-10"><a href="#响应头-10" class="headerlink" title="响应头"></a>响应头</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type:application/json; charset=utf-8</span><br></pre></td></tr></table></figure>
+<h5 id="响应-10"><a href="#响应-10" class="headerlink" title="响应"></a>响应</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;message&quot;: &quot;成功&quot;,</span><br><span class="line">    &quot;code&quot;: 200,</span><br><span class="line">    &quot;data&quot;: &#123;</span><br><span class="line">        &quot;uid&quot;: &quot;2r323r23r32r&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>是</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>是</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>data</td>
+<td>JSON对象</td>
+<td>是</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>data.uid</td>
+<td>String</td>
+<td>是</td>
+<td>所操作的设备信息的唯一标识</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h4 id="删除用户设备信息"><a href="#删除用户设备信息" class="headerlink" title="删除用户设备信息"></a>删除用户设备信息</h4><blockquote>
+<p>地址：<a href="https://api.xxx.com/path/v1.0/users/{uid}/devices/{uid}" target="_blank" rel="noopener">https://api.xxx.com/path/v1.0/users/{uid}/devices/{uid}</a></p>
+</blockquote>
+<h5 id="请求头-11"><a href="#请求头-11" class="headerlink" title="请求头"></a>请求头</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">DELETE /path/v1.0/users/&#123;uid&#125;/devices/&#123;uid&#125;</span><br><span class="line">Accept: application/json</span><br><span class="line">Content-Type: application/json;charset=UTF-8</span><br><span class="line">Token: token_G34G34G34G34G35G5</span><br><span class="line">Application: 应用:版本</span><br><span class="line">Platform: Android</span><br></pre></td></tr></table></figure>
+<h5 id="参数-11"><a href="#参数-11" class="headerlink" title="参数"></a>参数</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">无</span><br></pre></td></tr></table></figure>
+<h5 id="响应头-11"><a href="#响应头-11" class="headerlink" title="响应头"></a>响应头</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type:application/json; charset=utf-8</span><br></pre></td></tr></table></figure>
+<h5 id="响应-11"><a href="#响应-11" class="headerlink" title="响应"></a>响应</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;message&quot;: &quot;成功&quot;,</span><br><span class="line">    &quot;code&quot;: 200,</span><br><span class="line">    &quot;data&quot;: &#123;</span><br><span class="line">        &quot;uid&quot;: &quot;23t23t23t23t&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>是</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>是</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>data</td>
+<td>JSON对象</td>
+<td>是</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>data.uid</td>
+<td>String</td>
+<td>是</td>
+<td>所操作的设备信息的唯一标识</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="添加户黑名单"><a href="#添加户黑名单" class="headerlink" title="添加户黑名单"></a>添加户黑名单</h3><p>该接口用于后台将可疑用户加入黑名单，被加入黑名单的用户是不能挖矿和提现的。黑名单表只是一个日志记录作用，真正表达表达某个用户是否可用是user表中的enable字段。</p>
+<h4 id="批量操作"><a href="#批量操作" class="headerlink" title="批量操作"></a>批量操作</h4><blockquote>
+<p>地址：<a href="https://api.xxx.com/path/v1.0/blacks" target="_blank" rel="noopener">https://api.xxx.com/path/v1.0/blacks</a></p>
+</blockquote>
+<h5 id="请求头-12"><a href="#请求头-12" class="headerlink" title="请求头"></a>请求头</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">POST /path/v1.0/blacks</span><br><span class="line">Accept: application/json</span><br><span class="line">Content-Type: application/json;charset=UTF-8</span><br><span class="line">Token: token_G34G34G34G34G35G5</span><br><span class="line">Application: 应用:版本</span><br><span class="line">Platform: Android</span><br></pre></td></tr></table></figure>
+<h5 id="参数-12"><a href="#参数-12" class="headerlink" title="参数"></a>参数</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;cause&quot;: &quot;001&quot;,</span><br><span class="line">        &quot;uid&quot;: &quot;3522352352&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;cause&quot;: &quot;001&quot;,</span><br><span class="line">        &quot;uid&quot;: &quot;235235235&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;cause&quot;: &quot;001&quot;,</span><br><span class="line">        &quot;uid&quot;: &quot;23523523523&quot;</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>params</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cause</td>
+<td>String</td>
+<td>是</td>
+<td>加入黑名单的原因，到时候我们定义一套原因码，接口调用方只需要传某个原因码即可</td>
+</tr>
+<tr>
+<td>uid</td>
+<td>String</td>
+<td>是</td>
+<td>用户唯一标识</td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应头-12"><a href="#响应头-12" class="headerlink" title="响应头"></a>响应头</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type:application/json; charset=utf-8</span><br></pre></td></tr></table></figure>
+<h5 id="响应-12"><a href="#响应-12" class="headerlink" title="响应"></a>响应</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;message&quot;: &quot;成功&quot;,</span><br><span class="line">    &quot;code&quot;: 200,</span><br><span class="line">    &quot;data&quot;: &#123;</span><br><span class="line">        &quot;uid&quot;: &quot;23t23t23t23t&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>是</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>是</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>data</td>
+<td>JSON对象</td>
+<td>是</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>data.uid</td>
+<td>String</td>
+<td>是</td>
+<td>所操作的设备信息的唯一标识</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="移除黑名单"><a href="#移除黑名单" class="headerlink" title="移除黑名单"></a>移除黑名单</h3><p>实际上是在blacks表中多增一条日志记录，实质上是把user表中某uid的用户信息中的enable字段改成true。</p>
+<blockquote>
+<p>地址：<a href="https://api.xxx.com/path/v1.0/blacks" target="_blank" rel="noopener">https://api.xxx.com/path/v1.0/blacks</a></p>
+</blockquote>
+<h5 id="请求头-13"><a href="#请求头-13" class="headerlink" title="请求头"></a>请求头</h5><p>考虑到参数问题，由于新增黑名单和删除黑名单的参数实际是一样的，为了表达一个是移除黑名单，一个是加入黑名单，就把移除黑名单的操作使用DELETE，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">DELETE /path/v1.0/blacks</span><br><span class="line">Accept: application/json</span><br><span class="line">Content-Type: application/json;charset=UTF-8</span><br><span class="line">Token: token_G34G34G34G34G35G5</span><br><span class="line">Application: 应用:版本</span><br><span class="line">Platform: Android</span><br></pre></td></tr></table></figure>
+<h5 id="参数-13"><a href="#参数-13" class="headerlink" title="参数"></a>参数</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;cause&quot;: &quot;001&quot;,</span><br><span class="line">        &quot;uid&quot;: &quot;3522352352&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;cause&quot;: &quot;001&quot;,</span><br><span class="line">        &quot;uid&quot;: &quot;235235235&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;cause&quot;: &quot;001&quot;,</span><br><span class="line">        &quot;uid&quot;: &quot;23523523523&quot;</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>params</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cause</td>
+<td>String</td>
+<td>是</td>
+<td>加入黑名单的原因，到时候我们定义一套原因码，接口调用方只需要传某个原因码即可</td>
+</tr>
+<tr>
+<td>uid</td>
+<td>String</td>
+<td>是</td>
+<td>用户唯一标识</td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应头-13"><a href="#响应头-13" class="headerlink" title="响应头"></a>响应头</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type:application/json; charset=utf-8</span><br></pre></td></tr></table></figure>
+<h5 id="响应-13"><a href="#响应-13" class="headerlink" title="响应"></a>响应</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;message&quot;: &quot;成功&quot;,</span><br><span class="line">    &quot;code&quot;: 200,</span><br><span class="line">    &quot;data&quot;: &#123;</span><br><span class="line">        &quot;uid&quot;: &quot;23t23t23t23t&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>是</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>是</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>data</td>
+<td>JSON对象</td>
+<td>是</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>data.uid</td>
+<td>String</td>
+<td>是</td>
+<td>所操作的黑名单记录的唯一标识</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="查询用户收益"><a href="#查询用户收益" class="headerlink" title="查询用户收益"></a>查询用户收益</h3><blockquote>
+<p>地址：<a href="https://api.xxx.com/path/v1.0/user/{uid}/profit" target="_blank" rel="noopener">https://api.xxx.com/path/v1.0/user/{uid}/profit</a></p>
+<p>地址：<a href="https://api.xxx.com/path/v1.0/profit" target="_blank" rel="noopener">https://api.xxx.com/path/v1.0/profit</a></p>
+</blockquote>
+<h5 id="请求头-14"><a href="#请求头-14" class="headerlink" title="请求头"></a>请求头</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">GET /path/v1.0/user/&#123;uid&#125;/profit</span><br><span class="line">Accept: application/json</span><br><span class="line">Content-Type: application/json;charset=UTF-8</span><br><span class="line">Token: token_G34G34G34G34G35G5</span><br><span class="line">Application: 应用:版本</span><br><span class="line">Platform: Android</span><br></pre></td></tr></table></figure>
+<h5 id="参数-14"><a href="#参数-14" class="headerlink" title="参数"></a>参数</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">无</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>params</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>balance</td>
+<td>String</td>
+<td>是</td>
+<td>可用余额</td>
+</tr>
+<tr>
+<td>accumulation</td>
+<td>String</td>
+<td>是</td>
+<td>累积总量</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>String</td>
+<td>是</td>
+<td>单位币种</td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应头-14"><a href="#响应头-14" class="headerlink" title="响应头"></a>响应头</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type:application/json; charset=utf-8</span><br></pre></td></tr></table></figure>
+<h5 id="响应-14"><a href="#响应-14" class="headerlink" title="响应"></a>响应</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;message&quot;: &quot;成功&quot;,</span><br><span class="line">    &quot;code&quot;: 200,</span><br><span class="line">    &quot;data&quot;: &#123;</span><br><span class="line">        &quot;balance&quot;: &quot;100&quot;,</span><br><span class="line">        &quot;accumulation&quot;: &quot;10000&quot;,</span><br><span class="line">        &quot;currency&quot;: &quot;MOL&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>是</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>是</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>data</td>
+<td>JSON对象</td>
+<td>是</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>data.balance</td>
+<td>String</td>
+<td>是</td>
+<td>用户可提现的、可用余额</td>
+</tr>
+<tr>
+<td>data.accumulation</td>
+<td>String</td>
+<td>是</td>
+<td>用户历史累积收益</td>
+</tr>
+<tr>
+<td>data.currency</td>
+<td>String</td>
+<td>是</td>
+<td>币种，默认返回大写的MOL</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="国际化多语言"><a href="#国际化多语言" class="headerlink" title="国际化多语言"></a>国际化多语言</h3><blockquote>
+<p>地址：<a href="https://api.xxx.com/path/v1.0/locales" target="_blank" rel="noopener">https://api.xxx.com/path/v1.0/locales</a></p>
+</blockquote>
+<h5 id="请求头-15"><a href="#请求头-15" class="headerlink" title="请求头"></a>请求头</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">GET /path/v1.0/locales</span><br><span class="line">Accept: application/json</span><br><span class="line">Content-Type: application/json;charset=UTF-8</span><br><span class="line">Token: token_G34G34G34G34G35G5</span><br><span class="line">Application: 应用:版本</span><br><span class="line">Platform: Android</span><br></pre></td></tr></table></figure>
+<h5 id="参数-15"><a href="#参数-15" class="headerlink" title="参数"></a>参数</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">无</span><br></pre></td></tr></table></figure>
+<h5 id="响应头-15"><a href="#响应头-15" class="headerlink" title="响应头"></a>响应头</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type:application/json; charset=utf-8</span><br></pre></td></tr></table></figure>
+<h5 id="响应-15"><a href="#响应-15" class="headerlink" title="响应"></a>响应</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;message&quot;: &quot;成功&quot;,</span><br><span class="line">    &quot;code&quot;: 200,</span><br><span class="line">    &quot;data&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;key&quot;: &quot;zh&quot;,</span><br><span class="line">            &quot;value&quot;: &quot;中文（简体）&quot;,</span><br><span class="line">            &quot;uid&quot;: &quot;wefwefwe131241132r13&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;key&quot;: &quot;en&quot;,</span><br><span class="line">            &quot;value&quot;: &quot;english&quot;,</span><br><span class="line">            &quot;uid&quot;: &quot;wefwefwe131241132r13&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;key&quot;: &quot;ja&quot;,</span><br><span class="line">            &quot;value&quot;: &quot;日本語&quot;,</span><br><span class="line">            &quot;uid&quot;: &quot;wefwefwe131241132r13&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;key&quot;: &quot;ko&quot;,</span><br><span class="line">            &quot;value&quot;: &quot;한글&quot;,</span><br><span class="line">            &quot;uid&quot;: &quot;wefwefwe131241132r13&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>是</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>是</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>data</td>
+<td>JSON数组</td>
+<td>是</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>data.key</td>
+<td>String</td>
+<td>是</td>
+<td>该语言所对应的国际化标识，长用做参数</td>
+</tr>
+<tr>
+<td>data.value</td>
+<td>String</td>
+<td>是</td>
+<td>该语言在该国文字中的提现形式</td>
+</tr>
+<tr>
+<td>data.uid</td>
+<td>String</td>
+<td>是</td>
+<td>该语言唯一标识</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="设置国际化语言"><a href="#设置国际化语言" class="headerlink" title="设置国际化语言"></a>设置国际化语言</h3><p>该接口用于设置该用户在我们公司所有应用中的语言种类，默认是zh中文简体。</p>
+<blockquote>
+<p>地址：<a href="https://api.xxx.com/path/v1.0/locales" target="_blank" rel="noopener">https://api.xxx.com/path/v1.0/locales</a></p>
+</blockquote>
+<h5 id="请求头-16"><a href="#请求头-16" class="headerlink" title="请求头"></a>请求头</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PATCH /path/v1.0/locales</span><br><span class="line">Accept: application/json</span><br><span class="line">Content-Type: application/json;charset=UTF-8</span><br><span class="line">Token: token_G34G34G34G34G35G5</span><br><span class="line">Application: 应用:版本</span><br><span class="line">Platform: Android</span><br></pre></td></tr></table></figure>
+<h5 id="参数-16"><a href="#参数-16" class="headerlink" title="参数"></a>参数</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;key&quot;: &quot;zh&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>params</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>key</td>
+<td>String</td>
+<td>否</td>
+<td>不传表示默认，默认表示zh中文简体，所传值来自上一个语言列表中的key值</td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应头-16"><a href="#响应头-16" class="headerlink" title="响应头"></a>响应头</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type:application/json; charset=utf-8</span><br></pre></td></tr></table></figure>
+<h5 id="响应-16"><a href="#响应-16" class="headerlink" title="响应"></a>响应</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;message&quot;: &quot;成功&quot;,</span><br><span class="line">    &quot;code&quot;: 200,</span><br><span class="line">    &quot;data&quot;: &#123;</span><br><span class="line">        &quot;key&quot;: &quot;en&quot;,</span><br><span class="line">        &quot;value&quot;: &quot;english&quot;,</span><br><span class="line">        &quot;uid&quot;: &quot;wefwefwe131241132r13&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>是</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>是</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>data</td>
+<td>JSON对象</td>
+<td>是</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>data.key</td>
+<td>String</td>
+<td>是</td>
+<td>该语言所对应的国际化标识，长用做参数</td>
+</tr>
+<tr>
+<td>data.value</td>
+<td>String</td>
+<td>是</td>
+<td>该语言在该国文字中的提现形式</td>
+</tr>
+<tr>
+<td>data.uid</td>
+<td>String</td>
+<td>是</td>
+<td>该语言唯一标识</td>
+</tr>
+</tbody>
+</table>
+<hr>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>谢谢阁下赏识</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="Leguang WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.png" alt="Leguang Alipay">
+        <p>Alipay</p>
+      </div>
+    
+
+    
+      <div id="bitcoin" style="display: inline-block">
+        <img id="bitcoin_qr" src="/images/bitcoin.png" alt="Leguang Bitcoin">
+        <p>Bitcoin</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Leguang
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://itsite.cn/用户系统/用户系统接口文档/用户系统接口文档/" title="用户系统接口文档">http://itsite.cn/用户系统/用户系统接口文档/用户系统接口文档/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/公共部分/导航工具/导航工具/" rel="next" title="运营导航">
+                <i class="fa fa-chevron-left"></i> 运营导航
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/公共部分/MOL积分系统/MOL积分系统接口文档/" rel="prev" title="MOL积分系统接口文档">
+                MOL积分系统接口文档 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/favicon.ico" alt="Leguang">
+          <p class="site-author-name" itemprop="name">Leguang</p>
+           
+              <p class="site-description motion-element" itemprop="description">浮生若戏悲欢聚 笑看天风扫寰宇</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/leguang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:langmanleguang@qq.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#用户系统接口文档"><span class="nav-number">1.</span> <span class="nav-text">用户系统接口文档</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#发送短信验证码"><span class="nav-number">1.0.1.</span> <span class="nav-text">发送短信验证码</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#请求头"><span class="nav-number">1.0.1.0.1.</span> <span class="nav-text">请求头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数"><span class="nav-number">1.0.1.0.2.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应头"><span class="nav-number">1.0.1.0.3.</span> <span class="nav-text">响应头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应"><span class="nav-number">1.0.1.0.4.</span> <span class="nav-text">响应</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#登录（获取token和用户信息）"><span class="nav-number">1.0.2.</span> <span class="nav-text">登录（获取token和用户信息）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#请求头-1"><span class="nav-number">1.0.2.0.1.</span> <span class="nav-text">请求头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-1"><span class="nav-number">1.0.2.0.2.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应头-1"><span class="nav-number">1.0.2.0.3.</span> <span class="nav-text">响应头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应-1"><span class="nav-number">1.0.2.0.4.</span> <span class="nav-text">响应</span></a></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#退出登录（使token失效）"><span class="nav-number">1.0.3.</span> <span class="nav-text">退出登录（使token失效）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#请求头-2"><span class="nav-number">1.0.3.0.1.</span> <span class="nav-text">请求头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-2"><span class="nav-number">1.0.3.0.2.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应头-2"><span class="nav-number">1.0.3.0.3.</span> <span class="nav-text">响应头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应-2"><span class="nav-number">1.0.3.0.4.</span> <span class="nav-text">响应</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注册-添加用户"><span class="nav-number">1.0.4.</span> <span class="nav-text">注册(添加用户)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#请求头-3"><span class="nav-number">1.0.4.0.1.</span> <span class="nav-text">请求头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-3"><span class="nav-number">1.0.4.0.2.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应头-3"><span class="nav-number">1.0.4.0.3.</span> <span class="nav-text">响应头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应-3"><span class="nav-number">1.0.4.0.4.</span> <span class="nav-text">响应</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询用户"><span class="nav-number">1.0.5.</span> <span class="nav-text">查询用户</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查询多个用户（批量操作）"><span class="nav-number">1.0.5.1.</span> <span class="nav-text">查询多个用户（批量操作）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#请求头-4"><span class="nav-number">1.0.5.1.1.</span> <span class="nav-text">请求头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-4"><span class="nav-number">1.0.5.1.2.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应头-4"><span class="nav-number">1.0.5.1.3.</span> <span class="nav-text">响应头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应-4"><span class="nav-number">1.0.5.1.4.</span> <span class="nav-text">响应</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询单个用户"><span class="nav-number">1.0.5.2.</span> <span class="nav-text">查询单个用户</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#请求头-5"><span class="nav-number">1.0.5.2.1.</span> <span class="nav-text">请求头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-5"><span class="nav-number">1.0.5.2.2.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应头-5"><span class="nav-number">1.0.5.2.3.</span> <span class="nav-text">响应头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应-5"><span class="nav-number">1.0.5.2.4.</span> <span class="nav-text">响应</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改用户信息（暂时不考虑批量操作）"><span class="nav-number">1.0.6.</span> <span class="nav-text">修改用户信息（暂时不考虑批量操作）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#请求头-6"><span class="nav-number">1.0.6.0.1.</span> <span class="nav-text">请求头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-6"><span class="nav-number">1.0.6.0.2.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应头-6"><span class="nav-number">1.0.6.0.3.</span> <span class="nav-text">响应头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应-6"><span class="nav-number">1.0.6.0.4.</span> <span class="nav-text">响应</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询用户设备信息"><span class="nav-number">1.0.7.</span> <span class="nav-text">查询用户设备信息</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#请求头-7"><span class="nav-number">1.0.7.0.1.</span> <span class="nav-text">请求头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-7"><span class="nav-number">1.0.7.0.2.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应头-7"><span class="nav-number">1.0.7.0.3.</span> <span class="nav-text">响应头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应-7"><span class="nav-number">1.0.7.0.4.</span> <span class="nav-text">响应</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#刷新token"><span class="nav-number">1.0.8.</span> <span class="nav-text">刷新token</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#请求头-8"><span class="nav-number">1.0.8.0.1.</span> <span class="nav-text">请求头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-8"><span class="nav-number">1.0.8.0.2.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应头-8"><span class="nav-number">1.0.8.0.3.</span> <span class="nav-text">响应头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应-8"><span class="nav-number">1.0.8.0.4.</span> <span class="nav-text">响应</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询token状态"><span class="nav-number">1.0.9.</span> <span class="nav-text">查询token状态</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#请求头-9"><span class="nav-number">1.0.9.0.1.</span> <span class="nav-text">请求头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-9"><span class="nav-number">1.0.9.0.2.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应头-9"><span class="nav-number">1.0.9.0.3.</span> <span class="nav-text">响应头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应-9"><span class="nav-number">1.0.9.0.4.</span> <span class="nav-text">响应</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加用户设备信息"><span class="nav-number">1.0.9.1.</span> <span class="nav-text">添加用户设备信息</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#请求头-10"><span class="nav-number">1.0.9.1.0.1.</span> <span class="nav-text">请求头</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#参数-10"><span class="nav-number">1.0.9.1.0.2.</span> <span class="nav-text">参数</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应头-10"><span class="nav-number">1.0.9.1.1.</span> <span class="nav-text">响应头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应-10"><span class="nav-number">1.0.9.1.2.</span> <span class="nav-text">响应</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除用户设备信息"><span class="nav-number">1.0.9.2.</span> <span class="nav-text">删除用户设备信息</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#请求头-11"><span class="nav-number">1.0.9.2.1.</span> <span class="nav-text">请求头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-11"><span class="nav-number">1.0.9.2.2.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应头-11"><span class="nav-number">1.0.9.2.3.</span> <span class="nav-text">响应头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应-11"><span class="nav-number">1.0.9.2.4.</span> <span class="nav-text">响应</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加户黑名单"><span class="nav-number">1.0.10.</span> <span class="nav-text">添加户黑名单</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#批量操作"><span class="nav-number">1.0.10.1.</span> <span class="nav-text">批量操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#请求头-12"><span class="nav-number">1.0.10.1.1.</span> <span class="nav-text">请求头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-12"><span class="nav-number">1.0.10.1.2.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应头-12"><span class="nav-number">1.0.10.1.3.</span> <span class="nav-text">响应头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应-12"><span class="nav-number">1.0.10.1.4.</span> <span class="nav-text">响应</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#移除黑名单"><span class="nav-number">1.0.11.</span> <span class="nav-text">移除黑名单</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#请求头-13"><span class="nav-number">1.0.11.0.1.</span> <span class="nav-text">请求头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-13"><span class="nav-number">1.0.11.0.2.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应头-13"><span class="nav-number">1.0.11.0.3.</span> <span class="nav-text">响应头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应-13"><span class="nav-number">1.0.11.0.4.</span> <span class="nav-text">响应</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询用户收益"><span class="nav-number">1.0.12.</span> <span class="nav-text">查询用户收益</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#请求头-14"><span class="nav-number">1.0.12.0.1.</span> <span class="nav-text">请求头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-14"><span class="nav-number">1.0.12.0.2.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应头-14"><span class="nav-number">1.0.12.0.3.</span> <span class="nav-text">响应头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应-14"><span class="nav-number">1.0.12.0.4.</span> <span class="nav-text">响应</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#国际化多语言"><span class="nav-number">1.0.13.</span> <span class="nav-text">国际化多语言</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#请求头-15"><span class="nav-number">1.0.13.0.1.</span> <span class="nav-text">请求头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-15"><span class="nav-number">1.0.13.0.2.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应头-15"><span class="nav-number">1.0.13.0.3.</span> <span class="nav-text">响应头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应-15"><span class="nav-number">1.0.13.0.4.</span> <span class="nav-text">响应</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置国际化语言"><span class="nav-number">1.0.14.</span> <span class="nav-text">设置国际化语言</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#请求头-16"><span class="nav-number">1.0.14.0.1.</span> <span class="nav-text">请求头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-16"><span class="nav-number">1.0.14.0.2.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应头-16"><span class="nav-number">1.0.14.0.3.</span> <span class="nav-text">响应头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应-16"><span class="nav-number">1.0.14.0.4.</span> <span class="nav-text">响应</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Leguang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 访问总量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("UUrijxLg3YUcx9WIg5UlJchI-gzGzoHsz", "m6wXtGXT8NUa5W4TiErrXWpO");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

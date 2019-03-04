@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="IT站点, 一站到底">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="IT站点" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="Android模板代码规范——效率为王 Author：Leguang E-Mail：langmanleguang@qq.com  前言 没有对错，只有习惯  Android 开发本身是遵循 MVC 模式模式的，已经具备一定的模板性，但是由于人与人的习惯问题，对代码的细节会有一定的差异性，为了减少这种差异性，我们规定一套模板出来，同一个小组、部分甚至公司都可以按照这么一套最佳实践出来的模板抄，这样未">
+<meta name="keywords" content="IT站点, 一站到底">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android模板代码规范——效率为王">
+<meta property="og:url" content="http://itsite.cn/规范/Android/Android模板代码规范/Android模板代码规范/index.html">
+<meta property="og:site_name" content="IT站点">
+<meta property="og:description" content="Android模板代码规范——效率为王 Author：Leguang E-Mail：langmanleguang@qq.com  前言 没有对错，只有习惯  Android 开发本身是遵循 MVC 模式模式的，已经具备一定的模板性，但是由于人与人的习惯问题，对代码的细节会有一定的差异性，为了减少这种差异性，我们规定一套模板出来，同一个小组、部分甚至公司都可以按照这么一套最佳实践出来的模板抄，这样未">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://itsite.cn/规范/Android/Android模板代码规范/Android模板代码规范/image/annotation1.png">
+<meta property="og:image" content="http://itsite.cn/规范/Android/Android模板代码规范/Android模板代码规范/image/annotation0.png">
+<meta property="og:image" content="http://itsite.cn/规范/Android/Android模板代码规范/Android模板代码规范/image/annotation2.png">
+<meta property="og:image" content="http://itsite.cn/规范/Android/Android模板代码规范/Android模板代码规范/image/method.png">
+<meta property="og:image" content="http://itsite.cn/规范/Android/Android模板代码规范/Android模板代码规范/image/Activity.png">
+<meta property="og:image" content="http://itsite.cn/规范/Android/Android模板代码规范/Android模板代码规范/image/Fragment0.png">
+<meta property="og:image" content="http://itsite.cn/规范/Android/Android模板代码规范/Android模板代码规范/image/Fragment1.png">
+<meta property="og:image" content="http://itsite.cn/规范/Android/Android模板代码规范/Android模板代码规范/image/Fragment2.png">
+<meta property="og:image" content="http://itsite.cn/规范/Android/Android模板代码规范/Android模板代码规范/image/Fragment3.png">
+<meta property="og:image" content="http://itsite.cn/规范/Android/Android模板代码规范/Android模板代码规范/image/Fragment4.png">
+<meta property="og:image" content="http://itsite.cn/规范/Android/Android模板代码规范/Android模板代码规范/image/Fragment5.png">
+<meta property="og:image" content="http://itsite.cn/规范/Android/Android模板代码规范/Android模板代码规范/image/Fragment6.png">
+<meta property="og:image" content="http://itsite.cn/规范/Android/Android模板代码规范/Android模板代码规范/image/Presenter0.png">
+<meta property="og:image" content="http://itsite.cn/规范/Android/Android模板代码规范/Android模板代码规范/image/Presenter1.png">
+<meta property="og:image" content="http://itsite.cn/规范/Android/Android模板代码规范/Android模板代码规范/image/model-package.png">
+<meta property="og:image" content="http://itsite.cn/规范/Android/Android模板代码规范/Android模板代码规范/image/Model0.png">
+<meta property="og:image" content="http://itsite.cn/规范/Android/Android模板代码规范/Android模板代码规范/image/Contract.png">
+<meta property="og:image" content="http://itsite.cn/规范/Android/Android模板代码规范/Android模板代码规范/image/package.png">
+<meta property="og:updated_time" content="2019-03-04T02:35:54.986Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android模板代码规范——效率为王">
+<meta name="twitter:description" content="Android模板代码规范——效率为王 Author：Leguang E-Mail：langmanleguang@qq.com  前言 没有对错，只有习惯  Android 开发本身是遵循 MVC 模式模式的，已经具备一定的模板性，但是由于人与人的习惯问题，对代码的细节会有一定的差异性，为了减少这种差异性，我们规定一套模板出来，同一个小组、部分甚至公司都可以按照这么一套最佳实践出来的模板抄，这样未">
+<meta name="twitter:image" content="http://itsite.cn/规范/Android/Android模板代码规范/Android模板代码规范/image/annotation1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://itsite.cn/规范/Android/Android模板代码规范/Android模板代码规范/">
+
+
+
+
+
+  <title>Android模板代码规范——效率为王 | IT站点</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c5074ca51b610e0c4ba4fac7b24abea2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IT站点</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一站到底</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://itsite.cn/规范/Android/Android模板代码规范/Android模板代码规范/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Leguang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/favicon.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT站点">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android模板代码规范——效率为王</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-01T00:00:00+08:00">
+                2018-04-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/规范/Android/Android模板代码规范/Android模板代码规范/" class="leancloud_visitors" data-flag-title="Android模板代码规范——效率为王">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  2.3k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  8
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Android模板代码规范——效率为王"><a href="#Android模板代码规范——效率为王" class="headerlink" title="Android模板代码规范——效率为王"></a>Android模板代码规范——效率为王</h1><blockquote>
+<p>Author：Leguang</p>
+<p>E-Mail：<a href="mailto:langmanleguang@qq.com" target="_blank" rel="noopener">langmanleguang@qq.com</a></p>
+</blockquote>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>没有对错，只有习惯</p>
+</blockquote>
+<p>Android 开发本身是遵循 MVC 模式模式的，已经具备一定的模板性，但是由于人与人的习惯问题，对代码的细节会有一定的差异性，为了减少这种差异性，我们规定一套模板出来，同一个小组、部分甚至公司都可以按照这么一套最佳实践出来的模板抄，这样未来其他人员接手时会很容易明白你的套路，找到亲切感以减少不必要的心理负担。同时，我们在写某一个模块的功能的时候，都会或多或少地利用到之前写的代码，这里我说的“利用”而非“复用”，即复制粘贴。而简单粗暴的复制粘贴，却又想改动最小，出错最小，那么如何做到这一点呢？那就得要求之前的代码都模板代码，比如之前的Toolbar控件变量都叫toolbar，之前的RecyclerView控件变量都叫recyclerView，之前的方法都叫initData();，这样一来复制粘贴过来你基本不用改动什么。接下来们就以提现记录这么一个简单的MVP模式来发的功能为例，完整的约定一下MVP各层的模板代码。</p>
+<h2 id="公共要求"><a href="#公共要求" class="headerlink" title="公共要求"></a>公共要求</h2><h5 id="0-空格和冗余"><a href="#0-空格和冗余" class="headerlink" title="0. 空格和冗余"></a>0. 空格和冗余</h5><p>不要随意空行，也不要出现多余的东西。写代码时勤快按 <strong>Ctrl+Alt+L</strong> 和 <strong>Ctrl+Alt+O</strong> ，这样会格式化代码同时删除不必要的引用，让代码美观。同时不要随意空格，现在Android Studio是用的谷歌的 Java 模板 Style ，都有相关规定。XML文件中也是如此，写完代码后勤快格式化，删除多余空行。</p>
+<h5 id="1-相关命名规范"><a href="#1-相关命名规范" class="headerlink" title="1. 相关命名规范"></a>1. 相关命名规范</h5><p>具体参考：<a href="http://doc.un75.com:5934/开发规范/Android开发规范.html" target="_blank" rel="noopener">http://doc.un75.com:5934/开发规范/Android开发规范.html</a></p>
+<h5 id="2-文件头注释"><a href="#2-文件头注释" class="headerlink" title="2. 文件头注释"></a>2. 文件头注释</h5><p>每一个文件都必须要有文件头注释，如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * @author: leguang</span><br><span class="line"> * @e-mail: langmanleguang@qq.com</span><br><span class="line"> * @version: v0.0.0</span><br><span class="line"> * @blog: https://github.com/leguang</span><br><span class="line"> * @time: 2018/6/14 9:36</span><br><span class="line"> * @description:</span><br><span class="line"> */</span><br></pre></td></tr></table></figure></p>
+<h5 id="3-路由配置"><a href="#3-路由配置" class="headerlink" title="3. 路由配置"></a>3. 路由配置</h5><p>文件<strong>如果</strong>有 @Route 注解，那其值应该 /{module}/{class name} ，例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Route(path = &quot;/mine/WithdrawRecordsFragment&quot;)</span><br></pre></td></tr></table></figure></p>
+<p>考虑到常量重复引用会出错，我们抽取到 RouterHelper 中，实际引用如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Route(path = RouterHelper.WithdrawRecordsFragment)</span><br></pre></td></tr></table></figure></p>
+<h5 id="4-日志标签"><a href="#4-日志标签" class="headerlink" title="4. 日志标签"></a>4. 日志标签</h5><p>每一个类都要求有log tag，<strong>且写在第一行</strong>，Android Studio活动模板是logt就会出现log tag快速编辑。如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public static final String TAG=WithdrawRecordsFragment.class.getSimpleName();</span><br></pre></td></tr></table></figure></p>
+<h5 id="5-注释"><a href="#5-注释" class="headerlink" title="5. 注释"></a>5. 注释</h5><ol>
+<li><p>类注释写在文件头注释中。如下所示：</p>
+<p><img src="image/annotation1.png" alt="文件头注释示例"></p>
+</li>
+<li><p>类的成员变量如果需要注释，则用单行注释写在末尾，如果较长一行写不下，考虑到美观问题则写在成员变量的上面。对于成员变量的注释尽量不要用多行注释。如下所示：</p>
+<p><img src="image/annotation0.png" alt="成员变量注释示例"></p>
+</li>
+<li><p>成员方法尽量写注释，如果实在不需要的，可不写。如下所示：</p>
+<p><img src="image/annotation2.png" alt="方法注释示例"></p>
+</li>
+</ol>
+<h5 id="6-方法出现的位置和顺序"><a href="#6-方法出现的位置和顺序" class="headerlink" title="6. 方法出现的位置和顺序"></a>6. 方法出现的位置和顺序</h5><p>在方法从上至下的调用顺序就决定了方法从上至下书写的位置。如下所示：</p>
+<p><img src="image/method.png" alt="方法位置顺序示例"></p>
+<h2 id="MVP中的模板"><a href="#MVP中的模板" class="headerlink" title="MVP中的模板"></a>MVP中的模板</h2><h3 id="MVP中的View"><a href="#MVP中的View" class="headerlink" title="MVP中的View"></a>MVP中的View</h3><h5 id="Activity"><a href="#Activity" class="headerlink" title="Activity"></a>Activity</h5><p>我们的页面是多Activity+多Fragment的结构，基本都是用Fragment来承载View这一层，对于Activity只起一个承载Fragment和一些公共代码作用。如下所示：</p>
+<p><img src="image/Activity.png" alt="Activity示例"></p>
+<p>基本无其他代码，只有多个Fragment都用到的<strong>公共方法</strong>才写在Activity中，View层内容都集中在Fragment中。</p>
+<h5 id="Fragment"><a href="#Fragment" class="headerlink" title="Fragment"></a>Fragment</h5><p>除了上述公共要求外，创建Fragment使用了一个静态方法，如下所示：</p>
+<p><img src="image/Fragment0.png" alt="Fragment模板示例0"></p>
+<p>如果需要传参则统一使用Bundle作为唯一参数，具体参数都丢进Bundle里，这样我们在复制粘贴的时候就不需要管参数类型问题了，统一都只有一种类型。如下所示：</p>
+<p><img src="image/Fragment1.png" alt="Fragment示例1"></p>
+<p>有参数就要获取，而获取参数统一在onCreate方法里获取，如下所示：</p>
+<p><img src="image/Fragment2.png" alt="Fragment示例2"></p>
+<p>统一使用模板代码，安全高效，同时注意获取的key是统一的一个，除非有两个，则再自行定义。</p>
+<p>接下来是Fragment中的两个标准回调，也可以看成是View的入口，所有的代码都从这里开始，如下所示：</p>
+<p><img src="image/Fragment3.png" alt="Fragment示例3"></p>
+<p>接下来就是定义的这些方法的具体实现。其中需要强调的是变量的命名，尽量都取一样的名字，如果该类中只有一个 RecyclerView 则命名为 recyclerView 即可，如果有多有 RecyclerView 则命名为 rvXXX ，这样一来复制到其他地方使用的时候基本不用改写什么，由于都是模板方法，就不一一列出了。对于配合RecyclerView使用的Adapter，如果代码不多就不需要独立出一个类来，只需要使用匿名内部类的形式即可，如下所示：</p>
+<p><img src="image/Fragment4.png" alt="Fragment示例4"></p>
+<p>对于刷新和加载更多，建议也独立出一个方法来，因为有的时候会接收到别的广播后，需要刷新界面等。如下所示：</p>
+<p><img src="image/Fragment5.png" alt="Fragment示例5"></p>
+<p>对于异常的处理，由于我们把非200和其他的异常都统一回调到View的 error(BaseResponse response) 方法中，因此需要根据 BaseResponse 中的错误码做不同的处理，当然也可以定义其他专属回调方法供P层调用。如下所示：</p>
+<p><img src="image/Fragment6.png" alt="Fragment示例6"></p>
+<h3 id="MVP中的Presenter"><a href="#MVP中的Presenter" class="headerlink" title="MVP中的Presenter"></a>MVP中的Presenter</h3><p>首先对类的命名统一命名为：XXXPresenter，一些基本的初始模板代码如下所示：</p>
+<p><img src="image/Presenter0.png" alt="Presenter示例0"></p>
+<p>由于Presenter只是起一个调度作用，且数据都是封装在Modle层中，并且以 RxJava 中的Observable类型返回，因此Presenter拿到的都是Observable，所以做如下规定：</p>
+<ul>
+<li><p>所有的数据是在异步线程中获取和处理，只有在回调到View层之前那一刻才切换回主线程，因此</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.observeOn(AndroidSchedulers.mainThread())</span><br></pre></td></tr></table></figure>
+<p>固定写在Presenter中。</p>
+</li>
+<li><p>在 subscribe 时，我们在Presenter的父类中定义了好几种可使用的内嵌类（就是大家常说的非静态内部类）形式：BaseObserver 、BaseConsumer 、DefaultObserver 、 DefaultConsumer 等，这些都是根据</p>
+<ol>
+<li>是否调用View的start方法（是否需要 loading 弹框）</li>
+<li>是都将非200的错误码归类到View的error方法中（是否需要将非200错误传递到View层）</li>
+<li>其他特殊类型需求的。比如 StringObserver 等 </li>
+</ol>
+<p>等来划分和实现的，因此可以实际需求来使用，比如在列表页面，由于顶部有下拉刷新动画，因此就不需要 loading 弹框，就可以不使用 BaseObserver ，而只需要 BaseConsumer ，同时自己调用 this::error 。</p>
+</li>
+<li><p>如果 subscribe 是使用的Consumer，那必须要添加到 mRxManager 中，Observer 则不需要，如下所示：</p>
+</li>
+</ul>
+<p><img src="image/Presenter1.png" alt="Presenter示例1"></p>
+<ul>
+<li>为避免内存泄露，Context 对象尽量不要传递到 Presenter 层，在 Presenter 中如果要使用 Context 尽量使用 BaseApp 中定义的静态全局变量 mContext ，如果万一真要传递过来，则考虑只在函数作用域内。</li>
+</ul>
+<h3 id="MVP中的Model"><a href="#MVP中的Model" class="headerlink" title="MVP中的Model"></a>MVP中的Model</h3><h4 id="分包"><a href="#分包" class="headerlink" title="分包"></a>分包</h4><p>Model层是数据相关层，对于不同类型的模型分类放置在不同的包下，模型统一放在entity包下，entity包下又分bean和db，bean统一为网络映射文件，db统一为数据库ORM映射文件。</p>
+<p><img src="image/model-package.png" alt="Model示例0"></p>
+<p>对于 Model 层，相当于数据 Repository ，网络获取、数据库、缓存等数据来源都写在这一层，并且最好封装成 RxJava 的 Observable 形式返回给 Presenter 层调用，同时记得放到异步线程中，如下所示：</p>
+<p><img src="image/Model0.png" alt="Model示例0"></p>
+<h3 id="MVP中的Contract"><a href="#MVP中的Contract" class="headerlink" title="MVP中的Contract"></a>MVP中的Contract</h3><p>我们的MVP三角色之间的依赖全是依赖的接口，因此会有很多接口类，为防止类爆炸，我们用一个接口类包含其他小的接口类，所以使用 Contract 这个概念来承载，将三层需要用到接口都定义来 Contract 接口类中，并作出如下规定：</p>
+<ul>
+<li>所有接口定义时，参数统一传 Params 对象，将参数定义并装载在 Params 类中，这一样做的目的也是方便复制粘贴时改动最少，同时也方便统一管理，因为一个项目中能使用到的不同名称的参数了不起也就几十个，其实大多数只是类型不同而已，而接口中定义的参数对应的 key 是 Retrofit 定义接口时就已经写好的，所以三层之间只是传递一个不通类型的值而已。对于 post 请求传递 json 对象时，也只需要传递 Params 对象过去，同时由于我们已经设置了空值过滤，Params 里的字段都是用的包装类型，因此你没设置值的参数是不会传递到后台的。</li>
+<li>相应到 View 的接口中的参数，尽量是 BaseResponse<xxx> 类型的，因为你不知道 View 需要用到哪些东西，同时也方便复制粘贴改动量小。</xxx></li>
+</ul>
+<p>如下所示：</p>
+<p><img src="image/Contract.png" alt="Contract示例0"></p>
+<h3 id="包"><a href="#包" class="headerlink" title="包"></a>包</h3><p>按模块以MVP各层分包，其中如果有Activity的话，则放模块根包里。如下所示：</p>
+<p><img src="image/package.png" alt="分包示例"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>之所以定义这样的模板代码，主要是为了规范编码范式，使每个模块都“长得一样”，一套好的模板代码可以让开发者受益，也可以让后来接手的人很快找到套路并理解融入进去。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>谢谢阁下赏识</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="Leguang WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.png" alt="Leguang Alipay">
+        <p>Alipay</p>
+      </div>
+    
+
+    
+      <div id="bitcoin" style="display: inline-block">
+        <img id="bitcoin_qr" src="/images/bitcoin.png" alt="Leguang Bitcoin">
+        <p>Bitcoin</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Leguang
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://itsite.cn/规范/Android/Android模板代码规范/Android模板代码规范/" title="Android模板代码规范——效率为王">http://itsite.cn/规范/Android/Android模板代码规范/Android模板代码规范/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/规范/Android/Android开发规范/Android开发规范/" rel="next" title="Android开发规范">
+                <i class="fa fa-chevron-left"></i> Android开发规范
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/技术选型/Android/Android端架构与技术选型/" rel="prev" title="Android端架构与技术选型">
+                Android端架构与技术选型 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/favicon.ico" alt="Leguang">
+          <p class="site-author-name" itemprop="name">Leguang</p>
+           
+              <p class="site-description motion-element" itemprop="description">浮生若戏悲欢聚 笑看天风扫寰宇</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/leguang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:langmanleguang@qq.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Android模板代码规范——效率为王"><span class="nav-number">1.</span> <span class="nav-text">Android模板代码规范——效率为王</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#公共要求"><span class="nav-number">1.2.</span> <span class="nav-text">公共要求</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#0-空格和冗余"><span class="nav-number">1.2.0.0.1.</span> <span class="nav-text">0. 空格和冗余</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-相关命名规范"><span class="nav-number">1.2.0.0.2.</span> <span class="nav-text">1. 相关命名规范</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-文件头注释"><span class="nav-number">1.2.0.0.3.</span> <span class="nav-text">2. 文件头注释</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-路由配置"><span class="nav-number">1.2.0.0.4.</span> <span class="nav-text">3. 路由配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-日志标签"><span class="nav-number">1.2.0.0.5.</span> <span class="nav-text">4. 日志标签</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-注释"><span class="nav-number">1.2.0.0.6.</span> <span class="nav-text">5. 注释</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-方法出现的位置和顺序"><span class="nav-number">1.2.0.0.7.</span> <span class="nav-text">6. 方法出现的位置和顺序</span></a></li></ol></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#MVP中的模板"><span class="nav-number">1.3.</span> <span class="nav-text">MVP中的模板</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MVP中的View"><span class="nav-number">1.3.1.</span> <span class="nav-text">MVP中的View</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Activity"><span class="nav-number">1.3.1.0.1.</span> <span class="nav-text">Activity</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Fragment"><span class="nav-number">1.3.1.0.2.</span> <span class="nav-text">Fragment</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MVP中的Presenter"><span class="nav-number">1.3.2.</span> <span class="nav-text">MVP中的Presenter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MVP中的Model"><span class="nav-number">1.3.3.</span> <span class="nav-text">MVP中的Model</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分包"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">分包</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MVP中的Contract"><span class="nav-number">1.3.4.</span> <span class="nav-text">MVP中的Contract</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#包"><span class="nav-number">1.3.5.</span> <span class="nav-text">包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.4.</span> <span class="nav-text">总结</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Leguang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 访问总量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("UUrijxLg3YUcx9WIg5UlJchI-gzGzoHsz", "m6wXtGXT8NUa5W4TiErrXWpO");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
