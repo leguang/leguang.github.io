@@ -1,0 +1,2029 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="IT站点, 一站到底" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="IT站点" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="镰刀后台管理系统设计 | 文档                                            文档   主页文档关于   Github       主页文档关于   Github       概述  REST接口规范目标要求HTTP部分错误/异常处理url失效对于后台文档的要求容错性（健壮性）国际化（多语言支持）开放平台  镰刀项目">
+<meta name="keywords" content="IT站点, 一站到底">
+<meta property="og:type" content="website">
+<meta property="og:title" content="IT站点">
+<meta property="og:url" content="http://itsite.cn/documents/documents/镰刀项目/镰刀后台管理系统/镰刀后台管理系统.html">
+<meta property="og:site_name" content="IT站点">
+<meta property="og:description" content="镰刀后台管理系统设计 | 文档                                            文档   主页文档关于   Github       主页文档关于   Github       概述  REST接口规范目标要求HTTP部分错误/异常处理url失效对于后台文档的要求容错性（健壮性）国际化（多语言支持）开放平台  镰刀项目">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://itsite.cn/assets/img/function-introduction.a2c83397.png">
+<meta property="og:updated_time" content="2019-03-04T03:08:50.143Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IT站点">
+<meta name="twitter:description" content="镰刀后台管理系统设计 | 文档                                            文档   主页文档关于   Github       主页文档关于   Github       概述  REST接口规范目标要求HTTP部分错误/异常处理url失效对于后台文档的要求容错性（健壮性）国际化（多语言支持）开放平台  镰刀项目">
+<meta name="twitter:image" content="http://itsite.cn/assets/img/function-introduction.a2c83397.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://itsite.cn/documents/documents/镰刀项目/镰刀后台管理系统/镰刀后台管理系统.html"/>
+
+
+
+
+
+  <title> | IT站点</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c5074ca51b610e0c4ba4fac7b24abea2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IT站点</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一站到底</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+	<h1 class="post-title" itemprop="name headline"></h1>
+
+
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+        
+          <!DOCTYPE html>
+<html lang="en-US">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>镰刀后台管理系统设计 | 文档</title>
+    <meta name="description" content="浮生若戏悲欢聚  笑看天风扫寰宇">
+    <link rel="icon" href="/img/logo.ico">
+  <link rel="apple-touch-icon" href="/img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;">
+    
+    <link rel="preload" href="/assets/css/0.styles.aca6ffaf.css" as="style"><link rel="preload" href="/assets/js/app.4c782fad.js" as="script"><link rel="preload" href="/assets/js/11.ae680e7e.js" as="script"><link rel="prefetch" href="/assets/js/10.4aad0737.js"><link rel="prefetch" href="/assets/js/12.1d27d644.js"><link rel="prefetch" href="/assets/js/13.448e0c99.js"><link rel="prefetch" href="/assets/js/14.7888ac07.js"><link rel="prefetch" href="/assets/js/15.eac6ce9c.js"><link rel="prefetch" href="/assets/js/16.5e257dc3.js"><link rel="prefetch" href="/assets/js/17.c6a677c6.js"><link rel="prefetch" href="/assets/js/18.e4e45a90.js"><link rel="prefetch" href="/assets/js/19.48e71871.js"><link rel="prefetch" href="/assets/js/2.d7f99d20.js"><link rel="prefetch" href="/assets/js/20.6bdc9c27.js"><link rel="prefetch" href="/assets/js/21.b7e2381f.js"><link rel="prefetch" href="/assets/js/22.03913796.js"><link rel="prefetch" href="/assets/js/23.619adacc.js"><link rel="prefetch" href="/assets/js/24.e3862973.js"><link rel="prefetch" href="/assets/js/25.ab00d111.js"><link rel="prefetch" href="/assets/js/26.68a82a09.js"><link rel="prefetch" href="/assets/js/27.68e8506f.js"><link rel="prefetch" href="/assets/js/28.6bda4ca9.js"><link rel="prefetch" href="/assets/js/29.841a5e29.js"><link rel="prefetch" href="/assets/js/3.517a5386.js"><link rel="prefetch" href="/assets/js/30.baa92884.js"><link rel="prefetch" href="/assets/js/31.6a6e1f1f.js"><link rel="prefetch" href="/assets/js/32.e0593dce.js"><link rel="prefetch" href="/assets/js/33.f64e7c9d.js"><link rel="prefetch" href="/assets/js/34.2c4dcebd.js"><link rel="prefetch" href="/assets/js/35.f18d89f4.js"><link rel="prefetch" href="/assets/js/36.cd0f4d28.js"><link rel="prefetch" href="/assets/js/37.ce45c53f.js"><link rel="prefetch" href="/assets/js/38.65ab49b8.js"><link rel="prefetch" href="/assets/js/39.c27bd8cc.js"><link rel="prefetch" href="/assets/js/4.b9d50c9e.js"><link rel="prefetch" href="/assets/js/40.c45010eb.js"><link rel="prefetch" href="/assets/js/41.59dd911f.js"><link rel="prefetch" href="/assets/js/42.a23b0abe.js"><link rel="prefetch" href="/assets/js/43.573562a0.js"><link rel="prefetch" href="/assets/js/44.4b58ecc8.js"><link rel="prefetch" href="/assets/js/45.0bc668b9.js"><link rel="prefetch" href="/assets/js/5.a28803d7.js"><link rel="prefetch" href="/assets/js/6.9c510520.js"><link rel="prefetch" href="/assets/js/7.a39ff044.js"><link rel="prefetch" href="/assets/js/8.31c34ffe.js"><link rel="prefetch" href="/assets/js/9.3cd700e9.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.aca6ffaf.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewbox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"/></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">文档</span></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">主页</a></div><div class="nav-item"><a href="/documents/" class="nav-link router-link-active">文档</a></div><div class="nav-item"><a href="/about/" class="nav-link">关于</a></div><div class="nav-item"><a href="https://github.com/leguang" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"/> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"/></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">主页</a></div><div class="nav-item"><a href="/documents/" class="nav-link router-link-active">文档</a></div><div class="nav-item"><a href="/about/" class="nav-link">关于</a></div><div class="nav-item"><a href="https://github.com/leguang" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"/> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"/></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><div class="sidebar-group first"><p class="sidebar-heading"><span>概述</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/documents/" class="sidebar-link">REST接口规范</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/documents/#目标" class="sidebar-link">目标</a></li><li class="sidebar-sub-header"><a href="/documents/#要求" class="sidebar-link">要求</a></li><li class="sidebar-sub-header"><a href="/documents/#http部分" class="sidebar-link">HTTP部分</a></li><li class="sidebar-sub-header"><a href="/documents/#错误-异常处理" class="sidebar-link">错误/异常处理</a></li><li class="sidebar-sub-header"><a href="/documents/#url失效" class="sidebar-link">url失效</a></li><li class="sidebar-sub-header"><a href="/documents/#对于后台文档的要求" class="sidebar-link">对于后台文档的要求</a></li><li class="sidebar-sub-header"><a href="/documents/#容错性（健壮性）" class="sidebar-link">容错性（健壮性）</a></li><li class="sidebar-sub-header"><a href="/documents/#国际化（多语言支持）" class="sidebar-link">国际化（多语言支持）</a></li></ul></li></ul></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>开放平台</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading open"><span>镰刀项目</span> <span class="arrow down"></span></p> <ul class="sidebar-group-items"><li><a href="/documents/镰刀项目/镰刀接口文档/镰刀接口文档.html" class="sidebar-link">镰刀项目方案及其接口</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/documents/镰刀项目/镰刀接口文档/镰刀接口文档.html#资源" class="sidebar-link">资源</a></li><li class="sidebar-sub-header"><a href="/documents/镰刀项目/镰刀接口文档/镰刀接口文档.html#http部分" class="sidebar-link">HTTP部分</a></li><li class="sidebar-sub-header"><a href="/documents/镰刀项目/镰刀接口文档/镰刀接口文档.html#长连接部分（下期考虑）" class="sidebar-link">长连接部分（下期考虑）</a></li></ul></li><li><a href="/documents/镰刀项目/镰刀爬虫系统/镰刀数据爬虫系统.html" class="sidebar-link">镰刀数据爬虫系统</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/documents/镰刀项目/镰刀爬虫系统/镰刀数据爬虫系统.html#整体框架" class="sidebar-link">整体框架</a></li><li class="sidebar-sub-header"><a href="/documents/镰刀项目/镰刀爬虫系统/镰刀数据爬虫系统.html#程序设计及运行" class="sidebar-link">程序设计及运行</a></li><li class="sidebar-sub-header"><a href="/documents/镰刀项目/镰刀爬虫系统/镰刀数据爬虫系统.html#使用工具及数据库" class="sidebar-link">使用工具及数据库</a></li><li class="sidebar-sub-header"><a href="/documents/镰刀项目/镰刀爬虫系统/镰刀数据爬虫系统.html#网站爬虫spiders" class="sidebar-link">网站爬虫spiders</a></li><li class="sidebar-sub-header"><a href="/documents/镰刀项目/镰刀爬虫系统/镰刀数据爬虫系统.html#数据分析提取" class="sidebar-link">数据分析提取</a></li></ul></li><li><a href="/documents/镰刀项目/镰刀通知方案/镰刀通知方案.html" class="sidebar-link">镰刀通知详情功能</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/documents/镰刀项目/镰刀通知方案/镰刀通知方案.html#需求" class="sidebar-link">需求</a></li></ul></li><li><a href="/documents/镰刀项目/镰刀备忘录/镰刀备忘录.html" class="sidebar-link">镰刀备忘录</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/documents/镰刀项目/镰刀备忘录/镰刀备忘录.html#_2018-10-09" class="sidebar-link">2018.10.09</a></li><li class="sidebar-sub-header"><a href="/documents/镰刀项目/镰刀备忘录/镰刀备忘录.html#_2018-10-15" class="sidebar-link">2018.10.15</a></li></ul></li><li><a href="/documents/镰刀项目/镰刀后台管理系统/镰刀后台管理系统.html" class="active sidebar-link">镰刀后台管理系统设计</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/documents/镰刀项目/镰刀后台管理系统/镰刀后台管理系统.html#功能大纲" class="sidebar-link">功能大纲</a></li><li class="sidebar-sub-header"><a href="/documents/镰刀项目/镰刀后台管理系统/镰刀后台管理系统.html#功能" class="sidebar-link">功能</a></li></ul></li></ul></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>摩尔钱包</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>电商项目</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>币圈项目</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>用户系统</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>中后台系统</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>公共部分</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>规范</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>技术选型</span> <span class="arrow right"></span></p> <!----></div></li></ul> </div> <div class="page"> <div class="content"><h1 id="镰刀后台管理系统设计"><a href="#镰刀后台管理系统设计" aria-hidden="true" class="header-anchor">#</a> 镰刀后台管理系统设计</h1> <blockquote><p>Author：Leguang</p> <p>E-Mail：<a href="mailto:langmanleguang@qq.com" target="_blank" rel="noopener">langmanleguang@qq.com</a></p></blockquote> <h2 id="功能大纲"><a href="#功能大纲" aria-hidden="true" class="header-anchor">#</a> 功能大纲</h2> <p>暂时只罗列出这么多功能，后续有想到再加。 <strong>以下功能如无特别说明，均针对的是摩尔钱包功能。</strong></p> <p><img src="/assets/img/function-introduction.a2c83397.png" alt="镰刀后台功能介绍"></p> <p>左边导航从上至下，一级分类及其对应的子功能如下：</p> <table><thead><tr><th>一级分类</th> <th>子功能</th></tr></thead> <tbody><tr><td>0.source（爬虫来源）</td> <td>1.新增source <br>2.修改source<br>3.查询source</td></tr> <tr><td>1.tag（标签）</td> <td>1.新增tag <br>2.修改tag<br>3.查询tag</td></tr> <tr><td>2.item（新闻）</td> <td>1.新增item<br>2.修改item<br>3.查询tag</td></tr> <tr><td>2.配置</td> <td>1.镰刀App文案（对应的是初始化接口）<br>2.个人中心模块导航列表<br>3.红包<br>4.海报<br>5.推荐tag</td></tr> <tr><td>3.通知</td> <td>1.通知 <br>2.历史记录</td></tr> <tr><td>4.推送</td> <td>1.广告 <br>2.连接管理 <br>3.历史记录</td></tr> <tr><td>5.版本升级</td> <td>1.Android <br>2.iOS</td></tr></tbody></table> <h2 id="功能"><a href="#功能" aria-hidden="true" class="header-anchor">#</a> 功能</h2> <h3 id="环境切换"><a href="#环境切换" aria-hidden="true" class="header-anchor">#</a> 环境切换</h3> <p>针对后台系统的所有功能都是有测试环境和正式环境区分的，默认是正式环境，这个是针对某些需要测试的功能设计的，比如推送广告，需要看一下效果，因此需要先在测试环境配好，测试通过再直接用正式环境操作。所以考虑在页面顶部有一个开关，点击一下就切换到另一种模式。</p> <hr> <h3 id="爬虫来源sources管理"><a href="#爬虫来源sources管理" aria-hidden="true" class="header-anchor">#</a> 爬虫来源sources管理</h3> <p>管理爬虫抓取的某个关键字的来源</p> <h4 id="获取source列表"><a href="#获取source列表" aria-hidden="true" class="header-anchor">#</a> 获取source列表</h4> <blockquote><p>地址：https://api.xxx.com/path/xxx/v1/sources</p></blockquote> <h5 id="请求头"><a href="#请求头" aria-hidden="true" class="header-anchor">#</a> 请求头</h5> <div class="language- extra-class"><pre class="language-text"><code>GET /xxx/v1/sources
+Accept: application/json
+Content-Type: application/json;charset=UTF-8
+Token: token_G34G34G34G34G35G5
+</code></pre></div><h5 id="参数"><a href="#参数" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <div class="language- extra-class"><pre class="language-text"><code>?tag=d5f4c561ba2d11e8bbbd54e1add1a2c4
+</code></pre></div><table><thead><tr><th>params</th> <th>类型</th> <th>是否必须</th> <th>描述</th></tr></thead> <tbody><tr><td>tag</td> <td>String</td> <td>是</td> <td>tag的uid</td></tr></tbody></table> <h5 id="响应头"><a href="#响应头" aria-hidden="true" class="header-anchor">#</a> 响应头</h5> <div class="language- extra-class"><pre class="language-text"><code>HTTP/1.1 200 OK
+Content-Type:application/json; charset=utf-8
+</code></pre></div><h5 id="响应"><a href="#响应" aria-hidden="true" class="header-anchor">#</a> 响应</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+    &quot;message&quot;: &quot;居然被你看到了&quot;,
+    &quot;code&quot;: 200,
+    &quot;data&quot;: [
+        {
+            &quot;uid&quot;: &quot;2&quot;,
+            &quot;name&quot;: &quot;weibo&quot;,
+            &quot;tag&quot;: &quot;32t23t23sdvsdbse324h34h&quot;,
+            &quot;value&quot;: &quot;6394162797&quot;,
+            &quot;time&quot;: &quot;2018-10-12 15:19:46&quot;,
+            &quot;enable&quot;: true
+        },
+        {
+            &quot;uid&quot;: &quot;33&quot;,
+            &quot;name&quot;: &quot;official&quot;,
+            &quot;tag&quot;: &quot;32t23t23sdvsdbse324h34h&quot;,
+            &quot;value&quot;: &quot;https://www.gxb.io/&quot;,
+            &quot;time&quot;: &quot;2018-10-12 15:19:46&quot;,
+            &quot;enable&quot;: true
+        },
+        {
+            &quot;uid&quot;: &quot;34&quot;,
+            &quot;name&quot;: &quot;twitter&quot;,
+            &quot;tag&quot;: &quot;32t23t23sdvsdbse324h34h&quot;,
+            &quot;value&quot;: &quot;SwftCoin&quot;,
+            &quot;time&quot;: &quot;2018-10-12 15:19:46&quot;,
+            &quot;enable&quot;: true
+        }
+    ]
+}
+</code></pre></div><table><thead><tr><th>key</th> <th>类型</th> <th>是否必须</th> <th>描述</th></tr></thead> <tbody><tr><td>message</td> <td>String</td> <td>是</td> <td>同上</td></tr> <tr><td>code</td> <td>int</td> <td>是</td> <td>同上</td></tr> <tr><td>data</td> <td>JSON数组</td> <td>是</td> <td>同上</td></tr> <tr><td>data.uid</td> <td>String</td> <td>是</td> <td>该来源的唯一标识</td></tr> <tr><td>data.name</td> <td>String</td> <td>是</td> <td>该来源的全称</td></tr> <tr><td>data.tag</td> <td>String</td> <td>是</td> <td>该来源所绑定的tag的uid</td></tr> <tr><td>data.value</td> <td>String</td> <td>是</td> <td>该来源的所要爬去的入口值</td></tr> <tr><td>data.time</td> <td>String</td> <td>是</td> <td>该来源修改时间</td></tr> <tr><td>data.enable</td> <td>Boolean</td> <td>是</td> <td>该来源是否可用</td></tr></tbody></table> <h5 id="异常"><a href="#异常" aria-hidden="true" class="header-anchor">#</a> 异常</h5> <table><thead><tr><th>状态码</th> <th>类型</th> <th>是否必要</th> <th>描述</th></tr></thead> <tbody><tr><td>XXX</td> <td>int</td> <td>否</td> <td>应用版本名称错误：针对的是请求头里的Application字段</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>缺少参数：缺少token等</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>参数错误：token错误等</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>账号异常：可能被封禁了</td></tr></tbody></table> <hr> <h4 id="新增source"><a href="#新增source" aria-hidden="true" class="header-anchor">#</a> 新增source</h4> <blockquote><p>地址：https://api.xxx.com/path/xxx/v1/sources</p></blockquote> <h5 id="请求头-2"><a href="#请求头-2" aria-hidden="true" class="header-anchor">#</a> 请求头</h5> <div class="language- extra-class"><pre class="language-text"><code>POST /xxx/v1/sources
+Accept: application/json
+Content-Type: application/json;charset=UTF-8
+Token: token_G34G34G34G34G35G5
+</code></pre></div><h5 id="参数-2"><a href="#参数-2" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <div class="language- extra-class"><pre class="language-text"><code>[
+    {
+        &quot;name&quot;: &quot;weibo&quot;,
+        &quot;tag&quot;: &quot;32t23t23sdvsdbse324h34h&quot;,
+        &quot;value&quot;: &quot;6394162797&quot;,
+        &quot;enable&quot;: true
+    },
+    {
+        &quot;name&quot;: &quot;weibo&quot;,
+        &quot;tag&quot;: &quot;32t23t23sdvsdbse324h34h&quot;,
+        &quot;value&quot;: &quot;6394162797&quot;,
+        &quot;enable&quot;: true
+    },
+    {
+        &quot;name&quot;: &quot;weibo&quot;,
+        &quot;tag&quot;: &quot;32t23t23sdvsdbse324h34h&quot;,
+        &quot;value&quot;: &quot;6394162797&quot;,
+        &quot;enable&quot;: true
+    }
+]
+</code></pre></div><table><thead><tr><th>params</th> <th>类型</th> <th>是否必须</th> <th>描述</th></tr></thead> <tbody><tr><td>name</td> <td>String</td> <td>是</td> <td>该来源的全称</td></tr> <tr><td>tag</td> <td>String</td> <td>是</td> <td>该来源所绑定的tag的uid</td></tr> <tr><td>value</td> <td>String</td> <td>是</td> <td>该来源的所要爬去的入口值</td></tr> <tr><td>enable</td> <td>Boolean</td> <td>是</td> <td>该来源是否可用</td></tr></tbody></table> <h5 id="响应头-2"><a href="#响应头-2" aria-hidden="true" class="header-anchor">#</a> 响应头</h5> <div class="language- extra-class"><pre class="language-text"><code>HTTP/1.1 200 OK
+Content-Type:application/json; charset=utf-8
+</code></pre></div><h5 id="响应-2"><a href="#响应-2" aria-hidden="true" class="header-anchor">#</a> 响应</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+    &quot;message&quot;: &quot;居然被你看到了&quot;,
+    &quot;code&quot;: 200,
+    &quot;data&quot;: [
+        {
+            &quot;uid&quot;: &quot;2&quot;
+        },
+        {
+            &quot;uid&quot;: &quot;33&quot;
+        },
+        {
+            &quot;uid&quot;: &quot;34&quot;
+        }
+    ]
+}
+</code></pre></div><table><thead><tr><th>key</th> <th>类型</th> <th>是否必须</th> <th>描述</th></tr></thead> <tbody><tr><td>message</td> <td>String</td> <td>是</td> <td>同上</td></tr> <tr><td>code</td> <td>int</td> <td>是</td> <td>同上</td></tr> <tr><td>data</td> <td>JSON数组</td> <td>是</td> <td>同上</td></tr> <tr><td>data.uid</td> <td>String</td> <td>是</td> <td>该来源的唯一标识</td></tr></tbody></table> <h5 id="异常-2"><a href="#异常-2" aria-hidden="true" class="header-anchor">#</a> 异常</h5> <table><thead><tr><th>状态码</th> <th>类型</th> <th>是否必要</th> <th>描述</th></tr></thead> <tbody><tr><td>XXX</td> <td>int</td> <td>否</td> <td>应用版本名称错误：针对的是请求头里的Application字段</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>缺少参数：缺少token等</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>参数错误：token错误等</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>账号异常：可能被封禁了</td></tr></tbody></table> <hr> <h4 id="修改source"><a href="#修改source" aria-hidden="true" class="header-anchor">#</a> 修改source</h4> <blockquote><p>地址：https://api.xxx.com/path/xxx/v1/sources/{uid}</p></blockquote> <h5 id="请求头-3"><a href="#请求头-3" aria-hidden="true" class="header-anchor">#</a> 请求头</h5> <div class="language- extra-class"><pre class="language-text"><code>PATCH /xxx/v1/sources/{uid}
+Accept: application/json
+Content-Type: application/json;charset=UTF-8
+Token: token_G34G34G34G34G35G5
+</code></pre></div><h5 id="参数-3"><a href="#参数-3" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+    &quot;name&quot;: &quot;weibo&quot;,
+    &quot;tag&quot;: &quot;32t23t23sdvsdbse324h34h&quot;,
+    &quot;value&quot;: &quot;6394162797&quot;,
+    &quot;enable&quot;: true
+}
+</code></pre></div><table><thead><tr><th>params</th> <th>类型</th> <th>是否必须</th> <th>描述</th></tr></thead> <tbody><tr><td>name</td> <td>String</td> <td>是</td> <td>该来源的全称</td></tr> <tr><td>tag</td> <td>String</td> <td>是</td> <td>该来源所绑定的tag的uid</td></tr> <tr><td>value</td> <td>String</td> <td>是</td> <td>该来源的所要爬去的入口值</td></tr> <tr><td>enable</td> <td>Boolean</td> <td>是</td> <td>该来源是否可用</td></tr></tbody></table> <h5 id="响应头-3"><a href="#响应头-3" aria-hidden="true" class="header-anchor">#</a> 响应头</h5> <div class="language- extra-class"><pre class="language-text"><code>HTTP/1.1 200 OK
+Content-Type:application/json; charset=utf-8
+</code></pre></div><h5 id="响应-3"><a href="#响应-3" aria-hidden="true" class="header-anchor">#</a> 响应</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+    &quot;message&quot;: &quot;居然被你看到了&quot;,
+    &quot;code&quot;: 200,
+    &quot;data&quot;: {
+        &quot;uid&quot;: &quot;2&quot;
+    }
+}
+</code></pre></div><table><thead><tr><th>key</th> <th>类型</th> <th>是否必须</th> <th>描述</th></tr></thead> <tbody><tr><td>message</td> <td>String</td> <td>是</td> <td>同上</td></tr> <tr><td>code</td> <td>int</td> <td>是</td> <td>同上</td></tr> <tr><td>data</td> <td>JSON数组</td> <td>是</td> <td>同上</td></tr> <tr><td>data.uid</td> <td>String</td> <td>是</td> <td>该来源的唯一标识</td></tr></tbody></table> <h5 id="异常-3"><a href="#异常-3" aria-hidden="true" class="header-anchor">#</a> 异常</h5> <table><thead><tr><th>状态码</th> <th>类型</th> <th>是否必要</th> <th>描述</th></tr></thead> <tbody><tr><td>XXX</td> <td>int</td> <td>否</td> <td>应用版本名称错误：针对的是请求头里的Application字段</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>缺少参数：缺少token等</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>参数错误：token错误等</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>账号异常：可能被封禁了</td></tr></tbody></table> <hr> <h3 id="tag（标签）"><a href="#tag（标签）" aria-hidden="true" class="header-anchor">#</a> tag（标签）</h3> <p>对于tag模块的管理无非增改查，界面大致如下图所示：</p> <h4 id="获取tags列表"><a href="#获取tags列表" aria-hidden="true" class="header-anchor">#</a> 获取tags列表</h4> <blockquote><p>地址：<a href="https://api.xxx.com/path/xxx/v1/tags" target="_blank" rel="noopener noreferrer">https://api.xxx.com/path/xxx/v1/tags<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"/> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"/></svg></a></p></blockquote> <h5 id="请求头-4"><a href="#请求头-4" aria-hidden="true" class="header-anchor">#</a> 请求头</h5> <div class="language- extra-class"><pre class="language-text"><code>GET /xxx/v1/tags
+Accept: application/json
+Content-Type: application/json;charset=UTF-8
+Token: token_G34G34G34G34G35G5
+</code></pre></div><h5 id="参数-4"><a href="#参数-4" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <div class="language- extra-class"><pre class="language-text"><code>?type=hot&amp;keyword=热点&amp;sort=des&amp;page=0&amp;pageSize=20
+</code></pre></div><table><thead><tr><th>params</th> <th>类型</th> <th>是否必须</th> <th>描述</th></tr></thead> <tbody><tr><td>type</td> <td>String</td> <td>否</td> <td>不传表示默认，默认表示返回全部（按symbol首字母排序） 值为hot表示热门tags（可配置且过滤掉已订阅的） 值为subscribe表示订阅中的推荐tags（可配置且过滤掉已订阅的） 值为news表示快讯中的推荐tags（可配置且过滤掉已订阅的） 值为initialize表示用户注册时的推荐tags（可配置顺序）</td></tr> <tr><td>keyword</td> <td>String</td> <td>否</td> <td>同上</td></tr> <tr><td>sort</td> <td>String</td> <td>否</td> <td>同上</td></tr> <tr><td>page</td> <td>int</td> <td>否</td> <td>同上</td></tr> <tr><td>pageSize</td> <td>int</td> <td>否</td> <td>同上</td></tr></tbody></table> <h5 id="响应头-4"><a href="#响应头-4" aria-hidden="true" class="header-anchor">#</a> 响应头</h5> <div class="language- extra-class"><pre class="language-text"><code>HTTP/1.1 200 OK
+Content-Type:application/json; charset=utf-8
+</code></pre></div><h5 id="响应-4"><a href="#响应-4" aria-hidden="true" class="header-anchor">#</a> 响应</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+    &quot;message&quot;: &quot;居然被你看到了&quot;,
+    &quot;code&quot;: 200,
+    &quot;data&quot;: [
+        {
+            &quot;uid&quot;: &quot;32t23t23sdvsdbse324h34h&quot;,
+            &quot;name&quot;: &quot;Bitcoin&quot;,
+            &quot;symbol&quot;: &quot;BTC&quot;,
+            &quot;alias&quot;: &quot;比特币&quot;,
+            &quot;description&quot;: &quot;比特币&quot;,
+            &quot;image&quot;: &quot;https://static.feixiaohao.com/coin/eced1e28da4f16e117f471b08ad6e_mid.png&quot;,
+            &quot;type&quot;: &quot;coin&quot;,
+            &quot;coinID&quot;: 56,
+            &quot;keyword&quot;: &quot;bitcoin#Bitcoin#比特币#BTC&quot;,
+            &quot;heat&quot;: 3,
+            &quot;children&quot;: [
+                {
+                    &quot;uid&quot;: &quot;32t23t23sdvsdbse324h34h&quot;,
+                    &quot;name&quot;: &quot;Bitcoin&quot;,
+                    &quot;symbol&quot;: &quot;BTC&quot;,
+                    &quot;alias&quot;: &quot;比特币&quot;,
+                    &quot;description&quot;: &quot;比特币&quot;,
+                    &quot;image&quot;: &quot;https://static.feixiaohao.com/coin/eced1e28da4f16e117f471b08ad6e_mid.png&quot;,
+                    &quot;type&quot;: &quot;coin&quot;
+                },
+                {
+                    &quot;uid&quot;: &quot;32t23t23sdvsdbse324h34h&quot;,
+                    &quot;name&quot;: &quot;Bitcoin&quot;,
+                    &quot;symbol&quot;: &quot;BTC&quot;,
+                    &quot;alias&quot;: &quot;比特币&quot;,
+                    &quot;description&quot;: &quot;比特币&quot;,
+                    &quot;image&quot;: &quot;https://static.feixiaohao.com/coin/eced1e28da4f16e117f471b08ad6e_mid.png&quot;,
+                    &quot;type&quot;: &quot;coin&quot;
+                }
+            ]
+        },
+        {
+            &quot;uid&quot;: &quot;32t23t23sdvsdbse324h34h&quot;,
+            &quot;name&quot;: &quot;Bitcoin&quot;,
+            &quot;symbol&quot;: &quot;BTC&quot;,
+            &quot;alias&quot;: &quot;比特币&quot;,
+            &quot;description&quot;: &quot;比特币&quot;,
+            &quot;image&quot;: &quot;https://static.feixiaohao.com/coin/eced1e28da4f16e117f471b08ad6e_mid.png&quot;,
+            &quot;type&quot;: &quot;coin&quot;,
+            &quot;coinID&quot;: 56,
+            &quot;keyword&quot;: &quot;bitcoin#Bitcoin#比特币#BTC&quot;,
+            &quot;heat&quot;: 3,
+            &quot;children&quot;: [
+                {
+                    &quot;uid&quot;: &quot;32t23t23sdvsdbse324h34h&quot;,
+                    &quot;name&quot;: &quot;Bitcoin&quot;,
+                    &quot;symbol&quot;: &quot;BTC&quot;,
+                    &quot;alias&quot;: &quot;比特币&quot;,
+                    &quot;description&quot;: &quot;比特币&quot;,
+                    &quot;image&quot;: &quot;https://static.feixiaohao.com/coin/eced1e28da4f16e117f471b08ad6e_mid.png&quot;,
+                    &quot;type&quot;: &quot;coin&quot;
+                },
+                {
+                    &quot;uid&quot;: &quot;32t23t23sdvsdbse324h34h&quot;,
+                    &quot;name&quot;: &quot;Bitcoin&quot;,
+                    &quot;symbol&quot;: &quot;BTC&quot;,
+                    &quot;alias&quot;: &quot;比特币&quot;,
+                    &quot;description&quot;: &quot;比特币&quot;,
+                    &quot;image&quot;: &quot;https://static.feixiaohao.com/coin/eced1e28da4f16e117f471b08ad6e_mid.png&quot;,
+                    &quot;type&quot;: &quot;coin&quot;
+                }
+            ]
+        }
+    ]
+}
+</code></pre></div><table><thead><tr><th>key</th> <th>类型</th> <th>是否必须</th> <th>描述</th></tr></thead> <tbody><tr><td>message</td> <td>String</td> <td>是</td> <td>同上</td></tr> <tr><td>code</td> <td>int</td> <td>是</td> <td>同上</td></tr> <tr><td>data</td> <td>JSON数组</td> <td>是</td> <td>同上</td></tr> <tr><td>data.uid</td> <td>String</td> <td>是</td> <td>该tag的唯一标识</td></tr> <tr><td>data.name</td> <td>String</td> <td>是</td> <td>该tag的全称</td></tr> <tr><td>data.symbol</td> <td>String</td> <td>是</td> <td>该tag的缩写标识符</td></tr> <tr><td>data.alias</td> <td>String</td> <td>是</td> <td>该tag的别名</td></tr> <tr><td>data.image</td> <td>String</td> <td>是</td> <td>该tag的图标</td></tr> <tr><td>data.description</td> <td>String</td> <td>是</td> <td>该tag的描述</td></tr> <tr><td>data.type</td> <td>String</td> <td>是</td> <td>该tag的类型，暂时只有coin类型</td></tr> <tr><td>data.coinID</td> <td>int</td> <td>否</td> <td>该字段用户其他平台查询行情</td></tr> <tr><td>data.keyword</td> <td>String</td> <td>否</td> <td>该字段用于爬虫匹配tag</td></tr> <tr><td>data.heat</td> <td>int</td> <td>否</td> <td>该字段用于标记该tag的热度</td></tr> <tr><td><s>data.skus</s></td> <td><s>JSON数组</s></td> <td><s>是</s></td> <td><s>该tag的套餐描述</s></td></tr> <tr><td>data.skus.uid</td> <td>String</td> <td>是</td> <td>该tag的套餐的uid</td></tr> <tr><td>data.skus.price</td> <td>String</td> <td>是</td> <td>该tag的套餐的具体价格</td></tr> <tr><td>data.skus.currency</td> <td>String</td> <td>是</td> <td>该tag的套餐的价格单位</td></tr> <tr><td>data.skus.unitPrice</td> <td>String</td> <td>是</td> <td>该tag的套餐的单价描述</td></tr> <tr><td>data.skus.period</td> <td>String</td> <td>是</td> <td>该tag的套餐的周期单位</td></tr> <tr><td><s>data.parents</s></td> <td><s>JSON数组</s></td> <td><s>否</s></td> <td><s>该tag所关联的父tags，但是当前版本中暂时不考虑</s></td></tr> <tr><td>data.children</td> <td>JSON数组</td> <td>否</td> <td>该tag所关联的子tags</td></tr></tbody></table> <h5 id="异常-4"><a href="#异常-4" aria-hidden="true" class="header-anchor">#</a> 异常</h5> <table><thead><tr><th>状态码</th> <th>类型</th> <th>是否必要</th> <th>描述</th></tr></thead> <tbody><tr><td>XXX</td> <td>int</td> <td>否</td> <td>应用版本名称错误：针对的是请求头里的Application字段</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>缺少参数：缺少token等</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>参数错误：token错误等</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>账号异常：可能被封禁了</td></tr></tbody></table> <hr> <h4 id="获取tag详情"><a href="#获取tag详情" aria-hidden="true" class="header-anchor">#</a> 获取tag详情</h4> <blockquote><p>地址：<a href="https://api.xxx.com/path/xxx/v1/tags" target="_blank" rel="noopener noreferrer">https://api.xxx.com/path/xxx/v1/tags<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"/> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"/></svg></a>/{uid}</p></blockquote> <h5 id="请求头-5"><a href="#请求头-5" aria-hidden="true" class="header-anchor">#</a> 请求头</h5> <div class="language- extra-class"><pre class="language-text"><code>GET /xxx/v1/tags/{uid}
+Accept: application/json
+Content-Type: application/json;charset=UTF-8
+Token: token_G34G34G34G34G35G5
+</code></pre></div><h5 id="参数-5"><a href="#参数-5" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <div class="language- extra-class"><pre class="language-text"><code>暂无
+</code></pre></div><h5 id="响应头-5"><a href="#响应头-5" aria-hidden="true" class="header-anchor">#</a> 响应头</h5> <div class="language- extra-class"><pre class="language-text"><code>HTTP/1.1 200 OK
+Content-Type:application/json; charset=utf-8
+</code></pre></div><h5 id="响应-5"><a href="#响应-5" aria-hidden="true" class="header-anchor">#</a> 响应</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+    &quot;message&quot;: &quot;居然被你看到了&quot;,
+    &quot;code&quot;: 200,
+    &quot;data&quot;: {
+        &quot;uid&quot;: &quot;32t23t23sdvsdbse324h34h&quot;,
+        &quot;name&quot;: &quot;Bitcoin&quot;,
+        &quot;symbol&quot;: &quot;BTC&quot;,
+        &quot;alias&quot;: &quot;比特币&quot;,
+        &quot;description&quot;: &quot;比特币&quot;,
+        &quot;image&quot;: &quot;https://static.feixiaohao.com/coin/eced1e28da4f16e117f471b08ad6e_mid.png&quot;,
+        &quot;type&quot;: &quot;coin&quot;,
+        &quot;coinID&quot;: 56,
+        &quot;keyword&quot;: &quot;bitcoin#Bitcoin#比特币#BTC&quot;,
+        &quot;heat&quot;: 3,
+        &quot;children&quot;: [
+            {
+                &quot;uid&quot;: &quot;32t23t23sdvsdbse324h34h&quot;,
+                &quot;name&quot;: &quot;Bitcoin&quot;,
+                &quot;symbol&quot;: &quot;BTC&quot;,
+                &quot;alias&quot;: &quot;比特币&quot;,
+                &quot;description&quot;: &quot;比特币&quot;,
+                &quot;image&quot;: &quot;https://static.feixiaohao.com/coin/eced1e28da4f16e117f471b08ad6e_mid.png&quot;,
+                &quot;type&quot;: &quot;coin&quot;
+            },
+            {
+                &quot;uid&quot;: &quot;32t23t23sdvsdbse324h34h&quot;,
+                &quot;name&quot;: &quot;Bitcoin&quot;,
+                &quot;symbol&quot;: &quot;BTC&quot;,
+                &quot;alias&quot;: &quot;比特币&quot;,
+                &quot;description&quot;: &quot;比特币&quot;,
+                &quot;image&quot;: &quot;https://static.feixiaohao.com/coin/eced1e28da4f16e117f471b08ad6e_mid.png&quot;,
+                &quot;type&quot;: &quot;coin&quot;
+            }
+        ]
+    }
+}
+</code></pre></div><table><thead><tr><th>key</th> <th>类型</th> <th>是否必须</th> <th>描述</th></tr></thead> <tbody><tr><td>message</td> <td>String</td> <td>是</td> <td>同上</td></tr> <tr><td>code</td> <td>int</td> <td>是</td> <td>同上</td></tr> <tr><td>data</td> <td>JSON数组</td> <td>是</td> <td>同上</td></tr> <tr><td>data.uid</td> <td>String</td> <td>是</td> <td>该tag的唯一标识</td></tr> <tr><td>data.name</td> <td>String</td> <td>是</td> <td>该tag的全称</td></tr> <tr><td>data.symbol</td> <td>String</td> <td>是</td> <td>该tag的缩写标识符</td></tr> <tr><td>data.alias</td> <td>String</td> <td>是</td> <td>该tag的别名</td></tr> <tr><td>data.image</td> <td>String</td> <td>是</td> <td>该tag的图标</td></tr> <tr><td>data.description</td> <td>String</td> <td>是</td> <td>该tag的描述</td></tr> <tr><td>data.type</td> <td>String</td> <td>是</td> <td>该tag的类型，暂时只有coin类型</td></tr> <tr><td>data.coinID</td> <td>int</td> <td>否</td> <td>该字段用户其他平台查询行情</td></tr> <tr><td>data.keyword</td> <td>String</td> <td>否</td> <td>该字段用于爬虫匹配tag</td></tr> <tr><td>data.heat</td> <td>int</td> <td>否</td> <td>该字段用于标记该tag的热度</td></tr> <tr><td><s>data.skus</s></td> <td><s>JSON数组</s></td> <td><s>是</s></td> <td><s>该tag的套餐描述</s></td></tr> <tr><td>data.skus.uid</td> <td>String</td> <td>是</td> <td>该tag的套餐的uid</td></tr> <tr><td>data.skus.price</td> <td>String</td> <td>是</td> <td>该tag的套餐的具体价格</td></tr> <tr><td>data.skus.currency</td> <td>String</td> <td>是</td> <td>该tag的套餐的价格单位</td></tr> <tr><td>data.skus.unitPrice</td> <td>String</td> <td>是</td> <td>该tag的套餐的单价描述</td></tr> <tr><td>data.skus.period</td> <td>String</td> <td>是</td> <td>该tag的套餐的周期单位</td></tr> <tr><td><s>data.parents</s></td> <td><s>JSON数组</s></td> <td><s>否</s></td> <td><s>该tag所关联的父tags</s></td></tr> <tr><td>data.children</td> <td>JSON数组</td> <td>否</td> <td>该tag所关联的子tags</td></tr></tbody></table> <h5 id="异常-5"><a href="#异常-5" aria-hidden="true" class="header-anchor">#</a> 异常</h5> <table><thead><tr><th>状态码</th> <th>类型</th> <th>是否必要</th> <th>描述</th></tr></thead> <tbody><tr><td>XXX</td> <td>int</td> <td>否</td> <td>应用版本名称错误：针对的是请求头里的Application字段</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>缺少参数：缺少token等</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>参数错误：token错误等</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>账号异常：可能被封禁了</td></tr></tbody></table> <hr> <h4 id="新增tags"><a href="#新增tags" aria-hidden="true" class="header-anchor">#</a> 新增tags</h4> <blockquote><p>地址：https://api.xxx.com/path/xxx/v1/tags</p></blockquote> <h5 id="请求头-6"><a href="#请求头-6" aria-hidden="true" class="header-anchor">#</a> 请求头</h5> <div class="language- extra-class"><pre class="language-text"><code>POST /xxx/v1/tags
+Accept: application/json
+Content-Type: application/json;charset=UTF-8
+Token: token_G34G34G34G34G35G5
+</code></pre></div><h5 id="参数-6"><a href="#参数-6" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <div class="language- extra-class"><pre class="language-text"><code>[
+    {
+        &quot;name&quot;: &quot;Bitcoin&quot;,
+        &quot;symbol&quot;: &quot;BTC&quot;,
+        &quot;alias&quot;: &quot;比特币&quot;,
+        &quot;description&quot;: &quot;比特币&quot;,
+        &quot;image&quot;: &quot;https://static.feixiaohao.com/coin/eced1e28da4f16e117f471b08ad6e_mid.png&quot;,
+        &quot;type&quot;: &quot;coin&quot;,
+        &quot;coinID&quot;: 56,
+        &quot;keyword&quot;: &quot;bitcoin#Bitcoin#比特币#BTC&quot;,
+        &quot;heat&quot;: 3,
+        &quot;children&quot;: [
+            &quot;2323235t2t23t23&quot;,
+            &quot;2323235t2t23t23&quot;
+        ]
+    },
+    {
+        &quot;name&quot;: &quot;Bitcoin&quot;,
+        &quot;symbol&quot;: &quot;BTC&quot;,
+        &quot;alias&quot;: &quot;比特币&quot;,
+        &quot;description&quot;: &quot;比特币&quot;,
+        &quot;image&quot;: &quot;https://static.feixiaohao.com/coin/eced1e28da4f16e117f471b08ad6e_mid.png&quot;,
+        &quot;type&quot;: &quot;coin&quot;,
+        &quot;children&quot;: [
+            &quot;2323235t2t23t23&quot;,
+            &quot;2323235t2t23t23&quot;
+        ]
+    }
+]
+</code></pre></div><table><thead><tr><th>params</th> <th>类型</th> <th>是否必须</th> <th>描述</th></tr></thead> <tbody><tr><td>data.name</td> <td>String</td> <td>是</td> <td>该tag的全称</td></tr> <tr><td>data.symbol</td> <td>String</td> <td>是</td> <td>该tag的缩写标识符</td></tr> <tr><td>data.alias</td> <td>String</td> <td>是</td> <td>该tag的别名</td></tr> <tr><td>data.image</td> <td>String</td> <td>是</td> <td>该tag的图标</td></tr> <tr><td>data.description</td> <td>String</td> <td>否</td> <td>该tag的描述</td></tr> <tr><td>data.type</td> <td>String</td> <td>是</td> <td>该tag的类型，暂时只有coin类型</td></tr> <tr><td>data.coinID</td> <td>int</td> <td>否</td> <td>该字段用户其他平台查询行情</td></tr> <tr><td>data.keyword</td> <td>String</td> <td>否</td> <td>该字段用于爬虫匹配tag</td></tr> <tr><td>data.heat</td> <td>int</td> <td>否</td> <td>该字段用于标记该tag的热度</td></tr> <tr><td><s>data.skus</s></td> <td><s>JSON数组</s></td> <td><s>是</s></td> <td><s>该tag的套餐描述</s></td></tr> <tr><td>data.skus.price</td> <td>String</td> <td>是</td> <td>该tag的套餐的具体价格</td></tr> <tr><td>data.skus.currency</td> <td>String</td> <td>是</td> <td>该tag的套餐的价格单位</td></tr> <tr><td>data.skus.unitPrice</td> <td>String</td> <td>是</td> <td>该tag的套餐的单价描述</td></tr> <tr><td>data.skus.period</td> <td>String</td> <td>是</td> <td>该tag的套餐的周期单位</td></tr> <tr><td><s>data.parents</s></td> <td><s>JSON数组</s></td> <td><s>否</s></td> <td><s>该tag所关联的父tag的uid</s></td></tr> <tr><td>data.children</td> <td>JSON数组</td> <td>否</td> <td>该tag所关联的子tag的uid</td></tr></tbody></table> <h5 id="响应头-6"><a href="#响应头-6" aria-hidden="true" class="header-anchor">#</a> 响应头</h5> <div class="language- extra-class"><pre class="language-text"><code>HTTP/1.1 200 OK
+Content-Type:application/json; charset=utf-8
+</code></pre></div><h5 id="响应-6"><a href="#响应-6" aria-hidden="true" class="header-anchor">#</a> 响应</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+    &quot;message&quot;: &quot;居然被你看到了&quot;,
+    &quot;code&quot;: 200,
+    &quot;data&quot;: [
+        {
+            &quot;uid&quot;: &quot;32t23t23sdvsdbse324h34h&quot;
+        },
+        {
+            &quot;uid&quot;: &quot;32t23t23sdvsdbse324h34h&quot;
+        }
+    ]
+}
+</code></pre></div><table><thead><tr><th>key</th> <th>类型</th> <th>是否必须</th> <th>描述</th></tr></thead> <tbody><tr><td>message</td> <td>String</td> <td>是</td> <td>同上</td></tr> <tr><td>code</td> <td>int</td> <td>是</td> <td>同上</td></tr> <tr><td>data</td> <td>JSON数组</td> <td>是</td> <td>同上</td></tr> <tr><td>data.uid</td> <td>String</td> <td>是</td> <td>该tag的唯一标识</td></tr></tbody></table> <h5 id="异常-6"><a href="#异常-6" aria-hidden="true" class="header-anchor">#</a> 异常</h5> <table><thead><tr><th>状态码</th> <th>类型</th> <th>是否必要</th> <th>描述</th></tr></thead> <tbody><tr><td>XXX</td> <td>int</td> <td>否</td> <td>应用版本名称错误：针对的是请求头里的Application字段</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>缺少参数：缺少token等</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>参数错误：token错误等</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>账号异常：可能被封禁了</td></tr></tbody></table> <hr> <h4 id="修改tag"><a href="#修改tag" aria-hidden="true" class="header-anchor">#</a> 修改tag</h4> <blockquote><p>地址：https://api.xxx.com/path/xxx/v1/tags/{uid}</p></blockquote> <h5 id="请求头-7"><a href="#请求头-7" aria-hidden="true" class="header-anchor">#</a> 请求头</h5> <div class="language- extra-class"><pre class="language-text"><code>PATCH /xxx/v1/tags/{uid}
+Accept: application/json
+Content-Type: application/json;charset=UTF-8
+Token: token_G34G34G34G34G35G5
+</code></pre></div><h5 id="参数-7"><a href="#参数-7" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+    &quot;uid&quot;: &quot;32t23t23sdvsdbse324h34h&quot;,
+    &quot;name&quot;: &quot;Bitcoin&quot;,
+    &quot;symbol&quot;: &quot;BTC&quot;,
+    &quot;alias&quot;: &quot;比特币&quot;,
+    &quot;description&quot;: &quot;比特币&quot;,
+    &quot;image&quot;: &quot;https://static.feixiaohao.com/coin/eced1e28da4f16e117f471b08ad6e_mid.png&quot;,
+    &quot;type&quot;: &quot;coin&quot;,
+    &quot;coinID&quot;: 56,
+    &quot;keyword&quot;: &quot;bitcoin#Bitcoin#比特币#BTC&quot;,
+    &quot;heat&quot;: 3,
+    &quot;children&quot;: [
+        &quot;2323235t2t23t23&quot;,
+        &quot;2323235t2t23t23&quot;
+    ]
+}
+</code></pre></div><table><thead><tr><th>params</th> <th>类型</th> <th>是否必须</th> <th>描述</th></tr></thead> <tbody><tr><td>data.name</td> <td>String</td> <td>是</td> <td>该tag的全称</td></tr> <tr><td>data.symbol</td> <td>String</td> <td>是</td> <td>该tag的缩写标识符</td></tr> <tr><td>data.alias</td> <td>String</td> <td>是</td> <td>该tag的别名</td></tr> <tr><td>data.image</td> <td>String</td> <td>是</td> <td>该tag的图标</td></tr> <tr><td>data.description</td> <td>String</td> <td>否</td> <td>该tag的描述</td></tr> <tr><td>data.type</td> <td>String</td> <td>是</td> <td>该tag的类型，暂时只有coin类型</td></tr> <tr><td>data.coinID</td> <td>int</td> <td>否</td> <td>该字段用户其他平台查询行情</td></tr> <tr><td>data.keyword</td> <td>String</td> <td>否</td> <td>该字段用于爬虫匹配tag</td></tr> <tr><td>data.heat</td> <td>int</td> <td>否</td> <td>该字段用于标记该tag的热度</td></tr> <tr><td><s>data.skus</s></td> <td><s>JSON数组</s></td> <td><s>是</s></td> <td><s>该tag的套餐描述</s></td></tr> <tr><td>data.skus.price</td> <td>String</td> <td>是</td> <td>该tag的套餐的具体价格</td></tr> <tr><td>data.skus.currency</td> <td>String</td> <td>是</td> <td>该tag的套餐的价格单位</td></tr> <tr><td>data.skus.unitPrice</td> <td>String</td> <td>是</td> <td>该tag的套餐的单价描述</td></tr> <tr><td>data.skus.period</td> <td>String</td> <td>是</td> <td>该tag的套餐的周期单位</td></tr> <tr><td><s>data.parents</s></td> <td><s>JSON数组</s></td> <td><s>否</s></td> <td><s>该tag所关联的父tag的uid</s></td></tr> <tr><td>data.children</td> <td>JSON数组</td> <td>否</td> <td>该tag所关联的子tag的uid</td></tr></tbody></table> <h5 id="响应头-7"><a href="#响应头-7" aria-hidden="true" class="header-anchor">#</a> 响应头</h5> <div class="language- extra-class"><pre class="language-text"><code>HTTP/1.1 200 OK
+Content-Type:application/json; charset=utf-8
+</code></pre></div><h5 id="响应-7"><a href="#响应-7" aria-hidden="true" class="header-anchor">#</a> 响应</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+    &quot;message&quot;: &quot;居然被你看到了&quot;,
+    &quot;code&quot;: 200,
+    &quot;data&quot;: {
+        &quot;uid&quot;: &quot;32t23t23sdvsdbse324h34h&quot;
+    }
+}
+</code></pre></div><table><thead><tr><th>key</th> <th>类型</th> <th>是否必须</th> <th>描述</th></tr></thead> <tbody><tr><td>message</td> <td>String</td> <td>是</td> <td>同上</td></tr> <tr><td>code</td> <td>int</td> <td>是</td> <td>同上</td></tr> <tr><td>data</td> <td>JSON数组</td> <td>是</td> <td>同上</td></tr> <tr><td>data.uid</td> <td>String</td> <td>是</td> <td>该tag的唯一标识</td></tr></tbody></table> <h5 id="异常-7"><a href="#异常-7" aria-hidden="true" class="header-anchor">#</a> 异常</h5> <table><thead><tr><th>状态码</th> <th>类型</th> <th>是否必要</th> <th>描述</th></tr></thead> <tbody><tr><td>XXX</td> <td>int</td> <td>否</td> <td>应用版本名称错误：针对的是请求头里的Application字段</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>缺少参数：缺少token等</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>参数错误：token错误等</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>账号异常：可能被封禁了</td></tr></tbody></table> <hr> <h3 id="item（新闻-消息）"><a href="#item（新闻-消息）" aria-hidden="true" class="header-anchor">#</a> item（新闻/消息）</h3> <p>对于item模块的管理无非增改查，界面大致如下图所示：</p> <h4 id="获取item列表"><a href="#获取item列表" aria-hidden="true" class="header-anchor">#</a> 获取item列表</h4> <blockquote><p>地址：<a href="https://api.xxx.com/path/xxx/v1/items" target="_blank" rel="noopener noreferrer">https://api.xxx.com/path/xxx/v1/items<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"/> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"/></svg></a></p></blockquote> <h5 id="请求头-8"><a href="#请求头-8" aria-hidden="true" class="header-anchor">#</a> 请求头</h5> <div class="language- extra-class"><pre class="language-text"><code>GET /path/xxx/v1/items
+Accept: application/json
+Content-Type: application/json;charset=UTF-8
+Token: token_G34G34G34G34G35G5
+</code></pre></div><h5 id="参数-8"><a href="#参数-8" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <div class="language- extra-class"><pre class="language-text"><code>?tag=t2t24t24t2t24&amp;keyword=热点&amp;sort=des&amp;page=0&amp;pageSize=20
+或者
+?type=subscribe&amp;keyword=热点&amp;sort=des&amp;page=0&amp;pageSize=20
+</code></pre></div><table><thead><tr><th>params</th> <th>类型</th> <th>是否必须</th> <th>描述</th></tr></thead> <tbody><tr><td>tag</td> <td>String</td> <td>否</td> <td>获取tag所属的内容，对应上文tags接口中的uid，不传或者传空字符表示默认值，默认返回所有item</td></tr> <tr><td>type</td> <td>String</td> <td>否</td> <td>获取列表类型，值为subscribe表示获取订阅列表，不传或者传空标识默认值，默认返回所有item</td></tr> <tr><td>keyword</td> <td>String</td> <td>否</td> <td>同上</td></tr> <tr><td>sort</td> <td>String</td> <td>否</td> <td>同上</td></tr> <tr><td>page</td> <td>int</td> <td>否</td> <td>同上</td></tr> <tr><td>pageSize</td> <td>int</td> <td>否</td> <td>同上</td></tr></tbody></table> <h5 id="响应头-8"><a href="#响应头-8" aria-hidden="true" class="header-anchor">#</a> 响应头</h5> <div class="language- extra-class"><pre class="language-text"><code>HTTP/1.1 200 OK
+Content-Type:application/json; charset=utf-8
+</code></pre></div><h5 id="响应-8"><a href="#响应-8" aria-hidden="true" class="header-anchor">#</a> 响应</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+    &quot;code&quot;: 200,
+    &quot;message&quot;: &quot;居然被你查询成功了&quot;,
+    &quot;data&quot;: [
+        {
+            &quot;author&quot;: {
+                &quot;avatar&quot;: &quot;http://p4.pstatp.com/large/4b0000040a5b748e2f9d&quot;,
+                &quot;name&quot;: &quot;币老爷&quot;
+            },
+            &quot;inline&quot;: {
+                &quot;author&quot;: {
+                    &quot;avatar&quot;: &quot;http://p4.pstatp.com/large/4b0000040a5b748e2f9d&quot;,
+                    &quot;name&quot;: &quot;币老爷&quot;
+                },
+                &quot;multimedia&quot;: {
+                    &quot;media&quot;: [
+                        {
+                            &quot;image&quot;: &quot;http://a3.peoplecdn.cn/fbcba40035ae5f2ad90c19abe58560a2.jpg&quot;,
+                            &quot;text&quot;: &quot;六六又开始怼百度了&quot;,
+                            &quot;url&quot;: &quot;http://a3.peoplecdn.cn&quot;
+                        }
+                    ],
+                    &quot;type&quot;: &quot;web&quot;
+                },
+                &quot;source&quot;: {
+                    &quot;avatar&quot;: &quot;http://p4.pstatp.com/large/4b0000040a5b748e2f9d&quot;,
+                    &quot;name&quot;: &quot;微博&quot;,
+                    &quot;type&quot;: &quot;weibo&quot;
+                },
+                &quot;text&quot;: &quot;牛牛牛，你牛什么牛，牛牛牛，你牛什么牛，牛牛牛，你牛什么牛&quot;,
+                &quot;time&quot;: &quot;1536830292&quot;,
+                &quot;title&quot;: &quot;牛市要来了，赶紧上车&quot;,
+                &quot;type&quot;: &quot;article&quot;,
+                &quot;uid&quot;: &quot;2342423233&quot;,
+                &quot;url&quot;: &quot;http://toutiao.com/group/6536299962081214990/&quot;
+            },
+            &quot;multimedia&quot;: {
+                &quot;media&quot;: [
+                    {
+                        &quot;image&quot;: &quot;http://a3.peoplecdn.cn/fbcba40035ae5f2ad90c19abe58560a2.jpg&quot;,
+                        &quot;text&quot;: &quot;六六又开始怼百度了&quot;,
+                        &quot;url&quot;: &quot;http://a3.peoplecdn.cn&quot;
+                    }
+                ],
+                &quot;type&quot;: &quot;web&quot;
+            },
+            &quot;source&quot;: {
+                &quot;avatar&quot;: &quot;http://p4.pstatp.com/large/4b0000040a5b748e2f9d&quot;,
+                &quot;name&quot;: &quot;微博&quot;,
+                &quot;type&quot;: &quot;weibo&quot;
+            },
+            &quot;tags&quot;: [
+                {
+                    &quot;name&quot;: &quot;Bitcoin&quot;,
+                    &quot;image&quot;: &quot;https://static.feixiaohao.com/coin/eced1e28da4f16e117f471b08ad6e_mid.png&quot;,
+                    &quot;alias&quot;: &quot;比特币&quot;,
+                    &quot;symbol&quot;: &quot;BTC&quot;,
+                    &quot;type&quot;: &quot;coin&quot;,
+                    &quot;uid&quot;: &quot;32t23t23sdvsdbse324h34h&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;EOS&quot;,
+                    &quot;image&quot;: &quot;https://static.feixiaohao.com/coin/eced1e28da4f16e117f471b08ad6e_mid.png&quot;,
+                    &quot;alias&quot;: &quot;比特币&quot;,
+                    &quot;symbol&quot;: &quot;BTC&quot;,
+                    &quot;type&quot;: &quot;coin&quot;,
+                    &quot;uid&quot;: &quot;32t23t23sdvsdbse324h34h&quot;
+                }
+            ],
+            &quot;text&quot;: &quot;牛牛牛，你牛什么牛，牛牛牛，你牛什么牛，牛牛牛，你牛什么牛&quot;,
+            &quot;time&quot;: &quot;1536830292&quot;,
+            &quot;title&quot;: &quot;牛市要来了，赶紧上车&quot;,
+            &quot;translation&quot;: {
+                &quot;text&quot;: &quot;什么？什么？什么？&quot;,
+                &quot;title&quot;: &quot;什么？&quot;
+            },
+            &quot;type&quot;: &quot;article&quot;,
+            &quot;uid&quot;: &quot;2342423233&quot;,
+            &quot;url&quot;: &quot;http://toutiao.com/group/6536299962081214990/&quot;,
+            &quot;grade&quot;: 0
+        },
+        {
+            &quot;author&quot;: {
+                &quot;avatar&quot;: &quot;http://p4.pstatp.com/large/4b0000040a5b748e2f9d&quot;,
+                &quot;name&quot;: &quot;币老爷&quot;
+            },
+            &quot;inline&quot;: {
+                &quot;author&quot;: {
+                    &quot;avatar&quot;: &quot;http://p4.pstatp.com/large/4b0000040a5b748e2f9d&quot;,
+                    &quot;name&quot;: &quot;币老爷&quot;
+                },
+                &quot;multimedia&quot;: {
+                    &quot;media&quot;: [
+                        {
+                            &quot;image&quot;: &quot;http://a3.peoplecdn.cn/fbcba40035ae5f2ad90c19abe58560a2.jpg&quot;,
+                            &quot;text&quot;: &quot;六六又开始怼百度了&quot;,
+                            &quot;url&quot;: &quot;http://a3.peoplecdn.cn&quot;
+                        }
+                    ],
+                    &quot;type&quot;: &quot;web&quot;
+                },
+                &quot;source&quot;: {
+                    &quot;avatar&quot;: &quot;http://p4.pstatp.com/large/4b0000040a5b748e2f9d&quot;,
+                    &quot;name&quot;: &quot;微博&quot;,
+                    &quot;type&quot;: &quot;weibo&quot;
+                },
+                &quot;text&quot;: &quot;牛牛牛，你牛什么牛，牛牛牛，你牛什么牛，牛牛牛，你牛什么牛&quot;,
+                &quot;time&quot;: &quot;1536830292&quot;,
+                &quot;title&quot;: &quot;牛市要来了，赶紧上车&quot;,
+                &quot;type&quot;: &quot;article&quot;,
+                &quot;uid&quot;: &quot;2342423233&quot;,
+                &quot;url&quot;: &quot;http://toutiao.com/group/6536299962081214990/&quot;
+            },
+            &quot;multimedia&quot;: {
+                &quot;media&quot;: [
+                    {
+                        &quot;image&quot;: &quot;http://a3.peoplecdn.cn/fbcba40035ae5f2ad90c19abe58560a2.jpg&quot;,
+                        &quot;text&quot;: &quot;六六又开始怼百度了&quot;,
+                        &quot;url&quot;: &quot;http://a3.peoplecdn.cn&quot;
+                    }
+                ],
+                &quot;type&quot;: &quot;web&quot;
+            },
+            &quot;source&quot;: {
+                &quot;avatar&quot;: &quot;http://p4.pstatp.com/large/4b0000040a5b748e2f9d&quot;,
+                &quot;name&quot;: &quot;微博&quot;,
+                &quot;type&quot;: &quot;weibo&quot;
+            },
+            &quot;tags&quot;: [
+                {
+                    &quot;name&quot;: &quot;Bitcoin&quot;,
+                    &quot;image&quot;: &quot;https://static.feixiaohao.com/coin/eced1e28da4f16e117f471b08ad6e_mid.png&quot;,
+                    &quot;alias&quot;: &quot;比特币&quot;,
+                    &quot;symbol&quot;: &quot;BTC&quot;,
+                    &quot;type&quot;: &quot;coin&quot;,
+                    &quot;uid&quot;: &quot;32t23t23sdvsdbse324h34h&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;EOS&quot;,
+                    &quot;image&quot;: &quot;https://static.feixiaohao.com/coin/eced1e28da4f16e117f471b08ad6e_mid.png&quot;,
+                    &quot;alias&quot;: &quot;比特币&quot;,
+                    &quot;symbol&quot;: &quot;BTC&quot;,
+                    &quot;type&quot;: &quot;coin&quot;,
+                    &quot;uid&quot;: &quot;32t23t23sdvsdbse324h34h&quot;
+                }
+            ],
+            &quot;text&quot;: &quot;牛牛牛，你牛什么牛，牛牛牛，你牛什么牛，牛牛牛，你牛什么牛&quot;,
+            &quot;time&quot;: &quot;1536830292&quot;,
+            &quot;title&quot;: &quot;牛市要来了，赶紧上车&quot;,
+            &quot;translation&quot;: {
+                &quot;text&quot;: &quot;什么？什么？什么？&quot;,
+                &quot;title&quot;: &quot;什么？&quot;
+            },
+            &quot;type&quot;: &quot;article&quot;,
+            &quot;uid&quot;: &quot;2342423233&quot;,
+            &quot;url&quot;: &quot;http://toutiao.com/group/6536299962081214990/&quot;,
+            &quot;grade&quot;: 3,
+            &quot;like&quot;: {
+                &quot;rating&quot;: 3.5,
+                &quot;number&quot;: 200
+            }
+        }
+    ]
+}
+</code></pre></div><table><thead><tr><th>key</th> <th>类型</th> <th>是否必须</th> <th>描述</th></tr></thead> <tbody><tr><td>message</td> <td>String</td> <td>是</td> <td>同上</td></tr> <tr><td>code</td> <td>int</td> <td>是</td> <td>同上</td></tr> <tr><td>page</td> <td>int</td> <td>否</td> <td>同上</td></tr> <tr><td>pageSize</td> <td>int</td> <td>否</td> <td>同上</td></tr> <tr><td>first</td> <td>String</td> <td>否</td> <td>同上</td></tr> <tr><td>next</td> <td>String</td> <td>否</td> <td>同上</td></tr> <tr><td>previous</td> <td>String</td> <td>否</td> <td>同上</td></tr> <tr><td>last</td> <td>String</td> <td>否</td> <td>同上</td></tr> <tr><td>data</td> <td>JSON数组</td> <td>是</td> <td>当前接口的具体数据由该json对象承载</td></tr> <tr><td>data.uid</td> <td>String</td> <td>是</td> <td>该条资讯的唯一标示，可用于获取详情</td></tr> <tr><td>data.title</td> <td>String</td> <td>否</td> <td>该条item的标题</td></tr> <tr><td>data.text</td> <td>String</td> <td>否</td> <td>该条item的文本内容，如果是文章，则对应的是文章的摘要，如果是其他快讯，则对应快讯内容或者快讯摘要</td></tr> <tr><td>data.type</td> <td>String</td> <td>否</td> <td>该条item的对应的类型： flash表示快讯 article表示文章 notice表示交易所公告之类 transaction大额交易 social表示社交类的，如微博和推特抓取的数据 detail表示带详情的数据 other表示预留其他类型</td></tr> <tr><td>data.grade</td> <td>int</td> <td>否</td> <td>该条item消息分级中的等级，数值越大等级越高，大于等于2就要在界面上设置出来，暂时定义顶部颜色为红色，小于3的就不需要改变颜色</td></tr> <tr><td>data.source</td> <td>JSON对象</td> <td>是</td> <td>该条item的来源JSON描述对象</td></tr> <tr><td>data.source.uid</td> <td>String</td> <td>是</td> <td>该条item的来源对象的uid</td></tr> <tr><td>data.source.name</td> <td>String</td> <td>是</td> <td>该条item的来源名称，例如：微博XX大V，金色财经</td></tr> <tr><td>data.source.type</td> <td>String</td> <td>是</td> <td>该条item的来源的类型，对应值如下： weibo表示抓取的微博内容 twitter表示推特儿 jinsecaijing表示金色财经的内容 bishijie表示比世界的内容 bixiang表示币响的内容 bikuaibao表示币快报的内容 liandede表示链得得的内容 babite表示巴比特的内容 huoxingcaijing表示火星财经的内容 notice表示公告的内容 <strong>还有其他大额交易的稍后定义</strong></td></tr> <tr><td>data.source.avatar</td> <td>String</td> <td>否</td> <td>该条item的来源的头像</td></tr> <tr><td>data.author</td> <td>String</td> <td>否</td> <td>该条item的作者对象</td></tr> <tr><td>data.author.name</td> <td>String</td> <td>否</td> <td>该条item的作者的名字（昵称）</td></tr> <tr><td>data.author.avatar</td> <td>String</td> <td>否</td> <td>该条item的作者的头像</td></tr> <tr><td>data.time</td> <td>String</td> <td>是</td> <td>秒时间戳</td></tr> <tr><td>data.url</td> <td>String</td> <td>否</td> <td>该条item的web连接，后期会生成一个liandao.ai的域名下的链接，暂时可不考虑</td></tr> <tr><td>data.tags</td> <td>JSON数组</td> <td>是</td> <td>所属的tag</td></tr> <tr><td>data.multimedia</td> <td>JSON对象</td> <td>否</td> <td>该条item的多媒体对象，主要指网页、图片和视频3种</td></tr> <tr><td>data.multimedia.type</td> <td>String</td> <td>是</td> <td>该条item的多媒体类型 值为web表示网页，此时media数组长度为1 值为image表示图片，此时media数组长度为1-9，并且取media对象中的image字段 值为video表示视频，此时media数组长度为1</td></tr> <tr><td>data.multimedia.media</td> <td>JSON数组</td> <td>是</td> <td>该条item的多媒体对象，主要指网页、图片和视频</td></tr> <tr><td>data.multimedia.media.image</td> <td>String</td> <td>否</td> <td>该条item的多媒体所对应的图片，其中如果type为web时，表示左边的网页图片；如果type为video时，表示视频的预览图</td></tr> <tr><td>data.multimedia.media.text</td> <td>String</td> <td>否</td> <td>该条item的多媒体的文本，其中如果type为web时，表示网页的描述性文字</td></tr> <tr><td>data.multimedia.media.url</td> <td>String</td> <td>否</td> <td>该条item的多媒体的链接，其中如果type为web时，表示左边的网页链接；如果type为video时，表示视频的链接</td></tr> <tr><td>data.inline</td> <td>String</td> <td>否</td> <td>该条item的内嵌item，即可能包含以上所有字段或者对象或者数组，类似微博中的转发</td></tr> <tr><td>data.translation</td> <td>JSON对象</td> <td>否</td> <td>该条item的翻译部分，最多只有title、text和content的翻译</td></tr> <tr><td>data.translation.title</td> <td>String</td> <td>否</td> <td>该条item的翻译部分，针对标题的翻译</td></tr> <tr><td>data.translation.text</td> <td>String</td> <td>否</td> <td>该条item的翻译部分，针对文本的翻译</td></tr> <tr><td>data.like</td> <td>JSON对象</td> <td>否</td> <td>该条item对应的点赞/热度的描述对象</td></tr> <tr><td>data.like.rating</td> <td>float</td> <td>否</td> <td>表达点赞/热度的程度等级，由后台根据某种算法生成</td></tr> <tr><td>data.like.number</td> <td>int</td> <td>否</td> <td>点赞/热度的实际数目</td></tr></tbody></table> <h5 id="异常-8"><a href="#异常-8" aria-hidden="true" class="header-anchor">#</a> 异常</h5> <table><thead><tr><th>状态码</th> <th>类型</th> <th>是否必要</th> <th>描述</th></tr></thead> <tbody><tr><td>XXX</td> <td>int</td> <td>否</td> <td>应用版本名称错误：针对的是请求头里的Application字段</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>缺少参数：缺少token等</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>参数错误：token错误等</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>账号异常：可能被封禁了</td></tr></tbody></table> <hr> <h4 id="item详情"><a href="#item详情" aria-hidden="true" class="header-anchor">#</a> item详情</h4> <blockquote><p>地址：https://api.xxx.com/path/xxx/v1/items/{uid}</p></blockquote> <h5 id="请求头-9"><a href="#请求头-9" aria-hidden="true" class="header-anchor">#</a> 请求头</h5> <div class="language- extra-class"><pre class="language-text"><code>GET /path/xxx/v1/items/{uid}
+Accept: application/json
+Content-Type: application/json;charset=UTF-8
+Token: token_G34G34G34G34G35G5
+</code></pre></div><h5 id="参数-9"><a href="#参数-9" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <div class="language- extra-class"><pre class="language-text"><code>暂无
+</code></pre></div><h5 id="响应头-9"><a href="#响应头-9" aria-hidden="true" class="header-anchor">#</a> 响应头</h5> <div class="language- extra-class"><pre class="language-text"><code>HTTP/1.1 200 OK
+Content-Type:application/json; charset=utf-8
+</code></pre></div><h5 id="响应-9"><a href="#响应-9" aria-hidden="true" class="header-anchor">#</a> 响应</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+    &quot;code&quot;: 200,
+    &quot;message&quot;: &quot;居然被你查询成功了&quot;,
+    &quot;data&quot;: {
+        &quot;author&quot;: {
+            &quot;avatar&quot;: &quot;http://p4.pstatp.com/large/4b0000040a5b748e2f9d&quot;,
+            &quot;name&quot;: &quot;币老爷&quot;
+        },
+        &quot;inline&quot;: {
+            &quot;author&quot;: {
+                &quot;avatar&quot;: &quot;http://p4.pstatp.com/large/4b0000040a5b748e2f9d&quot;,
+                &quot;name&quot;: &quot;币老爷&quot;
+            },
+            &quot;multimedia&quot;: {
+                &quot;media&quot;: [
+                    {
+                        &quot;image&quot;: &quot;http://a3.peoplecdn.cn/fbcba40035ae5f2ad90c19abe58560a2.jpg&quot;,
+                        &quot;text&quot;: &quot;六六又开始怼百度了&quot;,
+                        &quot;url&quot;: &quot;http://a3.peoplecdn.cn&quot;
+                    }
+                ],
+                &quot;type&quot;: &quot;web&quot;
+            },
+            &quot;source&quot;: {
+                &quot;avatar&quot;: &quot;http://p4.pstatp.com/large/4b0000040a5b748e2f9d&quot;,
+                &quot;name&quot;: &quot;微博&quot;,
+                &quot;type&quot;: &quot;weibo&quot;
+            },
+            &quot;text&quot;: &quot;牛牛牛，你牛什么牛，牛牛牛，你牛什么牛，牛牛牛，你牛什么牛&quot;,
+            &quot;time&quot;: &quot;1536830292&quot;,
+            &quot;title&quot;: &quot;牛市要来了，赶紧上车&quot;,
+            &quot;type&quot;: &quot;article&quot;,
+            &quot;uid&quot;: &quot;2342423233&quot;,
+            &quot;url&quot;: &quot;http://toutiao.com/group/6536299962081214990/&quot;
+        },
+        &quot;multimedia&quot;: {
+            &quot;media&quot;: [
+                {
+                    &quot;image&quot;: &quot;http://a3.peoplecdn.cn/fbcba40035ae5f2ad90c19abe58560a2.jpg&quot;,
+                    &quot;text&quot;: &quot;六六又开始怼百度了&quot;,
+                    &quot;url&quot;: &quot;http://a3.peoplecdn.cn&quot;
+                }
+            ],
+            &quot;type&quot;: &quot;web&quot;
+        },
+        &quot;source&quot;: {
+            &quot;avatar&quot;: &quot;http://p4.pstatp.com/large/4b0000040a5b748e2f9d&quot;,
+            &quot;name&quot;: &quot;微博&quot;,
+            &quot;type&quot;: &quot;weibo&quot;,
+            &quot;url&quot;: &quot;https://m.weibo.cn/status/4286763108972753&quot;,
+            &quot;uid&quot;: &quot;4286763108972753&quot;
+        },
+        &quot;tags&quot;: [
+            {
+                &quot;name&quot;: &quot;Bitcoin&quot;,
+                &quot;image&quot;: &quot;https://static.feixiaohao.com/coin/eced1e28da4f16e117f471b08ad6e_mid.png&quot;,
+                &quot;alias&quot;: &quot;比特币&quot;,
+                &quot;symbol&quot;: &quot;BTC&quot;,
+                &quot;type&quot;: &quot;coin&quot;,
+                &quot;uid&quot;: &quot;32t23t23sdvsdbse324h34h&quot;
+            },
+            {
+                &quot;name&quot;: &quot;EOS&quot;,
+                &quot;image&quot;: &quot;https://static.feixiaohao.com/coin/eced1e28da4f16e117f471b08ad6e_mid.png&quot;,
+                &quot;alias&quot;: &quot;比特币&quot;,
+                &quot;symbol&quot;: &quot;BTC&quot;,
+                &quot;type&quot;: &quot;coin&quot;,
+                &quot;uid&quot;: &quot;32t23t23sdvsdbse324h34h&quot;
+            }
+        ],
+        &quot;text&quot;: &quot;牛牛牛，你牛什么牛，牛牛牛，你牛什么牛，牛牛牛，你牛什么牛&quot;,
+        &quot;time&quot;: &quot;1536830292&quot;,
+        &quot;title&quot;: &quot;牛市要来了，赶紧上车&quot;,
+        &quot;translation&quot;: {
+            &quot;text&quot;: &quot;什么？什么？什么？&quot;,
+            &quot;title&quot;: &quot;什么？&quot;
+        },
+        &quot;type&quot;: &quot;article&quot;,
+        &quot;uid&quot;: &quot;2342423233&quot;,
+        &quot;url&quot;: &quot;http://toutiao.com/group/6536299962081214990/&quot;,
+        &quot;grade&quot;: 0,
+        &quot;content&quot;: &quot;&lt;p&gt;……&lt;p&gt;&quot;,
+        &quot;like&quot;: {
+            &quot;rating&quot;: 3.5,
+            &quot;number&quot;: 200
+        }
+    }
+}
+</code></pre></div><table><thead><tr><th>key</th> <th>类型</th> <th>是否必须</th> <th>描述</th></tr></thead> <tbody><tr><td>message</td> <td>String</td> <td>是</td> <td>同上</td></tr> <tr><td>code</td> <td>int</td> <td>是</td> <td>同上</td></tr> <tr><td>page</td> <td>int</td> <td>否</td> <td>同上</td></tr> <tr><td>pageSize</td> <td>int</td> <td>否</td> <td>同上</td></tr> <tr><td>first</td> <td>String</td> <td>否</td> <td>同上</td></tr> <tr><td>next</td> <td>String</td> <td>否</td> <td>同上</td></tr> <tr><td>previous</td> <td>String</td> <td>否</td> <td>同上</td></tr> <tr><td>last</td> <td>String</td> <td>否</td> <td>同上</td></tr> <tr><td>data</td> <td>object</td> <td>是</td> <td>当前接口的具体数据由该json对象承载</td></tr> <tr><td>data.uid</td> <td>String</td> <td>是</td> <td>该条资讯的唯一标示，可用于获取详情</td></tr> <tr><td>data.title</td> <td>String</td> <td>否</td> <td>该条item的标题</td></tr> <tr><td>data.text</td> <td>String</td> <td>否</td> <td>该条item的文本内容，如果是文章，则对应的是文章的摘要，如果是其他快讯，则对应快讯内容或者快讯摘要</td></tr> <tr><td>data.item.type</td> <td>String</td> <td>否</td> <td>该条item的对应的类型： flash表示快讯 article表示文章 notice表示交易所公告之类 transaction大额交易 social表示社交类的，如微博和推特抓取的数据 detail表示带详情的数据 other表示预留其他类型</td></tr> <tr><td>data.grade</td> <td>int</td> <td>否</td> <td>该条item消息分级中的等级，数值越大等级越高，大于等于2就要在界面上设置出来，暂时定义顶部颜色为红色，小于3的就不需要改变颜色</td></tr> <tr><td>data.grade</td> <td>String</td> <td>否</td> <td>该条item的详情内容</td></tr> <tr><td>data.source</td> <td>JSON对象</td> <td>是</td> <td>该条item的来源JSON描述对象</td></tr> <tr><td>data.source.uid</td> <td>String</td> <td>是</td> <td>该条item的来源对象的uid</td></tr> <tr><td>data.source.url</td> <td>String</td> <td>是</td> <td>该条item的来源链接</td></tr> <tr><td>data.source.name</td> <td>String</td> <td>是</td> <td>该条item的来源名称，例如：微博XX大V，金色财经</td></tr> <tr><td>data.source.type</td> <td>String</td> <td>是</td> <td>该条item的来源的类型，对应值如下： weibo表示抓取的微博内容 twitter表示推特儿 jinsecaijing表示金色财经的内容 bishijie表示比世界的内容 bixiang表示币响的内容 bikuaibao表示币快报的内容 liandede表示链得得的内容 babite表示巴比特的内容 huoxingcaijing表示火星财经的内容 notice表示公告的内容 <strong>还有其他大额交易的稍后定义</strong></td></tr> <tr><td>data.source.avatar</td> <td>String</td> <td>否</td> <td>该条item的来源的头像</td></tr> <tr><td>data.author</td> <td>String</td> <td>否</td> <td>该条item的作者对象</td></tr> <tr><td>data.author.name</td> <td>String</td> <td>否</td> <td>该条item的作者的名字（昵称）</td></tr> <tr><td>data.author.avatar</td> <td>String</td> <td>否</td> <td>该条item的作者的头像</td></tr> <tr><td>data.time</td> <td>String</td> <td>是</td> <td>秒时间戳</td></tr> <tr><td>data.url</td> <td>String</td> <td>否</td> <td>该条item的web连接，后期会生成一个liandao.ai的域名下的链接，暂时可不考虑</td></tr> <tr><td>data.tags</td> <td>JSON数组</td> <td>是</td> <td>所属的tag</td></tr> <tr><td>data.multimedia</td> <td>JSON对象</td> <td>否</td> <td>该条item的多媒体对象，主要指网页、图片和视频3种</td></tr> <tr><td>data.multimedia.type</td> <td>String</td> <td>是</td> <td>该条item的多媒体类型 值为web表示网页，此时media数组长度为1 值为image表示图片，此时media数组长度为1-9，并且取media对象中的image字段 值为video表示视频，此时media数组长度为1</td></tr> <tr><td>data.multimedia.media</td> <td>JSON数组</td> <td>是</td> <td>该条item的多媒体对象，主要指网页、图片和视频</td></tr> <tr><td>data.multimedia.media.image</td> <td>String</td> <td>否</td> <td>该条item的多媒体所对应的图片，其中如果type为web时，表示左边的网页图片；如果type为video时，表示视频的预览图</td></tr> <tr><td>data.multimedia.media.text</td> <td>String</td> <td>否</td> <td>该条item的多媒体的文本，其中如果type为web时，表示网页的描述性文字</td></tr> <tr><td>data.multimedia.media.url</td> <td>String</td> <td>否</td> <td>该条item的多媒体的链接，其中如果type为web时，表示左边的网页链接；如果type为video时，表示视频的链接</td></tr> <tr><td>data.inline</td> <td>String</td> <td>否</td> <td>该条item的内嵌item，类似微博中的转发</td></tr> <tr><td>data.translation</td> <td>JSON对象</td> <td>否</td> <td>该条item的翻译部分，最多只有title、text和content的翻译</td></tr> <tr><td>data.translation.title</td> <td>String</td> <td>否</td> <td>该条item的翻译部分，针对标题的翻译</td></tr> <tr><td>data.translation.text</td> <td>String</td> <td>否</td> <td>该条item的翻译部分，针对文本的翻译</td></tr> <tr><td>data.content</td> <td>String</td> <td>否</td> <td>该条item的翻译部分，针对content的翻译，比如文章详情</td></tr> <tr><td>data.like</td> <td>JSON对象</td> <td>否</td> <td>该条item对应的点赞/热度的描述对象</td></tr> <tr><td>data.like.rating</td> <td>float</td> <td>否</td> <td>表达点赞/热度的程度等级，由后台根据某种算法生成</td></tr> <tr><td>data.like.number</td> <td>int</td> <td>否</td> <td>点赞/热度的实际数目</td></tr></tbody></table> <h5 id="异常-9"><a href="#异常-9" aria-hidden="true" class="header-anchor">#</a> 异常</h5> <table><thead><tr><th>状态码</th> <th>类型</th> <th>是否必要</th> <th>描述</th></tr></thead> <tbody><tr><td>XXX</td> <td>int</td> <td>否</td> <td>应用版本名称错误：针对的是请求头里的Application字段</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>缺少参数：缺少token、uid等</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>参数错误：token、uid错误等</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>账号异常：可能被封禁了</td></tr></tbody></table> <hr> <h4 id="新增items"><a href="#新增items" aria-hidden="true" class="header-anchor">#</a> 新增items</h4> <blockquote><p>地址：https://api.xxx.com/path/xxx/v1/items</p></blockquote> <h5 id="请求头-10"><a href="#请求头-10" aria-hidden="true" class="header-anchor">#</a> 请求头</h5> <div class="language- extra-class"><pre class="language-text"><code>POST /path/xxx/v1/items
+Accept: application/json
+Content-Type: application/json;charset=UTF-8
+Token: token_G34G34G34G34G35G5
+</code></pre></div><h5 id="参数-10"><a href="#参数-10" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <div class="language- extra-class"><pre class="language-text"><code>[
+    {
+        &quot;author&quot;: {
+            &quot;avatar&quot;: &quot;http://p4.pstatp.com/large/4b0000040a5b748e2f9d&quot;,
+            &quot;name&quot;: &quot;币老爷&quot;
+        },
+        &quot;inline&quot;: {
+            &quot;author&quot;: {
+                &quot;avatar&quot;: &quot;http://p4.pstatp.com/large/4b0000040a5b748e2f9d&quot;,
+                &quot;name&quot;: &quot;币老爷&quot;
+            },
+            &quot;multimedia&quot;: {
+                &quot;media&quot;: [
+                    {
+                        &quot;image&quot;: &quot;http://a3.peoplecdn.cn/fbcba40035ae5f2ad90c19abe58560a2.jpg&quot;,
+                        &quot;text&quot;: &quot;六六又开始怼百度了&quot;,
+                        &quot;url&quot;: &quot;http://a3.peoplecdn.cn&quot;
+                    }
+                ],
+                &quot;type&quot;: &quot;web&quot;
+            },
+            &quot;source&quot;: {
+                &quot;avatar&quot;: &quot;http://p4.pstatp.com/large/4b0000040a5b748e2f9d&quot;,
+                &quot;name&quot;: &quot;微博&quot;,
+                &quot;type&quot;: &quot;weibo&quot;
+            },
+            &quot;text&quot;: &quot;牛牛牛，你牛什么牛，牛牛牛，你牛什么牛，牛牛牛，你牛什么牛&quot;,
+            &quot;time&quot;: &quot;1536830292&quot;,
+            &quot;title&quot;: &quot;牛市要来了，赶紧上车&quot;,
+            &quot;type&quot;: &quot;article&quot;,
+            &quot;url&quot;: &quot;http://toutiao.com/group/6536299962081214990/&quot;
+        },
+        &quot;multimedia&quot;: {
+            &quot;media&quot;: [
+                {
+                    &quot;image&quot;: &quot;http://a3.peoplecdn.cn/fbcba40035ae5f2ad90c19abe58560a2.jpg&quot;,
+                    &quot;text&quot;: &quot;六六又开始怼百度了&quot;,
+                    &quot;url&quot;: &quot;http://a3.peoplecdn.cn&quot;
+                }
+            ],
+            &quot;type&quot;: &quot;web&quot;
+        },
+        &quot;source&quot;: {
+            &quot;avatar&quot;: &quot;http://p4.pstatp.com/large/4b0000040a5b748e2f9d&quot;,
+            &quot;name&quot;: &quot;微博&quot;,
+            &quot;type&quot;: &quot;weibo&quot;,
+            &quot;url&quot;: &quot;https://m.weibo.cn/status/4286763108972753&quot;,
+            &quot;uid&quot;: &quot;4286763108972753&quot;
+        },
+        &quot;tags&quot;: [
+            &quot;32t23t23sdvsdbse324h34h&quot;,
+            &quot;32t23t23sdvsdbse324h34h&quot;
+        ],
+        &quot;text&quot;: &quot;牛牛牛，你牛什么牛，牛牛牛，你牛什么牛，牛牛牛，你牛什么牛&quot;,
+        &quot;time&quot;: &quot;1536830292&quot;,
+        &quot;title&quot;: &quot;牛市要来了，赶紧上车&quot;,
+        &quot;translation&quot;: {
+            &quot;text&quot;: &quot;什么？什么？什么？&quot;,
+            &quot;title&quot;: &quot;什么？&quot;
+        },
+        &quot;type&quot;: &quot;article&quot;,
+        &quot;url&quot;: &quot;http://toutiao.com/group/6536299962081214990/&quot;,
+        &quot;grade&quot;: 0,
+        &quot;content&quot;: &quot;&lt;p&gt;……&lt;p&gt;&quot;
+    },
+    {
+        &quot;author&quot;: {
+            &quot;avatar&quot;: &quot;http://p4.pstatp.com/large/4b0000040a5b748e2f9d&quot;,
+            &quot;name&quot;: &quot;币老爷&quot;
+        },
+        &quot;inline&quot;: {
+            &quot;author&quot;: {
+                &quot;avatar&quot;: &quot;http://p4.pstatp.com/large/4b0000040a5b748e2f9d&quot;,
+                &quot;name&quot;: &quot;币老爷&quot;
+            },
+            &quot;multimedia&quot;: {
+                &quot;media&quot;: [
+                    {
+                        &quot;image&quot;: &quot;http://a3.peoplecdn.cn/fbcba40035ae5f2ad90c19abe58560a2.jpg&quot;,
+                        &quot;text&quot;: &quot;六六又开始怼百度了&quot;,
+                        &quot;url&quot;: &quot;http://a3.peoplecdn.cn&quot;
+                    }
+                ],
+                &quot;type&quot;: &quot;web&quot;
+            },
+            &quot;source&quot;: {
+                &quot;avatar&quot;: &quot;http://p4.pstatp.com/large/4b0000040a5b748e2f9d&quot;,
+                &quot;name&quot;: &quot;微博&quot;,
+                &quot;type&quot;: &quot;weibo&quot;
+            },
+            &quot;text&quot;: &quot;牛牛牛，你牛什么牛，牛牛牛，你牛什么牛，牛牛牛，你牛什么牛&quot;,
+            &quot;time&quot;: &quot;1536830292&quot;,
+            &quot;title&quot;: &quot;牛市要来了，赶紧上车&quot;,
+            &quot;type&quot;: &quot;article&quot;,
+            &quot;url&quot;: &quot;http://toutiao.com/group/6536299962081214990/&quot;
+        },
+        &quot;multimedia&quot;: {
+            &quot;media&quot;: [
+                {
+                    &quot;image&quot;: &quot;http://a3.peoplecdn.cn/fbcba40035ae5f2ad90c19abe58560a2.jpg&quot;,
+                    &quot;text&quot;: &quot;六六又开始怼百度了&quot;,
+                    &quot;url&quot;: &quot;http://a3.peoplecdn.cn&quot;
+                }
+            ],
+            &quot;type&quot;: &quot;web&quot;
+        },
+        &quot;source&quot;: {
+            &quot;avatar&quot;: &quot;http://p4.pstatp.com/large/4b0000040a5b748e2f9d&quot;,
+            &quot;name&quot;: &quot;微博&quot;,
+            &quot;type&quot;: &quot;weibo&quot;,
+            &quot;url&quot;: &quot;https://m.weibo.cn/status/4286763108972753&quot;,
+            &quot;uid&quot;: &quot;4286763108972753&quot;
+        },
+        &quot;tags&quot;: [
+            &quot;32t23t23sdvsdbse324h34h&quot;,
+            &quot;32t23t23sdvsdbse324h34h&quot;
+        ],
+        &quot;text&quot;: &quot;牛牛牛，你牛什么牛，牛牛牛，你牛什么牛，牛牛牛，你牛什么牛&quot;,
+        &quot;time&quot;: &quot;1536830292&quot;,
+        &quot;title&quot;: &quot;牛市要来了，赶紧上车&quot;,
+        &quot;translation&quot;: {
+            &quot;text&quot;: &quot;什么？什么？什么？&quot;,
+            &quot;title&quot;: &quot;什么？&quot;
+        },
+        &quot;type&quot;: &quot;article&quot;,
+        &quot;url&quot;: &quot;http://toutiao.com/group/6536299962081214990/&quot;,
+        &quot;grade&quot;: 0,
+        &quot;content&quot;: &quot;&lt;p&gt;……&lt;p&gt;&quot;,
+        &quot;like&quot;: {
+            &quot;rating&quot;: 3.5,
+            &quot;number&quot;: 200
+        }
+    }
+]
+</code></pre></div><table><thead><tr><th>params</th> <th>类型</th> <th>是否必须</th> <th>描述</th></tr></thead> <tbody><tr><td>uid</td> <td>String</td> <td>是</td> <td>该条资讯的唯一标示，可用于获取详情</td></tr> <tr><td>title</td> <td>String</td> <td>否</td> <td>该条item的标题</td></tr> <tr><td>text</td> <td>String</td> <td>否</td> <td>该条item的文本内容，如果是文章，则对应的是文章的摘要，如果是其他快讯，则对应快讯内容或者快讯摘要</td></tr> <tr><td>type</td> <td>String</td> <td>否</td> <td>该条item的对应的类型： flash表示快讯 article表示文章 notice表示交易所公告之类 transaction大额交易 social表示社交类的，如微博和推特抓取的数据 detail表示带详情的数据 other表示预留其他类型</td></tr> <tr><td>grade</td> <td>int</td> <td>否</td> <td>该条item消息分级中的等级，数值越大等级越高，大于等于2就要在界面上设置出来，暂时定义顶部颜色为红色，小于3的就不需要改变颜色</td></tr> <tr><td>source</td> <td>JSON对象</td> <td>是</td> <td>该条item的来源JSON描述对象</td></tr> <tr><td>source.uid</td> <td>String</td> <td>是</td> <td>该条item的来源对象的uid</td></tr> <tr><td>source.name</td> <td>String</td> <td>是</td> <td>该条item的来源名称，例如：微博XX大V，金色财经</td></tr> <tr><td>source.type</td> <td>String</td> <td>是</td> <td>该条item的来源的类型，对应值如下： weibo表示抓取的微博内容 twitter表示推特儿 jinsecaijing表示金色财经的内容 bishijie表示比世界的内容 bixiang表示币响的内容 bikuaibao表示币快报的内容 liandede表示链得得的内容 babite表示巴比特的内容 huoxingcaijing表示火星财经的内容 notice表示公告的内容 <strong>还有其他大额交易的稍后定义</strong></td></tr> <tr><td>source.avatar</td> <td>String</td> <td>否</td> <td>该条item的来源的头像</td></tr> <tr><td>author</td> <td>String</td> <td>否</td> <td>该条item的作者对象</td></tr> <tr><td>author.name</td> <td>String</td> <td>否</td> <td>该条item的作者的名字（昵称）</td></tr> <tr><td>author.avatar</td> <td>String</td> <td>否</td> <td>该条item的作者的头像</td></tr> <tr><td>time</td> <td>String</td> <td>是</td> <td>秒时间戳</td></tr> <tr><td>url</td> <td>String</td> <td>否</td> <td>该条item的web连接，后期会生成一个liandao.ai的域名下的链接，暂时可不考虑</td></tr> <tr><td>tags</td> <td>JSON数组</td> <td>是</td> <td>所属的tag</td></tr> <tr><td>multimedia</td> <td>JSON对象</td> <td>否</td> <td>该条item的多媒体对象，主要指网页、图片和视频3种</td></tr> <tr><td>multimedia.type</td> <td>String</td> <td>是</td> <td>该条item的多媒体类型 值为web表示网页，此时media数组长度为1 值为image表示图片，此时media数组长度为1-9，并且取media对象中的image字段 值为video表示视频，此时media数组长度为1</td></tr> <tr><td>multimedia.media</td> <td>JSON数组</td> <td>是</td> <td>该条item的多媒体对象，主要指网页、图片和视频</td></tr> <tr><td>multimedia.media.image</td> <td>String</td> <td>否</td> <td>该条item的多媒体所对应的图片，其中如果type为web时，表示左边的网页图片；如果type为video时，表示视频的预览图</td></tr> <tr><td>multimedia.media.text</td> <td>String</td> <td>否</td> <td>该条item的多媒体的文本，其中如果type为web时，表示网页的描述性文字</td></tr> <tr><td>multimedia.media.url</td> <td>String</td> <td>否</td> <td>该条item的多媒体的链接，其中如果type为web时，表示左边的网页链接；如果type为video时，表示视频的链接</td></tr> <tr><td>inline</td> <td>String</td> <td>否</td> <td>该条item的内嵌item，即可能包含以上所有字段或者对象或者数组，类似微博中的转发</td></tr> <tr><td>translation</td> <td>JSON对象</td> <td>否</td> <td>该条item的翻译部分，最多只有title、text和content的翻译</td></tr> <tr><td>translation.title</td> <td>String</td> <td>否</td> <td>该条item的翻译部分，针对标题的翻译</td></tr> <tr><td>translation.text</td> <td>String</td> <td>否</td> <td>该条item的翻译部分，针对文本的翻译</td></tr> <tr><td>content</td> <td>String</td> <td>否</td> <td>该条item的内容部分，比如文章的具体长篇内容</td></tr> <tr><td>like</td> <td>JSON对象</td> <td>否</td> <td>该条item对应的点赞/热度的描述对象</td></tr> <tr><td>like.rating</td> <td>float</td> <td>否</td> <td>表达点赞/热度的程度等级，由后台根据某种算法生成</td></tr> <tr><td>like.number</td> <td>int</td> <td>否</td> <td>点赞/热度的实际数目</td></tr></tbody></table> <h5 id="响应头-10"><a href="#响应头-10" aria-hidden="true" class="header-anchor">#</a> 响应头</h5> <div class="language- extra-class"><pre class="language-text"><code>HTTP/1.1 200 OK
+Content-Type:application/json; charset=utf-8
+</code></pre></div><h5 id="响应-10"><a href="#响应-10" aria-hidden="true" class="header-anchor">#</a> 响应</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+    &quot;code&quot;: 200,
+    &quot;message&quot;: &quot;居然被你查询成功了&quot;,
+    &quot;data&quot;: [
+        {
+            &quot;uid&quot;: &quot;23235235235rt32t2&quot;
+        },
+        {
+            &quot;uid&quot;: &quot;23235235235rt32t2&quot;
+        }
+    ]
+}
+</code></pre></div><table><thead><tr><th>key</th> <th>类型</th> <th>是否必须</th> <th>描述</th></tr></thead> <tbody><tr><td>message</td> <td>String</td> <td>是</td> <td>同上</td></tr> <tr><td>code</td> <td>int</td> <td>是</td> <td>同上</td></tr> <tr><td>page</td> <td>int</td> <td>否</td> <td>同上</td></tr> <tr><td>pageSize</td> <td>int</td> <td>否</td> <td>同上</td></tr> <tr><td>first</td> <td>String</td> <td>否</td> <td>同上</td></tr> <tr><td>next</td> <td>String</td> <td>否</td> <td>同上</td></tr> <tr><td>previous</td> <td>String</td> <td>否</td> <td>同上</td></tr> <tr><td>last</td> <td>String</td> <td>否</td> <td>同上</td></tr> <tr><td>data</td> <td>object</td> <td>是</td> <td>当前接口的具体数据由该json对象承载</td></tr> <tr><td>data.uid</td> <td>String</td> <td>是</td> <td>该条资讯的唯一标示，可用于获取详情</td></tr></tbody></table> <h5 id="异常-10"><a href="#异常-10" aria-hidden="true" class="header-anchor">#</a> 异常</h5> <table><thead><tr><th>状态码</th> <th>类型</th> <th>是否必要</th> <th>描述</th></tr></thead> <tbody><tr><td>XXX</td> <td>int</td> <td>否</td> <td>应用版本名称错误：针对的是请求头里的Application字段</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>缺少参数：缺少token、uid等</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>参数错误：token、uid错误等</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>账号异常：可能被封禁了</td></tr></tbody></table> <hr> <h4 id="修改item"><a href="#修改item" aria-hidden="true" class="header-anchor">#</a> 修改item</h4> <blockquote><p>地址：https://api.xxx.com/path/xxx/v1/items{uid}</p></blockquote> <h5 id="请求头-11"><a href="#请求头-11" aria-hidden="true" class="header-anchor">#</a> 请求头</h5> <div class="language- extra-class"><pre class="language-text"><code>PATCH /path/xxx/v1/items/{uid}
+Accept: application/json
+Content-Type: application/json;charset=UTF-8
+Token: token_G34G34G34G34G35G5
+</code></pre></div><h5 id="参数-11"><a href="#参数-11" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+    &quot;author&quot;: {
+        &quot;avatar&quot;: &quot;http://p4.pstatp.com/large/4b0000040a5b748e2f9d&quot;,
+        &quot;name&quot;: &quot;币老爷&quot;
+    },
+    &quot;inline&quot;: {
+        &quot;author&quot;: {
+            &quot;avatar&quot;: &quot;http://p4.pstatp.com/large/4b0000040a5b748e2f9d&quot;,
+            &quot;name&quot;: &quot;币老爷&quot;
+        },
+        &quot;multimedia&quot;: {
+            &quot;media&quot;: [
+                {
+                    &quot;image&quot;: &quot;http://a3.peoplecdn.cn/fbcba40035ae5f2ad90c19abe58560a2.jpg&quot;,
+                    &quot;text&quot;: &quot;六六又开始怼百度了&quot;,
+                    &quot;url&quot;: &quot;http://a3.peoplecdn.cn&quot;
+                }
+            ],
+            &quot;type&quot;: &quot;web&quot;
+        },
+        &quot;source&quot;: {
+            &quot;avatar&quot;: &quot;http://p4.pstatp.com/large/4b0000040a5b748e2f9d&quot;,
+            &quot;name&quot;: &quot;微博&quot;,
+            &quot;type&quot;: &quot;weibo&quot;
+        },
+        &quot;text&quot;: &quot;牛牛牛，你牛什么牛，牛牛牛，你牛什么牛，牛牛牛，你牛什么牛&quot;,
+        &quot;time&quot;: &quot;1536830292&quot;,
+        &quot;title&quot;: &quot;牛市要来了，赶紧上车&quot;,
+        &quot;type&quot;: &quot;article&quot;,
+        &quot;uid&quot;: &quot;2342423233&quot;,
+        &quot;url&quot;: &quot;http://toutiao.com/group/6536299962081214990/&quot;
+    },
+    &quot;multimedia&quot;: {
+        &quot;media&quot;: [
+            {
+                &quot;image&quot;: &quot;http://a3.peoplecdn.cn/fbcba40035ae5f2ad90c19abe58560a2.jpg&quot;,
+                &quot;text&quot;: &quot;六六又开始怼百度了&quot;,
+                &quot;url&quot;: &quot;http://a3.peoplecdn.cn&quot;
+            }
+        ],
+        &quot;type&quot;: &quot;web&quot;
+    },
+    &quot;source&quot;: {
+        &quot;avatar&quot;: &quot;http://p4.pstatp.com/large/4b0000040a5b748e2f9d&quot;,
+        &quot;name&quot;: &quot;微博&quot;,
+        &quot;type&quot;: &quot;weibo&quot;,
+        &quot;url&quot;: &quot;https://m.weibo.cn/status/4286763108972753&quot;,
+        &quot;uid&quot;: &quot;4286763108972753&quot;
+    },
+    &quot;tags&quot;: [
+        &quot;32t23t23sdvsdbse324h34h&quot;,
+        &quot;32t23t23sdvsdbse324h34h&quot;
+    ],
+    &quot;text&quot;: &quot;牛牛牛，你牛什么牛，牛牛牛，你牛什么牛，牛牛牛，你牛什么牛&quot;,
+    &quot;time&quot;: &quot;1536830292&quot;,
+    &quot;title&quot;: &quot;牛市要来了，赶紧上车&quot;,
+    &quot;translation&quot;: {
+        &quot;text&quot;: &quot;什么？什么？什么？&quot;,
+        &quot;title&quot;: &quot;什么？&quot;
+    },
+    &quot;type&quot;: &quot;article&quot;,
+    &quot;uid&quot;: &quot;2342423233&quot;,
+    &quot;url&quot;: &quot;http://toutiao.com/group/6536299962081214990/&quot;,
+    &quot;grade&quot;: 0,
+    &quot;content&quot;: &quot;&lt;p&gt;……&lt;p&gt;&quot;,
+    &quot;like&quot;: {
+        &quot;rating&quot;: 3.5,
+        &quot;number&quot;: 200
+    }
+}
+</code></pre></div><table><thead><tr><th>params</th> <th>类型</th> <th>是否必须</th> <th>描述</th></tr></thead> <tbody><tr><td>uid</td> <td>String</td> <td>是</td> <td>该条资讯的唯一标示，可用于获取详情</td></tr> <tr><td>title</td> <td>String</td> <td>否</td> <td>该条item的标题</td></tr> <tr><td>text</td> <td>String</td> <td>否</td> <td>该条item的文本内容，如果是文章，则对应的是文章的摘要，如果是其他快讯，则对应快讯内容或者快讯摘要</td></tr> <tr><td>type</td> <td>String</td> <td>否</td> <td>该条item的对应的类型： flash表示快讯 article表示文章 notice表示交易所公告之类 transaction大额交易 social表示社交类的，如微博和推特抓取的数据 detail表示带详情的数据 other表示预留其他类型</td></tr> <tr><td>grade</td> <td>int</td> <td>否</td> <td>该条item消息分级中的等级，数值越大等级越高，大于等于2就要在界面上设置出来，暂时定义顶部颜色为红色，小于3的就不需要改变颜色</td></tr> <tr><td>source</td> <td>JSON对象</td> <td>是</td> <td>该条item的来源JSON描述对象</td></tr> <tr><td>source.uid</td> <td>String</td> <td>是</td> <td>该条item的来源对象的uid</td></tr> <tr><td>source.name</td> <td>String</td> <td>是</td> <td>该条item的来源名称，例如：微博XX大V，金色财经</td></tr> <tr><td>source.type</td> <td>String</td> <td>是</td> <td>该条item的来源的类型，对应值如下： weibo表示抓取的微博内容 twitter表示推特儿 jinsecaijing表示金色财经的内容 bishijie表示比世界的内容 bixiang表示币响的内容 bikuaibao表示币快报的内容 liandede表示链得得的内容 babite表示巴比特的内容 huoxingcaijing表示火星财经的内容 notice表示公告的内容 <strong>还有其他大额交易的稍后定义</strong></td></tr> <tr><td>source.avatar</td> <td>String</td> <td>否</td> <td>该条item的来源的头像</td></tr> <tr><td>author</td> <td>String</td> <td>否</td> <td>该条item的作者对象</td></tr> <tr><td>author.name</td> <td>String</td> <td>否</td> <td>该条item的作者的名字（昵称）</td></tr> <tr><td>author.avatar</td> <td>String</td> <td>否</td> <td>该条item的作者的头像</td></tr> <tr><td>time</td> <td>String</td> <td>是</td> <td>秒时间戳</td></tr> <tr><td>url</td> <td>String</td> <td>否</td> <td>该条item的web连接，后期会生成一个liandao.ai的域名下的链接，暂时可不考虑</td></tr> <tr><td>tags</td> <td>JSON数组</td> <td>是</td> <td>所属的tag</td></tr> <tr><td>multimedia</td> <td>JSON对象</td> <td>否</td> <td>该条item的多媒体对象，主要指网页、图片和视频3种</td></tr> <tr><td>multimedia.type</td> <td>String</td> <td>是</td> <td>该条item的多媒体类型 值为web表示网页，此时media数组长度为1 值为image表示图片，此时media数组长度为1-9，并且取media对象中的image字段 值为video表示视频，此时media数组长度为1</td></tr> <tr><td>multimedia.media</td> <td>JSON数组</td> <td>是</td> <td>该条item的多媒体对象，主要指网页、图片和视频</td></tr> <tr><td>multimedia.media.image</td> <td>String</td> <td>否</td> <td>该条item的多媒体所对应的图片，其中如果type为web时，表示左边的网页图片；如果type为video时，表示视频的预览图</td></tr> <tr><td>multimedia.media.text</td> <td>String</td> <td>否</td> <td>该条item的多媒体的文本，其中如果type为web时，表示网页的描述性文字</td></tr> <tr><td>multimedia.media.url</td> <td>String</td> <td>否</td> <td>该条item的多媒体的链接，其中如果type为web时，表示左边的网页链接；如果type为video时，表示视频的链接</td></tr> <tr><td>inline</td> <td>String</td> <td>否</td> <td>该条item的内嵌item，即可能包含以上所有字段或者对象或者数组，类似微博中的转发</td></tr> <tr><td>translation</td> <td>JSON对象</td> <td>否</td> <td>该条item的翻译部分，最多只有title、text和content的翻译</td></tr> <tr><td>translation.title</td> <td>String</td> <td>否</td> <td>该条item的翻译部分，针对标题的翻译</td></tr> <tr><td>translation.text</td> <td>String</td> <td>否</td> <td>该条item的翻译部分，针对文本的翻译</td></tr> <tr><td>content</td> <td>String</td> <td>否</td> <td>该条item的内容部分，比如文章的具体长篇内容</td></tr> <tr><td>like</td> <td>JSON对象</td> <td>否</td> <td>该条item对应的点赞/热度的描述对象</td></tr> <tr><td>like.rating</td> <td>float</td> <td>否</td> <td>表达点赞/热度的程度等级，由后台根据某种算法生成</td></tr> <tr><td>like.number</td> <td>int</td> <td>否</td> <td>点赞/热度的实际数目</td></tr></tbody></table> <h5 id="响应头-11"><a href="#响应头-11" aria-hidden="true" class="header-anchor">#</a> 响应头</h5> <div class="language- extra-class"><pre class="language-text"><code>HTTP/1.1 200 OK
+Content-Type:application/json; charset=utf-8
+</code></pre></div><h5 id="响应-11"><a href="#响应-11" aria-hidden="true" class="header-anchor">#</a> 响应</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+    &quot;code&quot;: 200,
+    &quot;message&quot;: &quot;居然被你查询成功了&quot;,
+    &quot;data&quot;: {
+        &quot;uid&quot;: &quot;23235235235rt32t2&quot;
+    }
+}
+</code></pre></div><table><thead><tr><th>key</th> <th>类型</th> <th>是否必须</th> <th>描述</th></tr></thead> <tbody><tr><td>message</td> <td>String</td> <td>是</td> <td>同上</td></tr> <tr><td>code</td> <td>int</td> <td>是</td> <td>同上</td></tr> <tr><td>page</td> <td>int</td> <td>否</td> <td>同上</td></tr> <tr><td>pageSize</td> <td>int</td> <td>否</td> <td>同上</td></tr> <tr><td>first</td> <td>String</td> <td>否</td> <td>同上</td></tr> <tr><td>next</td> <td>String</td> <td>否</td> <td>同上</td></tr> <tr><td>previous</td> <td>String</td> <td>否</td> <td>同上</td></tr> <tr><td>last</td> <td>String</td> <td>否</td> <td>同上</td></tr> <tr><td>data</td> <td>object</td> <td>是</td> <td>当前接口的具体数据由该json对象承载</td></tr> <tr><td>data.uid</td> <td>String</td> <td>是</td> <td>该条资讯的唯一标示，可用于获取详情</td></tr></tbody></table> <h5 id="异常-11"><a href="#异常-11" aria-hidden="true" class="header-anchor">#</a> 异常</h5> <table><thead><tr><th>状态码</th> <th>类型</th> <th>是否必要</th> <th>描述</th></tr></thead> <tbody><tr><td>XXX</td> <td>int</td> <td>否</td> <td>应用版本名称错误：针对的是请求头里的Application字段</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>缺少参数：缺少token、uid等</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>参数错误：token、uid错误等</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>账号异常：可能被封禁了</td></tr></tbody></table> <hr> <h4 id="删除item"><a href="#删除item" aria-hidden="true" class="header-anchor">#</a> 删除item</h4> <blockquote><p>地址：https://api.xxx.com/path/xxx/v1/items{uid}</p></blockquote> <h5 id="请求头-12"><a href="#请求头-12" aria-hidden="true" class="header-anchor">#</a> 请求头</h5> <div class="language- extra-class"><pre class="language-text"><code>DELETE /path/xxx/v1/items/{uid}
+Accept: application/json
+Content-Type: application/json;charset=UTF-8
+Token: token_G34G34G34G34G35G5
+</code></pre></div><h5 id="参数-12"><a href="#参数-12" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <div class="language- extra-class"><pre class="language-text"><code>暂无
+</code></pre></div><h5 id="响应头-12"><a href="#响应头-12" aria-hidden="true" class="header-anchor">#</a> 响应头</h5> <div class="language- extra-class"><pre class="language-text"><code>HTTP/1.1 200 OK
+Content-Type:application/json; charset=utf-8
+</code></pre></div><h5 id="响应-12"><a href="#响应-12" aria-hidden="true" class="header-anchor">#</a> 响应</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+    &quot;code&quot;: 200,
+    &quot;message&quot;: &quot;居然被你删除成功了&quot;,
+    &quot;data&quot;: {
+        &quot;uid&quot;: &quot;23235235235rt32t2&quot;
+    }
+}
+</code></pre></div><table><thead><tr><th>key</th> <th>类型</th> <th>是否必须</th> <th>描述</th></tr></thead> <tbody><tr><td>message</td> <td>String</td> <td>是</td> <td>同上</td></tr> <tr><td>code</td> <td>int</td> <td>是</td> <td>同上</td></tr> <tr><td>page</td> <td>int</td> <td>否</td> <td>同上</td></tr> <tr><td>pageSize</td> <td>int</td> <td>否</td> <td>同上</td></tr> <tr><td>first</td> <td>String</td> <td>否</td> <td>同上</td></tr> <tr><td>next</td> <td>String</td> <td>否</td> <td>同上</td></tr> <tr><td>previous</td> <td>String</td> <td>否</td> <td>同上</td></tr> <tr><td>last</td> <td>String</td> <td>否</td> <td>同上</td></tr> <tr><td>data</td> <td>object</td> <td>是</td> <td>当前接口的具体数据由该json对象承载</td></tr> <tr><td>data.uid</td> <td>String</td> <td>是</td> <td>该条资讯的唯一标示，可用于获取详情</td></tr></tbody></table> <h5 id="异常-12"><a href="#异常-12" aria-hidden="true" class="header-anchor">#</a> 异常</h5> <table><thead><tr><th>状态码</th> <th>类型</th> <th>是否必要</th> <th>描述</th></tr></thead> <tbody><tr><td>XXX</td> <td>int</td> <td>否</td> <td>应用版本名称错误：针对的是请求头里的Application字段</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>缺少参数：缺少token、uid等</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>参数错误：token、uid错误等</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>账号异常：可能被封禁了</td></tr></tbody></table> <hr> <h3 id="app更新器"><a href="#app更新器" aria-hidden="true" class="header-anchor">#</a> App更新器</h3> <p>考虑到我们的App是未上应用商店的，只能靠自身提示更新，因此需要一个完善的可视化的后台来管理。</p> <h4 id="获取更新历史记录"><a href="#获取更新历史记录" aria-hidden="true" class="header-anchor">#</a> 获取更新历史记录</h4> <blockquote><p>地址：https://api.xxx.com/path/xxx/v1/updaters</p></blockquote> <h5 id="请求头-13"><a href="#请求头-13" aria-hidden="true" class="header-anchor">#</a> 请求头</h5> <div class="language- extra-class"><pre class="language-text"><code>GET /xxx/v1/updaters
+Accept: application/json
+Content-Type: application/json;charset=UTF-8
+Token: token_G34G34G34G34G35G5
+</code></pre></div><h5 id="参数-13"><a href="#参数-13" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <div class="language- extra-class"><pre class="language-text"><code>?type=1
+</code></pre></div><table><thead><tr><th>params</th> <th>类型</th> <th>是否必须</th> <th>描述</th></tr></thead> <tbody><tr><td>type</td> <td>String</td> <td>否</td> <td>type表示不同平台<br>1表示获取iOS更新器信息<br>2表示获取安卓更新器信息</td></tr></tbody></table> <h5 id="响应头-13"><a href="#响应头-13" aria-hidden="true" class="header-anchor">#</a> 响应头</h5> <div class="language- extra-class"><pre class="language-text"><code>HTTP/1.1 200 OK
+Content-Type:application/json; charset=utf-8
+</code></pre></div><h5 id="响应-13"><a href="#响应-13" aria-hidden="true" class="header-anchor">#</a> 响应</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+    &quot;code&quot;: &quot;200&quot;,
+    &quot;message&quot;: &quot;上传啦啦啦&quot;,
+    &quot;data&quot;: [
+        {
+            &quot;uid&quot;: &quot;235252rt23t23t23t&quot;,
+            &quot;time&quot;: &quot;2018-04-28 23:57:12&quot;,
+            &quot;size&quot;: &quot;50M&quot;,
+            &quot;fileName&quot;: &quot;xxx.apk&quot;,
+            &quot;force&quot;: true,
+            &quot;versionCode&quot;: 1,
+            &quot;versionName&quot;: &quot;1.0.0&quot;,
+            &quot;link&quot;: &quot;https://miaoyoujuan.com/both.apk&quot;,
+            &quot;description&quot;: &quot;摩尔钱包&quot;,
+            &quot;title&quot;: &quot;摩尔钱包&quot;,
+            &quot;ignore&quot;: true,
+            &quot;md&quot;: &quot;234T243T2T&quot;,
+            &quot;enable&quot;: true
+        },
+        {
+            &quot;uid&quot;: &quot;235252rt23t23t23t&quot;,
+            &quot;time&quot;: &quot;2018-04-28 23:57:12&quot;,
+            &quot;size&quot;: &quot;50M&quot;,
+            &quot;fileName&quot;: &quot;xxx.apk&quot;,
+            &quot;force&quot;: true,
+            &quot;versionCode&quot;: 1,
+            &quot;versionName&quot;: &quot;1.0.0&quot;,
+            &quot;link&quot;: &quot;https://miaoyoujuan.com/both.apk&quot;,
+            &quot;description&quot;: &quot;摩尔钱包&quot;,
+            &quot;title&quot;: &quot;摩尔钱包&quot;,
+            &quot;ignore&quot;: true,
+            &quot;md&quot;: &quot;234T243T2T&quot;,
+            &quot;enable&quot;: false
+        }
+    ]
+}
+</code></pre></div><table><thead><tr><th>key</th> <th>类型</th> <th>是否必要</th> <th>描述</th></tr></thead> <tbody><tr><td>message</td> <td>String</td> <td>是</td> <td>同上</td></tr> <tr><td>code</td> <td>int</td> <td>是</td> <td>同上</td></tr> <tr><td>data</td> <td>JSON对象</td> <td>是</td> <td>同上</td></tr> <tr><td>data.uid</td> <td>String</td> <td>是</td> <td>该条更新记录的唯一标识</td></tr> <tr><td>data.time</td> <td>String</td> <td>是</td> <td>该条更新记录的上传时间</td></tr> <tr><td>data.size</td> <td>String</td> <td>是</td> <td>下载包的大小</td></tr> <tr><td>data.fileName</td> <td>String</td> <td>是</td> <td>下载的文件的名称</td></tr> <tr><td>data.force</td> <td>boolean</td> <td>是</td> <td>是否强制升值</td></tr> <tr><td>data.versionCode</td> <td>int</td> <td>是</td> <td>针对安卓版本的版本号，安卓是根据整个版本号比大小来比较版本的新旧</td></tr> <tr><td>data.versionName</td> <td>String</td> <td>是</td> <td>版本的名称，比如1.0.2</td></tr> <tr><td>data.link</td> <td>String</td> <td>是</td> <td>下载连接地址</td></tr> <tr><td>data.description</td> <td>String</td> <td>是</td> <td>显示在界面上的更新日志</td></tr> <tr><td>data.title</td> <td>String</td> <td>是</td> <td>显示在界面上的更新标题</td></tr> <tr><td>data.ignore</td> <td>boolean</td> <td>是</td> <td>是否可以忽略该版本</td></tr> <tr><td>data.md</td> <td>String</td> <td>是</td> <td>考虑到包有可能被篡改，应该针对下载的包进行检测。</td></tr> <tr><td>data.enable</td> <td>boolean</td> <td>否</td> <td>该条记录是否生效</td></tr></tbody></table> <h5 id="异常-13"><a href="#异常-13" aria-hidden="true" class="header-anchor">#</a> 异常</h5> <table><thead><tr><th>状态码</th> <th>类型</th> <th>是否必要</th> <th>描述</th></tr></thead> <tbody><tr><td>XXX</td> <td>int</td> <td>否</td> <td>应用版本名称错误：针对的是请求头里的Application字段</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>缺少参数：缺少token等</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>参数错误：token错误等</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>账号异常：可能被封禁了</td></tr></tbody></table> <hr> <h4 id="新增更新器"><a href="#新增更新器" aria-hidden="true" class="header-anchor">#</a> 新增更新器</h4> <blockquote><p>地址：https://api.xxx.com/path/xxx/v1/updaters</p></blockquote> <h5 id="请求头-14"><a href="#请求头-14" aria-hidden="true" class="header-anchor">#</a> 请求头</h5> <div class="language- extra-class"><pre class="language-text"><code>POST /xxx/v1/updaters
+Accept: application/json
+Content-Type: application/json;charset=UTF-8
+Token: token_G34G34G34G34G35G5
+</code></pre></div><h5 id="参数-14"><a href="#参数-14" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+    &quot;size&quot;: &quot;50M&quot;,
+    &quot;fileName&quot;: &quot;xxx.apk&quot;,
+    &quot;force&quot;: true,
+    &quot;versionCode&quot;: 1,
+    &quot;versionName&quot;: &quot;1.0.0&quot;,
+    &quot;link&quot;: &quot;https://miaoyoujuan.com/both.apk&quot;,
+    &quot;description&quot;: &quot;摩尔钱包&quot;,
+    &quot;title&quot;: &quot;摩尔钱包&quot;,
+    &quot;ignore&quot;: true,
+    &quot;md&quot;: &quot;234T243T2T&quot;,
+    &quot;enable&quot;: true,
+    &quot;type&quot;:&quot;1&quot;
+}
+</code></pre></div><table><thead><tr><th>params</th> <th>类型</th> <th>是否必要</th> <th>描述</th></tr></thead> <tbody><tr><td>size</td> <td>String</td> <td>是</td> <td>下载包的大小</td></tr> <tr><td>fileName</td> <td>String</td> <td>是</td> <td>下载的文件的名称</td></tr> <tr><td>force</td> <td>boolean</td> <td>是</td> <td>是否强制升值</td></tr> <tr><td>versionCode</td> <td>int</td> <td>是</td> <td>针对安卓版本的版本号，安卓是根据整个版本号比大小来比较版本的新旧</td></tr> <tr><td>versionName</td> <td>String</td> <td>是</td> <td>版本的名称，比如1.0.2</td></tr> <tr><td>link</td> <td>String</td> <td>是</td> <td>下载连接地址</td></tr> <tr><td>description</td> <td>String</td> <td>是</td> <td>显示在界面上的更新日志</td></tr> <tr><td>title</td> <td>String</td> <td>是</td> <td>显示在界面上的更新标题</td></tr> <tr><td>ignore</td> <td>boolean</td> <td>是</td> <td>是否可以忽略该版本</td></tr> <tr><td>md</td> <td>String</td> <td>是</td> <td>考虑到包有可能被篡改，应该针对下载的包进行检测。</td></tr> <tr><td>enable</td> <td>boolean</td> <td>否</td> <td>该条记录是否生效</td></tr> <tr><td>type</td> <td>boolean</td> <td>否</td> <td>1表示iOS，2表示安卓</td></tr></tbody></table> <h5 id="响应头-14"><a href="#响应头-14" aria-hidden="true" class="header-anchor">#</a> 响应头</h5> <div class="language- extra-class"><pre class="language-text"><code>HTTP/1.1 200 OK
+Content-Type:application/json; charset=utf-8
+
+</code></pre></div><h5 id="响应-14"><a href="#响应-14" aria-hidden="true" class="header-anchor">#</a> 响应</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+    &quot;code&quot;: &quot;200&quot;,
+    &quot;message&quot;: &quot;上传啦啦啦&quot;,
+    &quot;data&quot;: {
+        &quot;uid&quot;: &quot;235252rt23t23t23t&quot;
+    }
+}
+</code></pre></div><table><thead><tr><th>params</th> <th>类型</th> <th>是否必要</th> <th>描述</th></tr></thead> <tbody><tr><td>message</td> <td>String</td> <td>是</td> <td>同上</td></tr> <tr><td>code</td> <td>int</td> <td>是</td> <td>同上</td></tr> <tr><td>data</td> <td>JSON对象</td> <td>是</td> <td>同上</td></tr> <tr><td>data.uid</td> <td>String</td> <td>是</td> <td>该条更新记录的唯一标识</td></tr></tbody></table> <h5 id="异常-14"><a href="#异常-14" aria-hidden="true" class="header-anchor">#</a> 异常</h5> <table><thead><tr><th>状态码</th> <th>类型</th> <th>是否必要</th> <th>描述</th></tr></thead> <tbody><tr><td>XXX</td> <td>int</td> <td>否</td> <td>应用版本名称错误：针对的是请求头里的Application字段</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>缺少参数：缺少token等</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>参数错误：token错误等</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>账号异常：可能被封禁了</td></tr></tbody></table> <hr> <h4 id="修改更新器"><a href="#修改更新器" aria-hidden="true" class="header-anchor">#</a> 修改更新器</h4> <blockquote><p>地址：https://api.xxx.com/path/xxx/v1/updaters/{uid}</p></blockquote> <h5 id="请求头-15"><a href="#请求头-15" aria-hidden="true" class="header-anchor">#</a> 请求头</h5> <div class="language- extra-class"><pre class="language-text"><code>POST /xxx/v1/updaters/{uid}
+Accept: application/json
+Content-Type: application/json;charset=UTF-8
+Token: token_G34G34G34G34G35G5
+</code></pre></div><h5 id="参数-15"><a href="#参数-15" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+    &quot;size&quot;: &quot;50M&quot;,
+    &quot;fileName&quot;: &quot;xxx.apk&quot;,
+    &quot;force&quot;: true,
+    &quot;versionCode&quot;: 1,
+    &quot;versionName&quot;: &quot;1.0.0&quot;,
+    &quot;link&quot;: &quot;https://miaoyoujuan.com/both.apk&quot;,
+    &quot;description&quot;: &quot;摩尔钱包&quot;,
+    &quot;title&quot;: &quot;摩尔钱包&quot;,
+    &quot;ignore&quot;: true,
+    &quot;md&quot;: &quot;234T243T2T&quot;,
+    &quot;enable&quot;: true,
+    &quot;type&quot;:&quot;1&quot;
+}
+</code></pre></div><table><thead><tr><th>params</th> <th>类型</th> <th>是否必要</th> <th>描述</th></tr></thead> <tbody><tr><td>size</td> <td>String</td> <td>是</td> <td>下载包的大小</td></tr> <tr><td>fileName</td> <td>String</td> <td>是</td> <td>下载的文件的名称</td></tr> <tr><td>force</td> <td>boolean</td> <td>是</td> <td>是否强制升值</td></tr> <tr><td>versionCode</td> <td>int</td> <td>是</td> <td>针对安卓版本的版本号，安卓是根据整个版本号比大小来比较版本的新旧</td></tr> <tr><td>versionName</td> <td>String</td> <td>是</td> <td>版本的名称，比如1.0.2</td></tr> <tr><td>link</td> <td>String</td> <td>是</td> <td>下载连接地址</td></tr> <tr><td>description</td> <td>String</td> <td>是</td> <td>显示在界面上的更新日志</td></tr> <tr><td>title</td> <td>String</td> <td>是</td> <td>显示在界面上的更新标题</td></tr> <tr><td>ignore</td> <td>boolean</td> <td>是</td> <td>是否可以忽略该版本</td></tr> <tr><td>md</td> <td>String</td> <td>是</td> <td>考虑到包有可能被篡改，应该针对下载的包进行检测。</td></tr> <tr><td>enable</td> <td>boolean</td> <td>否</td> <td>该条记录是否生效</td></tr> <tr><td>type</td> <td>boolean</td> <td>否</td> <td>1表示iOS，2表示安卓</td></tr></tbody></table> <h5 id="响应头-15"><a href="#响应头-15" aria-hidden="true" class="header-anchor">#</a> 响应头</h5> <div class="language- extra-class"><pre class="language-text"><code>HTTP/1.1 200 OK
+Content-Type:application/json; charset=utf-8
+
+</code></pre></div><h5 id="响应-15"><a href="#响应-15" aria-hidden="true" class="header-anchor">#</a> 响应</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+    &quot;code&quot;: &quot;200&quot;,
+    &quot;message&quot;: &quot;上传啦啦啦&quot;,
+    &quot;data&quot;: {
+        &quot;uid&quot;: &quot;235252rt23t23t23t&quot;
+    }
+}
+</code></pre></div><table><thead><tr><th>params</th> <th>类型</th> <th>是否必要</th> <th>描述</th></tr></thead> <tbody><tr><td>message</td> <td>String</td> <td>是</td> <td>同上</td></tr> <tr><td>code</td> <td>int</td> <td>是</td> <td>同上</td></tr> <tr><td>data</td> <td>JSON对象</td> <td>是</td> <td>同上</td></tr> <tr><td>data.uid</td> <td>String</td> <td>是</td> <td>该条更新记录的唯一标识</td></tr></tbody></table> <h5 id="异常-15"><a href="#异常-15" aria-hidden="true" class="header-anchor">#</a> 异常</h5> <table><thead><tr><th>状态码</th> <th>类型</th> <th>是否必要</th> <th>描述</th></tr></thead> <tbody><tr><td>XXX</td> <td>int</td> <td>否</td> <td>应用版本名称错误：针对的是请求头里的Application字段</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>缺少参数：缺少token等</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>参数错误：token错误等</td></tr> <tr><td>XXX</td> <td>int</td> <td>否</td> <td>账号异常：可能被封禁了</td></tr></tbody></table> <hr></div> <div class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated: </span> <span class="time">3/4/2019, 10:12:42 AM</span></div></div> <!----> </div> <!----></div></div>
+    <script src="/assets/js/app.4c782fad.js" defer></script><script src="/assets/js/11.ae680e7e.js" defer></script>
+  </body>
+</html>
+
+        
+      </div>
+      
+      
+      
+    </div>
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/favicon.ico"
+               alt="Leguang" />
+          <p class="site-author-name" itemprop="name">Leguang</p>
+           
+              <p class="site-description motion-element" itemprop="description">浮生若戏悲欢聚 笑看天风扫寰宇</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/leguang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:langmanleguang@qq.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#镰刀后台管理系统设计"><span class="nav-number">1.</span> <span class="nav-text"># 镰刀后台管理系统设计</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#功能大纲"><span class="nav-number">1.1.</span> <span class="nav-text"># 功能大纲</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#功能"><span class="nav-number">1.2.</span> <span class="nav-text"># 功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#环境切换"><span class="nav-number">1.2.1.</span> <span class="nav-text"># 环境切换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#爬虫来源sources管理"><span class="nav-number">1.2.2.</span> <span class="nav-text"># 爬虫来源sources管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取source列表"><span class="nav-number">1.2.2.1.</span> <span class="nav-text"># 获取source列表</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#请求头"><span class="nav-number">1.2.2.1.1.</span> <span class="nav-text"># 请求头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数"><span class="nav-number">1.2.2.1.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应头"><span class="nav-number">1.2.2.1.3.</span> <span class="nav-text"># 响应头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应"><span class="nav-number">1.2.2.1.4.</span> <span class="nav-text"># 响应</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#异常"><span class="nav-number">1.2.2.1.5.</span> <span class="nav-text"># 异常</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新增source"><span class="nav-number">1.2.2.2.</span> <span class="nav-text"># 新增source</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#请求头-2"><span class="nav-number">1.2.2.2.1.</span> <span class="nav-text"># 请求头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-2"><span class="nav-number">1.2.2.2.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应头-2"><span class="nav-number">1.2.2.2.3.</span> <span class="nav-text"># 响应头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应-2"><span class="nav-number">1.2.2.2.4.</span> <span class="nav-text"># 响应</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#异常-2"><span class="nav-number">1.2.2.2.5.</span> <span class="nav-text"># 异常</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改source"><span class="nav-number">1.2.2.3.</span> <span class="nav-text"># 修改source</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#请求头-3"><span class="nav-number">1.2.2.3.1.</span> <span class="nav-text"># 请求头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-3"><span class="nav-number">1.2.2.3.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应头-3"><span class="nav-number">1.2.2.3.3.</span> <span class="nav-text"># 响应头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应-3"><span class="nav-number">1.2.2.3.4.</span> <span class="nav-text"># 响应</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#异常-3"><span class="nav-number">1.2.2.3.5.</span> <span class="nav-text"># 异常</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tag（标签）"><span class="nav-number">1.2.3.</span> <span class="nav-text"># tag（标签）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取tags列表"><span class="nav-number">1.2.3.1.</span> <span class="nav-text"># 获取tags列表</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#请求头-4"><span class="nav-number">1.2.3.1.1.</span> <span class="nav-text"># 请求头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-4"><span class="nav-number">1.2.3.1.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应头-4"><span class="nav-number">1.2.3.1.3.</span> <span class="nav-text"># 响应头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应-4"><span class="nav-number">1.2.3.1.4.</span> <span class="nav-text"># 响应</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#异常-4"><span class="nav-number">1.2.3.1.5.</span> <span class="nav-text"># 异常</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取tag详情"><span class="nav-number">1.2.3.2.</span> <span class="nav-text"># 获取tag详情</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#请求头-5"><span class="nav-number">1.2.3.2.1.</span> <span class="nav-text"># 请求头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-5"><span class="nav-number">1.2.3.2.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应头-5"><span class="nav-number">1.2.3.2.3.</span> <span class="nav-text"># 响应头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应-5"><span class="nav-number">1.2.3.2.4.</span> <span class="nav-text"># 响应</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#异常-5"><span class="nav-number">1.2.3.2.5.</span> <span class="nav-text"># 异常</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新增tags"><span class="nav-number">1.2.3.3.</span> <span class="nav-text"># 新增tags</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#请求头-6"><span class="nav-number">1.2.3.3.1.</span> <span class="nav-text"># 请求头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-6"><span class="nav-number">1.2.3.3.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应头-6"><span class="nav-number">1.2.3.3.3.</span> <span class="nav-text"># 响应头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应-6"><span class="nav-number">1.2.3.3.4.</span> <span class="nav-text"># 响应</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#异常-6"><span class="nav-number">1.2.3.3.5.</span> <span class="nav-text"># 异常</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改tag"><span class="nav-number">1.2.3.4.</span> <span class="nav-text"># 修改tag</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#请求头-7"><span class="nav-number">1.2.3.4.1.</span> <span class="nav-text"># 请求头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-7"><span class="nav-number">1.2.3.4.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应头-7"><span class="nav-number">1.2.3.4.3.</span> <span class="nav-text"># 响应头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应-7"><span class="nav-number">1.2.3.4.4.</span> <span class="nav-text"># 响应</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#异常-7"><span class="nav-number">1.2.3.4.5.</span> <span class="nav-text"># 异常</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#item（新闻-消息）"><span class="nav-number">1.2.4.</span> <span class="nav-text"># item（新闻/消息）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取item列表"><span class="nav-number">1.2.4.1.</span> <span class="nav-text"># 获取item列表</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#请求头-8"><span class="nav-number">1.2.4.1.1.</span> <span class="nav-text"># 请求头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-8"><span class="nav-number">1.2.4.1.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应头-8"><span class="nav-number">1.2.4.1.3.</span> <span class="nav-text"># 响应头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应-8"><span class="nav-number">1.2.4.1.4.</span> <span class="nav-text"># 响应</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#异常-8"><span class="nav-number">1.2.4.1.5.</span> <span class="nav-text"># 异常</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#item详情"><span class="nav-number">1.2.4.2.</span> <span class="nav-text"># item详情</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#请求头-9"><span class="nav-number">1.2.4.2.1.</span> <span class="nav-text"># 请求头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-9"><span class="nav-number">1.2.4.2.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应头-9"><span class="nav-number">1.2.4.2.3.</span> <span class="nav-text"># 响应头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应-9"><span class="nav-number">1.2.4.2.4.</span> <span class="nav-text"># 响应</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#异常-9"><span class="nav-number">1.2.4.2.5.</span> <span class="nav-text"># 异常</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新增items"><span class="nav-number">1.2.4.3.</span> <span class="nav-text"># 新增items</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#请求头-10"><span class="nav-number">1.2.4.3.1.</span> <span class="nav-text"># 请求头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-10"><span class="nav-number">1.2.4.3.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应头-10"><span class="nav-number">1.2.4.3.3.</span> <span class="nav-text"># 响应头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应-10"><span class="nav-number">1.2.4.3.4.</span> <span class="nav-text"># 响应</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#异常-10"><span class="nav-number">1.2.4.3.5.</span> <span class="nav-text"># 异常</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改item"><span class="nav-number">1.2.4.4.</span> <span class="nav-text"># 修改item</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#请求头-11"><span class="nav-number">1.2.4.4.1.</span> <span class="nav-text"># 请求头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-11"><span class="nav-number">1.2.4.4.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应头-11"><span class="nav-number">1.2.4.4.3.</span> <span class="nav-text"># 响应头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应-11"><span class="nav-number">1.2.4.4.4.</span> <span class="nav-text"># 响应</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#异常-11"><span class="nav-number">1.2.4.4.5.</span> <span class="nav-text"># 异常</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除item"><span class="nav-number">1.2.4.5.</span> <span class="nav-text"># 删除item</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#请求头-12"><span class="nav-number">1.2.4.5.1.</span> <span class="nav-text"># 请求头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-12"><span class="nav-number">1.2.4.5.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应头-12"><span class="nav-number">1.2.4.5.3.</span> <span class="nav-text"># 响应头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应-12"><span class="nav-number">1.2.4.5.4.</span> <span class="nav-text"># 响应</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#异常-12"><span class="nav-number">1.2.4.5.5.</span> <span class="nav-text"># 异常</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#app更新器"><span class="nav-number">1.2.5.</span> <span class="nav-text"># App更新器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取更新历史记录"><span class="nav-number">1.2.5.1.</span> <span class="nav-text"># 获取更新历史记录</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#请求头-13"><span class="nav-number">1.2.5.1.1.</span> <span class="nav-text"># 请求头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-13"><span class="nav-number">1.2.5.1.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应头-13"><span class="nav-number">1.2.5.1.3.</span> <span class="nav-text"># 响应头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应-13"><span class="nav-number">1.2.5.1.4.</span> <span class="nav-text"># 响应</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#异常-13"><span class="nav-number">1.2.5.1.5.</span> <span class="nav-text"># 异常</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新增更新器"><span class="nav-number">1.2.5.2.</span> <span class="nav-text"># 新增更新器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#请求头-14"><span class="nav-number">1.2.5.2.1.</span> <span class="nav-text"># 请求头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-14"><span class="nav-number">1.2.5.2.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应头-14"><span class="nav-number">1.2.5.2.3.</span> <span class="nav-text"># 响应头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应-14"><span class="nav-number">1.2.5.2.4.</span> <span class="nav-text"># 响应</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#异常-14"><span class="nav-number">1.2.5.2.5.</span> <span class="nav-text"># 异常</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改更新器"><span class="nav-number">1.2.5.3.</span> <span class="nav-text"># 修改更新器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#请求头-15"><span class="nav-number">1.2.5.3.1.</span> <span class="nav-text"># 请求头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-15"><span class="nav-number">1.2.5.3.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应头-15"><span class="nav-number">1.2.5.3.3.</span> <span class="nav-text"># 响应头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应-15"><span class="nav-number">1.2.5.3.4.</span> <span class="nav-text"># 响应</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#异常-15"><span class="nav-number">1.2.5.3.5.</span> <span class="nav-text"># 异常</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Leguang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 访问总量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("UUrijxLg3YUcx9WIg5UlJchI-gzGzoHsz", "m6wXtGXT8NUa5W4TiErrXWpO");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

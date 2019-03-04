@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="IT站点, 一站到底" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="IT站点" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Websoket协议规范 | 文档                                            文档   主页文档关于   Github       主页文档关于   Github       概述  REST接口规范目标要求HTTP部分错误/异常处理url失效对于后台文档的要求容错性（健壮性）国际化（多语言支持）开放平台  镰刀项目">
+<meta name="keywords" content="IT站点, 一站到底">
+<meta property="og:type" content="website">
+<meta property="og:title" content="IT站点">
+<meta property="og:url" content="http://itsite.cn/documents/documents/规范/Websoket协议规范/Websoket协议规范.html">
+<meta property="og:site_name" content="IT站点">
+<meta property="og:description" content="Websoket协议规范 | 文档                                            文档   主页文档关于   Github       主页文档关于   Github       概述  REST接口规范目标要求HTTP部分错误/异常处理url失效对于后台文档的要求容错性（健壮性）国际化（多语言支持）开放平台  镰刀项目">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.imgur.com/ZoNmzun.png">
+<meta property="og:image" content="https://i.imgur.com/QklBKdG.png">
+<meta property="og:image" content="https://i.imgur.com/jRThwdh.jpg">
+<meta property="og:updated_time" content="2019-03-04T03:08:50.072Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IT站点">
+<meta name="twitter:description" content="Websoket协议规范 | 文档                                            文档   主页文档关于   Github       主页文档关于   Github       概述  REST接口规范目标要求HTTP部分错误/异常处理url失效对于后台文档的要求容错性（健壮性）国际化（多语言支持）开放平台  镰刀项目">
+<meta name="twitter:image" content="https://i.imgur.com/ZoNmzun.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://itsite.cn/documents/documents/规范/Websoket协议规范/Websoket协议规范.html"/>
+
+
+
+
+
+  <title> | IT站点</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c5074ca51b610e0c4ba4fac7b24abea2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IT站点</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一站到底</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+	<h1 class="post-title" itemprop="name headline"></h1>
+
+
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+        
+          <!DOCTYPE html>
+<html lang="en-US">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Websoket协议规范 | 文档</title>
+    <meta name="description" content="浮生若戏悲欢聚  笑看天风扫寰宇">
+    <link rel="icon" href="/img/logo.ico">
+  <link rel="apple-touch-icon" href="/img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;">
+    
+    <link rel="preload" href="/assets/css/0.styles.aca6ffaf.css" as="style"><link rel="preload" href="/assets/js/app.4c782fad.js" as="script"><link rel="preload" href="/assets/js/42.a23b0abe.js" as="script"><link rel="prefetch" href="/assets/js/10.4aad0737.js"><link rel="prefetch" href="/assets/js/11.ae680e7e.js"><link rel="prefetch" href="/assets/js/12.1d27d644.js"><link rel="prefetch" href="/assets/js/13.448e0c99.js"><link rel="prefetch" href="/assets/js/14.7888ac07.js"><link rel="prefetch" href="/assets/js/15.eac6ce9c.js"><link rel="prefetch" href="/assets/js/16.5e257dc3.js"><link rel="prefetch" href="/assets/js/17.c6a677c6.js"><link rel="prefetch" href="/assets/js/18.e4e45a90.js"><link rel="prefetch" href="/assets/js/19.48e71871.js"><link rel="prefetch" href="/assets/js/2.d7f99d20.js"><link rel="prefetch" href="/assets/js/20.6bdc9c27.js"><link rel="prefetch" href="/assets/js/21.b7e2381f.js"><link rel="prefetch" href="/assets/js/22.03913796.js"><link rel="prefetch" href="/assets/js/23.619adacc.js"><link rel="prefetch" href="/assets/js/24.e3862973.js"><link rel="prefetch" href="/assets/js/25.ab00d111.js"><link rel="prefetch" href="/assets/js/26.68a82a09.js"><link rel="prefetch" href="/assets/js/27.68e8506f.js"><link rel="prefetch" href="/assets/js/28.6bda4ca9.js"><link rel="prefetch" href="/assets/js/29.841a5e29.js"><link rel="prefetch" href="/assets/js/3.517a5386.js"><link rel="prefetch" href="/assets/js/30.baa92884.js"><link rel="prefetch" href="/assets/js/31.6a6e1f1f.js"><link rel="prefetch" href="/assets/js/32.e0593dce.js"><link rel="prefetch" href="/assets/js/33.f64e7c9d.js"><link rel="prefetch" href="/assets/js/34.2c4dcebd.js"><link rel="prefetch" href="/assets/js/35.f18d89f4.js"><link rel="prefetch" href="/assets/js/36.cd0f4d28.js"><link rel="prefetch" href="/assets/js/37.ce45c53f.js"><link rel="prefetch" href="/assets/js/38.65ab49b8.js"><link rel="prefetch" href="/assets/js/39.c27bd8cc.js"><link rel="prefetch" href="/assets/js/4.b9d50c9e.js"><link rel="prefetch" href="/assets/js/40.c45010eb.js"><link rel="prefetch" href="/assets/js/41.59dd911f.js"><link rel="prefetch" href="/assets/js/43.573562a0.js"><link rel="prefetch" href="/assets/js/44.4b58ecc8.js"><link rel="prefetch" href="/assets/js/45.0bc668b9.js"><link rel="prefetch" href="/assets/js/5.a28803d7.js"><link rel="prefetch" href="/assets/js/6.9c510520.js"><link rel="prefetch" href="/assets/js/7.a39ff044.js"><link rel="prefetch" href="/assets/js/8.31c34ffe.js"><link rel="prefetch" href="/assets/js/9.3cd700e9.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.aca6ffaf.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewbox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"/></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">文档</span></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">主页</a></div><div class="nav-item"><a href="/documents/" class="nav-link router-link-active">文档</a></div><div class="nav-item"><a href="/about/" class="nav-link">关于</a></div><div class="nav-item"><a href="https://github.com/leguang" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"/> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"/></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">主页</a></div><div class="nav-item"><a href="/documents/" class="nav-link router-link-active">文档</a></div><div class="nav-item"><a href="/about/" class="nav-link">关于</a></div><div class="nav-item"><a href="https://github.com/leguang" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"/> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"/></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><div class="sidebar-group first"><p class="sidebar-heading"><span>概述</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/documents/" class="sidebar-link">REST接口规范</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/documents/#目标" class="sidebar-link">目标</a></li><li class="sidebar-sub-header"><a href="/documents/#要求" class="sidebar-link">要求</a></li><li class="sidebar-sub-header"><a href="/documents/#http部分" class="sidebar-link">HTTP部分</a></li><li class="sidebar-sub-header"><a href="/documents/#错误-异常处理" class="sidebar-link">错误/异常处理</a></li><li class="sidebar-sub-header"><a href="/documents/#url失效" class="sidebar-link">url失效</a></li><li class="sidebar-sub-header"><a href="/documents/#对于后台文档的要求" class="sidebar-link">对于后台文档的要求</a></li><li class="sidebar-sub-header"><a href="/documents/#容错性（健壮性）" class="sidebar-link">容错性（健壮性）</a></li><li class="sidebar-sub-header"><a href="/documents/#国际化（多语言支持）" class="sidebar-link">国际化（多语言支持）</a></li></ul></li></ul></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>开放平台</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>镰刀项目</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>摩尔钱包</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>电商项目</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>币圈项目</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>用户系统</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>中后台系统</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>公共部分</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading open"><span>规范</span> <span class="arrow down"></span></p> <ul class="sidebar-group-items"><li><a href="/documents/规范/REST接口规范/REST接口规范.html" class="sidebar-link">REST接口规范</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/documents/规范/REST接口规范/REST接口规范.html#目标" class="sidebar-link">目标</a></li><li class="sidebar-sub-header"><a href="/documents/规范/REST接口规范/REST接口规范.html#要求" class="sidebar-link">要求</a></li><li class="sidebar-sub-header"><a href="/documents/规范/REST接口规范/REST接口规范.html#http部分" class="sidebar-link">HTTP部分</a></li><li class="sidebar-sub-header"><a href="/documents/规范/REST接口规范/REST接口规范.html#错误-异常处理" class="sidebar-link">错误/异常处理</a></li><li class="sidebar-sub-header"><a href="/documents/规范/REST接口规范/REST接口规范.html#url失效" class="sidebar-link">url失效</a></li><li class="sidebar-sub-header"><a href="/documents/规范/REST接口规范/REST接口规范.html#对于后台文档的要求" class="sidebar-link">对于后台文档的要求</a></li><li class="sidebar-sub-header"><a href="/documents/规范/REST接口规范/REST接口规范.html#容错性（健壮性）" class="sidebar-link">容错性（健壮性）</a></li><li class="sidebar-sub-header"><a href="/documents/规范/REST接口规范/REST接口规范.html#国际化（多语言支持）" class="sidebar-link">国际化（多语言支持）</a></li></ul></li><li><a href="/documents/规范/Websoket协议规范/Websoket协议规范.html" class="active sidebar-link">Websoket协议规范</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/documents/规范/Websoket协议规范/Websoket协议规范.html#前言" class="sidebar-link">前言</a></li><li class="sidebar-sub-header"><a href="/documents/规范/Websoket协议规范/Websoket协议规范.html#要求" class="sidebar-link">要求</a></li><li class="sidebar-sub-header"><a href="/documents/规范/Websoket协议规范/Websoket协议规范.html#websoket部分" class="sidebar-link">WebSoket部分</a></li><li class="sidebar-sub-header"><a href="/documents/规范/Websoket协议规范/Websoket协议规范.html#具体业务" class="sidebar-link">具体业务</a></li><li class="sidebar-sub-header"><a href="/documents/规范/Websoket协议规范/Websoket协议规范.html#安全" class="sidebar-link">安全</a></li></ul></li><li><a href="/documents/规范/Android/Android开发规范/Android开发规范.html" class="sidebar-link">Android开发规范</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/documents/规范/Android/Android开发规范/Android开发规范.html#摘要" class="sidebar-link">摘要</a></li><li class="sidebar-sub-header"><a href="/documents/规范/Android/Android开发规范/Android开发规范.html#附录" class="sidebar-link">附录</a></li></ul></li><li><a href="/documents/规范/Android/Android模板代码规范/Android模板代码规范.html" class="sidebar-link">Android模板代码规范——效率为王</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/documents/规范/Android/Android模板代码规范/Android模板代码规范.html#前言" class="sidebar-link">前言</a></li><li class="sidebar-sub-header"><a href="/documents/规范/Android/Android模板代码规范/Android模板代码规范.html#公共要求" class="sidebar-link">公共要求</a></li><li class="sidebar-sub-header"><a href="/documents/规范/Android/Android模板代码规范/Android模板代码规范.html#mvp中的模板" class="sidebar-link">MVP中的模板</a></li><li class="sidebar-sub-header"><a href="/documents/规范/Android/Android模板代码规范/Android模板代码规范.html#总结" class="sidebar-link">总结</a></li></ul></li><li><a href="/documents/规范/iOS/iOS技术栈整理.html" class="sidebar-link">iOS技术栈整理</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/documents/规范/iOS/iOS技术栈整理.html#前言" class="sidebar-link">前言</a></li><li class="sidebar-sub-header"><a href="/documents/规范/iOS/iOS技术栈整理.html#概要" class="sidebar-link">概要</a></li><li class="sidebar-sub-header"><a href="/documents/规范/iOS/iOS技术栈整理.html#ui部分" class="sidebar-link">UI部分</a></li><li class="sidebar-sub-header"><a href="/documents/规范/iOS/iOS技术栈整理.html#非ui部分" class="sidebar-link">非UI部分</a></li><li class="sidebar-sub-header"><a href="/documents/规范/iOS/iOS技术栈整理.html#架构" class="sidebar-link">架构</a></li><li class="sidebar-sub-header"><a href="/documents/规范/iOS/iOS技术栈整理.html#规范" class="sidebar-link">规范</a></li><li class="sidebar-sub-header"><a href="/documents/规范/iOS/iOS技术栈整理.html#总结" class="sidebar-link">总结</a></li></ul></li><li><a href="/documents/规范/Java/JavaWeb模板代码规范.html" class="sidebar-link">Java Web开发模板——效率为王</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/documents/规范/Java/JavaWeb模板代码规范.html#前言" class="sidebar-link">前言</a></li><li class="sidebar-sub-header"><a href="/documents/规范/Java/JavaWeb模板代码规范.html#公共规范" class="sidebar-link">公共规范</a></li><li class="sidebar-sub-header"><a href="/documents/规范/Java/JavaWeb模板代码规范.html#mvc中的模板" class="sidebar-link">MVC中的模板</a></li><li class="sidebar-sub-header"><a href="/documents/规范/Java/JavaWeb模板代码规范.html#其他-建议" class="sidebar-link">其他/建议</a></li><li class="sidebar-sub-header"><a href="/documents/规范/Java/JavaWeb模板代码规范.html#总结" class="sidebar-link">总结</a></li></ul></li><li><a href="/documents/规范/Web/Web前端技术栈整理/Web前端技术栈整理.html" class="sidebar-link">Web前端技术栈整理</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/documents/规范/Web/Web前端技术栈整理/Web前端技术栈整理.html#前言" class="sidebar-link">前言</a></li><li class="sidebar-sub-header"><a href="/documents/规范/Web/Web前端技术栈整理/Web前端技术栈整理.html#概要" class="sidebar-link">概要</a></li><li class="sidebar-sub-header"><a href="/documents/规范/Web/Web前端技术栈整理/Web前端技术栈整理.html#规范" class="sidebar-link">规范</a></li><li class="sidebar-sub-header"><a href="/documents/规范/Web/Web前端技术栈整理/Web前端技术栈整理.html#代码风格" class="sidebar-link">代码风格</a></li><li class="sidebar-sub-header"><a href="/documents/规范/Web/Web前端技术栈整理/Web前端技术栈整理.html#vue-react" class="sidebar-link">Vue/React</a></li><li class="sidebar-sub-header"><a href="/documents/规范/Web/Web前端技术栈整理/Web前端技术栈整理.html#ui组件" class="sidebar-link">UI组件</a></li><li class="sidebar-sub-header"><a href="/documents/规范/Web/Web前端技术栈整理/Web前端技术栈整理.html#总结" class="sidebar-link">总结</a></li></ul></li><li><a href="/documents/规范/设计/文件命名规范.html" class="sidebar-link">文件命名规范</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/documents/规范/设计/文件命名规范.html#前言" class="sidebar-link">前言</a></li><li class="sidebar-sub-header"><a href="/documents/规范/设计/文件命名规范.html#概要" class="sidebar-link">概要</a></li><li class="sidebar-sub-header"><a href="/documents/规范/设计/文件命名规范.html#规范" class="sidebar-link">规范</a></li></ul></li></ul></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>技术选型</span> <span class="arrow right"></span></p> <!----></div></li></ul> </div> <div class="page"> <div class="content"><h1 id="websoket协议规范"><a href="#websoket协议规范" aria-hidden="true" class="header-anchor">#</a> Websoket协议规范</h1> <blockquote><p>Author：Leguang</p> <p>E-Mail：<a href="mailto:langmanleguang@qq.com" target="_blank" rel="noopener">langmanleguang@qq.com</a></p></blockquote> <h2 id="前言"><a href="#前言" aria-hidden="true" class="header-anchor">#</a> 前言</h2> <p>由于单纯的Http协议无法满足钱包某些主动推送业务（如主动推送更新、广告、提示等），因此需借助soket来弥补。在传统长连接业务可选普通Soket和WebSoket，考虑到浏览器也能支持WebSoket，所以优先选择WebSoket。</p> <h2 id="要求"><a href="#要求" aria-hidden="true" class="header-anchor">#</a> 要求</h2> <h3 id="目标"><a href="#目标" aria-hidden="true" class="header-anchor">#</a> 目标</h3> <ul><li>接口“粒度”争取设计得足够小，争取在业务发生变化后，后台接口不需要增减，只需要前端组合接口仍然能满足新的业务需求。</li> <li>任何一个接口都可以获取到数据，哪怕没传参数。</li></ul> <h3 id="命名规范"><a href="#命名规范" aria-hidden="true" class="header-anchor">#</a> 命名规范</h3> <p>一名二姓三风水，四积阴德五读书，名不正则言不顺，言不顺则事难成。软件开发其实就是门命名的艺术，所以首先定义一些规范，提出一些硬性要求，大家在命名的时候尽量多花点心思，多参考优秀的命名风格。</p> <ul><li>强烈推荐参考：<a href="https://github.com/leguang/Article" title="阿里巴巴Java开发手册" target="_blank" rel="noopener noreferrer">参考阿里巴巴Java开发手册<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"/> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"/></svg></a>，<a href="https://github.com/leguang/Article/blob/master/Android%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/Android%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83.md" title="Android开发规范" target="_blank" rel="noopener noreferrer">Android开发规范<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"/> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"/></svg></a>，<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CodingGuidelines/CodingGuidelines.html" title="iOS开发手册" target="_blank" rel="noopener noreferrer">iOS开发手册<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"/> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"/></svg></a>。</li> <li>一个单词尽量选择5--7个字母的，这样才最优美。</li> <li>首字母缩写的单词尽量每个字母都用大写，例如ID。用个小写，人家还以为是一个单词。当然uri、url、urn这种除外，因为大家都知道这个是什么。</li> <li>规范并统一公司的基础包名与项目的关系。</li> <li>前后端的某些名称概念要统一用某一个单词，比如支付的统一订单，支付宝用的是order，微信用的是unifiedorder，那我们统一对订单这个概念用order这个词。再比如主机：后台用gateway，现在我们统一用host。这单词不统一很容易分裂。</li></ul> <h3 id="uri规范"><a href="#uri规范" aria-hidden="true" class="header-anchor">#</a> uri规范</h3> <p>uri 表示资源，资源一般对应服务器端领域模型中的实体类，要求如下：</p> <ul><li>不用大写。</li> <li>尽量不用横杠分隔符，万一要用，请使用中杠“-”不用下杠“_”。</li> <li>参数列表要encode。</li> <li>uri中的名词表示资源集合，使用复数形式。</li> <li>路径仅表示资源的路径（位置），以及一些特殊的actions操作。</li> <li>以复数（名词）进行命名资源，不管返回单个或者多个资源。</li> <li>资源的路径从父到子依次如：/{resource}/{resource_id}/{sub_resource}/{sub_resource_id}/{sub_resource_property}。</li> <li>使用?来进行资源的过滤、搜索以及分页等。</li> <li>使用版本号，且版本号在资源路径之前。</li> <li>优先使用内容协商来区分表述格式，而不是使用后缀来区分表述格式。</li> <li>url最好越简短越好，结果过滤，排序，搜索相关的功能都应该通过参数实现。</li> <li>url失效则返回404 not found 或 410 gone；对迁移的API，返回 301 重定向。</li></ul> <h3 id="json规范"><a href="#json规范" aria-hidden="true" class="header-anchor">#</a> JSON规范</h3> <p>暂时只考虑json的数据格式，要求如下：</p> <ul><li>不要使用缩写。</li> <li>统一用驼峰命名法。</li> <li>不要使用“_”或者“-”。</li> <li>用名词复数表示集合类型。</li> <li>为了方便以后的扩展兼容，如果返回的是数组，强烈建议用一个包含如items属性的对象进行包裹。如：<code>{&quot;items&quot;:[{},{}]}</code>。</li> <li>建议对每个字段设置默认值（数组型可设置为[],字符串型可设置为””，数值可设置为0，对象可设置为{}）,这一条是为了方便前端/客户端进行判断字段存不存在操作。</li> <li>建议资源使用UUID最为唯一标识。同时建议命名为id或者uid。</li> <li>采用UTF-8编码。</li> <li>数据应该拿来就能用，不应该还要进行转换操作。</li></ul> <blockquote><p><strong>草稿：JSON返回的格式是分门别类按对象来划分，还是铺大饼的形式铺开，两者利弊各异，比如url，可能一个接口中返回多个url，如果分json对象装的话，则key都可以叫url，否则的话key就得命名成xxxUrl。这个有待商议</strong></p></blockquote> <h2 id="websoket部分"><a href="#websoket部分" aria-hidden="true" class="header-anchor">#</a> WebSoket部分</h2> <h3 id="使用场景"><a href="#使用场景" aria-hidden="true" class="header-anchor">#</a> 使用场景</h3> <p>所有需要**双向通讯（确切的说是需要后台主动推送给前端的情景）**的部分都尽量使用WebSoket。</p> <h3 id="应用列举"><a href="#应用列举" aria-hidden="true" class="header-anchor">#</a> 应用列举</h3> <p>理论上来说，对于数据的任何细微变化都应该有一个消息通过WebSoket传送出来，让客户端可以任意支配，此时的WebSoket就好比一个数据库的观察者，这样才能充分利用长连接，感知数据库的变化。当然实际中并不需要这么复杂，一般用于场景如：消息提醒、公司活动等。</p> <h3 id="格式"><a href="#格式" aria-hidden="true" class="header-anchor">#</a> 格式</h3> <ul><li>统一使用json。</li> <li>无论是客户端发送给服务端还是服务端发送给客户端，都使用统一的json格式完成通讯。</li> <li>兼容Http协议，若某个WebSoket传输的内容需要改成Http协议完成的话，可迅速兼容。</li> <li>安全加密（后面会单独介绍）。</li></ul> <h3 id="url结构"><a href="#url结构" aria-hidden="true" class="header-anchor">#</a> URL结构</h3> <div class="language- extra-class"><pre class="language-text"><code>{版本号}/{业务名}
+</code></pre></div><ul><li>{版本号} – 由于我们的业务未稳定，为了应对可能的协议变更，所以需要这个版本号来控制。</li> <li>{业务名} – 这个与同事们商议后定义一个方便后台通过反射调用方法的名称。</li></ul> <h3 id="协议格式"><a href="#协议格式" aria-hidden="true" class="header-anchor">#</a> 协议格式</h3> <p>与同事商议后得出一些结论，暂定格式如下：</p> <h4 id="客户端-服务端"><a href="#客户端-服务端" aria-hidden="true" class="header-anchor">#</a> 客户端--&gt;服务端</h4> <div class="language- extra-class"><pre class="language-text"><code>{
+    &quot;message&quot;: &quot;大王叫我来查询了&quot;,
+    &quot;uid&quot;: &quot;A3BA3BA3BA3BC&quot;,
+    &quot;uri&quot;: &quot;v1/getXXX&quot;,
+    &quot;data&quot;: {
+        &quot;uid&quot;: &quot;6565656565665&quot;
+    }
+}
+</code></pre></div><table><thead><tr><th>key</th> <th>类型</th> <th>描述</th></tr></thead> <tbody><tr><td>message</td> <td>String</td> <td>返回给接口调用者的描述，有可能用于显示到界面上，需要进行国际化处理</td></tr> <tr><td>uid</td> <td>String</td> <td>唯一标识该次请求或者响应，可以是时间戳，也可以是hash等，该字段如果是如果是前端传给后台的话，后台必须原样返回</td></tr> <tr><td>uri</td> <td>String</td> <td>当分类使用，标记该次通讯的意义，类似Http协议中的URL，MQTT中的topic等，该字段如果是如果是前端传给后台的话，后台必须原样返回</td></tr> <tr><td>data</td> <td>object</td> <td>当前接口的具体数据由该json对象承载</td></tr> <tr><td>uid</td> <td>String</td> <td><strong>对于每一个资源对象，在返回的时候，都应该返回操作这个资源对象的唯一码</strong></td></tr></tbody></table> <h4 id="服务端-客户端"><a href="#服务端-客户端" aria-hidden="true" class="header-anchor">#</a> 服务端--&gt;客户端</h4> <div class="language- extra-class"><pre class="language-text"><code>{
+    &quot;message&quot;: &quot;居然被你查询成功了&quot;,
+    &quot;code&quot;: 200,
+    &quot;uid&quot;: &quot;A3BA3BA3BA3BC&quot;,
+    &quot;uri&quot;: &quot;v1/getXXX&quot;,
+    &quot;data&quot;: {
+        &quot;uid&quot;: &quot;6565656565665&quot;
+    }
+}
+</code></pre></div><table><thead><tr><th>key</th> <th>类型</th> <th>描述</th></tr></thead> <tbody><tr><td>message</td> <td>String</td> <td>返回给接口调用者的描述，有可能用于显示到界面上，需要进行国际化处理</td></tr> <tr><td>code</td> <td>int</td> <td>这个与请求头中的状态码一致，是为了满足部分开发者的习惯</td></tr> <tr><td>uid</td> <td>String</td> <td>唯一标识该次请求或者响应，可以是时间戳，也可以是hash等，该字段如果是如果是前端传给后台的话，后台必须原样返回</td></tr> <tr><td>uri</td> <td>String</td> <td>当分类使用，标记该次通讯的意义，类似Http协议中的URL，MQTT中的topic等，该字段如果是如果是前端传给后台的话，后台必须原样返回</td></tr> <tr><td>data</td> <td>object</td> <td>当前接口的具体数据由该json对象承载</td></tr> <tr><td>uid</td> <td>String</td> <td><strong>对于每一个资源对象，在返回的时候，都应该返回操作这个资源对象的唯一码</strong></td></tr></tbody></table> <h3 id="状态码"><a href="#状态码" aria-hidden="true" class="header-anchor">#</a> 状态码</h3> <p>作为 API 的设计者，正确的将 API 执行结果和失败原因用清晰简洁的方式传达给客户程序是十分关键的一步。 我们可以模仿HTTP协议,在响应内容中描述是否成功，如果出错是因为什么，然而，这就意味着用户需要进行内容解析，才知道执行结果和错误原因。因此，响应码可以保证客户端在第一时间用最高效的方式获知 API 运行结果，并采取相应动作。下表列出了比较常用的响应代码。
+常用的状态码及使用场景：</p> <table><thead><tr><th>响应码</th> <th>代码含义</th></tr></thead> <tbody><tr><td>200</td> <td>已创建，请求成功且服务器已创建了新的资源。</td></tr> <tr><td>201</td> <td>是否只显示处于警告状态的应用实例。</td></tr> <tr><td>301</td> <td>重定向 , 请求的网页已被永久移动到新位置。服务器返回此响应时，会自动将请求者转到新位置。</td></tr> <tr><td>302</td> <td>重定向 , 请求的网页临时移动到新位置，但求者应继续使用原有位置来进行以后的请求。302 会自动将请求者转到不同的临时位置。</td></tr> <tr><td>304</td> <td>未修改，自从上次请求后，请求的网页未被修改过。服务器返回此响应时，不会返回网页内容。</td></tr> <tr><td>400</td> <td>错误请求 , 服务器不理解请求的语法。</td></tr> <tr><td>401</td> <td>未授权 , 请求要求进行身份验证。</td></tr> <tr><td>403</td> <td>已禁止 , 服务器拒绝请求。</td></tr> <tr><td>404</td> <td>未找到 , 服务器找不到请求的网页。</td></tr> <tr><td>405</td> <td>方法禁用 , 禁用请求中所指定的方法。</td></tr> <tr><td>406</td> <td>不接受 , 无法使用请求的内容特性来响应请求的网页。</td></tr> <tr><td>408</td> <td>请求超时 , 服务器等候请求时超时。</td></tr> <tr><td>410</td> <td>已删除 , 如果请求的资源已被永久删除，那么，服务器会返回此响应。</td></tr> <tr><td>412</td> <td>未满足前提条件 , 服务器未满足请求者在请求中设置的其中一个前提条件。</td></tr> <tr><td>415</td> <td>不支持的媒体类型 , 请求的格式不受请求页面的支持。</td></tr> <tr><td>500</td> <td>内部服务器错误。</td></tr></tbody></table> <h2 id="具体业务"><a href="#具体业务" aria-hidden="true" class="header-anchor">#</a> 具体业务</h2> <h3 id="预览"><a href="#预览" aria-hidden="true" class="header-anchor">#</a> 预览</h3> <p><img src="https://i.imgur.com/ZoNmzun.png" alt="预览"></p> <table><thead><tr><th>业务</th> <th>uri</th> <th>描述</th></tr></thead> <tbody><tr><td>连接</td> <td>v1/connect</td> <td>由服务端主动推送过来，当连接成功后，后台会返回一些初始化数据，如token、加密的秘钥等</td></tr> <tr><td>断开连接</td> <td>v1/disconnect</td> <td>由客户端发送给服务端，当客户端退出时发送一个信号给服务端来关闭资源，做收尾处理</td></tr> <tr><td>心跳</td> <td>v1/heartbeat</td> <td>心跳包，可以是服务端发送给客户端，客户端返回，也可以是客户端发给服务端，服务端统计</td></tr> <tr><td>收账</td> <td>v1/receive</td> <td>由服务端主动推送过来，前端根据data里的内容主动收账</td></tr> <tr><td>自定义推送</td> <td>v1/notify</td> <td>由服务端主动推送过来，前端根据data里的内容创建通知显示</td></tr> <tr><td>广告活动</td> <td>v1/advertise</td> <td>由服务端主动推送过来，前端根据data里的内容主动弹框居中显示，此处预先设定好四种模板弹框：web图片弹框、web可交互弹框，原生图片弹框，原生可交互弹框</td></tr> <tr><td>简单即时通讯</td> <td>v1/im</td> <td>暂时不考虑（此处说的简单即时通讯是指用于一些简单双向通讯场景，比如社交中的回复，他人回复后客户端自动就能加载，比如反馈模块中用户反馈bug，客户迅速回复）</td></tr> <tr><td>预留扩展</td> <td>v1/extra</td> <td>暂时不考虑</td></tr> <tr><td>登出/注销</td> <td>v1/logout</td> <td>由服务端主动推送过来，前端弹出登录界面</td></tr></tbody></table> <h3 id="连接"><a href="#连接" aria-hidden="true" class="header-anchor">#</a> 连接</h3> <p>在连接成功后，后台会返回一些初始化数据，这些数据包括token、session、秘钥等，客户端可以保存起来以备后用。</p> <h5 id="响应"><a href="#响应" aria-hidden="true" class="header-anchor">#</a> 响应</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+    &quot;message&quot;: &quot;恭喜你，连接成功&quot;,
+    &quot;code&quot;: 200,
+    &quot;uid&quot;: &quot;A3BA3BA3BA3BC&quot;,
+    &quot;uri&quot;: &quot;v1/connect&quot;,
+    &quot;data&quot;: {
+        &quot;token&quot;: &quot;23523t23t23t23t23t&quot;
+    }
+}
+</code></pre></div><table><thead><tr><th>key</th> <th>类型</th> <th>描述</th></tr></thead> <tbody><tr><td>token</td> <td>String</td> <td>连接成功后，服务端会返回一个token，如果以后还有其他初始化数据的话，也会通过这个uri返回</td></tr></tbody></table> <h3 id="断开连接"><a href="#断开连接" aria-hidden="true" class="header-anchor">#</a> 断开连接</h3> <p>在退出App，或者关闭浏览器后，就由客户端发送这个uri给服务端，服务端就可以做一些收尾工作。</p> <h5 id="响应-2"><a href="#响应-2" aria-hidden="true" class="header-anchor">#</a> 响应</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+    &quot;message&quot;: &quot;请注意了，我要断开连接了&quot;,
+    &quot;uri&quot;: &quot;v1/disconnect&quot;
+}
+</code></pre></div><h3 id="心跳"><a href="#心跳" aria-hidden="true" class="header-anchor">#</a> 心跳</h3> <p>每隔1分钟，客户端主动发送一次心跳给服务端，服务端统计，如果间隔2次未收到心跳，即认为是客户端断开，即可断开连接，考虑到心跳的流量成本，因此心跳的数据尽量少。</p> <h5 id="响应-3"><a href="#响应-3" aria-hidden="true" class="header-anchor">#</a> 响应</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+    &quot;uri&quot;: &quot;v1/heartbeat&quot;
+}
+</code></pre></div><h3 id="收账"><a href="#收账" aria-hidden="true" class="header-anchor">#</a> 收账</h3> <p>由服务端主动推送过来，服务端已经处理分析出链上的每一个块的变化与哪一个账户相关，然后推送到账户所在的手机上，手机端只要直接做刷新功能即可。</p> <h5 id="响应-4"><a href="#响应-4" aria-hidden="true" class="header-anchor">#</a> 响应</h5> <p>服务端--&gt;客户端</p> <div class="language- extra-class"><pre class="language-text"><code>{
+    &quot;code&quot;: 200,
+    &quot;data&quot;: {
+        &quot;account&quot;: &quot;mol_1rf1umue1ugxz3akhz41dukp44deyybh3boh4byur1n3oot5j16511pgy7ue&quot;,
+        &quot;amount&quot;: &quot;119340000000000000000000000000&quot;,
+        &quot;block&quot;: &quot;{
+    &quot;type&quot;: &quot;state&quot;,
+    &quot;account&quot;: &quot;mol_1rf1umue1ugxz3akhz41dukp44deyybh3boh4byur1n3oot5j16511pgy7ue&quot;,
+    &quot;previous&quot;: &quot;B34B6EA7FE4E832919FD1C3F63E24ABDD5B65C0DE99732497651ED2328A11601&quot;,
+    &quot;representative&quot;: &quot;mol_3ytentj15q44he4c778317r868wdttwufp96fsccjux4tuqc59ojgrwn6d4w&quot;,
+    &quot;balance&quot;: &quot;120329200000000000000000000000&quot;,
+    &quot;link&quot;: &quot;67568C72C765DAF47A1427B976E5914C7B17FE2F8CC9779490FBDEFEC9E5DE01&quot;,
+    &quot;link_as_account&quot;: &quot;mol_1stpjjsegsgtyjx3abxsguks4m5u4zz4z58bgycb3yyyzu6ydqi34kgefsif&quot;,
+    &quot;signature&quot;: &quot;6547BD8CC1A16A484E083D4037EE77E7E463FDE358CF3FF2000CA2A40393271648D926B5CA143EA7CFE51178549C175575CFA9DC2864B3215753AFB4D2129F0F&quot;,
+    &quot;work&quot;: &quot;a7556bb5e343ec87&quot;
+}
+&quot;,
+        &quot;hash&quot;: &quot;390C43CFB3E4B0F1E218CF023905D84985C6569348D873697E5C8D8610872C87&quot;,
+        &quot;is_send&quot;: &quot;false&quot;
+    },
+    &quot;message&quot;: &quot;XX收到多少MOL&quot;,
+    &quot;uid&quot;: &quot;A3BA3BA3BA3BC&quot;,
+    &quot;uri&quot;: &quot;v1/receive&quot;
+}
+</code></pre></div><p>以上数据其实是将块信息放到data对象中，与手机中的type为state，subType为receive的块信息一样。</p> <table><thead><tr><th>key</th> <th>类型</th> <th>描述</th></tr></thead> <tbody><tr><td>account</td> <td>String</td> <td>接收block的账户地址</td></tr> <tr><td>amount</td> <td>String</td> <td>接收的总额</td></tr> <tr><td>block</td> <td>String</td> <td>block信息，其实又是一个json字符串</td></tr> <tr><td>hash</td> <td>String</td> <td>该block的hash</td></tr> <tr><td>is_send</td> <td>String</td> <td>该block为非发送类型</td></tr></tbody></table> <h3 id="自定义推送"><a href="#自定义推送" aria-hidden="true" class="header-anchor">#</a> 自定义推送</h3> <h4 id="通知介绍"><a href="#通知介绍" aria-hidden="true" class="header-anchor">#</a> 通知介绍</h4> <p>通知作为后台沟通手机端的一个桥梁，可以理解为后台撩前端的手段。我们在自定义通知的时候主要针对三大大类属性进行设置：</p> <ul><li>样式（style）：对应的通知的样式，一般包括图标，标题，内容，时间，甚至是自定义的布局。</li> <li>动作（action）：用户滑动下拉框的动作，用户点击通知的后续动作，比如跳转界面，比如播放语音等。
+一般的推送平台往往都提供设置这两样属性的Api，可以是前端设置，也可以是后端设置。</li> <li>声音+震动：这些都是可以随意组合设置的。</li></ul> <h4 id="通知分类"><a href="#通知分类" aria-hidden="true" class="header-anchor">#</a> 通知分类</h4> <p>按照是否自定义分为两大类：</p> <ul><li>默认通知（最常用）</li> <li>自定义通知（针对特殊场景，如视频电话通知，跳转特定页面通知）。</li></ul> <h5 id="默认通知"><a href="#默认通知" aria-hidden="true" class="header-anchor">#</a> 默认通知</h5> <p><img src="https://i.imgur.com/QklBKdG.png" alt="默认通知"></p> <p>这一类通知只需要提醒用户我们有发一个消息给他，有可能是广告，有可能是升级通知等。
+样式：一般都只要基本的默认样式，即图标，标题，内容，时间。其中时间是到达前端的时间，后台不需要设置。
+动作：只需要打开App即可。
+pushRequest.setAndroidOpenType(&quot;APPLICATION&quot;);
+如果填URL是为了给我们解析用的，就是跳特定页面的时候，前端人员可以根据这个URL来解析出路由路径。
+声音+震动：默认就可以。</p> <h5 id="特定通知"><a href="#特定通知" aria-hidden="true" class="header-anchor">#</a> 特定通知</h5> <p>这类通知是某些样式特殊，如图片新闻通知，某些action特殊，比如点击跳转到特定页面，再比如微信的视频通话通知提醒，会不停的震动响铃一段时间等。此类通知我们暂无相关业务，可暂时不管。</p> <h4 id="响应-5"><a href="#响应-5" aria-hidden="true" class="header-anchor">#</a> 响应</h4> <div class="language- extra-class"><pre class="language-text"><code>{
+    &quot;message&quot;: &quot;居然被你查询成功了&quot;,
+    &quot;code&quot;: 200,
+    &quot;uid&quot;: &quot;A3BA3BA3BA3BC&quot;,
+    &quot;uri&quot;: &quot;v1/notify&quot;,
+    &quot;data&quot;: {
+        &quot;title&quot;: &quot;摩尔&quot;,
+        &quot;content&quot;: &quot;摩尔&quot;,
+        &quot;when&quot;: &quot;&quot;,
+        &quot;smallIcon&quot;: &quot;&quot;,
+        &quot;largeIcon&quot;: &quot;&quot;,
+        &quot;priority&quot;: &quot;&quot;,
+        &quot;lights&quot;: &quot;&quot;,
+        &quot;vibrate&quot;: &quot;&quot;,
+        &quot;sound&quot;: &quot;&quot;,
+        &quot;channel&quot;: &quot;&quot;
+    }
+}
+</code></pre></div><table><thead><tr><th>key</th> <th>类型</th> <th>描述</th></tr></thead> <tbody><tr><td>title</td> <td>String</td> <td>通知标题</td></tr> <tr><td>content</td> <td>String</td> <td>通知的长文内容</td></tr> <tr><td>when</td> <td>String</td> <td>通知时间戳，（可以不用管，因为Android默认都是用系统时间）</td></tr> <tr><td>smallIcon</td> <td>String</td> <td>通知的右下角小图标（不用管，传个空就行了）</td></tr> <tr><td>largeIcon</td> <td>String</td> <td>通知的左边大图标（不用管，传个空就行了）</td></tr> <tr><td>priority</td> <td>String</td> <td>通知展示的优先级（不用管，传个空就行了,我这边统一用最大的）</td></tr> <tr><td>lights</td> <td>String</td> <td>控制呼吸灯颜色和闪烁行为（不用管，传个空就行了）</td></tr> <tr><td>vibrate</td> <td>String</td> <td>控制震动行为（不用管，传个空就行了）</td></tr> <tr><td>sound</td> <td>String</td> <td>控制声音（不用管，传个空就行了）</td></tr> <tr><td>channel</td> <td>String</td> <td>针对Android 8.0的</td></tr></tbody></table> <p>前端就可以利用这些数据生成一个自定义的本地通知显示在手机上。这样的话当用户的长连接存在的时候就可以不依赖第三方平台的推送厂商了。对于推送这一块，未来会有一个专门的消息中心模块来显示记录。</p> <h3 id="广告活动"><a href="#广告活动" aria-hidden="true" class="header-anchor">#</a> 广告活动</h3> <h4 id="介绍"><a href="#介绍" aria-hidden="true" class="header-anchor">#</a> 介绍</h4> <p>这部分是用于某些时刻主动给用户推送弹窗广告或者活动的，客户端会预先设计好四种弹窗模板：</p> <ul><li>Web图片弹窗，即一个弹窗里装在一个WebView，直接显示即可，这类弹窗只是显示，没有交互（不会有点击跳转）。</li> <li>Web交互弹窗，即一个弹窗里装在一个WebView，直接显示网页内容，并且点击后可以跳转其他网页，当然这个跳转仍然在该弹窗内。</li> <li>native图片弹窗，即一个弹窗里装载一个显示图片的控件，直接显示即可，无其他交互。</li> <li>native交互弹窗，即一个特定的设计的弹窗，类似现在的挖矿每天第一次挖到第一笔MOL币时的弹窗，这个弹窗就是一个特殊的native交互式的弹窗，点击就跳转到了海报页面。</li></ul> <h4 id="响应-6"><a href="#响应-6" aria-hidden="true" class="header-anchor">#</a> 响应</h4> <div class="language- extra-class"><pre class="language-text"><code>{
+    &quot;message&quot;: &quot;弹广告了&quot;,
+    &quot;code&quot;: 200,
+    &quot;uid&quot;: &quot;A3BA3BA3BA3BC&quot;,
+    &quot;uri&quot;: &quot;v1/advertise&quot;,
+    &quot;data&quot;: {
+        &quot;type&quot;: &quot;web&quot;,
+        &quot;url&quot;: &quot;https://www.baidu.com/&quot;,
+        …… 
+    }
+}
+</code></pre></div><table><thead><tr><th>key</th> <th>类型</th> <th>描述</th></tr></thead> <tbody><tr><td>type</td> <td>String</td> <td>web表示web弹窗，native表示native弹窗</td></tr> <tr><td>url</td> <td>String</td> <td>type为web是，url表示连接，为native时，如果是native图片弹框就表示图片的url</td></tr></tbody></table> <p>强调：由于考虑到后期的扩展，比如熊老师做了一个调查的H5，推送到用户，参加完调查的用户在提交后可以得到摩尔奖励，这个就必须依赖到token了，因此我们在打开这个url对应的WebView/UIWebView的时候，默认将token传过去，就通过拼在url后面传过去就可以了，如下：</p> <blockquote><p>接收到的是： https://www.baidu.com/ ，拼参后：https://www.baidu.com/?token=1r13rqwr132r1r</p></blockquote> <h3 id="登出-注销"><a href="#登出-注销" aria-hidden="true" class="header-anchor">#</a> 登出/注销</h3> <p>考虑到账户的安全性和开发的便利性（比如原生与H5交互时，有这个功能则可避免在Web里token失效时还要弹出登录界面）需要这个功能来提示用户。</p> <h4 id="响应-7"><a href="#响应-7" aria-hidden="true" class="header-anchor">#</a> 响应</h4> <div class="language- extra-class"><pre class="language-text"><code>{
+    &quot;message&quot;: &quot;您的账号于15:31在其他设备上登录&quot;,
+    &quot;code&quot;: 200,
+    &quot;uid&quot;: &quot;A3BA3BA3BA3BC&quot;,
+    &quot;uri&quot;: &quot;v1/logout&quot;
+}
+</code></pre></div><h4 id="前端统一处理"><a href="#前端统一处理" aria-hidden="true" class="header-anchor">#</a> 前端统一处理</h4> <p>1.类似QQ弹框提示已在其他地方登录，如图所示：</p> <p><img src="https://i.imgur.com/jRThwdh.jpg" alt="其他地方登陆"></p> <p>2.用户点击“朕知道了”，则什么也不做，用户点击“重新登录”则弹出登录界面走登录流程。</p> <h2 id="安全"><a href="#安全" aria-hidden="true" class="header-anchor">#</a> 安全</h2> <h3 id="加密"><a href="#加密" aria-hidden="true" class="header-anchor">#</a> 加密</h3> <p>对于传输的内容进行加解密，加密时机为传输数据前，解密时机为获取数据后，同时还要考虑随时可以去掉加解密，或者部分需要加密，部分不需要加密，因此前后端要采取相应的设计模式来做到充分易用。</p> <p>要求秘钥是后台分发，可以考虑一连接成功就在那里返回</p> <h3 id="验签"><a href="#验签" aria-hidden="true" class="header-anchor">#</a> 验签</h3> <p>参考</p> <p>4.参考一下nano的websoket内容</p></div> <div class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated: </span> <span class="time">3/4/2019, 10:12:42 AM</span></div></div> <!----> </div> <!----></div></div>
+    <script src="/assets/js/app.4c782fad.js" defer></script><script src="/assets/js/42.a23b0abe.js" defer></script>
+  </body>
+</html>
+
+        
+      </div>
+      
+      
+      
+    </div>
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/favicon.ico"
+               alt="Leguang" />
+          <p class="site-author-name" itemprop="name">Leguang</p>
+           
+              <p class="site-description motion-element" itemprop="description">浮生若戏悲欢聚 笑看天风扫寰宇</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/leguang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:langmanleguang@qq.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#websoket协议规范"><span class="nav-number">1.</span> <span class="nav-text"># Websoket协议规范</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text"># 前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#要求"><span class="nav-number">1.2.</span> <span class="nav-text"># 要求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#目标"><span class="nav-number">1.2.1.</span> <span class="nav-text"># 目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命名规范"><span class="nav-number">1.2.2.</span> <span class="nav-text"># 命名规范</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#uri规范"><span class="nav-number">1.2.3.</span> <span class="nav-text"># uri规范</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#json规范"><span class="nav-number">1.2.4.</span> <span class="nav-text"># JSON规范</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#websoket部分"><span class="nav-number">1.3.</span> <span class="nav-text"># WebSoket部分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用场景"><span class="nav-number">1.3.1.</span> <span class="nav-text"># 使用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用列举"><span class="nav-number">1.3.2.</span> <span class="nav-text"># 应用列举</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#格式"><span class="nav-number">1.3.3.</span> <span class="nav-text"># 格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#url结构"><span class="nav-number">1.3.4.</span> <span class="nav-text"># URL结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#协议格式"><span class="nav-number">1.3.5.</span> <span class="nav-text"># 协议格式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#客户端-服务端"><span class="nav-number">1.3.5.1.</span> <span class="nav-text"># 客户端--&gt;服务端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#服务端-客户端"><span class="nav-number">1.3.5.2.</span> <span class="nav-text"># 服务端--&gt;客户端</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#状态码"><span class="nav-number">1.3.6.</span> <span class="nav-text"># 状态码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#具体业务"><span class="nav-number">1.4.</span> <span class="nav-text"># 具体业务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#预览"><span class="nav-number">1.4.1.</span> <span class="nav-text"># 预览</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连接"><span class="nav-number">1.4.2.</span> <span class="nav-text"># 连接</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#响应"><span class="nav-number">1.4.2.0.1.</span> <span class="nav-text"># 响应</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#断开连接"><span class="nav-number">1.4.3.</span> <span class="nav-text"># 断开连接</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#响应-2"><span class="nav-number">1.4.3.0.1.</span> <span class="nav-text"># 响应</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#心跳"><span class="nav-number">1.4.4.</span> <span class="nav-text"># 心跳</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#响应-3"><span class="nav-number">1.4.4.0.1.</span> <span class="nav-text"># 响应</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#收账"><span class="nav-number">1.4.5.</span> <span class="nav-text"># 收账</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#响应-4"><span class="nav-number">1.4.5.0.1.</span> <span class="nav-text"># 响应</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义推送"><span class="nav-number">1.4.6.</span> <span class="nav-text"># 自定义推送</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#通知介绍"><span class="nav-number">1.4.6.1.</span> <span class="nav-text"># 通知介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通知分类"><span class="nav-number">1.4.6.2.</span> <span class="nav-text"># 通知分类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#默认通知"><span class="nav-number">1.4.6.2.1.</span> <span class="nav-text"># 默认通知</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#特定通知"><span class="nav-number">1.4.6.2.2.</span> <span class="nav-text"># 特定通知</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#响应-5"><span class="nav-number">1.4.6.3.</span> <span class="nav-text"># 响应</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#广告活动"><span class="nav-number">1.4.7.</span> <span class="nav-text"># 广告活动</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#介绍"><span class="nav-number">1.4.7.1.</span> <span class="nav-text"># 介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#响应-6"><span class="nav-number">1.4.7.2.</span> <span class="nav-text"># 响应</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#登出-注销"><span class="nav-number">1.4.8.</span> <span class="nav-text"># 登出/注销</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#响应-7"><span class="nav-number">1.4.8.1.</span> <span class="nav-text"># 响应</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#前端统一处理"><span class="nav-number">1.4.8.2.</span> <span class="nav-text"># 前端统一处理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安全"><span class="nav-number">1.5.</span> <span class="nav-text"># 安全</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#加密"><span class="nav-number">1.5.1.</span> <span class="nav-text"># 加密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验签"><span class="nav-number">1.5.2.</span> <span class="nav-text"># 验签</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Leguang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 访问总量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("UUrijxLg3YUcx9WIg5UlJchI-gzGzoHsz", "m6wXtGXT8NUa5W4TiErrXWpO");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

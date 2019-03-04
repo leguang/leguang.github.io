@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="IT站点, 一站到底" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="IT站点" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="镰刀数据爬虫系统 | 文档                                            文档   主页文档关于   Github       主页文档关于   Github       概述  REST接口规范目标要求HTTP部分错误/异常处理url失效对于后台文档的要求容错性（健壮性）国际化（多语言支持）开放平台  镰刀项目  镰刀">
+<meta name="keywords" content="IT站点, 一站到底">
+<meta property="og:type" content="website">
+<meta property="og:title" content="IT站点">
+<meta property="og:url" content="http://itsite.cn/documents/documents/镰刀项目/镰刀爬虫系统/镰刀数据爬虫系统.html">
+<meta property="og:site_name" content="IT站点">
+<meta property="og:description" content="镰刀数据爬虫系统 | 文档                                            文档   主页文档关于   Github       主页文档关于   Github       概述  REST接口规范目标要求HTTP部分错误/异常处理url失效对于后台文档的要求容错性（健壮性）国际化（多语言支持）开放平台  镰刀项目  镰刀">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://itsite.cn/assets/img/preview.c2797566.png">
+<meta property="og:image" content="http://itsite.cn/assets/img/program-tree.e743634b.png">
+<meta property="og:image" content="http://itsite.cn/assets/img/mqshow.0c7d503d.png">
+<meta property="og:image" content="http://itsite.cn/assets/img/liandaoMQ.b53ffa5b.png">
+<meta property="og:image" content="http://itsite.cn/assets/img/sites.6891bf4a.jpg">
+<meta property="og:updated_time" content="2019-03-04T03:08:50.198Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IT站点">
+<meta name="twitter:description" content="镰刀数据爬虫系统 | 文档                                            文档   主页文档关于   Github       主页文档关于   Github       概述  REST接口规范目标要求HTTP部分错误/异常处理url失效对于后台文档的要求容错性（健壮性）国际化（多语言支持）开放平台  镰刀项目  镰刀">
+<meta name="twitter:image" content="http://itsite.cn/assets/img/preview.c2797566.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://itsite.cn/documents/documents/镰刀项目/镰刀爬虫系统/镰刀数据爬虫系统.html"/>
+
+
+
+
+
+  <title> | IT站点</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c5074ca51b610e0c4ba4fac7b24abea2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IT站点</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一站到底</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+	<h1 class="post-title" itemprop="name headline"></h1>
+
+
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+        
+          <!DOCTYPE html>
+<html lang="en-US">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>镰刀数据爬虫系统 | 文档</title>
+    <meta name="description" content="浮生若戏悲欢聚  笑看天风扫寰宇">
+    <link rel="icon" href="/img/logo.ico">
+  <link rel="apple-touch-icon" href="/img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;">
+    
+    <link rel="preload" href="/assets/css/0.styles.aca6ffaf.css" as="style"><link rel="preload" href="/assets/js/app.4c782fad.js" as="script"><link rel="preload" href="/assets/js/2.d7f99d20.js" as="script"><link rel="prefetch" href="/assets/js/10.4aad0737.js"><link rel="prefetch" href="/assets/js/11.ae680e7e.js"><link rel="prefetch" href="/assets/js/12.1d27d644.js"><link rel="prefetch" href="/assets/js/13.448e0c99.js"><link rel="prefetch" href="/assets/js/14.7888ac07.js"><link rel="prefetch" href="/assets/js/15.eac6ce9c.js"><link rel="prefetch" href="/assets/js/16.5e257dc3.js"><link rel="prefetch" href="/assets/js/17.c6a677c6.js"><link rel="prefetch" href="/assets/js/18.e4e45a90.js"><link rel="prefetch" href="/assets/js/19.48e71871.js"><link rel="prefetch" href="/assets/js/20.6bdc9c27.js"><link rel="prefetch" href="/assets/js/21.b7e2381f.js"><link rel="prefetch" href="/assets/js/22.03913796.js"><link rel="prefetch" href="/assets/js/23.619adacc.js"><link rel="prefetch" href="/assets/js/24.e3862973.js"><link rel="prefetch" href="/assets/js/25.ab00d111.js"><link rel="prefetch" href="/assets/js/26.68a82a09.js"><link rel="prefetch" href="/assets/js/27.68e8506f.js"><link rel="prefetch" href="/assets/js/28.6bda4ca9.js"><link rel="prefetch" href="/assets/js/29.841a5e29.js"><link rel="prefetch" href="/assets/js/3.517a5386.js"><link rel="prefetch" href="/assets/js/30.baa92884.js"><link rel="prefetch" href="/assets/js/31.6a6e1f1f.js"><link rel="prefetch" href="/assets/js/32.e0593dce.js"><link rel="prefetch" href="/assets/js/33.f64e7c9d.js"><link rel="prefetch" href="/assets/js/34.2c4dcebd.js"><link rel="prefetch" href="/assets/js/35.f18d89f4.js"><link rel="prefetch" href="/assets/js/36.cd0f4d28.js"><link rel="prefetch" href="/assets/js/37.ce45c53f.js"><link rel="prefetch" href="/assets/js/38.65ab49b8.js"><link rel="prefetch" href="/assets/js/39.c27bd8cc.js"><link rel="prefetch" href="/assets/js/4.b9d50c9e.js"><link rel="prefetch" href="/assets/js/40.c45010eb.js"><link rel="prefetch" href="/assets/js/41.59dd911f.js"><link rel="prefetch" href="/assets/js/42.a23b0abe.js"><link rel="prefetch" href="/assets/js/43.573562a0.js"><link rel="prefetch" href="/assets/js/44.4b58ecc8.js"><link rel="prefetch" href="/assets/js/45.0bc668b9.js"><link rel="prefetch" href="/assets/js/5.a28803d7.js"><link rel="prefetch" href="/assets/js/6.9c510520.js"><link rel="prefetch" href="/assets/js/7.a39ff044.js"><link rel="prefetch" href="/assets/js/8.31c34ffe.js"><link rel="prefetch" href="/assets/js/9.3cd700e9.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.aca6ffaf.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewbox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"/></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">文档</span></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">主页</a></div><div class="nav-item"><a href="/documents/" class="nav-link router-link-active">文档</a></div><div class="nav-item"><a href="/about/" class="nav-link">关于</a></div><div class="nav-item"><a href="https://github.com/leguang" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"/> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"/></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">主页</a></div><div class="nav-item"><a href="/documents/" class="nav-link router-link-active">文档</a></div><div class="nav-item"><a href="/about/" class="nav-link">关于</a></div><div class="nav-item"><a href="https://github.com/leguang" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"/> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"/></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><div class="sidebar-group first"><p class="sidebar-heading"><span>概述</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/documents/" class="sidebar-link">REST接口规范</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/documents/#目标" class="sidebar-link">目标</a></li><li class="sidebar-sub-header"><a href="/documents/#要求" class="sidebar-link">要求</a></li><li class="sidebar-sub-header"><a href="/documents/#http部分" class="sidebar-link">HTTP部分</a></li><li class="sidebar-sub-header"><a href="/documents/#错误-异常处理" class="sidebar-link">错误/异常处理</a></li><li class="sidebar-sub-header"><a href="/documents/#url失效" class="sidebar-link">url失效</a></li><li class="sidebar-sub-header"><a href="/documents/#对于后台文档的要求" class="sidebar-link">对于后台文档的要求</a></li><li class="sidebar-sub-header"><a href="/documents/#容错性（健壮性）" class="sidebar-link">容错性（健壮性）</a></li><li class="sidebar-sub-header"><a href="/documents/#国际化（多语言支持）" class="sidebar-link">国际化（多语言支持）</a></li></ul></li></ul></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>开放平台</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading open"><span>镰刀项目</span> <span class="arrow down"></span></p> <ul class="sidebar-group-items"><li><a href="/documents/镰刀项目/镰刀接口文档/镰刀接口文档.html" class="sidebar-link">镰刀项目方案及其接口</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/documents/镰刀项目/镰刀接口文档/镰刀接口文档.html#资源" class="sidebar-link">资源</a></li><li class="sidebar-sub-header"><a href="/documents/镰刀项目/镰刀接口文档/镰刀接口文档.html#http部分" class="sidebar-link">HTTP部分</a></li><li class="sidebar-sub-header"><a href="/documents/镰刀项目/镰刀接口文档/镰刀接口文档.html#长连接部分（下期考虑）" class="sidebar-link">长连接部分（下期考虑）</a></li></ul></li><li><a href="/documents/镰刀项目/镰刀爬虫系统/镰刀数据爬虫系统.html" class="active sidebar-link">镰刀数据爬虫系统</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/documents/镰刀项目/镰刀爬虫系统/镰刀数据爬虫系统.html#整体框架" class="sidebar-link">整体框架</a></li><li class="sidebar-sub-header"><a href="/documents/镰刀项目/镰刀爬虫系统/镰刀数据爬虫系统.html#程序设计及运行" class="sidebar-link">程序设计及运行</a></li><li class="sidebar-sub-header"><a href="/documents/镰刀项目/镰刀爬虫系统/镰刀数据爬虫系统.html#使用工具及数据库" class="sidebar-link">使用工具及数据库</a></li><li class="sidebar-sub-header"><a href="/documents/镰刀项目/镰刀爬虫系统/镰刀数据爬虫系统.html#网站爬虫spiders" class="sidebar-link">网站爬虫spiders</a></li><li class="sidebar-sub-header"><a href="/documents/镰刀项目/镰刀爬虫系统/镰刀数据爬虫系统.html#数据分析提取" class="sidebar-link">数据分析提取</a></li></ul></li><li><a href="/documents/镰刀项目/镰刀通知方案/镰刀通知方案.html" class="sidebar-link">镰刀通知详情功能</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/documents/镰刀项目/镰刀通知方案/镰刀通知方案.html#需求" class="sidebar-link">需求</a></li></ul></li><li><a href="/documents/镰刀项目/镰刀备忘录/镰刀备忘录.html" class="sidebar-link">镰刀备忘录</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/documents/镰刀项目/镰刀备忘录/镰刀备忘录.html#_2018-10-09" class="sidebar-link">2018.10.09</a></li><li class="sidebar-sub-header"><a href="/documents/镰刀项目/镰刀备忘录/镰刀备忘录.html#_2018-10-15" class="sidebar-link">2018.10.15</a></li></ul></li><li><a href="/documents/镰刀项目/镰刀后台管理系统/镰刀后台管理系统.html" class="sidebar-link">镰刀后台管理系统设计</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/documents/镰刀项目/镰刀后台管理系统/镰刀后台管理系统.html#功能大纲" class="sidebar-link">功能大纲</a></li><li class="sidebar-sub-header"><a href="/documents/镰刀项目/镰刀后台管理系统/镰刀后台管理系统.html#功能" class="sidebar-link">功能</a></li></ul></li></ul></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>摩尔钱包</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>电商项目</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>币圈项目</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>用户系统</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>中后台系统</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>公共部分</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>规范</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>技术选型</span> <span class="arrow right"></span></p> <!----></div></li></ul> </div> <div class="page"> <div class="content"><h1 id="镰刀数据爬虫系统"><a href="#镰刀数据爬虫系统" aria-hidden="true" class="header-anchor">#</a> 镰刀数据爬虫系统</h1> <blockquote><p>Author：Leguang</p> <p>E-Mail：<a href="mailto:langmanleguang@qq.com" target="_blank" rel="noopener">langmanleguang@qq.com</a></p></blockquote> <h2 id="整体框架"><a href="#整体框架" aria-hidden="true" class="header-anchor">#</a> 整体框架</h2> <p><img src="/assets/img/preview.c2797566.png" alt="Alt text"></p> <h2 id="程序设计及运行"><a href="#程序设计及运行" aria-hidden="true" class="header-anchor">#</a> 程序设计及运行</h2> <p>程序代码：
+<img src="/assets/img/program-tree.e743634b.png" alt="Alt text"></p> <p>运行环境：python3.6 centos7
+进程管理：supervisor
+运行：服务器克隆代码后安装python依赖库（虚拟环境同）<code>pip3 install -r requirements.txt</code>
+把子进程配置文件拷贝到supervisor的配置文件路径下，通过supervisor管理程序</p> <h2 id="使用工具及数据库"><a href="#使用工具及数据库" aria-hidden="true" class="header-anchor">#</a> 使用工具及数据库</h2> <h3 id="rabbitmq"><a href="#rabbitmq" aria-hidden="true" class="header-anchor">#</a> rabbitmq</h3> <p>RabbitMQ是一个消息代理 - 一个消息系统的媒介。它可以为你的应用提供一个通用的消息发送和接收平台，并且保证消息在传输过程中的安全。
+<a href="http://rabbitmq.mr-ping.com/" target="_blank" rel="noopener noreferrer">RabbitMQ 中文文档<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"/> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"/></svg></a>
+python客户端使用 <a href="https://pika.readthedocs.io/en/stable/" target="_blank" rel="noopener noreferrer">pika<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"/> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"/></svg></a>
+系统采用“发布/订阅”模式 —— 分发一个消息给多个消费者。
+图示说明：
+<img src="/assets/img/mqshow.0c7d503d.png" alt="Alt text"></p> <p>镰刀mq系统的设计及参数如图：
+<img src="/assets/img/liandaoMQ.b53ffa5b.png" alt="Alt text">
+|注：红色路径表示爬虫源数据的流通；蓝色路径表示一般items数据的流通；绿色路径表示热点数据的流通。</p> <h3 id="supervisor"><a href="#supervisor" aria-hidden="true" class="header-anchor">#</a> supervisor</h3> <p>supervisor是用Python开发的一个client/server服务，是Linux/Unix系统下的一个进程管理工具。可以很方便的监听、启动、停止、重启一个或多个进程。用supervisor管理的进程，当一个进程意外被杀死，supervisor监听到进程死后，会自动将它重启，很方便的做到进程自动恢复的功能，不再需要自己写shell脚本来控制。
+参考文档：<a href="http://www.supervisord.org/" target="_blank" rel="noopener noreferrer">supervisor 文档<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"/> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"/></svg></a>
+安装好后在/etc/会生成一个supervisord.conf文件及一个supervisord.d文件目录，supervisord.conf是一些默认配置，代码里面supervisorIni路径下有修改后的supervisord.conf，可拷贝使用。supervisord.d目录用来存放用户自定义的进程配置，本系统暂时开启三个子进程，分别是爬取数据的sickle.ini，分析数据的newsparse.ini和提取热点数据的hotparse.ini。可拷贝至supervisord.d目录下进行管理。
+<strong>子进程配置：</strong></p> <div class="language- extra-class"><pre class="language-text"><code>[program:sickle]
+command=/usr/bin/python3 /home/nio/sickle/sickle/run_in.py
+directory=/home/nio/sickle/sickle
+autostart = true
+autorestart = true
+startsecs = 5
+priority = 1
+stopasgroup = true
+killasgroup = true
+</code></pre></div><p>具体文件路径根据实际拷贝的代码文件路径填写。<strong>注意因为爬虫部分要翻墙的原因，国内爬取数据运行run_in.py，国外运行run_out.py。</strong></p> <p><strong>supervisor常用命令</strong></p> <div class="language- extra-class"><pre class="language-text"><code>supervisorctl status：查看所有进程的状态
+supervisorctl stop sickle：停止sickle
+supervisorctl start sickle：启动sickle
+supervisorctl restart sickle: 重启sickle
+supervisorctl update ：配置文件修改后可以使用该命令加载新的配置
+supervisorctl reload: 重新启动配置中的所有程序
+</code></pre></div><h3 id="日志logging"><a href="#日志logging" aria-hidden="true" class="header-anchor">#</a> 日志logging</h3> <p>使用<a href="https://docs.python.org/3.6/library/logging.html" target="_blank" rel="noopener noreferrer">logging模块<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"/> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"/></svg></a>。
+日志保存在log路径下，按天保存，只保存最近30天的日志。</p> <p><strong>日志分类</strong>
+调度器日志--scheduler.log
+爬虫日志--sickle.log
+数据日志--items.log
+分析源数据日志--parseItem.log
+分析源数据出错日志--parseError.log
+提取热点数据日志--hotItem.log
+提取热点数据出错日志--hotError.log</p> <h3 id="mysql"><a href="#mysql" aria-hidden="true" class="header-anchor">#</a> MySQL</h3> <p>使用<a href="https://pymysql.readthedocs.io/en/latest/" target="_blank" rel="noopener noreferrer">pymysql模块<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"/> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"/></svg></a>。
+<strong>使用数据</strong>
+标签信息及相关词：sickle_tag 币种分析匹配，分析数据时使用
+爬虫数据源：sickle_spider_source Twitter、微博等数据源，根据此数据爬取社交数据
+币种及交易所热度：sickle_spider_heat 提取热点数据时使用</p> <h3 id="mongodb"><a href="#mongodb" aria-hidden="true" class="header-anchor">#</a> MongoDB</h3> <p>使用<a href="https://github.com/mongodb/mongo-python-driver" target="_blank" rel="noopener noreferrer">pymongo模块<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"/> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"/></svg></a>。
+MongoDB作为存储数据的数据库使用，所有新闻资讯都保存在MongoDB中。
+New_raw存储爬虫爬取的原始数据。
+New_push存储经过分析后的有效数据。
+News_hot存储热点数据。
+News_detail存储有详情页的内容详情数据。</p> <h3 id="redis"><a href="#redis" aria-hidden="true" class="header-anchor">#</a> redis</h3> <p>使用<a href="https://github.com/andymccurdy/redis-py" target="_blank" rel="noopener noreferrer">redis模块<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"/> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"/></svg></a>。
+redis用来保存爬虫爬取网站数据的状态。使得已爬取的数据不会再处理，只获取新的数据。</p> <h3 id="oss对象存储"><a href="#oss对象存储" aria-hidden="true" class="header-anchor">#</a> OSS对象存储</h3> <p>使用阿里云<a href="https://github.com/aliyun/aliyun-oss-python-sdk" target="_blank" rel="noopener noreferrer">oss2模块<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"/> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"/></svg></a>。
+OSS对象存储主要保存一些多媒体资源，爬虫中主要是：1、微博视频；2、Twitter用户头像；3、Twitter图片及视频</p> <h3 id="翻译工具"><a href="#翻译工具" aria-hidden="true" class="header-anchor">#</a> 翻译工具</h3> <ul><li><strong>Google</strong></li></ul> <blockquote><p>url：http://translate.google.cn/translate_a/single</p></blockquote> <div class="language- extra-class"><pre class="language-text"><code>params: {
+        'q': text,
+        'sl': 'auto',
+        'tl': 'zh_Ch',
+        'client': 'gtx',
+        'dt': 't',
+        'dj': 1,
+        'ie': 'UTF-8',
+    }
+</code></pre></div><ul><li><a href="http://fanyi-api.baidu.com/api/trans/product/apidoc" target="_blank" rel="noopener noreferrer"><strong>百度翻译平台</strong><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"/> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"/></svg></a></li></ul> <blockquote><p>url: http://api.fanyi.baidu.com/api/trans/vip/translate</p></blockquote> <div class="language- extra-class"><pre class="language-text"><code>params: {
+        'q': q,
+        'from': 'auto',
+        'to': 'zh',
+        'appid': appid,
+        'salt': salt,
+        'sign': sign
+    }
+</code></pre></div><h2 id="网站爬虫spiders"><a href="#网站爬虫spiders" aria-hidden="true" class="header-anchor">#</a> 网站爬虫spiders</h2> <p>镰刀数据来源主要分两类：一是爬虫从各个网站爬取而来，二是人工编辑。暂时网站爬取的数据占有效数据的绝大多数，因各个网站数据来源或分类不同暂时把它们分三大类：快讯文章公告爬虫、社交资讯爬虫和转账监控爬虫。
+<img src="/assets/img/sites.6891bf4a.jpg" alt="Alt text"></p> <h3 id="快讯文章公告spiders-api接口"><a href="#快讯文章公告spiders-api接口" aria-hidden="true" class="header-anchor">#</a> 快讯文章公告spiders API接口</h3> <ul><li><strong>币世界快讯</strong>
+获取是否有新数据：</li></ul> <blockquote><p>url：http://m.bishijie.com/api/app/getNewNum/?last_newsid=%s
+method：get</p></blockquote> <div class="language- extra-class"><pre class="language-text"><code>headers：{'Host': 'm.bishijie.com',
+          'Connection': 'Keep-Alive',
+          'Referer': 'http://m.bishijie.com/kuaixun?fm=082411 ',
+          'User-Agent': 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Mobile Safari/537.36'
+            }
+            
+</code></pre></div><p>获取新数据：</p> <blockquote><p>url：http://api.bishijie.com/news/?client=android&amp;size=20
+method：get</p></blockquote> <div class="language- extra-class"><pre class="language-text"><code>headers：{'Host': 'api.bishijie.com',
+          'User-Agent': 'okhttp/3.8.1'}
+</code></pre></div><ul><li><strong>金色财经快讯</strong>
+获取新数据：</li></ul> <blockquote><p>url：https://api.jinse.com/v4/live/list?reading=false&amp;_source=m&amp;limit=10&amp;flag=up&amp;id=%s
+method：get</p></blockquote> <div class="language- extra-class"><pre class="language-text"><code>headers：{'User-Agent': 手机端浏览器}
+</code></pre></div><ul><li><strong>币响快讯</strong>
+获取新数据：</li></ul> <blockquote><p>url：http://tui.yingshe.com/live/info
+method：post</p></blockquote> <div class="language- extra-class"><pre class="language-text"><code>headers：{'Host': 'tui.yingshe.com',
+          'Connection': 'Keep-Alive',
+         'User-Agent': 手机端浏览器,
+         'Content-Type': 'application/x-www-form-urlencoded'
+     }
+post data：{
+            'p': '1',
+            'type': '1',
+            'unique': '865166020927318'
+        }
+</code></pre></div><ul><li><strong>非小号交易所公告</strong>
+获取新数据：</li></ul> <blockquote><p>url：http://app.fxh.io/api/news/exchange?direction=before&amp;time=0
+method：get</p></blockquote> <div class="language- extra-class"><pre class="language-text"><code>headers：{'User-Agent': 'FeiXiaoHao/1.4.1 (iPhone; iOS 11.4.1; Scale/2.00)',
+          'Host': 'app.fxh.io',
+          'Referer': 'm.feixiaohao.com'
+        }
+</code></pre></div><p>获取detail数据：</p> <blockquote><p>url：detailurl(http://m.feixiaohao.com/notice/3606214.html)
+method：get</p></blockquote> <div class="language- extra-class"><pre class="language-text"><code>headers：{
+          'User-Agent': 手机端浏览器,
+          'Host': 'm.feixiaohao.com',
+          'Referer': detailurl
+        }
+</code></pre></div><ul><li><strong>币牛牛交易所公告</strong>
+获取新数据：</li></ul> <blockquote><p>url：https://api.coinbull.one/pc/web/announcement/list?limit=20
+method：get</p></blockquote> <div class="language- extra-class"><pre class="language-text"><code>headers：{
+           `User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+           'x-app-info': '2.4.0/offical/web',
+           'origin': 'https://www.coinbull.one'
+        }
+</code></pre></div><p>获取detail数据：</p> <blockquote><p>url：https://api.finbtc.net/app/announcement/detail?id=%s
+method：get</p></blockquote> <div class="language- extra-class"><pre class="language-text"><code>headers：{
+          'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+          'x-app-info': '2.4.0/offical/web',
+          'origin': 'https://www.coinbull.one'
+        }
+</code></pre></div><ul><li><strong>金色财经文章</strong>
+获取新数据：</li></ul> <blockquote><p>url：https://api.jinse.com/v6/information/list?catelogue_key=www&amp;limit=20&amp;information_id=0&amp;flag=down&amp;version=9.9.9&amp;_source=m
+method：get</p></blockquote> <div class="language- extra-class"><pre class="language-text"><code>headers：{'User-Agent': 手机端浏览器}
+</code></pre></div><p>获取detail数据：</p> <blockquote><p>url：detailurl(https://m.jinse.com/news/bitcoin/284031.html)
+method：get</p></blockquote> <div class="language- extra-class"><pre class="language-text"><code>headers：{'User-Agent': 手机端浏览器}
+</code></pre></div><ul><li><strong>巴比特文章</strong>
+获取新数据：</li></ul> <blockquote><p>url：https://app.blockmeta.com/news?&amp;num=20
+method：get</p></blockquote> <div class="language- extra-class"><pre class="language-text"><code>headers：{
+           'User-Agent': '8btc/1.2.3 (com.8btc.bbs; build:47; iOS 11.4.0) Alamofire/4.7.3',
+           'token': 'd7f48d5c2e9787d3cd6224d427f483453f5c4187',
+           'from': 'ios'
+            }
+</code></pre></div><p>获取detail数据：</p> <blockquote><p>url：https://app.blockmeta.com/news?id=%s
+method：get</p></blockquote> <div class="language- extra-class"><pre class="language-text"><code>headers：{
+          'User-Agent': '8btc/1.2.3 (com.8btc.bbs; build:47; iOS 11.4.0) Alamofire/4.7.3',
+          'token': 'd7f48d5c2e9787d3cd6224d427f483453f5c4187',
+          'from': 'ios'
+            }
+</code></pre></div><ul><li><strong>火星财经文章</strong>
+获取新数据：</li></ul> <blockquote><p>url：http://www.huoxing24.com/info/news/shownews
+method：get</p></blockquote> <div class="language- extra-class"><pre class="language-text"><code>headers：{
+           'User-Agent': 手机端浏览器,
+           'sign-param': 'eyJwbGF0Zm9ybSI6ImlvcyIsIm5vbmNlIjoiYXNmYXNmZ2FxIiwidGltZXN0YW1wIjoiMTUzNzE3MDYyNDg0MyIsInNpZyI6IjYxMzczZjIxZjY3YmUwM2RhNjE3NWU2NzE5MTgzOGMyIn0='
+            }
+</code></pre></div><p>获取detail数据：</p> <blockquote><p>url：http://www.huoxing24.com/info/news/getbyid?id=%s
+method：post</p></blockquote> <div class="language- extra-class"><pre class="language-text"><code>headers：{
+          'User-Agent': 手机端浏览器,
+          'sign-param': 'eyJwbGF0Zm9ybSI6ImlvcyIsIm5vbmNlIjoiYXNmYXNmZ2FxIiwidGltZXN0YW1wIjoiMTUzNzE3MDYyNDg0MyIsInNpZyI6IjYxMzczZjIxZjY3YmUwM2RhNjE3NWU2NzE5MTgzOGMyIn0='
+            }
+</code></pre></div><ul><li><strong>cointelegraph文章</strong>
+获取新数据：</li></ul> <blockquote><p>url：https://api.cointelegraph.com/api/v1/mobile/feed?&amp;language=CN&amp;withHtml=1
+method：get</p></blockquote> <div class="language- extra-class"><pre class="language-text"><code>headers：{'User-Agent': 手机端浏览器}
+</code></pre></div><ul><li><strong>newsnow文章</strong>
+获取新数据（HTML解析）：</li></ul> <blockquote><p>url：https://www.newsnow.co.uk/h/Business+&amp;+Finance/Cryptocurrencies
+method：get</p></blockquote> <div class="language- extra-class"><pre class="language-text"><code>headers：{
+         'User-Agent': 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Mobile Safari/537.36'
+        }
+</code></pre></div><h3 id="社交资讯social"><a href="#社交资讯social" aria-hidden="true" class="header-anchor">#</a> 社交资讯social</h3> <ul><li><strong>币世界币圈项目</strong>
+获取新数据：</li></ul> <blockquote><p>url：http://iapi.bishijie.com/project/articleList
+method：get</p></blockquote> <div class="language- extra-class"><pre class="language-text"><code>headers：{
+            'User-Agent': 手机端浏览器}`
+params: 具体加密步骤看代码
+</code></pre></div><p>获取detail数据：</p> <blockquote><p>url：http://iapi.bishijie.com/iarticle/detail
+method：get</p></blockquote> <div class="language- extra-class"><pre class="language-text"><code>headers：`{
+            'User-Agent': 手机端浏览器}`
+params: 具体加密步骤看代码
+</code></pre></div><p><strong>微博</strong>
+获取新数据：</p> <blockquote><p>url：https://m.weibo.cn/api/container/getIndex?type=uid&amp;containerid=107603%s
+method：get</p></blockquote> <div class="language- extra-class"><pre class="language-text"><code>headers：`{'User-Agent': 手机端浏览器}`
+</code></pre></div><p>获取detail数据：</p> <blockquote><p>url：https://m.weibo.cn/statuses/show?id=%s（bid）
+method：get</p></blockquote> <div class="language- extra-class"><pre class="language-text"><code>headers：`{'User-Agent': 手机端浏览器}`
+</code></pre></div><p><strong>Twitter</strong>
+使用Twitter api获取更新，python库用<a href="http://docs.tweepy.org/en/v3.5.0/" target="_blank" rel="noopener noreferrer">tweepy<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"/> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"/></svg></a>。
+数据获取方法：注册Twitter开发者，获取开发api密钥和token，新建一个list，把要监控Twitter对象添加到list中（add_list_member），获取该list的更新数据（list_timeline）。</p> <h3 id="转账监控monitors"><a href="#转账监控monitors" aria-hidden="true" class="header-anchor">#</a> 转账监控monitors</h3> <p><strong>比特币网络监控</strong>
+使用第三方库<a href="https://github.com/blockchain/api-v1-client-python/blob/master/docs/blockexplorer.md" target="_blank" rel="noopener noreferrer">blockchain<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"/> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"/></svg></a>。</p> <pre><code>from blockchain import blockexplorer
+latest_block_hash = blockexplorer.get_latest_block().hash  # 获取最近区块哈希
+block = blockexplorer.get_block(latest_block_hash)  # 获取区块信息
+transactions = block.transactions # 获取区块交易信息
+</code></pre> <p><strong>chainext监控</strong>
+获取数据：</p> <blockquote><p>url：https://api.chainext.io/v1/largement_alert
+method：get</p></blockquote> <h2 id="数据分析提取"><a href="#数据分析提取" aria-hidden="true" class="header-anchor">#</a> 数据分析提取</h2> <p>源数据要经过分析过滤提取得到有效数据再给服务器推送。以下整理了数据的分析推送策略。</p> <h3 id="newsparse"><a href="#newsparse" aria-hidden="true" class="header-anchor">#</a> NewsParse</h3> <p><strong>快讯</strong>
+内容去重——“币响、币世界、金色财经”关键字检测——标题关键字与tag相关词匹配检测
+<strong>文章</strong>
+标题关键字与tag相关词匹配检测——“币响、币世界、金色财经”关键字检测——内容去重
+<strong>交易所公告</strong>
+币牛牛爬取的交易所公告直接推送
+非小号爬取的需要检测标题关键字与tag相关词匹配
+<strong>转账交易</strong>
+chainext中以太坊交易数量小于19999，比特币交易数量小于1999的不推送，其他的都直接推送
+<strong>社交资讯</strong>
+直接推送</p> <h3 id="hotparse"><a href="#hotparse" aria-hidden="true" class="header-anchor">#</a> HotParse</h3> <p><strong>策略</strong>
+币牛牛爬取的交易所公告热度4
+其他交易所公告中币种上线类型的数据根据交易所热度设置
+快讯中监控关键词“主网”+“上线”根据币种热度设置
+社交资讯中监控关键词“主网”+“上线”根据币种热度设置
+其他的可在管理后台编辑热点</p></div> <div class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated: </span> <span class="time">3/4/2019, 10:12:42 AM</span></div></div> <!----> </div> <!----></div></div>
+    <script src="/assets/js/app.4c782fad.js" defer></script><script src="/assets/js/2.d7f99d20.js" defer></script>
+  </body>
+</html>
+
+        
+      </div>
+      
+      
+      
+    </div>
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/favicon.ico"
+               alt="Leguang" />
+          <p class="site-author-name" itemprop="name">Leguang</p>
+           
+              <p class="site-description motion-element" itemprop="description">浮生若戏悲欢聚 笑看天风扫寰宇</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/leguang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:langmanleguang@qq.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#镰刀数据爬虫系统"><span class="nav-number">1.</span> <span class="nav-text"># 镰刀数据爬虫系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#整体框架"><span class="nav-number">1.1.</span> <span class="nav-text"># 整体框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#程序设计及运行"><span class="nav-number">1.2.</span> <span class="nav-text"># 程序设计及运行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用工具及数据库"><span class="nav-number">1.3.</span> <span class="nav-text"># 使用工具及数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#rabbitmq"><span class="nav-number">1.3.1.</span> <span class="nav-text"># rabbitmq</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#supervisor"><span class="nav-number">1.3.2.</span> <span class="nav-text"># supervisor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#日志logging"><span class="nav-number">1.3.3.</span> <span class="nav-text"># 日志logging</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql"><span class="nav-number">1.3.4.</span> <span class="nav-text"># MySQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mongodb"><span class="nav-number">1.3.5.</span> <span class="nav-text"># MongoDB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#redis"><span class="nav-number">1.3.6.</span> <span class="nav-text"># redis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#oss对象存储"><span class="nav-number">1.3.7.</span> <span class="nav-text"># OSS对象存储</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#翻译工具"><span class="nav-number">1.3.8.</span> <span class="nav-text"># 翻译工具</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网站爬虫spiders"><span class="nav-number">1.4.</span> <span class="nav-text"># 网站爬虫spiders</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#快讯文章公告spiders-api接口"><span class="nav-number">1.4.1.</span> <span class="nav-text"># 快讯文章公告spiders API接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#社交资讯social"><span class="nav-number">1.4.2.</span> <span class="nav-text"># 社交资讯social</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#转账监控monitors"><span class="nav-number">1.4.3.</span> <span class="nav-text"># 转账监控monitors</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据分析提取"><span class="nav-number">1.5.</span> <span class="nav-text"># 数据分析提取</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#newsparse"><span class="nav-number">1.5.1.</span> <span class="nav-text"># NewsParse</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hotparse"><span class="nav-number">1.5.2.</span> <span class="nav-text"># HotParse</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Leguang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 访问总量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("UUrijxLg3YUcx9WIg5UlJchI-gzGzoHsz", "m6wXtGXT8NUa5W4TiErrXWpO");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

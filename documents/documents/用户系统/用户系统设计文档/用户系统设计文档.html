@@ -1,0 +1,2266 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="IT站点, 一站到底" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="IT站点" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Websoket协议规范 | 文档                                            文档   主页文档关于   Github       主页文档关于   Github       概述  REST接口规范目标要求HTTP部分错误/异常处理url失效对于后台文档的要求容错性（健壮性）国际化（多语言支持）开放平台  镰刀项目">
+<meta name="keywords" content="IT站点, 一站到底">
+<meta property="og:type" content="website">
+<meta property="og:title" content="IT站点">
+<meta property="og:url" content="http://itsite.cn/documents/documents/用户系统/用户系统设计文档/用户系统设计文档.html">
+<meta property="og:site_name" content="IT站点">
+<meta property="og:description" content="Websoket协议规范 | 文档                                            文档   主页文档关于   Github       主页文档关于   Github       概述  REST接口规范目标要求HTTP部分错误/异常处理url失效对于后台文档的要求容错性（健壮性）国际化（多语言支持）开放平台  镰刀项目">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://itsite.cn/assets/img/00.3b14e038.jpg">
+<meta property="og:image" content="http://itsite.cn/assets/img/01.cddd1e97.jpg">
+<meta property="og:image" content="http://itsite.cn/assets/img/02.119d44c4.jpg">
+<meta property="og:updated_time" content="2019-03-04T03:08:49.892Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IT站点">
+<meta name="twitter:description" content="Websoket协议规范 | 文档                                            文档   主页文档关于   Github       主页文档关于   Github       概述  REST接口规范目标要求HTTP部分错误/异常处理url失效对于后台文档的要求容错性（健壮性）国际化（多语言支持）开放平台  镰刀项目">
+<meta name="twitter:image" content="http://itsite.cn/assets/img/00.3b14e038.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://itsite.cn/documents/documents/用户系统/用户系统设计文档/用户系统设计文档.html"/>
+
+
+
+
+
+  <title> | IT站点</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c5074ca51b610e0c4ba4fac7b24abea2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IT站点</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一站到底</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+	<h1 class="post-title" itemprop="name headline"></h1>
+
+
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+        
+          <!DOCTYPE html>
+<html lang="en-US">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Websoket协议规范 | 文档</title>
+    <meta name="description" content="浮生若戏悲欢聚  笑看天风扫寰宇">
+    <link rel="icon" href="/img/logo.ico">
+  <link rel="apple-touch-icon" href="/img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;">
+    
+    <link rel="preload" href="/assets/css/0.styles.aca6ffaf.css" as="style"><link rel="preload" href="/assets/js/app.4c782fad.js" as="script"><link rel="preload" href="/assets/js/4.b9d50c9e.js" as="script"><link rel="prefetch" href="/assets/js/10.4aad0737.js"><link rel="prefetch" href="/assets/js/11.ae680e7e.js"><link rel="prefetch" href="/assets/js/12.1d27d644.js"><link rel="prefetch" href="/assets/js/13.448e0c99.js"><link rel="prefetch" href="/assets/js/14.7888ac07.js"><link rel="prefetch" href="/assets/js/15.eac6ce9c.js"><link rel="prefetch" href="/assets/js/16.5e257dc3.js"><link rel="prefetch" href="/assets/js/17.c6a677c6.js"><link rel="prefetch" href="/assets/js/18.e4e45a90.js"><link rel="prefetch" href="/assets/js/19.48e71871.js"><link rel="prefetch" href="/assets/js/2.d7f99d20.js"><link rel="prefetch" href="/assets/js/20.6bdc9c27.js"><link rel="prefetch" href="/assets/js/21.b7e2381f.js"><link rel="prefetch" href="/assets/js/22.03913796.js"><link rel="prefetch" href="/assets/js/23.619adacc.js"><link rel="prefetch" href="/assets/js/24.e3862973.js"><link rel="prefetch" href="/assets/js/25.ab00d111.js"><link rel="prefetch" href="/assets/js/26.68a82a09.js"><link rel="prefetch" href="/assets/js/27.68e8506f.js"><link rel="prefetch" href="/assets/js/28.6bda4ca9.js"><link rel="prefetch" href="/assets/js/29.841a5e29.js"><link rel="prefetch" href="/assets/js/3.517a5386.js"><link rel="prefetch" href="/assets/js/30.baa92884.js"><link rel="prefetch" href="/assets/js/31.6a6e1f1f.js"><link rel="prefetch" href="/assets/js/32.e0593dce.js"><link rel="prefetch" href="/assets/js/33.f64e7c9d.js"><link rel="prefetch" href="/assets/js/34.2c4dcebd.js"><link rel="prefetch" href="/assets/js/35.f18d89f4.js"><link rel="prefetch" href="/assets/js/36.cd0f4d28.js"><link rel="prefetch" href="/assets/js/37.ce45c53f.js"><link rel="prefetch" href="/assets/js/38.65ab49b8.js"><link rel="prefetch" href="/assets/js/39.c27bd8cc.js"><link rel="prefetch" href="/assets/js/40.c45010eb.js"><link rel="prefetch" href="/assets/js/41.59dd911f.js"><link rel="prefetch" href="/assets/js/42.a23b0abe.js"><link rel="prefetch" href="/assets/js/43.573562a0.js"><link rel="prefetch" href="/assets/js/44.4b58ecc8.js"><link rel="prefetch" href="/assets/js/45.0bc668b9.js"><link rel="prefetch" href="/assets/js/5.a28803d7.js"><link rel="prefetch" href="/assets/js/6.9c510520.js"><link rel="prefetch" href="/assets/js/7.a39ff044.js"><link rel="prefetch" href="/assets/js/8.31c34ffe.js"><link rel="prefetch" href="/assets/js/9.3cd700e9.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.aca6ffaf.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewbox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"/></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">文档</span></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">主页</a></div><div class="nav-item"><a href="/documents/" class="nav-link router-link-active">文档</a></div><div class="nav-item"><a href="/about/" class="nav-link">关于</a></div><div class="nav-item"><a href="https://github.com/leguang" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"/> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"/></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">主页</a></div><div class="nav-item"><a href="/documents/" class="nav-link router-link-active">文档</a></div><div class="nav-item"><a href="/about/" class="nav-link">关于</a></div><div class="nav-item"><a href="https://github.com/leguang" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"/> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"/></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><div class="sidebar-group first"><p class="sidebar-heading"><span>概述</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/documents/" class="sidebar-link">REST接口规范</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/documents/#目标" class="sidebar-link">目标</a></li><li class="sidebar-sub-header"><a href="/documents/#要求" class="sidebar-link">要求</a></li><li class="sidebar-sub-header"><a href="/documents/#http部分" class="sidebar-link">HTTP部分</a></li><li class="sidebar-sub-header"><a href="/documents/#错误-异常处理" class="sidebar-link">错误/异常处理</a></li><li class="sidebar-sub-header"><a href="/documents/#url失效" class="sidebar-link">url失效</a></li><li class="sidebar-sub-header"><a href="/documents/#对于后台文档的要求" class="sidebar-link">对于后台文档的要求</a></li><li class="sidebar-sub-header"><a href="/documents/#容错性（健壮性）" class="sidebar-link">容错性（健壮性）</a></li><li class="sidebar-sub-header"><a href="/documents/#国际化（多语言支持）" class="sidebar-link">国际化（多语言支持）</a></li></ul></li></ul></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>开放平台</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>镰刀项目</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>摩尔钱包</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>电商项目</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>币圈项目</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading open"><span>用户系统</span> <span class="arrow down"></span></p> <ul class="sidebar-group-items"><li><a href="/documents/用户系统/用户系统接口文档/用户系统接口文档.html" class="sidebar-link">用户系统接口文档</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/documents/用户系统/用户系统设计文档/用户系统设计文档.html" class="active sidebar-link">Websoket协议规范</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/documents/用户系统/用户系统设计文档/用户系统设计文档.html#数据库设计" class="sidebar-link">数据库设计</a></li><li class="sidebar-sub-header"><a href="/documents/用户系统/用户系统设计文档/用户系统设计文档.html#接口说明" class="sidebar-link">接口说明</a></li></ul></li></ul></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>中后台系统</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>公共部分</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>规范</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>技术选型</span> <span class="arrow right"></span></p> <!----></div></li></ul> </div> <div class="page"> <div class="content"><h1 id="用户系统设计文档"><a href="#用户系统设计文档" aria-hidden="true" class="header-anchor">#</a> 用户系统设计文档</h1> <blockquote><p>Author：Leguang</p> <p>E-Mail：<a href="mailto:langmanleguang@qq.com" target="_blank" rel="noopener">langmanleguang@qq.com</a></p></blockquote> <h2 id="数据库设计"><a href="#数据库设计" aria-hidden="true" class="header-anchor">#</a> 数据库设计</h2> <p><img src="/assets/img/00.3b14e038.jpg" alt="用户中心数据库1"> <img src="/assets/img/01.cddd1e97.jpg" alt="用户中心数据库2"> <img src="/assets/img/02.119d44c4.jpg" alt="用户中心数据库3"></p> <h3 id="表功能介绍"><a href="#表功能介绍" aria-hidden="true" class="header-anchor">#</a> 表功能介绍</h3> <h4 id="user-credential-t"><a href="#user-credential-t" aria-hidden="true" class="header-anchor">#</a> user_credential_t</h4> <p>身份认证信息，用于用户登录。包括用用户唯一标识符，户名，密码，手机号码(含国家代码)，是否有效，创建时间，修改时间。
+在确保唯一性的前提下，可以对手机号码进行切换。
+系统中使用是否有效来作为黑名单开关，控制用户是否可以登录。</p> <h4 id="user-info-t"><a href="#user-info-t" aria-hidden="true" class="header-anchor">#</a> user_info_t</h4> <p>用户信息，用于前段用户展现。包括用户唯一标识符(该标识符与user_credential_t中的唯一标识符一致)，昵称，头像，来源(首次注册成平台用户的来源app)，创建时间，修改时间。
+后续还可以将用户的一些非关键信息进行在该表完善。</p> <h4 id="user-token-t"><a href="#user-token-t" aria-hidden="true" class="header-anchor">#</a> user_token_t</h4> <p>用户token信息，用于用户状态维持。包括用户唯一标识符(该标识符与user_credential_t中的唯一标识符一致)，访问token，访问token过期时间，刷新token，刷新token过期时间。
+用户登录时，会产生新的访问token和刷新token，并对该表对应的记录进行刷新，同时将访问token和刷新token分别写入缓存。
+进行会话有效期验证，以缓存是否存在作为唯一有效判断依据。
+访问token达到过期时间是，缓存将会删除对应的记录，若在刷新token过期时间内，可以支持产生一个新的访问token给访问端。若超过了刷新token过期时间，则需要再次登录。</p> <h4 id="user-login-h"><a href="#user-login-h" aria-hidden="true" class="header-anchor">#</a> user_login_h</h4> <p>用户登录记录，记录用户登录流水。包括登录流水唯一标识符，登录用户唯一标识符，登录设备，登录ip，登录设备内部ip，登录应用，登录应用版本号(整型，主要用于前后版本的比较)，登录应用版本名称(文本，如v1.0.0，用于可视化展现，由于一些特殊原因，不能基于版本名称作为前后版本的判断依据)，登录方式(支持4种登录方式：password，sms，1keylogin，token；前面3种可作为登录方式的可选项，token只有在进行刷新会话的场景下才有效，比如上传初始化信息)，是否登录成功，备注信息(登录成功标注OK，失败标注失败原因)，登录时间，登录应用是否为debug版本，系统是否root，系统版本号，地理精度，地理纬度，地址。
+是否登录成功和备注信息，可以衍生作为后续用户安全性的一个判断指标，比如指定时间内失败次数达到多少次不能再次登录等。</p> <h4 id="user-login-summary-t"><a href="#user-login-summary-t" aria-hidden="true" class="header-anchor">#</a> user_login_summary_t</h4> <p>用户登录汇总信息，只存取最后一次成功登录的信息。包括唯一标识符(与user_credential_t中的唯一标识符一致)，最近登录ip，最近登录设备内部ip，最近登录app名称(app_t的应用名称)，最近登录应用版本号，最近登录应用版本名称，最近登录方式，登录次数(只有登录成功成功在进行增加)，最近登录系统是否debug版本，最近登录是否root，登录系统的rom，最近登录系统版本号，最近登录经度，最近登录纬度，最近登录地址。</p> <h4 id="user-app-r"><a href="#user-app-r" aria-hidden="true" class="header-anchor">#</a> user_app_r</h4> <p>用户应用关联，记录用户使用过的所有app。包括用户应用关联唯一标识符，用户唯一标识符，应用唯一标识符，是否有效，创建时间，修改时间。
+是否有效可以基于应用进行黑名单控制，可以在后续功能中进行完善。</p> <h4 id="app-t"><a href="#app-t" aria-hidden="true" class="header-anchor">#</a> app_t</h4> <p>应用信息。包括应用唯一标识符，应用名称，应用显示名称，应用描述信息，是否有效，创建时间，修改时间。
+外部应用需要先注册为平台应用之后才能调用接口服务。
+当前支付中心，会基于应用唯一标识符进行公私钥发放。</p> <h4 id="app-version-t"><a href="#app-version-t" aria-hidden="true" class="header-anchor">#</a> app_version_t</h4> <p>应用版本信息，用于各个平台下的版本信息。包括应用版本唯一标识符，应用标识符，版本号(整型，主要用于前后版本的比较)，版本名称(文本，如v1.0.0，用于可视化展现，由于一些特殊原因，不能基于版本名称作为前后版本的判断依据)，版本描述信息(如changelog)，平台(目前支持iOS，Android)，是否有效，创建时间，修改时间。</p> <h4 id="device-t"><a href="#device-t" aria-hidden="true" class="header-anchor">#</a> device_t</h4> <p>设备信息，主要记录连接的设备信息。包括设备唯一标识符，系统屏幕信息，屏幕像素高度，屏幕像素宽度，品牌信息，设备指纹(一个综合的，唯一的关于设备的描述)，生产厂商，设备唯一ID，是否有效，创建时间，修改时间。
+后续可以基于设备是否有效进行黑名单控制。</p> <h4 id="block-t"><a href="#block-t" aria-hidden="true" class="header-anchor">#</a> block_t</h4> <p>封禁信息，记录被批量封禁的对象。包括封禁唯一标识符，被封禁的对象类型(支持IP，DEVICE，USER)，被封禁对象列表(支持ip，设备唯一标识符(参考device_t中device_id))，原因描述，是否解封(封禁后，可以进行批量解封)，创建时间。
+本表主要用于管理维护，不作为是否被封禁的判断依据。可以批量选择IP，设备，用户进行封禁和解封。
+同一批对象封禁后进行解封，需要重新创建一条解封记录。而不是简单的修改是否被封禁标记。</p> <h4 id="block-element-r"><a href="#block-element-r" aria-hidden="true" class="header-anchor">#</a> block_element_r</h4> <p>封禁元素关联，封禁时，除了对block_t中记录一条操作记录外，会在本表记录被封禁的具体对象(设备唯一ID，用户唯一标识符)。包括封禁元素记录序号，封禁对象唯一标识符(参考user_credential中的uid，device_t中的uid)，封禁元素类型(支持USER，DEVICE)。
+<s>sys_blacklist_t
+黑名单列表，已经采用了block_t和block_elment_r，该表作废。</s></p> <h4 id="sms-phone-counter-t"><a href="#sms-phone-counter-t" aria-hidden="true" class="header-anchor">#</a> sms_phone_counter_t</h4> <p>手机短信发送计数器，用于记录每个手机号码当日的短信发送量。包括唯一标识符，国家代码，手机号码，当日短信发送量，创建时间，修改时间。
+发起短信发送请求时，需要先获取该号码的发送量，如果修改时间在当前日期之前，则讲修改日期修改为当前日期，并将发送量置为1。</p> <h4 id="sms-ip-counter-t"><a href="#sms-ip-counter-t" aria-hidden="true" class="header-anchor">#</a> sms_ip_counter_t</h4> <p>ip短信发送计数器，用于记录每个ip当日短信发送量。包括唯一标识符，ip地址(支持ipv4、ipv6两种协议)，当日短信发送量，创建时间，修改时间。
+处理逻辑同sms_phone_counter_t。</p> <h4 id="user-locale-t"><a href="#user-locale-t" aria-hidden="true" class="header-anchor">#</a> user_locale_t</h4> <p>用户语言区域，用于记录用户的常用语言。包括用户唯一标识符(同user_credential_t中的uid)，关联数据字典类型编码(如zh_CN，en_US)，国家/区域(格式[a-zA-Z]{2} | [0-9]{3}，参考java.util.Locale)，时区(格式GMT Sign Hours : Minutes，如GMT+8:00)，创建时间，修改时间。</p> <h4 id="sys-dict-type-t"><a href="#sys-dict-type-t" aria-hidden="true" class="header-anchor">#</a> sys_dict_type_t</h4> <p>数据字典类型，用于维护系统常用枚举类型。包括类型唯一标识符，数据字典类型，类型名称(用于前段展现),条目类型(boolean、byte、char、short、Int、long、float、double等基本数据类型对应的包装类型，以及BigInteger、BigDecimal、String总共10种类型)，是否有效，创建时间，修改时间，是否有自条目，条目值(若没有子条目，可以直接设值)。</p> <h4 id="sys-dict-item-t"><a href="#sys-dict-item-t" aria-hidden="true" class="header-anchor">#</a> sys_dict_item_t</h4> <p>数据字典条目，用于维护系统常用枚举值。包括唯一标识符，字典类型，条目编码(书写规则跟java常亮一致)，条目名称(用于前段展现)，条目值(需要配合sys_dictionary_type的item_type组合得到相应的值)，条目序号，是否有效，创建时间，修改时间。</p> <h4 id="point-account-t"><a href="#point-account-t" aria-hidden="true" class="header-anchor">#</a> point_account_t</h4> <p>用户积分账户，记录用户积分的余额和累计积分。包括唯一标识符，用户唯一标识符，应用名称(参考app_t中的app_name)，历史累计积分，可用余额，创建时间，修改时间。
+具有积分体系的应用，使用集中化的方式进行存储，避免各个应用自建积分体系的繁冗工作。</p> <h4 id="point-record-t"><a href="#point-record-t" aria-hidden="true" class="header-anchor">#</a> point_record_t</h4> <p>用户积分记录，用于记录用户每笔积分的出入项目，方便后续应用内部积分对账。包括唯一标识符，交易积分额度，账户，用户唯一标识符，应用名称，是否为收入项，事务唯一标识符，创建时间，修改时间。
+三方应用进行对接时，需要相同的存储事务唯一标识符，方便对账。
+事务唯一标识符，可以客户端生成，也可以通过transaction_t中集中发放。</p> <h4 id="transaction-t"><a href="#transaction-t" aria-hidden="true" class="header-anchor">#</a> transaction_t</h4> <p>全局统一事务，用于分布式事务处理。包括唯一标识符，创建时间。</p> <h2 id="接口说明"><a href="#接口说明" aria-hidden="true" class="header-anchor">#</a> 接口说明</h2> <h3 id="用户接口"><a href="#用户接口" aria-hidden="true" class="header-anchor">#</a> 用户接口</h3> <h4 id="获取用户认证信息"><a href="#获取用户认证信息" aria-hidden="true" class="header-anchor">#</a> 获取用户认证信息</h4> <p>根据手机号码，或用户名精确查找用户认证信息。</p> <h5 id="链接"><a href="#链接" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>GET /v1/credentials</p> <h5 id="参数"><a href="#参数" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>userName</td> <td>用户名</td> <td>query</td> <td>string</td></tr> <tr><td>countryCode</td> <td>国家代码</td> <td>query</td> <td>string</td></tr> <tr><td>phoneNumber</td> <td>手机号</td> <td>query</td> <td>string</td></tr></tbody></table> <p>举例：/v1/credentials?countryCode=0086&amp;phoneNumber=18665801387</p> <h5 id="返回值"><a href="#返回值" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;message&quot;: &quot;success&quot;,
+  &quot;code&quot;: 200000,
+  &quot;data&quot;: {
+    &quot;uid&quot;: &quot;5e3d1bead71e11e89b0b00163e007a48&quot;,
+    &quot;userName&quot;: &quot;008618665801387&quot;,
+    &quot;password&quot;: &quot;NULLD78C274515A44F5A1A4D96AB3A883F47&quot;,
+    &quot;countryCode&quot;: &quot;0086&quot;,
+    &quot;phoneNumber&quot;: &quot;18665801387&quot;,
+    &quot;enabled&quot;: true,
+    &quot;createTime&quot;: &quot;2018-10-23 23:50:06&quot;,
+    &quot;updateTime&quot;: &quot;2018-10-23 23:50:06&quot;
+  }
+}
+</code></pre></div><h4 id="用户信息分页查询"><a href="#用户信息分页查询" aria-hidden="true" class="header-anchor">#</a> 用户信息分页查询</h4> <p>根据条件对用户数据进行分页查询。</p> <h5 id="链接-2"><a href="#链接-2" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>GET /v1/users</p> <h5 id="参数-2"><a href="#参数-2" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>uid</td> <td>用户编号</td> <td>query</td> <td>string</td></tr> <tr><td>userName</td> <td>用户名</td> <td>query</td> <td>string</td></tr> <tr><td>nickname</td> <td>昵称</td> <td>query</td> <td>string</td></tr> <tr><td>countryCode</td> <td>国家代码</td> <td>query</td> <td>string</td></tr> <tr><td>phoneNumber</td> <td>手机号</td> <td>query</td> <td>string</td></tr> <tr><td>enabled</td> <td>用户是否有效，即设为黑名单</td> <td>query</td> <td>boolean</td></tr> <tr><td>sortby</td> <td>排序属性</td> <td>query</td> <td>string</td></tr> <tr><td>order</td> <td>排序顺序</td> <td>query</td> <td>string</td></tr> <tr><td>page</td> <td>第几页</td> <td>query</td> <td>integer</td></tr> <tr><td>pageSize</td> <td>每页记录数</td> <td>query</td> <td>integer</td></tr></tbody></table> <p>举例：/v1/users?countryCode=0086&amp;page=2&amp;pageSize=3</p> <h5 id="返回值-2"><a href="#返回值-2" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;message&quot;: &quot;success&quot;,
+  &quot;code&quot;: 200000,
+  &quot;data&quot;: [
+    {
+      &quot;uid&quot;: &quot;079d3543d8d211e89b0b00163e007a48&quot;,
+      &quot;countryCode&quot;: &quot;0086&quot;,
+      &quot;phoneNumber&quot;: &quot;13088834856&quot;,
+      &quot;userName&quot;: &quot;008613088834856&quot;,
+      &quot;avatar&quot;: &quot;https://miaoyoujuan.com/mol_sickle/icon/head_mol_sickle.png&quot;,
+      &quot;source&quot;: &quot;SICKLE&quot;,
+      &quot;enabled&quot;: true,
+      &quot;createTime&quot;: &quot;2018-10-26 03:48:42&quot;,
+      &quot;latestLogin&quot;: &quot;2018-10-31 11:27:30&quot;,
+      &quot;loginTimes&quot;: 2
+    },
+    {
+      &quot;uid&quot;: &quot;082eb8c2dcff11e89b0b00163e007a48&quot;,
+      &quot;countryCode&quot;: &quot;0086&quot;,
+      &quot;phoneNumber&quot;: &quot;15271940251&quot;,
+      &quot;userName&quot;: &quot;008615271940251&quot;,
+      &quot;avatar&quot;: &quot;https://miaoyoujuan.com/mol_sickle/icon/head_mol_sickle.png&quot;,
+      &quot;source&quot;: &quot;SICKLE&quot;,
+      &quot;enabled&quot;: true,
+      &quot;createTime&quot;: &quot;2018-10-31 11:20:55&quot;,
+      &quot;latestLogin&quot;: &quot;2018-11-02 08:27:20&quot;,
+      &quot;loginTimes&quot;: 3
+    },
+    {
+      &quot;uid&quot;: &quot;08ae0660d74e11e89b0b00163e007a48&quot;,
+      &quot;countryCode&quot;: &quot;0086&quot;,
+      &quot;phoneNumber&quot;: &quot;13888888888&quot;,
+      &quot;userName&quot;: &quot;008613888888888&quot;,
+      &quot;avatar&quot;: &quot;https://miaoyoujuan.com/mol_sickle/icon/head_mol_sickle.png&quot;,
+      &quot;source&quot;: &quot;SICKLE&quot;,
+      &quot;enabled&quot;: true,
+      &quot;createTime&quot;: &quot;2018-10-24 05:31:19&quot;,
+      &quot;latestLogin&quot;: &quot;2018-11-02 11:42:03&quot;,
+      &quot;loginTimes&quot;: 44
+    }
+  ],
+  &quot;page&quot;: 2,
+  &quot;pageSize&quot;: 3,
+  &quot;first&quot;: &quot;https://api.imfmf.com/usercenter/v1/users?countryCode=0086&amp;page=1&amp;pageSize=3&quot;,
+  &quot;next&quot;: &quot;https://api.imfmf.com/usercenter/v1/users?countryCode=0086&amp;page=3&amp;pageSize=3&quot;,
+  &quot;previous&quot;: &quot;https://api.imfmf.com/usercenter/v1/users?countryCode=0086&amp;page=1&amp;pageSize=3&quot;,
+  &quot;last&quot;: &quot;https://api.imfmf.com/usercenter/v1/users?countryCode=0086&amp;page=1&amp;pageSize=3&quot;
+}
+</code></pre></div><h4 id="将用户加入黑名单"><a href="#将用户加入黑名单" aria-hidden="true" class="header-anchor">#</a> 将用户加入黑名单</h4> <p>将单个用户加入黑名单。
+<strong>目前做法仅仅是将当前用户设为无效，实际上还需要在block_t和block_item_t中增加相应的记录，后续可以去完善这一块</strong></p> <h5 id="链接-3"><a href="#链接-3" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>PATCH /v1/users/blacklist/{uid}</p> <h5 id="参数-3"><a href="#参数-3" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>uid</td> <td>用户标识符</td> <td>path</td> <td>string</td></tr></tbody></table> <p>举例：/v1/users/blacklist/5e3d1bead71e11e89b0b00163e007a48</p> <h5 id="返回值-3"><a href="#返回值-3" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;message&quot;: &quot;success&quot;,
+  &quot;code&quot;: 200000,
+  &quot;data&quot;: {
+    &quot;uid&quot;: &quot;5e3d1bead71e11e89b0b00163e007a48&quot;,
+    &quot;countryCode&quot;: &quot;0086&quot;,
+    &quot;phoneNumber&quot;: &quot;18665801387&quot;,
+    &quot;userName&quot;: &quot;008618665801387&quot;,
+    &quot;avatar&quot;: &quot;https://miaoyoujuan.com/mol_sickle/icon/head_mol_sickle.png&quot;,
+    &quot;source&quot;: &quot;SICKLE&quot;,
+    &quot;enabled&quot;: false,
+    &quot;createTime&quot;: &quot;2018-10-23 23:50:06&quot;,
+    &quot;latestLogin&quot;: &quot;2018-10-31 07:06:14&quot;,
+    &quot;loginTimes&quot;: 7
+  }
+}
+</code></pre></div><p>请注意，用户的enabled已经变成false了。</p> <h4 id="将用户移除黑名单"><a href="#将用户移除黑名单" aria-hidden="true" class="header-anchor">#</a> 将用户移除黑名单</h4> <p>将单个用户从黑名单中移除。
+<strong>目前做法仅仅是将当前用户设为有效，实际上还需要在block_t和block_item_t中增加相应的记录，后续可以去完善这一块</strong></p> <h5 id="链接-4"><a href="#链接-4" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>DELETE /v1/users/blacklist/{uid}</p> <h5 id="参数-4"><a href="#参数-4" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>uid</td> <td>用户标识符</td> <td>path</td> <td>string</td></tr></tbody></table> <p>举例：/v1/users/blacklist/5e3d1bead71e11e89b0b00163e007a48</p> <h5 id="返回值-4"><a href="#返回值-4" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;message&quot;: &quot;success&quot;,
+  &quot;code&quot;: 200000,
+  &quot;data&quot;: {
+    &quot;uid&quot;: &quot;5e3d1bead71e11e89b0b00163e007a48&quot;,
+    &quot;countryCode&quot;: &quot;0086&quot;,
+    &quot;phoneNumber&quot;: &quot;18665801387&quot;,
+    &quot;userName&quot;: &quot;008618665801387&quot;,
+    &quot;avatar&quot;: &quot;https://miaoyoujuan.com/mol_sickle/icon/head_mol_sickle.png&quot;,
+    &quot;source&quot;: &quot;SICKLE&quot;,
+    &quot;enabled&quot;: true,
+    &quot;createTime&quot;: &quot;2018-10-23 23:50:06&quot;,
+    &quot;latestLogin&quot;: &quot;2018-10-31 07:06:14&quot;,
+    &quot;loginTimes&quot;: 7
+  }
+}
+</code></pre></div><p>请注意，用户的enabled已经恢复成true了。</p> <h4 id="按条件分页查询用户登录过的设备"><a href="#按条件分页查询用户登录过的设备" aria-hidden="true" class="header-anchor">#</a> 按条件分页查询用户登录过的设备</h4> <p>按用户唯一标识符，是否有效等条件查询用户登录过的设备，并可以指定排序字段和规则分页查询。</p> <h5 id="链接-5"><a href="#链接-5" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>GET /v1/users/devices</p> <h5 id="参数-5"><a href="#参数-5" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>userUid</td> <td>用户唯一标识符</td> <td>query</td> <td>string</td></tr> <tr><td>enabled</td> <td>是否有效</td> <td>query</td> <td>boolean</td></tr> <tr><td>sortby</td> <td>排序属性</td> <td>query</td> <td>string</td></tr> <tr><td>order</td> <td>排序规则，支持ASC，DESC</td> <td>query</td> <td>string</td></tr> <tr><td>page</td> <td>页数</td> <td>query</td> <td>integer</td></tr> <tr><td>pageSize</td> <td>每页行数</td> <td>query</td> <td>integers</td></tr></tbody></table> <p>举例：/v1/users/devices?userUid=05ec0890c46811e898a000163e002b60</p> <h5 id="返回值-5"><a href="#返回值-5" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;message&quot;: &quot;success&quot;,
+  &quot;code&quot;: 200000,
+  &quot;data&quot;: [
+    {
+      &quot;uid&quot;: &quot;0b63192bc39011e898a000163e002b60&quot;,
+      &quot;display&quot;: &quot;MHA-AL00 8.0.0.363(C00)&quot;,
+      &quot;displayHeight&quot;: &quot;1808&quot;,
+      &quot;displayWidth&quot;: &quot;1080&quot;,
+      &quot;brand&quot;: &quot;HUAWEI&quot;,
+      &quot;fingerprint&quot;: &quot;HUAWEI/MHA-AL00/HWMHA:8.0.0/HUAWEIMHA-AL00/363(C00):user/release-keys&quot;,
+      &quot;manufacturer&quot;: &quot;HUAWEI&quot;,
+      &quot;model&quot;: &quot;MHA-AL00&quot;,
+      &quot;product&quot;: &quot;MHA-AL00&quot;,
+      &quot;deviceID&quot;: &quot;0865580032738937300002366300CN01&quot;,
+      &quot;createTime&quot;: &quot;2018-09-29 02:33:27&quot;,
+      &quot;updateTime&quot;: &quot;2018-09-29 02:33:27&quot;,
+      &quot;enabled&quot;: true
+    },
+    {
+      &quot;uid&quot;: &quot;7df1aefdc46a11e898a000163e002b60&quot;,
+      &quot;display&quot;: &quot;MHA-AL00 8.0.0.363(C00)&quot;,
+      &quot;displayHeight&quot;: &quot;1808&quot;,
+      &quot;displayWidth&quot;: &quot;1080&quot;,
+      &quot;brand&quot;: &quot;HUAWEI&quot;,
+      &quot;fingerprint&quot;: &quot;HUAWEI/MHA-AL00/HWMHA:8.0.0/HUAWEIMHA-AL00/363(C00):user/release-keys&quot;,
+      &quot;manufacturer&quot;: &quot;HUAWEI&quot;,
+      &quot;model&quot;: &quot;MHA-AL00&quot;,
+      &quot;product&quot;: &quot;MHA-AL00&quot;,
+      &quot;createTime&quot;: &quot;2018-09-30 04:37:09&quot;,
+      &quot;updateTime&quot;: &quot;2018-09-30 04:37:09&quot;,
+      &quot;enabled&quot;: true
+    },
+    {
+      &quot;uid&quot;: &quot;91bb3c66c46a11e898a000163e002b60&quot;,
+      &quot;display&quot;: &quot;MHA-AL00 8.0.0.363(C00)&quot;,
+      &quot;displayHeight&quot;: &quot;1808&quot;,
+      &quot;displayWidth&quot;: &quot;1080&quot;,
+      &quot;brand&quot;: &quot;HUAWEI&quot;,
+      &quot;fingerprint&quot;: &quot;HUAWEI/MHA-AL00/HWMHA:8.0.0/HUAWEIMHA-AL00/363(C00):user/release-keys&quot;,
+      &quot;manufacturer&quot;: &quot;HUAWEI&quot;,
+      &quot;model&quot;: &quot;MHA-AL00&quot;,
+      &quot;product&quot;: &quot;MHA-AL00&quot;,
+      &quot;createTime&quot;: &quot;2018-09-30 04:37:43&quot;,
+      &quot;updateTime&quot;: &quot;2018-09-30 04:37:43&quot;,
+      &quot;enabled&quot;: true
+    }
+  ],
+  &quot;page&quot;: 1,
+  &quot;pageSize&quot;: 10,
+  &quot;first&quot;: &quot;http://localhost:9941/usercenter/v1/users/devices?userUid=05ec0890c46811e898a000163e002b60&amp;page=1&amp;pageSize=10&quot;,
+  &quot;next&quot;: &quot;http://localhost:9941/usercenter/v1/users/devices?userUid=05ec0890c46811e898a000163e002b60&amp;page=1&amp;pageSize=10&quot;,
+  &quot;previous&quot;: &quot;http://localhost:9941/usercenter/v1/users/devices?userUid=05ec0890c46811e898a000163e002b60&amp;page=1&amp;pageSize=10&quot;,
+  &quot;last&quot;: &quot;http://localhost:9941/usercenter/v1/users/devices?userUid=05ec0890c46811e898a000163e002b60&amp;page=1&amp;pageSize=10&quot;
+}
+</code></pre></div><h4 id="按用户唯一标识符查询单个用户信息"><a href="#按用户唯一标识符查询单个用户信息" aria-hidden="true" class="header-anchor">#</a> 按用户唯一标识符查询单个用户信息</h4> <p>根据用户唯一标识符精确查询用户信息。</p> <h5 id="链接-6"><a href="#链接-6" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>GET /v1/users/{uid}</p> <h5 id="参数-6"><a href="#参数-6" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>uid</td> <td>用户标识符</td> <td>path</td> <td>string</td></tr></tbody></table> <p>举例：/v1/users/5e3d1bead71e11e89b0b00163e007a48</p> <h5 id="返回值-6"><a href="#返回值-6" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;message&quot;: &quot;success&quot;,
+  &quot;code&quot;: 200000,
+  &quot;data&quot;: {
+    &quot;uid&quot;: &quot;5e3d1bead71e11e89b0b00163e007a48&quot;,
+    &quot;countryCode&quot;: &quot;0086&quot;,
+    &quot;phoneNumber&quot;: &quot;18665801387&quot;,
+    &quot;userName&quot;: &quot;008618665801387&quot;,
+    &quot;avatar&quot;: &quot;https://miaoyoujuan.com/mol_sickle/icon/head_mol_sickle.png&quot;,
+    &quot;source&quot;: &quot;SICKLE&quot;,
+    &quot;enabled&quot;: true,
+    &quot;createTime&quot;: &quot;2018-10-23 23:50:06&quot;,
+    &quot;latestLogin&quot;: &quot;2018-10-31 07:06:14&quot;,
+    &quot;loginTimes&quot;: 7
+  }
+}
+</code></pre></div><h4 id="查看用户最近登录的设备"><a href="#查看用户最近登录的设备" aria-hidden="true" class="header-anchor">#</a> 查看用户最近登录的设备</h4> <p>查看用户最近一次登录所用的设备。</p> <h5 id="链接-7"><a href="#链接-7" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>GET /v1/users/{uid}/devices/latest</p> <h5 id="参数-7"><a href="#参数-7" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>uid</td> <td>用户标识符</td> <td>path</td> <td>string</td></tr></tbody></table> <p>举例：/v1/users/05ec0890c46811e898a000163e002b60/devices/latest</p> <h5 id="返回值-7"><a href="#返回值-7" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;message&quot;: &quot;success&quot;,
+  &quot;code&quot;: 200000,
+  &quot;data&quot;: {
+    &quot;uid&quot;: &quot;91bb3c66c46a11e898a000163e002b60&quot;,
+    &quot;display&quot;: &quot;MHA-AL00 8.0.0.363(C00)&quot;,
+    &quot;displayHeight&quot;: &quot;1808&quot;,
+    &quot;displayWidth&quot;: &quot;1080&quot;,
+    &quot;brand&quot;: &quot;HUAWEI&quot;,
+    &quot;fingerprint&quot;: &quot;HUAWEI/MHA-AL00/HWMHA:8.0.0/HUAWEIMHA-AL00/363(C00):user/release-keys&quot;,
+    &quot;manufacturer&quot;: &quot;HUAWEI&quot;,
+    &quot;model&quot;: &quot;MHA-AL00&quot;,
+    &quot;product&quot;: &quot;MHA-AL00&quot;,
+    &quot;createTime&quot;: &quot;2018-09-30 04:37:43&quot;,
+    &quot;updateTime&quot;: &quot;2018-09-30 04:37:43&quot;,
+    &quot;enabled&quot;: true
+  }
+}
+</code></pre></div><h4 id="修改用户信息"><a href="#修改用户信息" aria-hidden="true" class="header-anchor">#</a> 修改用户信息</h4> <p>修改用户基本信息，包括头像，昵称，来源等。</p> <h5 id="链接-8"><a href="#链接-8" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>PATCH /v1/users/{uid}/info</p> <h5 id="参数-8"><a href="#参数-8" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>uid</td> <td>用户标识符</td> <td>path</td> <td>string</td></tr> <tr><td>info</td> <td>用户信息</td> <td>body</td> <td>string</td></tr></tbody></table> <p>info详情如下</p> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>avatar</td> <td>头像</td> <td></td> <td>string</td></tr> <tr><td>nickname</td> <td>昵称</td> <td></td> <td>string</td></tr> <tr><td>source</td> <td>来源</td> <td></td> <td>string</td></tr> <tr><td>uid</td> <td>用户唯一标识符，可选填</td> <td></td> <td>string</td></tr></tbody></table> <p>举例：/v1/users/05ec0890c46811e898a000163e002b60/info
+info参数</p> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;avatar&quot;: &quot;http://www.asmile.com/avatar.png&quot;,
+  &quot;nickname&quot;: &quot;马自达&quot;,
+  &quot;source&quot;: &quot;SICKLE&quot;,
+  &quot;uid&quot;: &quot;05ec0890c46811e898a000163e002b60&quot;
+}
+</code></pre></div><h5 id="返回值-8"><a href="#返回值-8" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;message&quot;: &quot;success&quot;,
+  &quot;code&quot;: 200000,
+  &quot;data&quot;: {
+    &quot;uid&quot;: &quot;05ec0890c46811e898a000163e002b60&quot;,
+    &quot;nickname&quot;: &quot;马自达&quot;,
+    &quot;avatar&quot;: &quot;http://www.asmile.com/avatar.png&quot;,
+    &quot;source&quot;: &quot;SICKLE&quot;
+  }
+}
+</code></pre></div><h4 id="获取用户语言区域"><a href="#获取用户语言区域" aria-hidden="true" class="header-anchor">#</a> 获取用户语言区域</h4> <p>根据用户唯一标识符获取用户的语言区域信息。</p> <h5 id="链接-9"><a href="#链接-9" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>GET /v1/users/{uid}/locale</p> <h5 id="参数-9"><a href="#参数-9" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>uid</td> <td>用户标识符</td> <td>path</td> <td>string</td></tr></tbody></table> <p>举例：/v1/users/05ec0890c46811e898a000163e002b60/locale</p> <h5 id="返回值-9"><a href="#返回值-9" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;message&quot;: &quot;success&quot;,
+  &quot;code&quot;: 200000,
+  &quot;data&quot;: {
+    &quot;uid&quot;: &quot;05ec0890c46811e898a000163e002b60&quot;,
+    &quot;language&quot;: &quot;zh_CN&quot;,
+    &quot;region&quot;: &quot;CHN&quot;,
+    &quot;timeZone&quot;: &quot;GMT+08:00&quot;,
+    &quot;createTime&quot;: &quot;2018-11-04 17:40:40&quot;,
+    &quot;updateTime&quot;: &quot;2018-11-04 17:40:40&quot;
+  }
+}
+</code></pre></div><h4 id="设置用户语言区域"><a href="#设置用户语言区域" aria-hidden="true" class="header-anchor">#</a> 设置用户语言区域</h4> <p>设置指定用户的语言区域信息。</p> <h5 id="链接-10"><a href="#链接-10" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>PATCH /v1/users/{uid}/locale</p> <h5 id="参数-10"><a href="#参数-10" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>uid</td> <td>用户标识符</td> <td>path</td> <td>string</td></tr> <tr><td>locale</td> <td>语言区域信息</td> <td>body</td> <td>string</td></tr></tbody></table> <p>语言区域信息参数</p> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>language</td> <td>语言</td> <td></td> <td>string</td></tr> <tr><td>region</td> <td>国家代码</td> <td></td> <td>string</td></tr> <tr><td>timeZone</td> <td>时区</td> <td></td> <td>string</td></tr></tbody></table> <p>举例：/v1/users/05ec0890c46811e898a000163e002b60/locale
+body参数</p> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;language&quot;: &quot;en_US&quot;,
+  &quot;region&quot;: &quot;USA&quot;,
+  &quot;timeZone&quot;: &quot;GMT-08:00&quot;
+}
+</code></pre></div><h5 id="返回值-10"><a href="#返回值-10" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;message&quot;: &quot;success&quot;,
+  &quot;code&quot;: 200000,
+  &quot;data&quot;: {
+    &quot;uid&quot;: &quot;5e3d1bead71e11e89b0b00163e007a48&quot;,
+    &quot;countryCode&quot;: &quot;0086&quot;,
+    &quot;phoneNumber&quot;: &quot;18665801387&quot;,
+    &quot;userName&quot;: &quot;008618665801387&quot;,
+    &quot;avatar&quot;: &quot;https://miaoyoujuan.com/mol_sickle/icon/head_mol_sickle.png&quot;,
+    &quot;source&quot;: &quot;SICKLE&quot;,
+    &quot;enabled&quot;: true,
+    &quot;createTime&quot;: &quot;2018-10-23 23:50:06&quot;,
+    &quot;latestLogin&quot;: &quot;2018-10-31 07:06:14&quot;,
+    &quot;loginTimes&quot;: 7
+  }
+}
+</code></pre></div><h4 id="修改密码"><a href="#修改密码" aria-hidden="true" class="header-anchor">#</a> 修改密码</h4> <p>提供一个传统的修改密码接口，传入用户名或者手机号码，老密码，新密码。
+用户名，手机号码，老密码验证通过后，更新新密码。</p> <h5 id="链接-11"><a href="#链接-11" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>PATCH /v1/users/password</p> <h5 id="参数-11"><a href="#参数-11" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>passwordInfo</td> <td>用户密码信息</td> <td>body</td> <td>string</td></tr></tbody></table> <p>passwordInfo参数
+举例：PATCH /v1/users/password</p> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;countryCode&quot;: &quot;0086&quot;,
+  &quot;newPassword&quot;: &quot;654321&quot;,
+  &quot;originalPassword&quot;: &quot;123456&quot;,
+  &quot;phoneNumber&quot;: &quot;18665801387&quot;
+}
+</code></pre></div><h5 id="返回值-11"><a href="#返回值-11" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;countryCode&quot;: &quot;0086&quot;,
+  &quot;newPassword&quot;: &quot;654321&quot;,
+  &quot;originalPassword&quot;: &quot;123456&quot;,
+  &quot;phoneNumber&quot;: &quot;18665801387&quot;
+}
+</code></pre></div><h4 id="获取当前用户指定应用的积分账户"><a href="#获取当前用户指定应用的积分账户" aria-hidden="true" class="header-anchor">#</a> 获取当前用户指定应用的积分账户</h4> <p>根据用户唯一标识符和应用名称获取积分账户。</p> <h5 id="链接-12"><a href="#链接-12" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>GET /v1/users/{uid}/{appName}/points</p> <h5 id="参数-12"><a href="#参数-12" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>uid</td> <td>用户标识符</td> <td>path</td> <td>string</td></tr> <tr><td>appName</td> <td>应用名称</td> <td>path</td> <td>string</td></tr></tbody></table> <p>举例：/v1/users/05ec0890c46811e898a000163e002b60/SICKLE/points</p> <h5 id="返回值-12"><a href="#返回值-12" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;message&quot;: &quot;success&quot;,
+  &quot;code&quot;: 200000,
+  &quot;data&quot;: {
+    &quot;uid&quot;: &quot;05ed3895c46811e898a000163e002b60&quot;,
+    &quot;userUid&quot;: &quot;05ec0890c46811e898a000163e002b60&quot;,
+    &quot;appName&quot;: &quot;sickle&quot;,
+    &quot;accumulation&quot;: 0,
+    &quot;balance&quot;: 0,
+    &quot;createTime&quot;: &quot;2018-09-30 04:19:29&quot;,
+    &quot;updateTime&quot;: &quot;2018-09-30 04:19:29&quot;
+  }
+}
+</code></pre></div><h4 id="给指定用户增减积分"><a href="#给指定用户增减积分" aria-hidden="true" class="header-anchor">#</a> 给指定用户增减积分</h4> <p>给用户对应的应用的账户增减积分。
+全局事务id，可用于分布式事务控制，及后续积分对账。</p> <h5 id="链接-13"><a href="#链接-13" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>POST /v1/users/{uid}/{appName}/points</p> <h5 id="参数-13"><a href="#参数-13" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>uid</td> <td>用户标识符</td> <td>path</td> <td>string</td></tr> <tr><td>appName</td> <td>应用名称</td> <td>path</td> <td>string</td></tr> <tr><td>amount</td> <td>积分数量</td> <td>query</td> <td>double</td></tr> <tr><td>xid</td> <td>全局事务id</td> <td>query</td> <td>string</td></tr></tbody></table> <p>举例：/v1/users/05ec0890c46811e898a000163e002b60/SICKLE/points?amount=1000&amp;xid=123eaf789822342cdfab3eee3e002b60</p> <h5 id="返回值-13"><a href="#返回值-13" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;message&quot;: &quot;success&quot;,
+  &quot;code&quot;: 200000,
+  &quot;data&quot;: {
+    &quot;uid&quot;: &quot;4c539071e05c11e898a000163e002b60&quot;,
+    &quot;amount&quot;: 1000,
+    &quot;account&quot;: {
+      &quot;uid&quot;: &quot;05ed3895c46811e898a000163e002b60&quot;,
+      &quot;userUid&quot;: &quot;05ec0890c46811e898a000163e002b60&quot;,
+      &quot;appName&quot;: &quot;sickle&quot;,
+      &quot;accumulation&quot;: 1000,
+      &quot;balance&quot;: 1000,
+      &quot;createTime&quot;: &quot;2018-09-30 04:19:29&quot;,
+      &quot;updateTime&quot;: &quot;2018-11-04 18:06:05&quot;
+    },
+    &quot;userUid&quot;: &quot;05ec0890c46811e898a000163e002b60&quot;,
+    &quot;appName&quot;: &quot;SICKLE&quot;,
+    &quot;income&quot;: true,
+    &quot;transactionUid&quot;: &quot;123eaf789822342cdfab3eee3e002b60&quot;,
+    &quot;createTime&quot;: &quot;2018-11-04 18:06:05&quot;,
+    &quot;updateTime&quot;: &quot;2018-11-04 18:06:05&quot;
+  }
+}
+</code></pre></div><h3 id="短信接口"><a href="#短信接口" aria-hidden="true" class="header-anchor">#</a> 短信接口</h3> <h4 id="按用户唯一标识符查询单个用户信息-2"><a href="#按用户唯一标识符查询单个用户信息-2" aria-hidden="true" class="header-anchor">#</a> 按用户唯一标识符查询单个用户信息</h4> <p>输入国家代码和手机号码，发送短信验证码。</p> <h5 id="链接-14"><a href="#链接-14" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>POST /v1/sms</p> <h5 id="参数-14"><a href="#参数-14" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>phoneInfo</td> <td>手机信息</td> <td>body</td> <td>string</td></tr></tbody></table> <p>举例：/v1/sms
+参数</p> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;countryCode&quot;: &quot;0086&quot;,
+  &quot;phoneNumber&quot;: &quot;15000000000&quot;
+}
+</code></pre></div><h5 id="返回值-14"><a href="#返回值-14" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;message&quot;: &quot;success&quot;,
+  &quot;code&quot;: 200000
+}
+</code></pre></div><p>只返回成功与否。
+发送成功，指定的手机将会收到验证码信息。</p> <h3 id="极验接口"><a href="#极验接口" aria-hidden="true" class="header-anchor">#</a> 极验接口</h3> <h4 id="极验预处理"><a href="#极验预处理" aria-hidden="true" class="header-anchor">#</a> 极验预处理</h4> <p>根据用户唯一标识符精确查询用户信息。</p> <h5 id="链接-15"><a href="#链接-15" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>POST /v1/geetest/preprocess</p> <h5 id="参数-15"><a href="#参数-15" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>param</td> <td>预处理参数</td> <td>body</td> <td>string</td></tr></tbody></table> <p>举例：/v1/geetest/preprocess
+参数</p> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;countryCode&quot;: &quot;0086&quot;,
+  &quot;phoneNumber&quot;: &quot;18665801387&quot;
+}
+</code></pre></div><h5 id="返回值-15"><a href="#返回值-15" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;message&quot;: &quot;success&quot;,
+  &quot;code&quot;: 200000,
+  &quot;data&quot;: {
+    &quot;success&quot;: 1,
+    &quot;challenge&quot;: &quot;39c9a5ceaf6daad2426e3c6834d7f31b&quot;,
+    &quot;gt&quot;: &quot;7e8626f9dfcbf3c4ef46fed3f5c30107&quot;
+  }
+}
+</code></pre></div><p>进行极验二次验证时，需要传入challenge。</p> <h4 id="极验二次验证"><a href="#极验二次验证" aria-hidden="true" class="header-anchor">#</a> 极验二次验证</h4> <p>验证预处理返回的challenge是否正确。</p> <h5 id="链接-16"><a href="#链接-16" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>POST /v1/geetest/enhance</p> <h5 id="参数-16"><a href="#参数-16" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>uid</td> <td>用户标识符</td> <td>path</td> <td>string</td></tr></tbody></table> <p>举例：/v1/geetest/enhance
+参数</p> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;challenge&quot;: &quot;39c9a5ceaf6daad2426e3c6834d7f31b&quot;,
+  &quot;countryCode&quot;: &quot;0086&quot;,
+  &quot;phoneNumber&quot;: &quot;18665801387&quot;,
+  &quot;seccode&quot;: &quot;23345345adfetwgeywhhgfger&quot;,
+  &quot;validate&quot;: &quot;true&quot;
+}
+</code></pre></div><h5 id="返回值-16"><a href="#返回值-16" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;message&quot;: &quot;success&quot;,
+  &quot;code&quot;: 200000
+}
+</code></pre></div><h4 id="极验短信发送"><a href="#极验短信发送" aria-hidden="true" class="header-anchor">#</a> 极验短信发送</h4> <p>验证challenge是否正确，验证通过后发送短信至指定手机。</p> <h5 id="链接-17"><a href="#链接-17" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>POST /v1/geetest/sms</p> <h5 id="参数-17"><a href="#参数-17" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>param</td> <td>极验短信参数</td> <td>body</td> <td>string</td></tr></tbody></table> <p>举例：/v1/geetest/sms
+参数</p> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;challenge&quot;: &quot;39c9a5ceaf6daad2426e3c6834d7f31b&quot;,
+  &quot;countryCode&quot;: &quot;0086&quot;,
+  &quot;phoneNumber&quot;: &quot;18665801387&quot;,
+  &quot;seccode&quot;: &quot;23345345adfetwgeywhhgfger&quot;,
+  &quot;validate&quot;: &quot;true&quot;
+}
+</code></pre></div><h5 id="返回值-17"><a href="#返回值-17" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;message&quot;: &quot;success&quot;,
+  &quot;code&quot;: 200000
+}
+</code></pre></div><h3 id="token接口"><a href="#token接口" aria-hidden="true" class="header-anchor">#</a> token接口</h3> <h4 id="请求token"><a href="#请求token" aria-hidden="true" class="header-anchor">#</a> 请求token</h4> <p>请求token，创建用户会话。
+支持1keylogin，sms，password三种类型的登录。
+该接口整合了注册和登录功能，如果是首次登录则后台会进行用户的创建，然后创建访问token，如果账户已经存在，则直接处理登录逻辑。</p> <h5 id="链接-18"><a href="#链接-18" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>POST /v1/tokens</p> <h5 id="参数-18"><a href="#参数-18" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>tokenRequest</td> <td>请求token参数</td> <td>body</td> <td>string</td></tr></tbody></table> <p>tokenRequest结构</p> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;accessToken&quot;: &quot;string&quot;,
+  &quot;appId&quot;: &quot;string&quot;,
+  &quot;appKey&quot;: &quot;string&quot;,
+  &quot;countryCode&quot;: &quot;string&quot;,
+  &quot;password&quot;: &quot;string&quot;,
+  &quot;phone&quot;: &quot;string&quot;,
+  &quot;randoms&quot;: &quot;string&quot;,
+  &quot;sign&quot;: &quot;string&quot;,
+  &quot;smsCode&quot;: &quot;string&quot;,
+  &quot;telecom&quot;: &quot;string&quot;,
+  &quot;timestamp&quot;: &quot;string&quot;,
+  &quot;type&quot;: &quot;string&quot;,
+  &quot;version&quot;: &quot;string&quot;
+}
+</code></pre></div><p>以上是全量参数，支持1keylogin，sms，password三种类型的登录，每种类型所传的参数不一样。</p> <p>1keylogin 登录
+参数：</p> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;accessToken&quot;: &quot;string&quot;,
+  &quot;appId&quot;: &quot;string&quot;,
+  &quot;randoms&quot;: &quot;string&quot;,
+  &quot;sign&quot;: &quot;string&quot;,
+  &quot;telecom&quot;: &quot;string&quot;,
+  &quot;timestamp&quot;: &quot;string&quot;,
+  &quot;type&quot;: &quot;1keylogin&quot;,
+  &quot;version&quot;: &quot;string&quot;
+}
+</code></pre></div><p>注：type是1keylogin,以上参数是通过创蓝闪验获取的</p> <p>sms 登录</p> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;countryCode&quot;: &quot;string&quot;,
+  &quot;phone&quot;: &quot;string&quot;,
+  &quot;smsCode&quot;: &quot;string&quot;,
+  &quot;type&quot;: &quot;sms&quot;
+}
+</code></pre></div><p>注：type是sms,smsCode是事先获得的短信验证码</p> <p>password 登录</p> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;countryCode&quot;: &quot;string&quot;,
+  &quot;password&quot;: &quot;string&quot;,
+  &quot;phone&quot;: &quot;string&quot;,
+  &quot;type&quot;: &quot;password&quot;
+}
+</code></pre></div><p>注：type是sms,password是用户注册过并设置了密码才有</p> <p><strong>登录时请求头</strong>
+Application 传 应用名:版本本名 如SICKLE:1.0.1
+Platform 传 android或ios
+Token 不用传</p> <h5 id="返回值-18"><a href="#返回值-18" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;message&quot;: &quot;success&quot;,
+  &quot;code&quot;: 200000,
+  &quot;data&quot;: {
+    &quot;uid&quot;: &quot;05ec0890c46811e898a000163e002b60&quot;,
+    &quot;countryCode&quot;: &quot;0086&quot;,
+    &quot;phoneNumber&quot;: &quot;18665801387&quot;,
+    &quot;userName&quot;: &quot;008618665801387&quot;,
+    &quot;nickname&quot;: &quot;马自达&quot;,
+    &quot;avatar&quot;: &quot;http://www.asmile.com/avatar.png&quot;,
+    &quot;source&quot;: &quot;SICKLE&quot;,
+    &quot;enabled&quot;: true,
+    &quot;token&quot;: &quot;7c346efa24c64d0c857dd60303eb57d5&quot;,
+    &quot;empowering&quot;: false,
+    &quot;createTime&quot;: &quot;2018-09-30 04:19:29&quot;,
+    &quot;latestLogin&quot;: &quot;2018-11-05 02:52:30&quot;,
+    &quot;loginTimes&quot;: 6
+  }
+}
+</code></pre></div><p>empowering为true代表是首次登录</p> <h4 id="获取token"><a href="#获取token" aria-hidden="true" class="header-anchor">#</a> 获取token</h4> <p>根据token信息，获取对应的用户信息。</p> <h5 id="链接-19"><a href="#链接-19" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>GET /v1/tokens</p> <h5 id="参数-19"><a href="#参数-19" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>Token</td> <td>访问token</td> <td>header</td> <td>string</td></tr> <tr><td>Application</td> <td>应用信息</td> <td>header</td> <td>string</td></tr> <tr><td>Platform</td> <td>平台</td> <td>header</td> <td>string</td></tr></tbody></table> <p>举例：/v1/tokens
+参数
+Request Headers</p> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;Accept&quot;: &quot;*/*&quot;,
+  &quot;Token&quot;: &quot;7c346efa24c64d0c857dd60303eb57d5&quot;
+}
+</code></pre></div><h5 id="返回值-19"><a href="#返回值-19" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;message&quot;: &quot;success&quot;,
+  &quot;code&quot;: 200000,
+  &quot;data&quot;: {
+    &quot;uid&quot;: &quot;05ec0890c46811e898a000163e002b60&quot;,
+    &quot;countryCode&quot;: &quot;0086&quot;,
+    &quot;phoneNumber&quot;: &quot;18665801387&quot;,
+    &quot;userName&quot;: &quot;008618665801387&quot;,
+    &quot;nickname&quot;: &quot;马自达&quot;,
+    &quot;avatar&quot;: &quot;http://www.asmile.com/avatar.png&quot;,
+    &quot;source&quot;: &quot;SICKLE&quot;,
+    &quot;enabled&quot;: true,
+    &quot;empowering&quot;: false,
+    &quot;createTime&quot;: &quot;2018-09-30 04:19:29&quot;,
+    &quot;latestLogin&quot;: &quot;2018-11-05 02:52:30&quot;,
+    &quot;loginTimes&quot;: 6
+  }
+}
+</code></pre></div><h4 id="刷新token"><a href="#刷新token" aria-hidden="true" class="header-anchor">#</a> 刷新token</h4> <p>传入现有的访问token，产生一个新的token。
+传入的token必须还未过期，否则会报错。</p> <h5 id="链接-20"><a href="#链接-20" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>PUT /v1/tokens</p> <h5 id="参数-20"><a href="#参数-20" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>Token</td> <td>访问token</td> <td>header</td> <td>string</td></tr> <tr><td>Application</td> <td>应用信息</td> <td>header</td> <td>string</td></tr> <tr><td>Platform</td> <td>平台</td> <td>header</td> <td>string</td></tr></tbody></table> <p>举例：/v1/tokens
+参数</p> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;Accept&quot;: &quot;*/*&quot;,
+  &quot;Token&quot;: &quot;7c346efa24c64d0c857dd60303eb57d5&quot;
+}
+</code></pre></div><h5 id="返回值-20"><a href="#返回值-20" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;message&quot;: &quot;success&quot;,
+  &quot;code&quot;: 200000,
+  &quot;data&quot;: {
+    &quot;uid&quot;: &quot;05ec0890c46811e898a000163e002b60&quot;,
+    &quot;countryCode&quot;: &quot;0086&quot;,
+    &quot;phoneNumber&quot;: &quot;18665801387&quot;,
+    &quot;userName&quot;: &quot;008618665801387&quot;,
+    &quot;nickname&quot;: &quot;马自达&quot;,
+    &quot;avatar&quot;: &quot;http://www.asmile.com/avatar.png&quot;,
+    &quot;source&quot;: &quot;SICKLE&quot;,
+    &quot;enabled&quot;: true,
+    &quot;token&quot;: &quot;94916990f394483cb6238b6db3c1ac5c&quot;,
+    &quot;empowering&quot;: false,
+    &quot;createTime&quot;: &quot;2018-09-30 04:19:29&quot;,
+    &quot;latestLogin&quot;: &quot;2018-11-05 02:52:30&quot;,
+    &quot;loginTimes&quot;: 6
+  }
+}
+</code></pre></div><h4 id="删除token"><a href="#删除token" aria-hidden="true" class="header-anchor">#</a> 删除token</h4> <p>传入现有的访问token，进行删除，可以达到注销登录状态的目的。</p> <h5 id="链接-21"><a href="#链接-21" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>DELETE /v1/tokens</p> <h5 id="参数-21"><a href="#参数-21" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>Token</td> <td>访问token</td> <td>header</td> <td>string</td></tr> <tr><td>Application</td> <td>应用信息</td> <td>header</td> <td>string</td></tr> <tr><td>Platform</td> <td>平台</td> <td>header</td> <td>string</td></tr></tbody></table> <p>举例：/v1/tokens
+参数</p> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;Accept&quot;: &quot;*/*&quot;,
+  &quot;Token&quot;: &quot;94916990f394483cb6238b6db3c1ac5c&quot;
+}
+</code></pre></div><h5 id="返回值-21"><a href="#返回值-21" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;message&quot;: &quot;success&quot;,
+  &quot;code&quot;: 200000
+}
+</code></pre></div><h3 id="用户应用关联接口"><a href="#用户应用关联接口" aria-hidden="true" class="header-anchor">#</a> 用户应用关联接口</h3> <h4 id="查询本机是否与当前应用关联"><a href="#查询本机是否与当前应用关联" aria-hidden="true" class="header-anchor">#</a> 查询本机是否与当前应用关联</h4> <p>在应用端传入手机和验证码，验证是否为本机，若是再请求判断是否已经是当前应用的用户，然后返回用户信息和app信息。</p> <h5 id="链接-22"><a href="#链接-22" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>DELETE /v1/userapps</p> <h5 id="参数-22"><a href="#参数-22" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>countryCode</td> <td>国家代码</td> <td>query</td> <td>string</td></tr> <tr><td>phoneNumber</td> <td>手机号码</td> <td>query</td> <td>string</td></tr> <tr><td>smsCode</td> <td>验证码</td> <td>query</td> <td>string</td></tr></tbody></table> <p>举例：/v1/userapps?countryCode=0086&amp;phoneNumber=18665801387&amp;smsCode=477055</p> <h5 id="返回值-22"><a href="#返回值-22" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;message&quot;: &quot;success&quot;,
+  &quot;code&quot;: 200000,
+  &quot;data&quot;: {
+    &quot;uid&quot;: &quot;05ed0c37c46811e898a000163e002b60&quot;,
+    &quot;user&quot;: {
+      &quot;uid&quot;: &quot;05ec0890c46811e898a000163e002b60&quot;,
+      &quot;nickname&quot;: &quot;马自达&quot;,
+      &quot;avatar&quot;: &quot;http://www.asmile.com/avatar.png&quot;,
+      &quot;source&quot;: &quot;SICKLE&quot;,
+      &quot;createTime&quot;: &quot;2018-09-30 04:19:29&quot;,
+      &quot;updateTime&quot;: &quot;2018-09-30 04:19:29&quot;
+    },
+    &quot;app&quot;: {
+      &quot;uid&quot;: &quot;42ea6149b7f711e898a000163e002b60&quot;,
+      &quot;appName&quot;: &quot;SICKLE&quot;,
+      &quot;displayName&quot;: &quot;MOL SICKLE&quot;,
+      &quot;description&quot;: &quot;镰刀资讯&quot;,
+      &quot;enabled&quot;: true,
+      &quot;createTime&quot;: &quot;2018-09-14 08:22:04&quot;,
+      &quot;updateTime&quot;: &quot;2018-09-14 08:22:04&quot;
+    },
+    &quot;enabled&quot;: true,
+    &quot;createTime&quot;: &quot;2018-09-30 04:19:29&quot;,
+    &quot;updateTime&quot;: &quot;2018-09-30 04:19:29&quot;
+  }
+}
+</code></pre></div><h3 id="登录历史信息"><a href="#登录历史信息" aria-hidden="true" class="header-anchor">#</a> 登录历史信息</h3> <h4 id="按ip统计时段内登录的设备数"><a href="#按ip统计时段内登录的设备数" aria-hidden="true" class="header-anchor">#</a> 按ip统计时段内登录的设备数</h4> <p>查找指定时间段内指定ip的登录设备统计，可以指定最少登录设备数，用于过滤登录设备数量不少于指定数量的的ip对应的统计信息。</p> <h5 id="链接-23"><a href="#链接-23" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>GET /v1/logins/devicecount</p> <h5 id="参数-23"><a href="#参数-23" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>loginIp</td> <td>登录ip</td> <td>query</td> <td>string</td></tr> <tr><td>startTime</td> <td>开始时间</td> <td>query</td> <td>date-time</td></tr> <tr><td>endTime</td> <td>结束时间</td> <td>query</td> <td>date-time</td></tr> <tr><td>enabled</td> <td>设备是否有效</td> <td>query</td> <td>boolean</td></tr> <tr><td>success</td> <td>是否成功登录</td> <td>query</td> <td>boolean</td></tr> <tr><td>deviceCount</td> <td>最少登录设备数</td> <td>query</td> <td>integer</td></tr></tbody></table> <p>举例：/v1/logins/devicecount?loginIp=112.97.194.129</p> <h5 id="返回值-23"><a href="#返回值-23" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;message&quot;: &quot;success&quot;,
+  &quot;code&quot;: 200000,
+  &quot;data&quot;: [
+    {
+      &quot;loginIp&quot;: &quot;112.97.194.129&quot;,
+      &quot;deviceCount&quot;: 6,
+      &quot;deviceLogins&quot;: [
+        {
+          &quot;loginDevice&quot;: &quot;0b63192bc39011e898a000163e002b60&quot;,
+          &quot;loginDeviceUrl&quot;: &quot;http://localhost:9941/usercenter/v1.0/logins/devicecount?loginDevice=0b63192bc39011e898a000163e002b60&quot;
+        },
+        {
+          &quot;loginDevice&quot;: &quot;38252a93c40611e898a000163e002b60&quot;,
+          &quot;loginDeviceUrl&quot;: &quot;http://localhost:9941/usercenter/v1.0/logins/devicecount?loginDevice=38252a93c40611e898a000163e002b60&quot;
+        },
+        {
+          &quot;loginDevice&quot;: &quot;7b4d4165c2d311e898a000163e002b60&quot;,
+          &quot;loginDeviceUrl&quot;: &quot;http://localhost:9941/usercenter/v1.0/logins/devicecount?loginDevice=7b4d4165c2d311e898a000163e002b60&quot;
+        },
+        {
+          &quot;loginDevice&quot;: &quot;7df1aefdc46a11e898a000163e002b60&quot;,
+          &quot;loginDeviceUrl&quot;: &quot;http://localhost:9941/usercenter/v1.0/logins/devicecount?loginDevice=7df1aefdc46a11e898a000163e002b60&quot;
+        },
+        {
+          &quot;loginDevice&quot;: &quot;91bb3c66c46a11e898a000163e002b60&quot;,
+          &quot;loginDeviceUrl&quot;: &quot;http://localhost:9941/usercenter/v1.0/logins/devicecount?loginDevice=91bb3c66c46a11e898a000163e002b60&quot;
+        },
+        {
+          &quot;loginDevice&quot;: &quot;946a4f5fc40811e898a000163e002b60&quot;,
+          &quot;loginDeviceUrl&quot;: &quot;http://localhost:9941/usercenter/v1.0/logins/devicecount?loginDevice=946a4f5fc40811e898a000163e002b60&quot;
+        }
+      ]
+    }
+  ]
+}
+</code></pre></div><p>deviceCount为登录设备数，deviceLogins为各设备唯一标识符及起对应的登录记录连接。</p> <h4 id="按ip统计时段内登录的设备数-2"><a href="#按ip统计时段内登录的设备数-2" aria-hidden="true" class="header-anchor">#</a> 按ip统计时段内登录的设备数</h4> <p>查找指定时间段内指定ip的登录设备统计，可以指定最少登录设备数，用于过滤登录设备数量不少于指定数量的的ip对应的统计信息。</p> <h5 id="链接-24"><a href="#链接-24" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>GET /v1/logins/devicecount</p> <h5 id="参数-24"><a href="#参数-24" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>loginDevice</td> <td>登录设备唯一标识符</td> <td>query</td> <td>string</td></tr> <tr><td>startTime</td> <td>开始时间</td> <td>query</td> <td>date-time</td></tr> <tr><td>endTime</td> <td>结束时间</td> <td>query</td> <td>date-time</td></tr> <tr><td>enabled</td> <td>设备是否有效</td> <td>query</td> <td>boolean</td></tr> <tr><td>success</td> <td>是否成功登录</td> <td>query</td> <td>boolean</td></tr> <tr><td>userCount</td> <td>最少用户数</td> <td>query</td> <td>integer</td></tr></tbody></table> <p>举例：/v1/logins/usercount?loginDevice=7b4d4165c2d311e898a000163e002b60</p> <h5 id="返回值-24"><a href="#返回值-24" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;message&quot;: &quot;success&quot;,
+  &quot;code&quot;: 200000,
+  &quot;data&quot;: [
+    {
+      &quot;loginDevice&quot;: &quot;7b4d4165c2d311e898a000163e002b60&quot;,
+      &quot;userCount&quot;: 4,
+      &quot;userLogins&quot;: [
+        {
+          &quot;loginUser&quot;: &quot;113c42bcc3df11e898a000163e002b60&quot;,
+          &quot;userLoginUrl&quot;: &quot;http://localhost:9941/usercenter/v1.0/logins/users/113c42bcc3df11e898a000163e002b60&quot;
+        },
+        {
+          &quot;loginUser&quot;: &quot;2d1bc18ec40a11e898a000163e002b60&quot;,
+          &quot;userLoginUrl&quot;: &quot;http://localhost:9941/usercenter/v1.0/logins/users/2d1bc18ec40a11e898a000163e002b60&quot;
+        },
+        {
+          &quot;loginUser&quot;: &quot;704f7e7cc40511e898a000163e002b60&quot;,
+          &quot;userLoginUrl&quot;: &quot;http://localhost:9941/usercenter/v1.0/logins/users/704f7e7cc40511e898a000163e002b60&quot;
+        },
+        {
+          &quot;loginUser&quot;: &quot;945521c9c40811e898a000163e002b60&quot;,
+          &quot;userLoginUrl&quot;: &quot;http://localhost:9941/usercenter/v1.0/logins/users/945521c9c40811e898a000163e002b60&quot;
+        }
+      ]
+    }
+  ]
+}
+</code></pre></div><p>userCount为登录用户数，userLogins为各用户唯一标识符及起对应的登录记录连接。</p> <h4 id="获取用户时间段内登录的信息"><a href="#获取用户时间段内登录的信息" aria-hidden="true" class="header-anchor">#</a> 获取用户时间段内登录的信息</h4> <p>查找指定时间段内指定ip的登录设备统计，可以指定最少登录设备数，用于过滤登录设备数量不少于指定数量的的ip对应的统计信息。</p> <h5 id="链接-25"><a href="#链接-25" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>GET /v1/logins/users/{uid}</p> <h5 id="参数-25"><a href="#参数-25" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>loginIp</td> <td>登录ip</td> <td>query</td> <td>string</td></tr> <tr><td>startTime</td> <td>开始时间</td> <td>query</td> <td>date-time</td></tr> <tr><td>endTime</td> <td>结束时间</td> <td>query</td> <td>date-time</td></tr> <tr><td>enabled</td> <td>设备是否有效</td> <td>query</td> <td>boolean</td></tr> <tr><td>success</td> <td>是否成功登录</td> <td>query</td> <td>boolean</td></tr> <tr><td>deviceCount</td> <td>最少登录设备数</td> <td>query</td> <td>integer</td></tr></tbody></table> <p>举例：
+查看唯一标识符为113c42bcc3df11e898a000163e002b60的用户登录时间大于2018/09/29 21:30:00的登录记录。
+v1/logins/users/113c42bcc3df11e898a000163e002b60?startTime=2018%2F09%2F29%2021%3A30%3A00</p> <h5 id="返回值-25"><a href="#返回值-25" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;message&quot;: &quot;success&quot;,
+  &quot;code&quot;: 200000,
+  &quot;data&quot;: {
+    &quot;uid&quot;: &quot;113c42bcc3df11e898a000163e002b60&quot;,
+    &quot;countryCode&quot;: &quot;0086&quot;,
+    &quot;phoneNumber&quot;: &quot;13049304814&quot;,
+    &quot;userName&quot;: &quot;008613049304814&quot;,
+    &quot;nickname&quot;: &quot;user_008613049304814&quot;,
+    &quot;avatar&quot;: &quot;https://www.baidu.com/img/bd_logo1.png&quot;,
+    &quot;source&quot;: &quot;SICKLE&quot;,
+    &quot;enabled&quot;: true,
+    &quot;createTime&quot;: &quot;2018-09-29 19:59:07&quot;,
+    &quot;latestLogin&quot;: &quot;2018-09-29 21:50:40&quot;,
+    &quot;loginTimes&quot;: 26,
+    &quot;records&quot;: [
+      {
+        &quot;uid&quot;: &quot;982d0491c3ee11e898a000163e002b60&quot;,
+        &quot;loginUser&quot;: &quot;113c42bcc3df11e898a000163e002b60&quot;,
+        &quot;loginDevice&quot;: &quot;dc5e955ac3bb11e898a000163e002b60&quot;,
+        &quot;loginIp&quot;: &quot;113.118.194.58&quot;,
+        &quot;loginHost&quot;: &quot;192.168.1.129&quot;,
+        &quot;loginApp&quot;: &quot;SICKLE&quot;,
+        &quot;loginAppVersionCode&quot;: 101,
+        &quot;loginAppVersion&quot;: &quot;1.0.1&quot;,
+        &quot;loginWay&quot;: &quot;token&quot;,
+        &quot;success&quot;: true,
+        &quot;loginMemo&quot;: &quot;OK&quot;,
+        &quot;loginTime&quot;: &quot;2018-09-29 21:50:16&quot;,
+        &quot;appDebug&quot;: false,
+        &quot;osRoot&quot;: false,
+        &quot;osRom&quot;: &quot;aliyun&quot;,
+        &quot;osVersion&quot;: &quot;22&quot;,
+        &quot;longitude&quot;: &quot;114.040897&quot;,
+        &quot;latitude&quot;: &quot;22.614372&quot;,
+        &quot;address&quot;: &quot;广东省深圳市龙华区民康路84号靠近华夏银行(龙华支行)&quot;
+      }
+    ]
+  }
+}
+</code></pre></div><p>返回值有两部分组成，前部分是用户的基本信息及用户登录的总次数，records为用户登录的详细记录。</p> <h3 id="全局事务接口"><a href="#全局事务接口" aria-hidden="true" class="header-anchor">#</a> 全局事务接口</h3> <h4 id="获取全局事务"><a href="#获取全局事务" aria-hidden="true" class="header-anchor">#</a> 获取全局事务</h4> <p>获取全局事务id，可作为分布式事务处理的依据。</p> <h5 id="链接-26"><a href="#链接-26" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>POST /v1/transaction</p> <h5 id="参数-26"><a href="#参数-26" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <p>无参数
+举例：/v1/transaction</p> <h5 id="返回值-26"><a href="#返回值-26" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;message&quot;: &quot;success&quot;,
+  &quot;code&quot;: 200000,
+  &quot;data&quot;: {
+    &quot;uid&quot;: &quot;09766456e0c911e898a000163e002b60&quot;,
+    &quot;createTime&quot;: &quot;2018-11-05 15:04:28&quot;
+  }
+}
+</code></pre></div><h3 id="访问终端信息接口"><a href="#访问终端信息接口" aria-hidden="true" class="header-anchor">#</a> 访问终端信息接口</h3> <h4 id="上传终端信息，并返回用户信息"><a href="#上传终端信息，并返回用户信息" aria-hidden="true" class="header-anchor">#</a> 上传终端信息，并返回用户信息</h4> <p>将终端设备上传，记录用户登录的最新设备。同时后台会进行token刷新。</p> <h5 id="链接-27"><a href="#链接-27" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>POST /v1/initialize</p> <h5 id="参数-27"><a href="#参数-27" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>terminal</td> <td>终端信息</td> <td>body</td> <td>string</td></tr></tbody></table> <div class="language- extra-class"><pre class="language-text"><code>{
+    &quot;app&quot; =     {
+        &quot;debug&quot; = &quot;flase&quot;;
+        &quot;versionCode&quot; = &quot;1&quot;;
+        &quot;versionName&quot; = &quot;1.0.0&quot;;
+    };
+    &quot;device&quot; =     {
+        &quot;brand&quot; = &quot;iPhone&quot;;
+        &quot;deviceID&quot; = &quot;101d855909687927f31&quot;;
+        &quot;display&quot; = &quot;&quot;;
+        &quot;displayHeight&quot; = &quot;1080&quot;;
+        &quot;displayWidth&quot; = &quot;1920&quot;;
+        &quot;fingerprint&quot; = &quot;&quot;;
+        &quot;manufacturer&quot; = &quot;IOS&quot;;
+        &quot;model&quot; = &quot;iPhone 6s Plus&quot;;
+        &quot;product&quot; = &quot;&quot;;
+    };
+    &quot;location&quot; =     {
+        &quot;address&quot; = &quot;\U5e7f\U4e1c\U7701\U6df1\U5733\U5e02\U9f99\U534e\U533a\U6c11\U5eb7\U8def\U9760\U8fd1\U4e1c\U660e\U5927\U53a6(\U6c11\U5eb7\U8def)&quot;;
+        &quot;latitude&quot; = &quot;23&quot;;
+        &quot;longitude&quot; = &quot;114&quot;;
+    };
+    &quot;os&quot; =     {
+        &quot;host&quot; = &quot;fe80::182e:de50:4ad4:78a3&quot;;
+        &quot;rom&quot; = &quot;appstore&quot;;
+        &quot;root&quot; = &quot;fales&quot;;
+        &quot;version&quot; = &quot;12.0.1&quot;;
+    };
+}
+</code></pre></div><h5 id="返回值-27"><a href="#返回值-27" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+	&quot;message&quot;: &quot;success&quot;,
+	&quot;code&quot;: 200000,
+	&quot;data&quot;: {
+		&quot;uid&quot;: &quot;0ab21520d6bf11e89b0b00163e007a48&quot;,
+		&quot;countryCode&quot;: &quot;0086&quot;,
+		&quot;phoneNumber&quot;: &quot;13267017181&quot;,
+		&quot;userName&quot;: &quot;008613267017181&quot;,
+		&quot;avatar&quot;: &quot;https://miaoyoujuan.com/mol_sickle/icon/head_mol_sickle.png&quot;,
+		&quot;source&quot;: &quot;SICKLE&quot;,
+		&quot;enabled&quot;: true,
+		&quot;token&quot;: &quot;7e1a58f1918a48d397b2fee4aaa3ea9a&quot;,
+		&quot;empowering&quot;: false,
+		&quot;createTime&quot;: &quot;2018-10-23 12:27:44&quot;,
+		&quot;latestLogin&quot;: &quot;2018-11-05 07:17:50&quot;,
+		&quot;loginTimes&quot;: 498
+	}
+}
+</code></pre></div><p>返回用户基本基本信息和登录统计信息。
+empowering为true代表是首次登录</p> <h3 id="积分接口"><a href="#积分接口" aria-hidden="true" class="header-anchor">#</a> 积分接口</h3> <h4 id="获取当前用户的积分账户"><a href="#获取当前用户的积分账户" aria-hidden="true" class="header-anchor">#</a> 获取当前用户的积分账户</h4> <p>传入Token信息和Application信息，获取当前用户在指定应用中的积分账户。</p> <h5 id="链接-28"><a href="#链接-28" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>GET /v1/points</p> <h5 id="参数-28"><a href="#参数-28" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>Token</td> <td>访问token</td> <td>header</td> <td>string</td></tr> <tr><td>Application</td> <td>应用信息，格式：应用名:版本名称</td> <td>header</td> <td>string</td></tr></tbody></table> <p>Request Headers</p> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;Accept&quot;: &quot;*/*&quot;,
+  &quot;Token&quot;: &quot;d31a6af803184fca93511700cf2a988a&quot;,
+  &quot;Application&quot;: &quot;SICKLE:1.0.0&quot;
+}
+</code></pre></div><h5 id="返回值-28"><a href="#返回值-28" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;message&quot;: &quot;success&quot;,
+  &quot;code&quot;: 200000,
+  &quot;data&quot;: {
+    &quot;uid&quot;: &quot;05ed3895c46811e898a000163e002b60&quot;,
+    &quot;userUid&quot;: &quot;05ec0890c46811e898a000163e002b60&quot;,
+    &quot;appName&quot;: &quot;sickle&quot;,
+    &quot;accumulation&quot;: 1000,
+    &quot;balance&quot;: 1000,
+    &quot;createTime&quot;: &quot;2018-09-30 12:19:29&quot;,
+    &quot;updateTime&quot;: &quot;2018-11-05 02:06:06&quot;
+  }
+}
+</code></pre></div><p>accumulation为累计积分数量
+balance为当前用户积分余额</p> <h4 id="给指定用户增减积分-2"><a href="#给指定用户增减积分-2" aria-hidden="true" class="header-anchor">#</a> 给指定用户增减积分</h4> <p>给指定用户增减积分，正数增加，负数减少。</p> <h5 id="链接-29"><a href="#链接-29" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>POST /v1/points</p> <h5 id="参数-29"><a href="#参数-29" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>Token</td> <td>访问token</td> <td>header</td> <td>string</td></tr> <tr><td>Application</td> <td>应用信息，格式：应用名:版本名称</td> <td>header</td> <td>string</td></tr> <tr><td>userUid</td> <td>用户唯一标识符</td> <td>query</td> <td>string</td></tr> <tr><td>amount</td> <td>变化数额，增加用正数，减少用负数</td> <td>query</td> <td>double</td></tr> <tr><td>transcationUid</td> <td>全局事务唯一标识符</td> <td>query</td> <td>string</td></tr></tbody></table> <p>举例：
+/v1/points?userUid=05ec0890c46811e898a000163e002b60&amp;amount=5&amp;transactionUid=1253dac21335290779cdef00163e002b
+Request Headers</p> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;Accept&quot;: &quot;*/*&quot;,
+  &quot;Token&quot;: &quot;d31a6af803184fca93511700cf2a988a&quot;,
+  &quot;Application&quot;: &quot;SICKLE:1.0.0&quot;
+}
+</code></pre></div><h5 id="返回值-29"><a href="#返回值-29" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;message&quot;: &quot;success&quot;,
+  &quot;code&quot;: 200000,
+  &quot;data&quot;: {
+    &quot;uid&quot;: &quot;e24c8a88e0ce11e898a000163e002b60&quot;,
+    &quot;amount&quot;: 5,
+    &quot;account&quot;: {
+      &quot;uid&quot;: &quot;05ed3895c46811e898a000163e002b60&quot;,
+      &quot;userUid&quot;: &quot;05ec0890c46811e898a000163e002b60&quot;,
+      &quot;appName&quot;: &quot;sickle&quot;,
+      &quot;accumulation&quot;: 1005,
+      &quot;balance&quot;: 1005,
+      &quot;createTime&quot;: &quot;2018-09-30 12:19:29&quot;,
+      &quot;updateTime&quot;: &quot;2018-11-05 15:46:19&quot;
+    },
+    &quot;userUid&quot;: &quot;05ec0890c46811e898a000163e002b60&quot;,
+    &quot;appName&quot;: &quot;SICKLE&quot;,
+    &quot;income&quot;: true,
+    &quot;transactionUid&quot;: &quot;1253dac21335290779cdef00163e002b&quot;,
+    &quot;createTime&quot;: &quot;2018-11-05 15:46:19&quot;,
+    &quot;updateTime&quot;: &quot;2018-11-05 15:46:19&quot;
+  }
+}
+</code></pre></div><p>返回结果的data信息分两部分，主体部分是这当前操作的积分信息，包含本次交易的基本信息，income是否收入项，正数为true，负数为false。另外一部分是操作后的积分账户信息。</p> <h3 id="设备信息接口"><a href="#设备信息接口" aria-hidden="true" class="header-anchor">#</a> 设备信息接口</h3> <h4 id="按条件查询设备列表"><a href="#按条件查询设备列表" aria-hidden="true" class="header-anchor">#</a> 按条件查询设备列表</h4> <p>指定条件查询分页查询设备信息。</p> <h5 id="链接-30"><a href="#链接-30" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>GET /v1/devices</p> <h5 id="参数-30"><a href="#参数-30" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>uid</td> <td>设备唯一标识符</td> <td>query</td> <td>string</td></tr> <tr><td>display</td> <td>系统屏幕信息</td> <td>query</td> <td>string</td></tr> <tr><td>displayHeight</td> <td>屏幕像素高度</td> <td>query</td> <td>string</td></tr> <tr><td>displayWidth</td> <td>屏幕像素宽度</td> <td>query</td> <td>string</td></tr> <tr><td>brand</td> <td>品牌信息</td> <td>query</td> <td>string</td></tr> <tr><td>fingerprint</td> <td>设备指纹(一个综合的，唯一的关于设备的描述)</td> <td>query</td> <td>string</td></tr> <tr><td>manufacturer</td> <td>生产厂商</td> <td>query</td> <td>string</td></tr> <tr><td>model</td> <td></td> <td>query</td> <td>string</td></tr> <tr><td>product</td> <td></td> <td>query</td> <td>string</td></tr> <tr><td>deviceID</td> <td>设备唯一ID</td> <td>query</td> <td>string</td></tr> <tr><td>host</td> <td>内部ip</td> <td>query</td> <td>string</td></tr> <tr><td>root</td> <td>是否root</td> <td>query</td> <td>boolean</td></tr> <tr><td>rom</td> <td>操作系统rom</td> <td>query</td> <td>string</td></tr> <tr><td>osVersion</td> <td>系统版本名称</td> <td>query</td> <td>string</td></tr> <tr><td>startTime</td> <td>开始时间</td> <td>query</td> <td>date-time</td></tr> <tr><td>endTime</td> <td>结束时间</td> <td>query</td> <td>date-time</td></tr> <tr><td>enabled</td> <td>是否有效</td> <td>query</td> <td>boolean</td></tr> <tr><td>sortby</td> <td>排序属性</td> <td>query</td> <td>string</td></tr> <tr><td>order</td> <td>排序规则</td> <td>query</td> <td>string</td></tr> <tr><td>page</td> <td>页数</td> <td>query</td> <td>integer</td></tr> <tr><td>pageSize</td> <td>每页行数</td> <td>query</td> <td>integer</td></tr></tbody></table> <p>举例：
+查看品牌是小米的所有设备
+/v1/devices?brand=XIAOMI</p> <h5 id="返回值-30"><a href="#返回值-30" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;message&quot;: &quot;success&quot;,
+  &quot;code&quot;: 200000,
+  &quot;data&quot;: [
+    {
+      &quot;uid&quot;: &quot;38252a93c40611e898a000163e002b60&quot;,
+      &quot;display&quot;: &quot;OPR1.170623.027&quot;,
+      &quot;displayHeight&quot;: &quot;2030&quot;,
+      &quot;displayWidth&quot;: &quot;1080&quot;,
+      &quot;brand&quot;: &quot;Xiaomi&quot;,
+      &quot;fingerprint&quot;: &quot;Xiaomi/chiron/chiron:8.0.0/OPR1.170623.027/V10.0.1.0.ODECNFH:user/release-keys&quot;,
+      &quot;manufacturer&quot;: &quot;Xiaomi&quot;,
+      &quot;model&quot;: &quot;MIX 2&quot;,
+      &quot;product&quot;: &quot;chiron&quot;,
+      &quot;deviceID&quot;: &quot;wLnnx8yfonqP0EkD5RxX3iJUxXO4hz4k/i8nx997kMQq1Z7HabWgPdzlhLJEw5oU&quot;,
+      &quot;host&quot;: &quot;192.168.43.74&quot;,
+      &quot;root&quot;: false,
+      &quot;rom&quot;: &quot;xiaomi&quot;,
+      &quot;osVersion&quot;: &quot;26&quot;,
+      &quot;createTime&quot;: &quot;2018-09-30 00:39:23&quot;,
+      &quot;updateTime&quot;: &quot;2018-09-30 00:39:23&quot;,
+      &quot;enabled&quot;: true
+    },
+    {
+      &quot;uid&quot;: &quot;39391f5cc40511e898a000163e002b60&quot;,
+      &quot;display&quot;: &quot;OPR1.170623.027&quot;,
+      &quot;displayHeight&quot;: &quot;2030&quot;,
+      &quot;displayWidth&quot;: &quot;1080&quot;,
+      &quot;brand&quot;: &quot;Xiaomi&quot;,
+      &quot;fingerprint&quot;: &quot;Xiaomi/chiron/chiron:8.0.0/OPR1.170623.027/V10.0.1.0.ODECNFH:user/release-keys&quot;,
+      &quot;manufacturer&quot;: &quot;Xiaomi&quot;,
+      &quot;model&quot;: &quot;MIX 2&quot;,
+      &quot;product&quot;: &quot;chiron&quot;,
+      &quot;deviceID&quot;: &quot;kTdotkS3jpFJqTe1wtPtAK0JgdTrYmerEmt22+XPTAA35JZfFiv94wIfcDkQqkYX&quot;,
+      &quot;host&quot;: &quot;192.168.1.127&quot;,
+      &quot;root&quot;: false,
+      &quot;rom&quot;: &quot;xiaomi&quot;,
+      &quot;osVersion&quot;: &quot;26&quot;,
+      &quot;createTime&quot;: &quot;2018-09-30 00:32:15&quot;,
+      &quot;updateTime&quot;: &quot;2018-09-30 00:32:15&quot;,
+      &quot;enabled&quot;: true
+    },
+    {
+      &quot;uid&quot;: &quot;aa81d818c3bb11e898a000163e002b60&quot;,
+      &quot;display&quot;: &quot;android_x86-userdebug 5.1.1 LMY48Z eng.denglibo.20171121.141123 test-keys&quot;,
+      &quot;displayHeight&quot;: &quot;1920&quot;,
+      &quot;displayWidth&quot;: &quot;1080&quot;,
+      &quot;brand&quot;: &quot;xiaomi&quot;,
+      &quot;fingerprint&quot;: &quot;Android-x86/android_x86/x86:5.1.1/LMY48Z/denglibo11211412:userdebug/test-keys&quot;,
+      &quot;manufacturer&quot;: &quot;xiaomi&quot;,
+      &quot;model&quot;: &quot;hm 1s&quot;,
+      &quot;product&quot;: &quot;hm 1s&quot;,
+      &quot;deviceID&quot;: &quot;286ff13382f34b9aa52a4909015a35ba&quot;,
+      &quot;host&quot;: &quot;172.16.2.15&quot;,
+      &quot;root&quot;: false,
+      &quot;rom&quot;: &quot;aliyun&quot;,
+      &quot;osVersion&quot;: &quot;22&quot;,
+      &quot;createTime&quot;: &quot;2018-09-29 15:45:42&quot;,
+      &quot;updateTime&quot;: &quot;2018-09-29 15:45:42&quot;,
+      &quot;enabled&quot;: true
+    }
+  ],
+  &quot;page&quot;: 1,
+  &quot;pageSize&quot;: 10,
+  &quot;first&quot;: &quot;http://localhost:9941/usercenter/v1/devices?brand=XIAOMI&amp;page=1&amp;pageSize=10&quot;,
+  &quot;next&quot;: &quot;http://localhost:9941/usercenter/v1/devices?brand=XIAOMI&amp;page=1&amp;pageSize=10&quot;,
+  &quot;previous&quot;: &quot;http://localhost:9941/usercenter/v1/devices?brand=XIAOMI&amp;page=1&amp;pageSize=10&quot;,
+  &quot;last&quot;: &quot;http://localhost:9941/usercenter/v1/devices?brand=XIAOMI&amp;page=1&amp;pageSize=10&quot;
+}
+</code></pre></div><h4 id="获取在线设备列表"><a href="#获取在线设备列表" aria-hidden="true" class="header-anchor">#</a> 获取在线设备列表</h4> <p>根据用户唯一标识符列表获取在线设备列表。</p> <h5 id="链接-31"><a href="#链接-31" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>POST /v1/devices/online</p> <h5 id="参数-31"><a href="#参数-31" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>userUidList</td> <td>用户唯一标识符列表</td> <td>body</td> <td>Array[string]</td></tr></tbody></table> <p>举例：
+查看品牌是小米的所有设备
+/v1/devices/online
+body</p> <div class="language- extra-class"><pre class="language-text"><code>[&quot;d31a6af803184fca93511700cf2a988a&quot;]
+</code></pre></div><h5 id="返回值-31"><a href="#返回值-31" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;message&quot;: &quot;success&quot;,
+  &quot;code&quot;: 200000,
+  &quot;data&quot;: [
+    {
+      &quot;uid&quot;: &quot;38252a93c40611e898a000163e002b60&quot;,
+      &quot;display&quot;: &quot;OPR1.170623.027&quot;,
+      &quot;displayHeight&quot;: &quot;2030&quot;,
+      &quot;displayWidth&quot;: &quot;1080&quot;,
+      &quot;brand&quot;: &quot;Xiaomi&quot;,
+      &quot;fingerprint&quot;: &quot;Xiaomi/chiron/chiron:8.0.0/OPR1.170623.027/V10.0.1.0.ODECNFH:user/release-keys&quot;,
+      &quot;manufacturer&quot;: &quot;Xiaomi&quot;,
+      &quot;model&quot;: &quot;MIX 2&quot;,
+      &quot;product&quot;: &quot;chiron&quot;,
+      &quot;deviceID&quot;: &quot;wLnnx8yfonqP0EkD5RxX3iJUxXO4hz4k/i8nx997kMQq1Z7HabWgPdzlhLJEw5oU&quot;,
+      &quot;host&quot;: &quot;192.168.43.74&quot;,
+      &quot;root&quot;: false,
+      &quot;rom&quot;: &quot;xiaomi&quot;,
+      &quot;osVersion&quot;: &quot;26&quot;,
+      &quot;createTime&quot;: &quot;2018-09-30 00:39:23&quot;,
+      &quot;updateTime&quot;: &quot;2018-09-30 00:39:23&quot;,
+      &quot;enabled&quot;: true
+    },
+    {
+      &quot;uid&quot;: &quot;39391f5cc40511e898a000163e002b60&quot;,
+      &quot;display&quot;: &quot;OPR1.170623.027&quot;,
+      &quot;displayHeight&quot;: &quot;2030&quot;,
+      &quot;displayWidth&quot;: &quot;1080&quot;,
+      &quot;brand&quot;: &quot;Xiaomi&quot;,
+      &quot;fingerprint&quot;: &quot;Xiaomi/chiron/chiron:8.0.0/OPR1.170623.027/V10.0.1.0.ODECNFH:user/release-keys&quot;,
+      &quot;manufacturer&quot;: &quot;Xiaomi&quot;,
+      &quot;model&quot;: &quot;MIX 2&quot;,
+      &quot;product&quot;: &quot;chiron&quot;,
+      &quot;deviceID&quot;: &quot;kTdotkS3jpFJqTe1wtPtAK0JgdTrYmerEmt22+XPTAA35JZfFiv94wIfcDkQqkYX&quot;,
+      &quot;host&quot;: &quot;192.168.1.127&quot;,
+      &quot;root&quot;: false,
+      &quot;rom&quot;: &quot;xiaomi&quot;,
+      &quot;osVersion&quot;: &quot;26&quot;,
+      &quot;createTime&quot;: &quot;2018-09-30 00:32:15&quot;,
+      &quot;updateTime&quot;: &quot;2018-09-30 00:32:15&quot;,
+      &quot;enabled&quot;: true
+    },
+    {
+      &quot;uid&quot;: &quot;aa81d818c3bb11e898a000163e002b60&quot;,
+      &quot;display&quot;: &quot;android_x86-userdebug 5.1.1 LMY48Z eng.denglibo.20171121.141123 test-keys&quot;,
+      &quot;displayHeight&quot;: &quot;1920&quot;,
+      &quot;displayWidth&quot;: &quot;1080&quot;,
+      &quot;brand&quot;: &quot;xiaomi&quot;,
+      &quot;fingerprint&quot;: &quot;Android-x86/android_x86/x86:5.1.1/LMY48Z/denglibo11211412:userdebug/test-keys&quot;,
+      &quot;manufacturer&quot;: &quot;xiaomi&quot;,
+      &quot;model&quot;: &quot;hm 1s&quot;,
+      &quot;product&quot;: &quot;hm 1s&quot;,
+      &quot;deviceID&quot;: &quot;286ff13382f34b9aa52a4909015a35ba&quot;,
+      &quot;host&quot;: &quot;172.16.2.15&quot;,
+      &quot;root&quot;: false,
+      &quot;rom&quot;: &quot;aliyun&quot;,
+      &quot;osVersion&quot;: &quot;22&quot;,
+      &quot;createTime&quot;: &quot;2018-09-29 15:45:42&quot;,
+      &quot;updateTime&quot;: &quot;2018-09-29 15:45:42&quot;,
+      &quot;enabled&quot;: true
+    }
+  ],
+  &quot;page&quot;: 1,
+  &quot;pageSize&quot;: 10,
+  &quot;first&quot;: &quot;http://localhost:9941/usercenter/v1/devices?brand=XIAOMI&amp;page=1&amp;pageSize=10&quot;,
+  &quot;next&quot;: &quot;http://localhost:9941/usercenter/v1/devices?brand=XIAOMI&amp;page=1&amp;pageSize=10&quot;,
+  &quot;previous&quot;: &quot;http://localhost:9941/usercenter/v1/devices?brand=XIAOMI&amp;page=1&amp;pageSize=10&quot;,
+  &quot;last&quot;: &quot;http://localhost:9941/usercenter/v1/devices?brand=XIAOMI&amp;page=1&amp;pageSize=10&quot;
+}
+</code></pre></div><h3 id="应用接口"><a href="#应用接口" aria-hidden="true" class="header-anchor">#</a> 应用接口</h3> <h4 id="创建应用"><a href="#创建应用" aria-hidden="true" class="header-anchor">#</a> 创建应用</h4> <p>根据应用名称创建应用，不能重名。</p> <h5 id="链接-32"><a href="#链接-32" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>POST /v1/app</p> <h5 id="参数-32"><a href="#参数-32" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>app</td> <td>应用信息</td> <td>body</td> <td></td></tr></tbody></table> <p>举例：
+创建芒果音乐APP
+/v1/app
+body</p> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;appName&quot;: &quot;MONGO&quot;,
+  &quot;description&quot;: &quot;芒果音乐&quot;,
+  &quot;displayName&quot;: &quot;芒果音乐&quot;
+}
+</code></pre></div><h5 id="返回值-32"><a href="#返回值-32" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;message&quot;: &quot;success&quot;,
+  &quot;code&quot;: 200000,
+  &quot;data&quot;: {
+    &quot;uid&quot;: &quot;5a756efbe0dd11e898a000163e002b60&quot;,
+    &quot;appName&quot;: &quot;MONGO&quot;,
+    &quot;displayName&quot;: &quot;芒果音乐&quot;,
+    &quot;description&quot;: &quot;芒果音乐&quot;,
+    &quot;createTime&quot;: &quot;2018-11-05 17:29:53&quot;
+  }
+}
+</code></pre></div><h4 id="根据应用唯一标识符批量获取应用"><a href="#根据应用唯一标识符批量获取应用" aria-hidden="true" class="header-anchor">#</a> 根据应用唯一标识符批量获取应用</h4> <p>出入多个应用唯一标识符，返回多个应用信息。</p> <h5 id="链接-33"><a href="#链接-33" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>GET /v1/app</p> <h5 id="参数-33"><a href="#参数-33" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>uidList</td> <td>应用唯一标识符列表</td> <td>query</td> <td>Array[string]</td></tr></tbody></table> <p>举例：
+查看品牌是小米的所有设备
+/v1/app?uidList=5a756efbe0dd11e898a000163e002b60%2C6dd50bbfdc3711e898a000163e002b60</p> <h5 id="返回值-33"><a href="#返回值-33" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;message&quot;: &quot;success&quot;,
+  &quot;code&quot;: 200000,
+  &quot;data&quot;: [
+    {
+      &quot;uid&quot;: &quot;5a756efbe0dd11e898a000163e002b60&quot;,
+      &quot;appName&quot;: &quot;MONGO&quot;,
+      &quot;displayName&quot;: &quot;芒果音乐&quot;,
+      &quot;description&quot;: &quot;芒果音乐&quot;,
+      &quot;enabled&quot;: true,
+      &quot;createTime&quot;: &quot;2018-11-05 17:29:54&quot;,
+      &quot;updateTime&quot;: &quot;2018-11-05 17:29:54&quot;
+    },
+    {
+      &quot;uid&quot;: &quot;6dd50bbfdc3711e898a000163e002b60&quot;,
+      &quot;appName&quot;: &quot;DONKEY&quot;,
+      &quot;displayName&quot;: &quot;电驴快传&quot;,
+      &quot;description&quot;: &quot;电驴快传是一款基于区块链的短视频应用&quot;,
+      &quot;enabled&quot;: true,
+      &quot;createTime&quot;: &quot;2018-10-30 19:32:06&quot;,
+      &quot;updateTime&quot;: &quot;2018-10-30 19:32:06&quot;
+    }
+  ]
+}
+</code></pre></div><h4 id="按条件查询设备列表-2"><a href="#按条件查询设备列表-2" aria-hidden="true" class="header-anchor">#</a> 按条件查询设备列表</h4> <p>指定条件查询分页查询设备信息。</p> <h5 id="链接-34"><a href="#链接-34" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>GET /v1/app/{uid}</p> <h5 id="参数-34"><a href="#参数-34" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>uid</td> <td>应用唯一标识符列表</td> <td>path</td> <td>string</td></tr></tbody></table> <p>举例：
+查看品牌是小米的所有设备
+/v1/app/5a756efbe0dd11e898a000163e002b60</p> <h5 id="返回值-34"><a href="#返回值-34" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;message&quot;: &quot;success&quot;,
+  &quot;code&quot;: 200000,
+  &quot;data&quot;: {
+    &quot;uid&quot;: &quot;5a756efbe0dd11e898a000163e002b60&quot;,
+    &quot;appName&quot;: &quot;MONGO&quot;,
+    &quot;displayName&quot;: &quot;芒果音乐&quot;,
+    &quot;description&quot;: &quot;芒果音乐&quot;,
+    &quot;enabled&quot;: true,
+    &quot;createTime&quot;: &quot;2018-11-05 17:29:54&quot;
+  }
+}
+</code></pre></div><h3 id="数据字典接口"><a href="#数据字典接口" aria-hidden="true" class="header-anchor">#</a> 数据字典接口</h3> <h4 id="创建数据字典类型"><a href="#创建数据字典类型" aria-hidden="true" class="header-anchor">#</a> 创建数据字典类型</h4> <p>指定条件查询分页查询设备信息。</p> <h5 id="链接-35"><a href="#链接-35" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>POST /v1/dict/types</p> <h5 id="参数-35"><a href="#参数-35" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>createType</td> <td>字典类型创建对象</td> <td>body</td> <td></td></tr></tbody></table> <p>createType参数详解</p> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>hasChildren</td> <td>是否具有子条目</td> <td></td> <td>boolean</td></tr> <tr><td>itemType</td> <td>子条目类型，若没有子节点，则是自身类型</td> <td></td> <td>String</td></tr> <tr><td>typeCode</td> <td>类型代码</td> <td></td> <td>String</td></tr> <tr><td>typeName</td> <td>类型名称，用于前端展现</td> <td></td> <td>String</td></tr> <tr><td>itemValue</td> <td>条目值，若hasChildren为false，说明只有一级，需要设置当前值</td> <td></td> <td>String</td></tr></tbody></table> <p>举例：
+创建国家类型
+/v1/dict/types
+createType</p> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;hasChildren&quot;: true,
+  &quot;itemType&quot;: &quot;java.lang.String&quot;,
+  &quot;typeCode&quot;: &quot;COUNTRY&quot;,
+  &quot;typeName&quot;: &quot;国家&quot;
+}
+</code></pre></div><p>创建单笔交易最大金额数据字典项，无子条目</p> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;hasChildren&quot;: false,
+  &quot;itemType&quot;: &quot;java.math.BigDecimal&quot;,
+  &quot;typeCode&quot;: &quot;MAX_PER_DEAL&quot;,
+  &quot;typeName&quot;: &quot;单笔交易最大金额&quot;
+}
+</code></pre></div><h5 id="返回值-35"><a href="#返回值-35" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <p>国家类型返回值</p> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;message&quot;: &quot;success&quot;,
+  &quot;code&quot;: 200000,
+  &quot;data&quot;: {
+    &quot;uid&quot;: &quot;5fcf24cbe0e111e898a000163e002b60&quot;,
+    &quot;typeCode&quot;: &quot;COUNTRY&quot;,
+    &quot;typeName&quot;: &quot;国家&quot;,
+    &quot;itemType&quot;: &quot;java.lang.String&quot;,
+    &quot;enabled&quot;: true,
+    &quot;createTime&quot;: &quot;2018-11-05 17:58:41&quot;,
+    &quot;updateTime&quot;: &quot;2018-11-05 17:58:41&quot;,
+    &quot;hasChildren&quot;: true,
+    &quot;itemValue&quot;: &quot;string&quot;
+  }
+}
+</code></pre></div><p>单笔交易最大金额</p> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;message&quot;: &quot;success&quot;,
+  &quot;code&quot;: 200000,
+  &quot;data&quot;: {
+    &quot;uid&quot;: &quot;b2683b4ee0ec11e898a000163e002b60&quot;,
+    &quot;typeCode&quot;: &quot;MAX_PER_DEAL&quot;,
+    &quot;typeName&quot;: &quot;单笔交易最大金额&quot;,
+    &quot;itemType&quot;: &quot;java.math.BigDecimal&quot;,
+    &quot;enabled&quot;: true,
+    &quot;createTime&quot;: &quot;2018-11-05 19:19:44&quot;,
+    &quot;updateTime&quot;: &quot;2018-11-05 19:19:44&quot;,
+    &quot;hasChildren&quot;: false
+  }
+}
+</code></pre></div><h4 id="查看指定的数据字典类型"><a href="#查看指定的数据字典类型" aria-hidden="true" class="header-anchor">#</a> 查看指定的数据字典类型</h4> <p>根据类型编码获取字典类型。</p> <h5 id="链接-36"><a href="#链接-36" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>GET /v1/dict/types/{typeCode}</p> <h5 id="参数-36"><a href="#参数-36" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>typeCode</td> <td>类型编码</td> <td>path</td> <td>string</td></tr></tbody></table> <p>举例：
+查看品牌是小米的所有设备
+/v1/dict/types/MAX_PER_DEAL</p> <h5 id="返回值-36"><a href="#返回值-36" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;message&quot;: &quot;success&quot;,
+  &quot;code&quot;: 200000,
+  &quot;data&quot;: {
+    &quot;uid&quot;: &quot;b2683b4ee0ec11e898a000163e002b60&quot;,
+    &quot;typeCode&quot;: &quot;MAX_PER_DEAL&quot;,
+    &quot;typeName&quot;: &quot;单笔交易最大金额&quot;,
+    &quot;itemType&quot;: &quot;java.math.BigDecimal&quot;,
+    &quot;enabled&quot;: true,
+    &quot;createTime&quot;: &quot;2018-11-05 19:19:44&quot;,
+    &quot;updateTime&quot;: &quot;2018-11-05 19:19:44&quot;,
+    &quot;hasChildren&quot;: false
+  }
+}
+</code></pre></div><h4 id="查看数据字典类型列表"><a href="#查看数据字典类型列表" aria-hidden="true" class="header-anchor">#</a> 查看数据字典类型列表</h4> <p>指定条件查询分页查询设备信息。</p> <h5 id="链接-37"><a href="#链接-37" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>GET /v1/dict/types</p> <h5 id="参数-37"><a href="#参数-37" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>typeName</td> <td>类型名称</td> <td>query</td> <td>string</td></tr> <tr><td>hasChildren</td> <td>是否有子条目</td> <td>query</td> <td>boolean</td></tr> <tr><td>enabled</td> <td>用户是否有效</td> <td>query</td> <td>boolean</td></tr> <tr><td>sortby</td> <td>排序属性</td> <td>query</td> <td>string</td></tr> <tr><td>order</td> <td>排序顺序</td> <td>query</td> <td>string</td></tr> <tr><td>page</td> <td>第几页</td> <td>query</td> <td>integer</td></tr> <tr><td>pageSize</td> <td>每页记录数</td> <td>query</td> <td>integer</td></tr></tbody></table> <p>举例：
+所有有子条目的类型
+/v1/dict/types?hasChildren=true</p> <h5 id="返回值-37"><a href="#返回值-37" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;message&quot;: &quot;success&quot;,
+  &quot;code&quot;: 200000,
+  &quot;data&quot;: [
+    {
+      &quot;uid&quot;: &quot;1f69cc4baf5011e898a000163e002b60&quot;,
+      &quot;typeCode&quot;: &quot;string&quot;,
+      &quot;typeName&quot;: &quot;string&quot;,
+      &quot;itemType&quot;: &quot;string&quot;,
+      &quot;enabled&quot;: true,
+      &quot;createTime&quot;: &quot;2018-09-03 16:05:29&quot;,
+      &quot;updateTime&quot;: &quot;2018-09-03 16:05:29&quot;,
+      &quot;hasChildren&quot;: true,
+      &quot;itemValue&quot;: &quot;string&quot;
+    },
+    {
+      &quot;uid&quot;: &quot;5fcf24cbe0e111e898a000163e002b60&quot;,
+      &quot;typeCode&quot;: &quot;COUNTRY&quot;,
+      &quot;typeName&quot;: &quot;国家&quot;,
+      &quot;itemType&quot;: &quot;java.lang.String&quot;,
+      &quot;enabled&quot;: true,
+      &quot;createTime&quot;: &quot;2018-11-05 17:58:41&quot;,
+      &quot;updateTime&quot;: &quot;2018-11-05 17:58:41&quot;,
+      &quot;hasChildren&quot;: true,
+      &quot;itemValue&quot;: &quot;string&quot;
+    },
+    {
+      &quot;uid&quot;: &quot;cbdf3e9faf2711e898a000163e002b60&quot;,
+      &quot;typeCode&quot;: &quot;LANGUAGE&quot;,
+      &quot;typeName&quot;: &quot;语言&quot;,
+      &quot;itemType&quot;: &quot;java.lang.String&quot;,
+      &quot;enabled&quot;: true,
+      &quot;createTime&quot;: &quot;2018-09-03 11:16:49&quot;,
+      &quot;updateTime&quot;: &quot;2018-09-03 11:16:49&quot;,
+      &quot;hasChildren&quot;: true
+    }
+  ],
+  &quot;page&quot;: 1,
+  &quot;pageSize&quot;: 10,
+  &quot;first&quot;: &quot;http://localhost:9941/usercenter/v1/dict/types?hasChildren=true&amp;page=1&amp;pageSize=10&quot;,
+  &quot;next&quot;: &quot;http://localhost:9941/usercenter/v1/dict/types?hasChildren=true&amp;page=1&amp;pageSize=10&quot;,
+  &quot;previous&quot;: &quot;http://localhost:9941/usercenter/v1/dict/types?hasChildren=true&amp;page=1&amp;pageSize=10&quot;,
+  &quot;last&quot;: &quot;http://localhost:9941/usercenter/v1/dict/types?hasChildren=true&amp;page=1&amp;pageSize=10&quot;
+}
+</code></pre></div><h4 id="创建数据字典条目"><a href="#创建数据字典条目" aria-hidden="true" class="header-anchor">#</a> 创建数据字典条目</h4> <p>在指定数据字典类型下创建指定条目名称。</p> <h5 id="链接-38"><a href="#链接-38" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>POST /v1/dict/{typeUid}/items</p> <h5 id="参数-38"><a href="#参数-38" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>typeUid</td> <td>数据字典唯一标识符</td> <td>path</td> <td>string</td></tr> <tr><td>createItem</td> <td>字典条目创建对象</td> <td>body</td> <td></td></tr></tbody></table> <p>createItem参数说明</p> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>itemCode</td> <td>条目代码</td> <td></td> <td>string</td></tr> <tr><td>itemName</td> <td>条目显示名</td> <td></td> <td>string</td></tr> <tr><td>itemOrder</td> <td>条目排序</td> <td></td> <td>integer</td></tr> <tr><td>itemValue</td> <td>条目值</td> <td></td> <td>string</td></tr> <tr><td>typeUid</td> <td>字典类型唯一标识符，可不填</td> <td></td> <td>string</td></tr></tbody></table> <p>举例：
+创建一个俄罗斯的国家子条目
+/v1/dict/5fcf24cbe0e111e898a000163e002b60/items
+createItem信息</p> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;itemCode&quot;: &quot;RUS&quot;,
+  &quot;itemName&quot;: &quot;俄罗斯&quot;,
+  &quot;itemOrder&quot;: 2,
+  &quot;itemValue&quot;: &quot;Russia&quot;,
+  &quot;typeUid&quot;: &quot;5fcf24cbe0e111e898a000163e002b60&quot;
+}
+</code></pre></div><h5 id="返回值-38"><a href="#返回值-38" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;message&quot;: &quot;success&quot;,
+  &quot;code&quot;: 200000,
+  &quot;data&quot;: {
+    &quot;uid&quot;: &quot;6cdb1a2fe0f011e898a000163e002b60&quot;,
+    &quot;typeUid&quot;: &quot;5fcf24cbe0e111e898a000163e002b60&quot;,
+    &quot;itemCode&quot;: &quot;RUS&quot;,
+    &quot;itemName&quot;: &quot;俄罗斯&quot;,
+    &quot;itemValue&quot;: &quot;Russia&quot;,
+    &quot;itemOrder&quot;: 2,
+    &quot;enabled&quot;: true,
+    &quot;createTime&quot;: &quot;2018-11-05 19:46:25&quot;,
+    &quot;updateTime&quot;: &quot;2018-11-05 19:46:25&quot;
+  }
+}
+</code></pre></div><h4 id="查看指定的数据字典类型下的条目"><a href="#查看指定的数据字典类型下的条目" aria-hidden="true" class="header-anchor">#</a> 查看指定的数据字典类型下的条目</h4> <p>传入字典类型代码查询其下的字典条目。</p> <h5 id="链接-39"><a href="#链接-39" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>GET /v1/dict/{typeCode}/items</p> <h5 id="参数-39"><a href="#参数-39" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>typeCode</td> <td>类型编码</td> <td>path</td> <td>string</td></tr> <tr><td>enabled</td> <td>是否有效</td> <td>query</td> <td>boolean</td></tr> <tr><td>sortby</td> <td>排序属性</td> <td>query</td> <td>string</td></tr> <tr><td>order</td> <td>排序顺序</td> <td>query</td> <td>string</td></tr> <tr><td>page</td> <td>第几页</td> <td>query</td> <td>integer</td></tr> <tr><td>pageSize</td> <td>每页记录数</td> <td>query</td> <td>integer</td></tr></tbody></table> <p>举例：
+查看类型为COUNTRY下的条目
+/v1/dict/COUNTRY/items?sortby=itemCode</p> <h5 id="返回值-39"><a href="#返回值-39" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;message&quot;: &quot;success&quot;,
+  &quot;code&quot;: 200000,
+  &quot;data&quot;: [
+    {
+      &quot;uid&quot;: &quot;6cdb1a2fe0f011e898a000163e002b60&quot;,
+      &quot;typeUid&quot;: &quot;5fcf24cbe0e111e898a000163e002b60&quot;,
+      &quot;itemCode&quot;: &quot;RUS&quot;,
+      &quot;itemName&quot;: &quot;俄罗斯&quot;,
+      &quot;itemValue&quot;: &quot;Russia&quot;,
+      &quot;itemOrder&quot;: 2,
+      &quot;enabled&quot;: true,
+      &quot;createTime&quot;: &quot;2018-11-05 19:46:26&quot;,
+      &quot;updateTime&quot;: &quot;2018-11-05 19:46:26&quot;
+    },
+    {
+      &quot;uid&quot;: &quot;984a7ce5e0ef11e898a000163e002b60&quot;,
+      &quot;typeUid&quot;: &quot;5fcf24cbe0e111e898a000163e002b60&quot;,
+      &quot;itemCode&quot;: &quot;CHN&quot;,
+      &quot;itemName&quot;: &quot;中国&quot;,
+      &quot;itemValue&quot;: &quot;China&quot;,
+      &quot;itemOrder&quot;: 0,
+      &quot;enabled&quot;: true,
+      &quot;createTime&quot;: &quot;2018-11-05 19:40:29&quot;,
+      &quot;updateTime&quot;: &quot;2018-11-05 19:40:29&quot;
+    },
+    {
+      &quot;uid&quot;: &quot;b356ef87e0ef11e898a000163e002b60&quot;,
+      &quot;typeUid&quot;: &quot;5fcf24cbe0e111e898a000163e002b60&quot;,
+      &quot;itemCode&quot;: &quot;USA&quot;,
+      &quot;itemName&quot;: &quot;美国&quot;,
+      &quot;itemValue&quot;: &quot;United States&quot;,
+      &quot;itemOrder&quot;: 2,
+      &quot;enabled&quot;: true,
+      &quot;createTime&quot;: &quot;2018-11-05 19:41:15&quot;,
+      &quot;updateTime&quot;: &quot;2018-11-05 19:41:15&quot;
+    }
+  ],
+  &quot;page&quot;: 1,
+  &quot;pageSize&quot;: 10,
+  &quot;first&quot;: &quot;http://localhost:9941/usercenter/v1/dict/COUNTRY/items?sortby=itemCode&amp;page=1&amp;pageSize=10&quot;,
+  &quot;next&quot;: &quot;http://localhost:9941/usercenter/v1/dict/COUNTRY/items?sortby=itemCode&amp;page=1&amp;pageSize=10&quot;,
+  &quot;previous&quot;: &quot;http://localhost:9941/usercenter/v1/dict/COUNTRY/items?sortby=itemCode&amp;page=1&amp;pageSize=10&quot;,
+  &quot;last&quot;: &quot;http://localhost:9941/usercenter/v1/dict/COUNTRY/items?sortby=itemCode&amp;page=1&amp;pageSize=10&quot;
+}
+</code></pre></div><h4 id="查看指定code的数据字典条目"><a href="#查看指定code的数据字典条目" aria-hidden="true" class="header-anchor">#</a> 查看指定code的数据字典条目</h4> <p>根据条目代码获取数据字典条目项。</p> <h5 id="链接-40"><a href="#链接-40" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>GET /v1/dict/items/{itemCode}</p> <h5 id="参数-40"><a href="#参数-40" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>itemCode</td> <td>条目编码</td> <td>path</td> <td>string</td></tr></tbody></table> <p>举例：
+/v1/dict/items/CHN</p> <h5 id="返回值-40"><a href="#返回值-40" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;message&quot;: &quot;success&quot;,
+  &quot;code&quot;: 200000,
+  &quot;data&quot;: {
+    &quot;uid&quot;: &quot;984a7ce5e0ef11e898a000163e002b60&quot;,
+    &quot;typeUid&quot;: &quot;5fcf24cbe0e111e898a000163e002b60&quot;,
+    &quot;itemCode&quot;: &quot;CHN&quot;,
+    &quot;itemName&quot;: &quot;中国&quot;,
+    &quot;itemValue&quot;: &quot;China&quot;,
+    &quot;itemOrder&quot;: 0,
+    &quot;enabled&quot;: true,
+    &quot;createTime&quot;: &quot;2018-11-05 19:40:29&quot;,
+    &quot;updateTime&quot;: &quot;2018-11-05 19:40:29&quot;
+  }
+}
+</code></pre></div><h3 id="工具接口"><a href="#工具接口" aria-hidden="true" class="header-anchor">#</a> 工具接口</h3> <h4 id="获取当前应用信息"><a href="#获取当前应用信息" aria-hidden="true" class="header-anchor">#</a> 获取当前应用信息</h4> <p>从http头部获取应用信息。</p> <h5 id="链接-41"><a href="#链接-41" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>GET /v1/application</p> <h5 id="参数-41"><a href="#参数-41" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>Application</td> <td>应用信息</td> <td>header</td> <td>string</td></tr></tbody></table> <p>举例：
+/v1/application
+Request Headers</p> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;Accept&quot;: &quot;*/*&quot;,
+  &quot;Application&quot;: &quot;SICKLE:1.0.0&quot;
+}
+</code></pre></div><h5 id="返回值-41"><a href="#返回值-41" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;appName&quot;: &quot;SICKLE&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;
+}
+</code></pre></div><h4 id="获取客户端真实的ip地址"><a href="#获取客户端真实的ip地址" aria-hidden="true" class="header-anchor">#</a> 获取客户端真实的ip地址</h4> <p>获取客户端访问的真是ip地址，在负载均衡代理之前的ip。</p> <h5 id="链接-42"><a href="#链接-42" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>GET /v1/clientip</p> <h5 id="参数-42"><a href="#参数-42" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <p>无参数
+举例：
+/v1/clientip</p> <h5 id="返回值-42"><a href="#返回值-42" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>0:0:0:0:0:0:0:1
+</code></pre></div><h4 id="获取当前平台信息"><a href="#获取当前平台信息" aria-hidden="true" class="header-anchor">#</a> 获取当前平台信息</h4> <p>从http头部获取应用信息。</p> <h5 id="链接-43"><a href="#链接-43" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>GET /v1/platform</p> <h5 id="参数-43"><a href="#参数-43" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>Platform</td> <td>平台信息</td> <td>header</td> <td>string</td></tr></tbody></table> <p>举例：
+/v1/platform
+Request Headers</p> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;Accept&quot;: &quot;*/*&quot;,
+  &quot;Platform&quot;: &quot;iOS&quot;
+}
+</code></pre></div><h5 id="返回值-43"><a href="#返回值-43" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>iOS
+</code></pre></div><h4 id="获取当前token"><a href="#获取当前token" aria-hidden="true" class="header-anchor">#</a> 获取当前token</h4> <p>从http头部获取访问token信息。</p> <h5 id="链接-44"><a href="#链接-44" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>GET /v1/token</p> <h5 id="参数-44"><a href="#参数-44" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <table><thead><tr><th>参数名</th> <th>说明</th> <th>传递方式</th> <th>参数类型</th></tr></thead> <tbody><tr><td>Token</td> <td>访问token</td> <td>header</td> <td>string</td></tr></tbody></table> <p>举例：
+/v1/token
+Request Headers</p> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;Accept&quot;: &quot;*/*&quot;,
+  &quot;Token&quot;: &quot;d31a6af803184fca93511700cf2a988a&quot;
+}
+</code></pre></div><h5 id="返回值-44"><a href="#返回值-44" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;userUid&quot;: &quot;05ec0890c46811e898a000163e002b60&quot;,
+  &quot;token&quot;: &quot;d31a6af803184fca93511700cf2a988a&quot;
+}
+</code></pre></div><h4 id="获取当前user-agent"><a href="#获取当前user-agent" aria-hidden="true" class="header-anchor">#</a> 获取当前User-Agent</h4> <p>从http头部获取访问客户端的User-Agent。</p> <h5 id="链接-45"><a href="#链接-45" aria-hidden="true" class="header-anchor">#</a> 链接</h5> <p>GET /v1/useragent</p> <h5 id="参数-45"><a href="#参数-45" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <p>无参数
+举例：
+/v1/useragent</p> <h5 id="返回值-45"><a href="#返回值-45" aria-hidden="true" class="header-anchor">#</a> 返回值</h5> <div class="language- extra-class"><pre class="language-text"><code>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.1 Safari/605.1.15
+</code></pre></div></div> <div class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated: </span> <span class="time">3/4/2019, 10:12:42 AM</span></div></div> <!----> </div> <!----></div></div>
+    <script src="/assets/js/app.4c782fad.js" defer></script><script src="/assets/js/4.b9d50c9e.js" defer></script>
+  </body>
+</html>
+
+        
+      </div>
+      
+      
+      
+    </div>
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/favicon.ico"
+               alt="Leguang" />
+          <p class="site-author-name" itemprop="name">Leguang</p>
+           
+              <p class="site-description motion-element" itemprop="description">浮生若戏悲欢聚 笑看天风扫寰宇</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/leguang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:langmanleguang@qq.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#用户系统设计文档"><span class="nav-number">1.</span> <span class="nav-text"># 用户系统设计文档</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库设计"><span class="nav-number">1.1.</span> <span class="nav-text"># 数据库设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#表功能介绍"><span class="nav-number">1.1.1.</span> <span class="nav-text"># 表功能介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#user-credential-t"><span class="nav-number">1.1.1.1.</span> <span class="nav-text"># user_credential_t</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#user-info-t"><span class="nav-number">1.1.1.2.</span> <span class="nav-text"># user_info_t</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#user-token-t"><span class="nav-number">1.1.1.3.</span> <span class="nav-text"># user_token_t</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#user-login-h"><span class="nav-number">1.1.1.4.</span> <span class="nav-text"># user_login_h</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#user-login-summary-t"><span class="nav-number">1.1.1.5.</span> <span class="nav-text"># user_login_summary_t</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#user-app-r"><span class="nav-number">1.1.1.6.</span> <span class="nav-text"># user_app_r</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#app-t"><span class="nav-number">1.1.1.7.</span> <span class="nav-text"># app_t</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#app-version-t"><span class="nav-number">1.1.1.8.</span> <span class="nav-text"># app_version_t</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#device-t"><span class="nav-number">1.1.1.9.</span> <span class="nav-text"># device_t</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#block-t"><span class="nav-number">1.1.1.10.</span> <span class="nav-text"># block_t</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#block-element-r"><span class="nav-number">1.1.1.11.</span> <span class="nav-text"># block_element_r</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sms-phone-counter-t"><span class="nav-number">1.1.1.12.</span> <span class="nav-text"># sms_phone_counter_t</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sms-ip-counter-t"><span class="nav-number">1.1.1.13.</span> <span class="nav-text"># sms_ip_counter_t</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#user-locale-t"><span class="nav-number">1.1.1.14.</span> <span class="nav-text"># user_locale_t</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sys-dict-type-t"><span class="nav-number">1.1.1.15.</span> <span class="nav-text"># sys_dict_type_t</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sys-dict-item-t"><span class="nav-number">1.1.1.16.</span> <span class="nav-text"># sys_dict_item_t</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#point-account-t"><span class="nav-number">1.1.1.17.</span> <span class="nav-text"># point_account_t</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#point-record-t"><span class="nav-number">1.1.1.18.</span> <span class="nav-text"># point_record_t</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#transaction-t"><span class="nav-number">1.1.1.19.</span> <span class="nav-text"># transaction_t</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接口说明"><span class="nav-number">1.2.</span> <span class="nav-text"># 接口说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用户接口"><span class="nav-number">1.2.1.</span> <span class="nav-text"># 用户接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取用户认证信息"><span class="nav-number">1.2.1.1.</span> <span class="nav-text"># 获取用户认证信息</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接"><span class="nav-number">1.2.1.1.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数"><span class="nav-number">1.2.1.1.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值"><span class="nav-number">1.2.1.1.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用户信息分页查询"><span class="nav-number">1.2.1.2.</span> <span class="nav-text"># 用户信息分页查询</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-2"><span class="nav-number">1.2.1.2.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-2"><span class="nav-number">1.2.1.2.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-2"><span class="nav-number">1.2.1.2.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将用户加入黑名单"><span class="nav-number">1.2.1.3.</span> <span class="nav-text"># 将用户加入黑名单</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-3"><span class="nav-number">1.2.1.3.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-3"><span class="nav-number">1.2.1.3.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-3"><span class="nav-number">1.2.1.3.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将用户移除黑名单"><span class="nav-number">1.2.1.4.</span> <span class="nav-text"># 将用户移除黑名单</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-4"><span class="nav-number">1.2.1.4.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-4"><span class="nav-number">1.2.1.4.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-4"><span class="nav-number">1.2.1.4.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#按条件分页查询用户登录过的设备"><span class="nav-number">1.2.1.5.</span> <span class="nav-text"># 按条件分页查询用户登录过的设备</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-5"><span class="nav-number">1.2.1.5.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-5"><span class="nav-number">1.2.1.5.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-5"><span class="nav-number">1.2.1.5.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#按用户唯一标识符查询单个用户信息"><span class="nav-number">1.2.1.6.</span> <span class="nav-text"># 按用户唯一标识符查询单个用户信息</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-6"><span class="nav-number">1.2.1.6.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-6"><span class="nav-number">1.2.1.6.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-6"><span class="nav-number">1.2.1.6.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看用户最近登录的设备"><span class="nav-number">1.2.1.7.</span> <span class="nav-text"># 查看用户最近登录的设备</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-7"><span class="nav-number">1.2.1.7.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-7"><span class="nav-number">1.2.1.7.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-7"><span class="nav-number">1.2.1.7.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改用户信息"><span class="nav-number">1.2.1.8.</span> <span class="nav-text"># 修改用户信息</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-8"><span class="nav-number">1.2.1.8.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-8"><span class="nav-number">1.2.1.8.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-8"><span class="nav-number">1.2.1.8.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取用户语言区域"><span class="nav-number">1.2.1.9.</span> <span class="nav-text"># 获取用户语言区域</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-9"><span class="nav-number">1.2.1.9.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-9"><span class="nav-number">1.2.1.9.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-9"><span class="nav-number">1.2.1.9.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置用户语言区域"><span class="nav-number">1.2.1.10.</span> <span class="nav-text"># 设置用户语言区域</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-10"><span class="nav-number">1.2.1.10.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-10"><span class="nav-number">1.2.1.10.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-10"><span class="nav-number">1.2.1.10.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改密码"><span class="nav-number">1.2.1.11.</span> <span class="nav-text"># 修改密码</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-11"><span class="nav-number">1.2.1.11.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-11"><span class="nav-number">1.2.1.11.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-11"><span class="nav-number">1.2.1.11.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取当前用户指定应用的积分账户"><span class="nav-number">1.2.1.12.</span> <span class="nav-text"># 获取当前用户指定应用的积分账户</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-12"><span class="nav-number">1.2.1.12.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-12"><span class="nav-number">1.2.1.12.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-12"><span class="nav-number">1.2.1.12.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#给指定用户增减积分"><span class="nav-number">1.2.1.13.</span> <span class="nav-text"># 给指定用户增减积分</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-13"><span class="nav-number">1.2.1.13.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-13"><span class="nav-number">1.2.1.13.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-13"><span class="nav-number">1.2.1.13.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#短信接口"><span class="nav-number">1.2.2.</span> <span class="nav-text"># 短信接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#按用户唯一标识符查询单个用户信息-2"><span class="nav-number">1.2.2.1.</span> <span class="nav-text"># 按用户唯一标识符查询单个用户信息</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-14"><span class="nav-number">1.2.2.1.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-14"><span class="nav-number">1.2.2.1.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-14"><span class="nav-number">1.2.2.1.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#极验接口"><span class="nav-number">1.2.3.</span> <span class="nav-text"># 极验接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#极验预处理"><span class="nav-number">1.2.3.1.</span> <span class="nav-text"># 极验预处理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-15"><span class="nav-number">1.2.3.1.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-15"><span class="nav-number">1.2.3.1.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-15"><span class="nav-number">1.2.3.1.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#极验二次验证"><span class="nav-number">1.2.3.2.</span> <span class="nav-text"># 极验二次验证</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-16"><span class="nav-number">1.2.3.2.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-16"><span class="nav-number">1.2.3.2.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-16"><span class="nav-number">1.2.3.2.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#极验短信发送"><span class="nav-number">1.2.3.3.</span> <span class="nav-text"># 极验短信发送</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-17"><span class="nav-number">1.2.3.3.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-17"><span class="nav-number">1.2.3.3.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-17"><span class="nav-number">1.2.3.3.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#token接口"><span class="nav-number">1.2.4.</span> <span class="nav-text"># token接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#请求token"><span class="nav-number">1.2.4.1.</span> <span class="nav-text"># 请求token</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-18"><span class="nav-number">1.2.4.1.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-18"><span class="nav-number">1.2.4.1.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-18"><span class="nav-number">1.2.4.1.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取token"><span class="nav-number">1.2.4.2.</span> <span class="nav-text"># 获取token</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-19"><span class="nav-number">1.2.4.2.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-19"><span class="nav-number">1.2.4.2.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-19"><span class="nav-number">1.2.4.2.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#刷新token"><span class="nav-number">1.2.4.3.</span> <span class="nav-text"># 刷新token</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-20"><span class="nav-number">1.2.4.3.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-20"><span class="nav-number">1.2.4.3.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-20"><span class="nav-number">1.2.4.3.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除token"><span class="nav-number">1.2.4.4.</span> <span class="nav-text"># 删除token</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-21"><span class="nav-number">1.2.4.4.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-21"><span class="nav-number">1.2.4.4.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-21"><span class="nav-number">1.2.4.4.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用户应用关联接口"><span class="nav-number">1.2.5.</span> <span class="nav-text"># 用户应用关联接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查询本机是否与当前应用关联"><span class="nav-number">1.2.5.1.</span> <span class="nav-text"># 查询本机是否与当前应用关联</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-22"><span class="nav-number">1.2.5.1.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-22"><span class="nav-number">1.2.5.1.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-22"><span class="nav-number">1.2.5.1.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#登录历史信息"><span class="nav-number">1.2.6.</span> <span class="nav-text"># 登录历史信息</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#按ip统计时段内登录的设备数"><span class="nav-number">1.2.6.1.</span> <span class="nav-text"># 按ip统计时段内登录的设备数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-23"><span class="nav-number">1.2.6.1.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-23"><span class="nav-number">1.2.6.1.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-23"><span class="nav-number">1.2.6.1.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#按ip统计时段内登录的设备数-2"><span class="nav-number">1.2.6.2.</span> <span class="nav-text"># 按ip统计时段内登录的设备数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-24"><span class="nav-number">1.2.6.2.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-24"><span class="nav-number">1.2.6.2.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-24"><span class="nav-number">1.2.6.2.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取用户时间段内登录的信息"><span class="nav-number">1.2.6.3.</span> <span class="nav-text"># 获取用户时间段内登录的信息</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-25"><span class="nav-number">1.2.6.3.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-25"><span class="nav-number">1.2.6.3.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-25"><span class="nav-number">1.2.6.3.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#全局事务接口"><span class="nav-number">1.2.7.</span> <span class="nav-text"># 全局事务接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取全局事务"><span class="nav-number">1.2.7.1.</span> <span class="nav-text"># 获取全局事务</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-26"><span class="nav-number">1.2.7.1.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-26"><span class="nav-number">1.2.7.1.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-26"><span class="nav-number">1.2.7.1.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#访问终端信息接口"><span class="nav-number">1.2.8.</span> <span class="nav-text"># 访问终端信息接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#上传终端信息，并返回用户信息"><span class="nav-number">1.2.8.1.</span> <span class="nav-text"># 上传终端信息，并返回用户信息</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-27"><span class="nav-number">1.2.8.1.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-27"><span class="nav-number">1.2.8.1.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-27"><span class="nav-number">1.2.8.1.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#积分接口"><span class="nav-number">1.2.9.</span> <span class="nav-text"># 积分接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取当前用户的积分账户"><span class="nav-number">1.2.9.1.</span> <span class="nav-text"># 获取当前用户的积分账户</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-28"><span class="nav-number">1.2.9.1.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-28"><span class="nav-number">1.2.9.1.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-28"><span class="nav-number">1.2.9.1.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#给指定用户增减积分-2"><span class="nav-number">1.2.9.2.</span> <span class="nav-text"># 给指定用户增减积分</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-29"><span class="nav-number">1.2.9.2.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-29"><span class="nav-number">1.2.9.2.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-29"><span class="nav-number">1.2.9.2.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设备信息接口"><span class="nav-number">1.2.10.</span> <span class="nav-text"># 设备信息接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#按条件查询设备列表"><span class="nav-number">1.2.10.1.</span> <span class="nav-text"># 按条件查询设备列表</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-30"><span class="nav-number">1.2.10.1.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-30"><span class="nav-number">1.2.10.1.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-30"><span class="nav-number">1.2.10.1.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取在线设备列表"><span class="nav-number">1.2.10.2.</span> <span class="nav-text"># 获取在线设备列表</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-31"><span class="nav-number">1.2.10.2.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-31"><span class="nav-number">1.2.10.2.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-31"><span class="nav-number">1.2.10.2.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用接口"><span class="nav-number">1.2.11.</span> <span class="nav-text"># 应用接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建应用"><span class="nav-number">1.2.11.1.</span> <span class="nav-text"># 创建应用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-32"><span class="nav-number">1.2.11.1.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-32"><span class="nav-number">1.2.11.1.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-32"><span class="nav-number">1.2.11.1.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#根据应用唯一标识符批量获取应用"><span class="nav-number">1.2.11.2.</span> <span class="nav-text"># 根据应用唯一标识符批量获取应用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-33"><span class="nav-number">1.2.11.2.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-33"><span class="nav-number">1.2.11.2.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-33"><span class="nav-number">1.2.11.2.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#按条件查询设备列表-2"><span class="nav-number">1.2.11.3.</span> <span class="nav-text"># 按条件查询设备列表</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-34"><span class="nav-number">1.2.11.3.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-34"><span class="nav-number">1.2.11.3.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-34"><span class="nav-number">1.2.11.3.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据字典接口"><span class="nav-number">1.2.12.</span> <span class="nav-text"># 数据字典接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建数据字典类型"><span class="nav-number">1.2.12.1.</span> <span class="nav-text"># 创建数据字典类型</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-35"><span class="nav-number">1.2.12.1.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-35"><span class="nav-number">1.2.12.1.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-35"><span class="nav-number">1.2.12.1.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看指定的数据字典类型"><span class="nav-number">1.2.12.2.</span> <span class="nav-text"># 查看指定的数据字典类型</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-36"><span class="nav-number">1.2.12.2.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-36"><span class="nav-number">1.2.12.2.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-36"><span class="nav-number">1.2.12.2.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看数据字典类型列表"><span class="nav-number">1.2.12.3.</span> <span class="nav-text"># 查看数据字典类型列表</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-37"><span class="nav-number">1.2.12.3.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-37"><span class="nav-number">1.2.12.3.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-37"><span class="nav-number">1.2.12.3.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建数据字典条目"><span class="nav-number">1.2.12.4.</span> <span class="nav-text"># 创建数据字典条目</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-38"><span class="nav-number">1.2.12.4.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-38"><span class="nav-number">1.2.12.4.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-38"><span class="nav-number">1.2.12.4.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看指定的数据字典类型下的条目"><span class="nav-number">1.2.12.5.</span> <span class="nav-text"># 查看指定的数据字典类型下的条目</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-39"><span class="nav-number">1.2.12.5.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-39"><span class="nav-number">1.2.12.5.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-39"><span class="nav-number">1.2.12.5.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看指定code的数据字典条目"><span class="nav-number">1.2.12.6.</span> <span class="nav-text"># 查看指定code的数据字典条目</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-40"><span class="nav-number">1.2.12.6.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-40"><span class="nav-number">1.2.12.6.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-40"><span class="nav-number">1.2.12.6.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工具接口"><span class="nav-number">1.2.13.</span> <span class="nav-text"># 工具接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取当前应用信息"><span class="nav-number">1.2.13.1.</span> <span class="nav-text"># 获取当前应用信息</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-41"><span class="nav-number">1.2.13.1.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-41"><span class="nav-number">1.2.13.1.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-41"><span class="nav-number">1.2.13.1.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取客户端真实的ip地址"><span class="nav-number">1.2.13.2.</span> <span class="nav-text"># 获取客户端真实的ip地址</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-42"><span class="nav-number">1.2.13.2.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-42"><span class="nav-number">1.2.13.2.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-42"><span class="nav-number">1.2.13.2.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取当前平台信息"><span class="nav-number">1.2.13.3.</span> <span class="nav-text"># 获取当前平台信息</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-43"><span class="nav-number">1.2.13.3.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-43"><span class="nav-number">1.2.13.3.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-43"><span class="nav-number">1.2.13.3.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取当前token"><span class="nav-number">1.2.13.4.</span> <span class="nav-text"># 获取当前token</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-44"><span class="nav-number">1.2.13.4.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-44"><span class="nav-number">1.2.13.4.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-44"><span class="nav-number">1.2.13.4.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取当前user-agent"><span class="nav-number">1.2.13.5.</span> <span class="nav-text"># 获取当前User-Agent</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#链接-45"><span class="nav-number">1.2.13.5.1.</span> <span class="nav-text"># 链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-45"><span class="nav-number">1.2.13.5.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回值-45"><span class="nav-number">1.2.13.5.3.</span> <span class="nav-text"># 返回值</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Leguang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 访问总量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("UUrijxLg3YUcx9WIg5UlJchI-gzGzoHsz", "m6wXtGXT8NUa5W4TiErrXWpO");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

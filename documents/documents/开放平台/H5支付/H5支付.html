@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="IT站点, 一站到底" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="IT站点" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="H5支付 | 文档                                            文档   主页文档关于   Github       主页文档关于   Github       概述  REST接口规范目标要求HTTP部分错误/异常处理url失效对于后台文档的要求容错性（健壮性）国际化（多语言支持）开放平台  App支付概述阅读对象产">
+<meta name="keywords" content="IT站点, 一站到底">
+<meta property="og:type" content="website">
+<meta property="og:title" content="IT站点">
+<meta property="og:url" content="http://itsite.cn/documents/documents/开放平台/H5支付/H5支付.html">
+<meta property="og:site_name" content="IT站点">
+<meta property="og:description" content="H5支付 | 文档                                            文档   主页文档关于   Github       主页文档关于   Github       概述  REST接口规范目标要求HTTP部分错误/异常处理url失效对于后台文档的要求容错性（健壮性）国际化（多语言支持）开放平台  App支付概述阅读对象产">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://itsite.cn/documents/documents/开放平台/H5支付/images/01.png">
+<meta property="og:updated_time" content="2019-03-04T03:08:49.413Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IT站点">
+<meta name="twitter:description" content="H5支付 | 文档                                            文档   主页文档关于   Github       主页文档关于   Github       概述  REST接口规范目标要求HTTP部分错误/异常处理url失效对于后台文档的要求容错性（健壮性）国际化（多语言支持）开放平台  App支付概述阅读对象产">
+<meta name="twitter:image" content="http://itsite.cn/documents/documents/开放平台/H5支付/images/01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://itsite.cn/documents/documents/开放平台/H5支付/H5支付.html"/>
+
+
+
+
+
+  <title> | IT站点</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c5074ca51b610e0c4ba4fac7b24abea2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IT站点</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一站到底</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+	<h1 class="post-title" itemprop="name headline"></h1>
+
+
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+        
+          <!DOCTYPE html>
+<html lang="en-US">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>H5支付 | 文档</title>
+    <meta name="description" content="浮生若戏悲欢聚  笑看天风扫寰宇">
+    <link rel="icon" href="/img/logo.ico">
+  <link rel="apple-touch-icon" href="/img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;">
+    
+    <link rel="preload" href="/assets/css/0.styles.aca6ffaf.css" as="style"><link rel="preload" href="/assets/js/app.4c782fad.js" as="script"><link rel="preload" href="/assets/js/27.68e8506f.js" as="script"><link rel="prefetch" href="/assets/js/10.4aad0737.js"><link rel="prefetch" href="/assets/js/11.ae680e7e.js"><link rel="prefetch" href="/assets/js/12.1d27d644.js"><link rel="prefetch" href="/assets/js/13.448e0c99.js"><link rel="prefetch" href="/assets/js/14.7888ac07.js"><link rel="prefetch" href="/assets/js/15.eac6ce9c.js"><link rel="prefetch" href="/assets/js/16.5e257dc3.js"><link rel="prefetch" href="/assets/js/17.c6a677c6.js"><link rel="prefetch" href="/assets/js/18.e4e45a90.js"><link rel="prefetch" href="/assets/js/19.48e71871.js"><link rel="prefetch" href="/assets/js/2.d7f99d20.js"><link rel="prefetch" href="/assets/js/20.6bdc9c27.js"><link rel="prefetch" href="/assets/js/21.b7e2381f.js"><link rel="prefetch" href="/assets/js/22.03913796.js"><link rel="prefetch" href="/assets/js/23.619adacc.js"><link rel="prefetch" href="/assets/js/24.e3862973.js"><link rel="prefetch" href="/assets/js/25.ab00d111.js"><link rel="prefetch" href="/assets/js/26.68a82a09.js"><link rel="prefetch" href="/assets/js/28.6bda4ca9.js"><link rel="prefetch" href="/assets/js/29.841a5e29.js"><link rel="prefetch" href="/assets/js/3.517a5386.js"><link rel="prefetch" href="/assets/js/30.baa92884.js"><link rel="prefetch" href="/assets/js/31.6a6e1f1f.js"><link rel="prefetch" href="/assets/js/32.e0593dce.js"><link rel="prefetch" href="/assets/js/33.f64e7c9d.js"><link rel="prefetch" href="/assets/js/34.2c4dcebd.js"><link rel="prefetch" href="/assets/js/35.f18d89f4.js"><link rel="prefetch" href="/assets/js/36.cd0f4d28.js"><link rel="prefetch" href="/assets/js/37.ce45c53f.js"><link rel="prefetch" href="/assets/js/38.65ab49b8.js"><link rel="prefetch" href="/assets/js/39.c27bd8cc.js"><link rel="prefetch" href="/assets/js/4.b9d50c9e.js"><link rel="prefetch" href="/assets/js/40.c45010eb.js"><link rel="prefetch" href="/assets/js/41.59dd911f.js"><link rel="prefetch" href="/assets/js/42.a23b0abe.js"><link rel="prefetch" href="/assets/js/43.573562a0.js"><link rel="prefetch" href="/assets/js/44.4b58ecc8.js"><link rel="prefetch" href="/assets/js/45.0bc668b9.js"><link rel="prefetch" href="/assets/js/5.a28803d7.js"><link rel="prefetch" href="/assets/js/6.9c510520.js"><link rel="prefetch" href="/assets/js/7.a39ff044.js"><link rel="prefetch" href="/assets/js/8.31c34ffe.js"><link rel="prefetch" href="/assets/js/9.3cd700e9.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.aca6ffaf.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewbox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"/></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">文档</span></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">主页</a></div><div class="nav-item"><a href="/documents/" class="nav-link router-link-active">文档</a></div><div class="nav-item"><a href="/about/" class="nav-link">关于</a></div><div class="nav-item"><a href="https://github.com/leguang" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"/> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"/></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">主页</a></div><div class="nav-item"><a href="/documents/" class="nav-link router-link-active">文档</a></div><div class="nav-item"><a href="/about/" class="nav-link">关于</a></div><div class="nav-item"><a href="https://github.com/leguang" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"/> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"/></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><div class="sidebar-group first"><p class="sidebar-heading"><span>概述</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/documents/" class="sidebar-link">REST接口规范</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/documents/#目标" class="sidebar-link">目标</a></li><li class="sidebar-sub-header"><a href="/documents/#要求" class="sidebar-link">要求</a></li><li class="sidebar-sub-header"><a href="/documents/#http部分" class="sidebar-link">HTTP部分</a></li><li class="sidebar-sub-header"><a href="/documents/#错误-异常处理" class="sidebar-link">错误/异常处理</a></li><li class="sidebar-sub-header"><a href="/documents/#url失效" class="sidebar-link">url失效</a></li><li class="sidebar-sub-header"><a href="/documents/#对于后台文档的要求" class="sidebar-link">对于后台文档的要求</a></li><li class="sidebar-sub-header"><a href="/documents/#容错性（健壮性）" class="sidebar-link">容错性（健壮性）</a></li><li class="sidebar-sub-header"><a href="/documents/#国际化（多语言支持）" class="sidebar-link">国际化（多语言支持）</a></li></ul></li></ul></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading open"><span>开放平台</span> <span class="arrow down"></span></p> <ul class="sidebar-group-items"><li><a href="/documents/开放平台/App支付/App支付.html" class="sidebar-link">App支付</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/documents/开放平台/App支付/App支付.html#概述" class="sidebar-link">概述</a></li><li class="sidebar-sub-header"><a href="/documents/开放平台/App支付/App支付.html#阅读对象" class="sidebar-link">阅读对象</a></li><li class="sidebar-sub-header"><a href="/documents/开放平台/App支付/App支付.html#产品介绍" class="sidebar-link">产品介绍</a></li><li class="sidebar-sub-header"><a href="/documents/开放平台/App支付/App支付.html#产品演示" class="sidebar-link">产品演示</a></li><li class="sidebar-sub-header"><a href="/documents/开放平台/App支付/App支付.html#开发准备工作" class="sidebar-link">开发准备工作</a></li><li class="sidebar-sub-header"><a href="/documents/开放平台/App支付/App支付.html#快速接入" class="sidebar-link">快速接入</a></li><li class="sidebar-sub-header"><a href="/documents/开放平台/App支付/App支付.html#android端集成" class="sidebar-link">Android端集成</a></li><li class="sidebar-sub-header"><a href="/documents/开放平台/App支付/App支付.html#ios端集成" class="sidebar-link">iOS端集成</a></li><li class="sidebar-sub-header"><a href="/documents/开放平台/App支付/App支付.html#异步接口" class="sidebar-link">异步接口</a></li><li class="sidebar-sub-header"><a href="/documents/开放平台/App支付/App支付.html#商户管理" class="sidebar-link">商户管理</a></li><li class="sidebar-sub-header"><a href="/documents/开放平台/App支付/App支付.html#常见问题" class="sidebar-link">常见问题</a></li></ul></li><li><a href="/documents/开放平台/H5支付/H5支付.html" class="active sidebar-link">H5支付</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/documents/开放平台/H5支付/H5支付.html#概述" class="sidebar-link">概述</a></li><li class="sidebar-sub-header"><a href="/documents/开放平台/H5支付/H5支付.html#阅读对象" class="sidebar-link">阅读对象</a></li><li class="sidebar-sub-header"><a href="/documents/开放平台/H5支付/H5支付.html#产品介绍" class="sidebar-link">产品介绍</a></li><li class="sidebar-sub-header"><a href="/documents/开放平台/H5支付/H5支付.html#产品演示" class="sidebar-link">产品演示</a></li><li class="sidebar-sub-header"><a href="/documents/开放平台/H5支付/H5支付.html#开发准备工作" class="sidebar-link">开发准备工作</a></li><li class="sidebar-sub-header"><a href="/documents/开放平台/H5支付/H5支付.html#快速接入" class="sidebar-link">快速接入</a></li><li class="sidebar-sub-header"><a href="/documents/开放平台/H5支付/H5支付.html#异步接口" class="sidebar-link">异步接口</a></li><li class="sidebar-sub-header"><a href="/documents/开放平台/H5支付/H5支付.html#商户管理" class="sidebar-link">商户管理</a></li><li class="sidebar-sub-header"><a href="/documents/开放平台/H5支付/H5支付.html#常见问题" class="sidebar-link">常见问题</a></li><li class="sidebar-sub-header"><a href="/documents/开放平台/H5支付/H5支付.html#js模板" class="sidebar-link">JS模板</a></li></ul></li><li><a href="/documents/开放平台/API支付/API支付.html" class="sidebar-link">API支付</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/documents/开放平台/API支付/API支付.html#概述" class="sidebar-link">概述</a></li><li class="sidebar-sub-header"><a href="/documents/开放平台/API支付/API支付.html#阅读对象" class="sidebar-link">阅读对象</a></li><li class="sidebar-sub-header"><a href="/documents/开放平台/API支付/API支付.html#产品介绍" class="sidebar-link">产品介绍</a></li><li class="sidebar-sub-header"><a href="/documents/开放平台/API支付/API支付.html#转账" class="sidebar-link">转账</a></li></ul></li><li><a href="/documents/开放平台/API文档/API文档.html" class="sidebar-link">API文档</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/documents/开放平台/API文档/API文档.html#公共部分" class="sidebar-link">公共部分</a></li><li class="sidebar-sub-header"><a href="/documents/开放平台/API文档/API文档.html#api列表" class="sidebar-link">API列表</a></li></ul></li></ul></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>镰刀项目</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>摩尔钱包</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>电商项目</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>币圈项目</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>用户系统</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>中后台系统</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>公共部分</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>规范</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>技术选型</span> <span class="arrow right"></span></p> <!----></div></li></ul> </div> <div class="page"> <div class="content"><h1 id="h5支付"><a href="#h5支付" aria-hidden="true" class="header-anchor">#</a> H5支付</h1> <blockquote><p>Author：Leguang</p> <p>E-Mail：<a href="mailto:langmanleguang@qq.com" target="_blank" rel="noopener">langmanleguang@qq.com</a></p></blockquote> <h2 id="概述"><a href="#概述" aria-hidden="true" class="header-anchor">#</a> 概述</h2> <p>第三方应用可以通过接入支付sdk的方式，使用虚拟货币进行充值，提现功能。进一步活跃社区，赋能商户，丰富生态。为了提高数据的安全性，降低中途被截获篡改的风险，强烈建议由发起调用的应用对应的服务端按照要求对数据进行二次封装加密后，再调用支付中心服务。</p> <h2 id="阅读对象"><a href="#阅读对象" aria-hidden="true" class="header-anchor">#</a> 阅读对象</h2> <p>产品经理，开发人员，测试人员，区块链工程师，其他有关人员。</p> <h2 id="产品介绍"><a href="#产品介绍" aria-hidden="true" class="header-anchor">#</a> 产品介绍</h2> <p>适用于商家在移动端网页应用中集成摩尔钱包支付功能。商家在网页中调用摩尔支付提供的网页支付接口调起摩尔钱包手机客户端内的支付模块，商家网页会跳转到摩尔钱包中完成支付，支付完后跳回到商家网页内，最后展示支付结果。若无法唤起摩尔钱包客户端，则说明该设备未安装摩尔钱包App，可能因该浏览器或者系统限制，比如微信内置浏览器、小米、百度等浏览器，建议有相关页面提示切换其他浏览器进行支付。</p> <h2 id="产品演示"><a href="#产品演示" aria-hidden="true" class="header-anchor">#</a> 产品演示</h2> <h3 id="android演示"><a href="#android演示" aria-hidden="true" class="header-anchor">#</a> Android演示</h3> <video id="video" controls="controls" preload="none" style="width:360px;height:640px"><source id="mp4" src="videos\AndroidH5.mp4" type="video/mp4"></video> <h3 id="ios端演示"><a href="#ios端演示" aria-hidden="true" class="header-anchor">#</a> iOS端演示</h3> <video id="video" controls="controls" preload="none" style="width:360px;height:640px"><source id="mp4" src="videos\iOSH5.mp4" type="video/mp4"></video>
+### 案例演示
+<p>摩尔官方体验链接：https://open.mol.one/static/test/H5.html，由于微信/QQ/支付宝等内置浏览器有拦截，请在系统浏览器中打开。</p> <h2 id="开发准备工作"><a href="#开发准备工作" aria-hidden="true" class="header-anchor">#</a> 开发准备工作</h2> <p>请添加官方微信：gaici-btc，进行开发者资格认证，申请应用AppID和商户ID。</p> <h2 id="快速接入"><a href="#快速接入" aria-hidden="true" class="header-anchor">#</a> 快速接入</h2> <h3 id="第一步：搭建和配置开发环境"><a href="#第一步：搭建和配置开发环境" aria-hidden="true" class="header-anchor">#</a> 第一步：搭建和配置开发环境</h3> <ol><li><p>下载服务端SDK</p> <p>为了帮助开发者调用开放接口，我们提供了开放平台服务端SDK，包含 Java、PHP和.NET三语言版本（暂时只有 Java SDK，其他平台可以通过接口实现 ），封装了签名&amp;验签、HTTP接口请求等基础功能。<strong>为了快速接入并避免接入过程中的签名验签问题，请您先下载对应语言版本的SDK并引入您的开发工程。</strong></p></li></ol> <h3 id="第二步：调用接口"><a href="#第二步：调用接口" aria-hidden="true" class="header-anchor">#</a> 第二步：调用接口</h3> <h4 id="流程"><a href="#流程" aria-hidden="true" class="header-anchor">#</a> 流程</h4> <p>为提供一套安全，高性能，可伸缩的商户支付服务，需要以下经过以下主要流程。调用流程如下：</p> <p><img src="images/01.png" alt="支付交互流程">具体步骤描述如下：</p> <ol><li><p>用户想商户服务器发起请求，在商户侧完成下单</p></li> <li><p>由商户后台向支付中心发起下单请求<a href="https://api.imfmf.com/payment/v1/unifiedorder" target="_blank" rel="noopener noreferrer">调用统一下单接口<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"/> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"/></svg></a>，注意调用<a href="https://api.imfmf.com/payment/v1/merchant/sign" target="_blank" rel="noopener noreferrer">签名接口<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"/> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"/></svg></a>进行签名</p></li> <li><p>统一下单接口返回支付相关参数给商户后台，如支付跳转uri（参数名为“uri”），<strong>并重新签名</strong>后返回给客户端，客户端通过uri调起摩尔钱包中间页</p></li> <li><p>如支付成功，商户后台会接收到摩尔钱包的异步通知（此处需要商户提供回调接口）</p></li> <li><p>用户在摩尔钱包内完成支付或取消支付,返回商户页面（默认为返回支付发起页面）</p></li> <li><p>商户在展示页面，引导用户主动发起支付结果的查询</p></li> <li><p>商户后台判断是否接收到摩尔钱包的支付结果通知</p></li> <li><p>展示最终的订单支付结果给用户</p></li></ol> <h4 id="统一下单接口"><a href="#统一下单接口" aria-hidden="true" class="header-anchor">#</a> 统一下单接口</h4> <p>类似支付宝和微信支付中的统一下单接口，利用该接口，第三方应用可以向摩尔的去中心化支付系统下订单，其中签名是对参数的签名，同时要将支付系统返回给后台的参数再重新签名返回应用。</p> <blockquote><p>地址：https://api.imfmf.com/payment/v1/unifiedorder</p></blockquote> <h5 id="请求头"><a href="#请求头" aria-hidden="true" class="header-anchor">#</a> 请求头</h5> <div class="language- extra-class"><pre class="language-text"><code>POST /payment/v1/unifiedorder
+Accept: application/json
+Content-Type: application/json;charset=UTF-8
+Platform: Android
+Locale: zh
+</code></pre></div><h5 id="参数"><a href="#参数" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;appID&quot;: &quot;商户应用ID&quot;,
+  &quot;body&quot;: &quot;对一笔交易的具体描述信息，用于商户携带订单的自定义数据，支付中心会原样返回&quot;,
+  &quot;merchantID&quot;: &quot;商户ID&quot;,
+  &quot;notifyUrl&quot;: &quot;异步通知地址&quot;,
+  &quot;outTradeNo&quot;: &quot;商户唯一订单号&quot;,
+  &quot;sign&quot;: &quot;签名&quot;,
+  &quot;signType&quot;: &quot;签名类型，目前只支持RSA2&quot;,
+  &quot;subject&quot;: &quot;商品的标题/交易标题/订单标题/订单关键字等&quot;,
+  &quot;timeoutExpress&quot;: &quot;该笔订单允许的最晚付款时间，逾期将关闭交易。取值范围：1～60。单位：分钟，不支持小数点&quot;,
+  &quot;totalAmount&quot;: &quot;订单总金额，单位MOL，精确到小数点后六位&quot;
+}
+</code></pre></div><table><thead><tr><th>param</th> <th>类型</th> <th>是否必要</th> <th>描述</th></tr></thead> <tbody><tr><td>appID</td> <td>String</td> <td>是</td> <td>应用ID，需要申请</td></tr> <tr><td>body</td> <td>String</td> <td>是</td> <td>对一笔交易的具体描述信息，用于商户携带订单的自定义数据，支付中心会原样返回</td></tr> <tr><td>merchantID</td> <td>String</td> <td>是</td> <td>商户ID，需要申请</td></tr> <tr><td>notifyUrl</td> <td>String</td> <td>是</td> <td>异步通知地址，当订单产生的交易块被链上确认后，会回调这个接口告诉调用方</td></tr> <tr><td>outTradeNo</td> <td>String</td> <td>是</td> <td>商户唯一订单号</td></tr> <tr><td>sign</td> <td>String</td> <td>是</td> <td>签名，调用SDK，或者签名接口，生成签名</td></tr> <tr><td>signType</td> <td>String</td> <td>否</td> <td>签名类型，默认是RSA2，目前只支持RSA2</td></tr> <tr><td>subject</td> <td>String</td> <td>是</td> <td>商品的标题/交易标题/订单标题/订单关键字等，会显示在支付中间页面</td></tr> <tr><td>timeoutExpress</td> <td>String</td> <td>是</td> <td>该笔订单允许的最晚付款时间，逾期将关闭交易。取值范围：1～60。单位：分钟，不支持小数点</td></tr> <tr><td>totalAmount</td> <td>String</td> <td>是</td> <td>订单总金额，单位MOL，精确到小数点后六位</td></tr></tbody></table> <h5 id="响应头"><a href="#响应头" aria-hidden="true" class="header-anchor">#</a> 响应头</h5> <div class="language- extra-class"><pre class="language-text"><code>HTTP/1.1 200 OK
+Content-Type:application/json; charset=utf-8
+Cache-Control: no-store
+Pragma: no-cache
+</code></pre></div><h5 id="响应"><a href="#响应" aria-hidden="true" class="header-anchor">#</a> 响应</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+    &quot;code&quot;: 200,
+    &quot;message&quot;: &quot;success&quot;,
+    &quot;data&quot;: {
+        &quot;appID&quot;: &quot;2018120543000134&quot;,
+        &quot;merchantID&quot;: &quot;2088120323000120&quot;,
+        &quot;prepayID&quot;: &quot;20181209140047578000134663&quot;,
+        &quot;sign&quot;: &quot;TnRiZXFKUm9CYmVLaCtZUlhNUWE3TENHZzFvYUM2T1pyMm1HODFjWTFTY0wvc3VrUXFrMVdSdmFzVDNZdWxTQmJGVGlaQmhaZllJZ2NHcW9TKytTRlZ2TXZPTld3ZFVGNFNJSUQ4T0VBeGw4TVJiQktTa2MwY1p6RXVqT1JPajVlcC9GMVJHN05UQ0RCQzB4SExMd0xLWUx6a1U5Nk1jWTdoTDh5a1QyVm1HaC9pbVQ1SUdKWDF0S0tNb3ZscWpncDlxOXBKb0kvRk1wZ0wxNTJKcGNqS0h3a0xmeHpqdXluekNrV1ZvQUJHYS95TFIrbGQ5dUkyMU1PUnp2UGFxb1lXQkUxTTZiUVh3ZExYZ1RLLzJORTl3Z1FvcjZZUDRrWHVqcEpnTzJqeHFPM3E1MGlnMTRpR2QwOUtNVGJBT2RSUEFaaEkxamRoZlg0SCtEcHlmRmRnPT0=&quot;,
+        &quot;uri&quot;: &quot;mol://pay?appID=2018120543000134&amp;merchantID=2088120323000120&amp;prepayID=20181209140047578000134663&amp;sign=TnRiZXFKUm9CYmVLaCtZUlhNUWE3TENHZzFvYUM2T1pyMm1HODFjWTFTY0wvc3VrUXFrMVdSdmFzVDNZdWxTQmJGVGlaQmhaZllJZ2NHcW9TKytTRlZ2TXZPTld3ZFVGNFNJSUQ4T0VBeGw4TVJiQktTa2MwY1p6RXVqT1JPajVlcC9GMVJHN05UQ0RCQzB4SExMd0xLWUx6a1U5Nk1jWTdoTDh5a1QyVm1HaC9pbVQ1SUdKWDF0S0tNb3ZscWpncDlxOXBKb0kvRk1wZ0wxNTJKcGNqS0h3a0xmeHpqdXluekNrV1ZvQUJHYS95TFIrbGQ5dUkyMU1PUnp2UGFxb1lXQkUxTTZiUVh3ZExYZ1RLLzJORTl3Z1FvcjZZUDRrWHVqcEpnTzJqeHFPM3E1MGlnMTRpR2QwOUtNVGJBT2RSUEFaaEkxamRoZlg0SCtEcHlmRmRnPT0=&quot;
+    }
+}
+</code></pre></div><table><thead><tr><th>key</th> <th>类型</th> <th>是否必要</th> <th>描述</th></tr></thead> <tbody><tr><td>message</td> <td>String</td> <td>是</td> <td>接口响应描述，由摩尔去中心化支付系统根据当前请求实际情况而定，方便开发者调试</td></tr> <tr><td>code</td> <td>int</td> <td>是</td> <td>状态码，200为正确解决，其他均为异常结果</td></tr> <tr><td>data</td> <td>JSON对象</td> <td>是</td> <td>返回接口正文数据</td></tr> <tr><td>data.appID</td> <td>String</td> <td>是</td> <td>应用ID，与参数中的一致</td></tr> <tr><td>data.merchantID</td> <td>String</td> <td>是</td> <td>商户ID，与参数中的一致</td></tr> <tr><td>data.prepayID</td> <td>String</td> <td>是</td> <td>预支付ID，可以在支付中间页面中显示</td></tr> <tr><td>data.sign</td> <td>String</td> <td>是</td> <td>签名，需要第三方开发者重新签名才能成功调起摩尔钱包进行支付</td></tr> <tr><td>data.uri</td> <td>String</td> <td>是</td> <td>调起摩尔钱包支付的重要参数，通过该参数即可调用摩尔钱包支付</td></tr></tbody></table> <h5 id="异常"><a href="#异常" aria-hidden="true" class="header-anchor">#</a> 异常</h5> <table><thead><tr><th>状态码</th> <th>类型</th> <th>描述</th></tr></thead> <tbody><tr><td>410</td> <td>int</td> <td>商户不存在</td></tr> <tr><td>411</td> <td>int</td> <td>商户审核中</td></tr> <tr><td>412</td> <td>int</td> <td>商户应用不存在</td></tr> <tr><td>413</td> <td>int</td> <td>商户应用审核中</td></tr> <tr><td>414</td> <td>int</td> <td>商户订单号重复</td></tr> <tr><td>415</td> <td>int</td> <td>订单金额需大于0</td></tr> <tr><td>416</td> <td>int</td> <td>订单标题(subject)过长</td></tr> <tr><td>417</td> <td>int</td> <td>签名类型只支持RSA2</td></tr> <tr><td>418</td> <td>int</td> <td>订单自定义数据(body)过长</td></tr> <tr><td>419</td> <td>int</td> <td>订单过期时间无效</td></tr> <tr><td>420</td> <td>int</td> <td>签名不正确</td></tr></tbody></table> <hr> <h4 id="签名"><a href="#签名" aria-hidden="true" class="header-anchor">#</a> 签名</h4> <p>如果不利用SDK中的签名，则需要依赖该接口进行签名。用于</p> <ol><li>调用统一支付接口之前</li> <li>将调用统一下单接口得到的那些参数再签名后返回给应用</li></ol> <blockquote><p>地址：https://api.imfmf.com/payment-console/v1/merchant/sign</p></blockquote> <h5 id="请求头-2"><a href="#请求头-2" aria-hidden="true" class="header-anchor">#</a> 请求头</h5> <div class="language- extra-class"><pre class="language-text"><code>POST /payment-console/v1/unifiedorder
+Accept: application/json
+Content-Type: application/json;charset=UTF-8
+Platform: Android
+Locale: zh
+</code></pre></div><h5 id="参数-2"><a href="#参数-2" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+    &quot;appID&quot;: &quot;2018120543000134&quot;,
+    &quot;merchantID&quot;: &quot;2088120323000120&quot;,
+    &quot;signSource&quot;: {
+    	需要进行签名的内容
+    }
+}
+</code></pre></div><table><thead><tr><th>param</th> <th>类型</th> <th>是否必要</th> <th>描述</th></tr></thead> <tbody><tr><td>appID</td> <td>String</td> <td>是</td> <td>应用ID，需要申请</td></tr> <tr><td>merchantID</td> <td>String</td> <td>是</td> <td>商户ID，需要申请</td></tr> <tr><td>signSource</td> <td>JSON对象</td> <td>是</td> <td>需要签名参数</td></tr></tbody></table> <h5 id="响应头-2"><a href="#响应头-2" aria-hidden="true" class="header-anchor">#</a> 响应头</h5> <div class="language- extra-class"><pre class="language-text"><code>HTTP/1.1 200 OK
+Content-Type:application/json; charset=utf-8
+Cache-Control: no-store
+Pragma: no-cache
+</code></pre></div><h5 id="响应-2"><a href="#响应-2" aria-hidden="true" class="header-anchor">#</a> 响应</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+    &quot;code&quot;: 200,
+    &quot;message&quot;: &quot;success&quot;,
+    &quot;data&quot;: {
+        &quot;appID&quot;: &quot;2018120543000134&quot;,
+        &quot;merchantID&quot;: &quot;2088120323000120&quot;,
+        &quot;sign&quot;: &quot;Q1RKWnIxYUQvY0hBandhSHV3bjJmdElEN3p4QzI5bkdEWVJUenJSV01jM2ZxalgyQ3pvYjQyc3RlbW1XSWlWeWsvQnJxc3Z2L05va2tlSW1lUjU4TmxDeFlWckZIWVIySGVzMUdqNEhxbERheWFxU0JJNGNzMUJDU1J3NTBkbjdmcUhOL01DdEtPdDJwSTdRQlIzdWk3Vkwyb3F3cHdRSm03ck83MFdZNFNMVG9JYUNVV0RKVWpsRWpHY3hJMEtDenRpRnJIS0ZZYTIyZExUYlNSY0NncFJ3eEw2RTBLQ3Q3aVJOcnpxYmF1dTJGOCtlYVVlNW1EVHNjeHNkWW9sczA3Y1lEbEFicFlSZGZKSGg2dGpsZURxUnpaZzBLMUJmYUVCNCttM1BrWUtwU1Z4bDQ4cU9SanU3dmRGMHFRTFU1Njg1Z0lEaFNZRlVOc1lIRXhOTjd3PT0=&quot;,
+        &quot;signSource&quot;: {
+           请求是需要进行签名的内容
+        }
+    }
+}
+</code></pre></div><table><thead><tr><th>key</th> <th>类型</th> <th>是否必要</th> <th>描述</th></tr></thead> <tbody><tr><td>message</td> <td>String</td> <td>是</td> <td>接口响应描述，由摩尔去中心化支付系统根据当前请求实际情况而定，方便开发者调试</td></tr> <tr><td>code</td> <td>int</td> <td>是</td> <td>状态码，200为正确解决，其他均为异常结果</td></tr> <tr><td>data</td> <td>JSON对象</td> <td>是</td> <td>返回接口正文数据</td></tr> <tr><td>data.appID</td> <td>String</td> <td>是</td> <td>应用ID，与参数中的一致</td></tr> <tr><td>data.merchantID</td> <td>String</td> <td>是</td> <td>商户ID，与参数中的一致</td></tr> <tr><td>data.sign</td> <td>String</td> <td>是</td> <td>签名结果</td></tr> <tr><td>data.signSource</td> <td>JSON对象</td> <td>是</td> <td>请求是需要进行签名的内容</td></tr></tbody></table> <h5 id="异常-2"><a href="#异常-2" aria-hidden="true" class="header-anchor">#</a> 异常</h5> <table><thead><tr><th>状态码</th> <th>类型</th> <th>描述</th></tr></thead> <tbody><tr><td>410</td> <td>int</td> <td>商户不存在</td></tr> <tr><td>411</td> <td>int</td> <td>商户审核中</td></tr> <tr><td>412</td> <td>int</td> <td>商户应用不存在</td></tr> <tr><td>413</td> <td>int</td> <td>商户应用审核中</td></tr> <tr><td>414</td> <td>int</td> <td>商户订单号重复</td></tr> <tr><td>415</td> <td>int</td> <td>订单金额需大于0</td></tr> <tr><td>416</td> <td>int</td> <td>订单标题(subject)过长</td></tr> <tr><td>417</td> <td>int</td> <td>签名类型只支持RSA2</td></tr> <tr><td>418</td> <td>int</td> <td>订单自定义数据(body)过长</td></tr> <tr><td>419</td> <td>int</td> <td>订单过期时间无效</td></tr></tbody></table> <hr> <h2 id="异步接口"><a href="#异步接口" aria-hidden="true" class="header-anchor">#</a> 异步接口</h2> <ul><li>后台回调接口</li></ul> <p>该接口由第三方调用者在申请统一订单的时候设置好，当支付系统确认交易成功后会通过POST方法调用该接口，第三方调用者就可以根据这个信号来同步订单操作。当接收到回调时，操作步骤如下：</p> <ol><li><p>验签（当然你不验签也可以，除非你能保证该接口不会被人乱用）；</p> <p>应该由商户自己实现验签，目前可以调用支付中心验签接口，校验参数完整性。</p></li> <li><p>对比异步通知中商户ID、商户应用ID和商户保存的是否一致；</p></li> <li><p>商户查询自己的订单是否存在；</p></li> <li><p>比对金额；</p></li> <li><p>以上校验都通过了，商户处理自己的订单逻辑，并且返回success字符串。<strong>注意：程序执行完后必须打印输出“success”（不包含引号）。如果商户反馈的字符不是success这7个字符，服务器会不断重发通知，直到超过24小时22分钟。一般情况下，25小时以内完成8次通知（通知的间隔频率一般是：4m,10m,10m,1h,2h,6h,15h）；程序执行完成后，该页面不能执行页面跳转。如果执行页面跳转，会收不到success字符，会被服务器判定为该页面程序运行出现异常，而重发处理结果通知</strong>。</p></li></ol> <p>具体参数如下所示：</p> <table><thead><tr><th>param</th> <th>类型</th> <th>是否必要</th> <th>描述</th></tr></thead> <tbody><tr><td>notify_time</td> <td>String</td> <td>是</td> <td>异步通知时间</td></tr> <tr><td>notify_type</td> <td>String</td> <td>是</td> <td>异步通知类型：默认trade_status_sync</td></tr> <tr><td>merchant_id</td> <td>String</td> <td>是</td> <td>商户ID，申请所得</td></tr> <tr><td>app_id</td> <td>String</td> <td>是</td> <td>应用ID，申请所得</td></tr> <tr><td>charset</td> <td>String</td> <td>否</td> <td>编码类型，默认UTF-8</td></tr> <tr><td>version</td> <td>String</td> <td>否</td> <td>版本，默认1.0</td></tr> <tr><td>sign_type</td> <td>String</td> <td>否</td> <td>签名类型，默认是RSA2，目前只支持RSA2</td></tr> <tr><td>trade_no</td> <td>String</td> <td>是</td> <td>摩尔支付订单号</td></tr> <tr><td>out_trade_no</td> <td>String</td> <td>是</td> <td>商户订单号</td></tr> <tr><td>subject</td> <td>String</td> <td>是</td> <td>商户统一下单时传的标题，支付中心原样返回</td></tr> <tr><td>body</td> <td>String</td> <td>是</td> <td>商户统一下单时传的自定义数据，支付中心原样返回</td></tr> <tr><td>deduct_address</td> <td>String</td> <td>是</td> <td>扣款地址</td></tr> <tr><td>hash_value</td> <td>String</td> <td>是</td> <td>交易hash，可在摩尔区块链浏览器查询交易块</td></tr> <tr><td>gmt_create</td> <td>String</td> <td>是</td> <td>订单创建时间</td></tr> <tr><td>gmt_close</td> <td>String</td> <td>是</td> <td>订单完成时间</td></tr> <tr><td>trade_status</td> <td>String</td> <td>是</td> <td>订单状态，TRADE_SUCCESS：支付成功，TRADE_CLOSED：支付失败</td></tr> <tr><td>gmt_payment</td> <td>String</td> <td>是</td> <td>订单支付时间，只有当订单状态为TRADE_SUCCESS时，才有该值</td></tr> <tr><td>total_amount</td> <td>String</td> <td>是</td> <td>该笔交易总金额（摩尔数量）</td></tr> <tr><td>sign</td> <td>String</td> <td>是</td> <td>签名，由上面所有字段加值进行RSA2签名</td></tr></tbody></table> <ul><li>验签</li></ul> <p>当第三方商户服务端接收到后台异步通知时（异步通知接口被调用），需要验签，以保证该接口不被他人恶意调用，即确认为摩尔支付系统调用。</p> <blockquote><p>地址：https://api.imfmf.com/payment-console/v1/merchant/verify</p></blockquote> <h5 id="请求头-3"><a href="#请求头-3" aria-hidden="true" class="header-anchor">#</a> 请求头</h5> <div class="language- extra-class"><pre class="language-text"><code>POST /payment-console/v1/verify
+Accept: application/json
+Content-Type: application/json;charset=UTF-8
+Platform: Android
+Locale: zh
+</code></pre></div><h5 id="参数-3"><a href="#参数-3" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+    &quot;appID&quot;: &quot;2018121078000359&quot;,
+    &quot;merchantID&quot;: &quot;2088121024000228&quot;,
+    &quot;signData&quot;: {
+        &quot;app_id&quot;: &quot;2018121078000359&quot;,
+        &quot;body&quot;: &quot;this is a body&quot;,
+        &quot;charset&quot;: &quot;UTF-8&quot;,
+        &quot;deduct_address&quot;: &quot;mol_39z9yx6h6hoixztrsam9ikjkr5zxo1h66zx6g89giqtwc1yeyptqqx8jwy4o&quot;,
+        &quot;gmt_close&quot;: &quot;2018-12-12 15:08:46&quot;,
+        &quot;gmt_create&quot;: &quot;2018-12-12 15:08:33&quot;,
+        &quot;gmt_payment&quot;: &quot;2018-12-12 15:08:45&quot;,
+        &quot;hash_value&quot;: &quot;8F4F97EA543CB7A4D299700D3B17355125499742AC88F544ADD672F77ED7DB21&quot;,
+        &quot;merchant_id&quot;: &quot;2088121024000228&quot;,
+        &quot;notify_time&quot;: &quot;2018-12-12 15:08:46&quot;,
+        &quot;notify_type&quot;: &quot;trade_status_sync&quot;,
+        &quot;out_trade_no&quot;: &quot;348F241F4645C9D7E69E7FBC300C253F&quot;,
+        &quot;sign&quot;: &quot;TGlRY2N3eFNhT2ZtUWpPUmJMNGhFam9lb3Rla2l3NU43RGRITDBKbVMxT0E4OXpjaTk1Q0xBSEMxL0xscnpKMkFBQyt5NzFyU00xak8rOERMMTlJK1Y3Nkl3NlBqUXNIYWtZdFFBeWhaQ1FNaWhUTndHS1c2c3ZwdXY3MVdYbGJTRDZ5TWpRM2dsVEJvcVpNenhvTDBJMld0TlJKcTlUY05YL0t3NHkzRHVMcHB2dk9oajdXeE5GMmx0N2V5aTI2ZDN1WjhRc2RiVG1KNGp2TmZLME9vUG15V29xdjhxWFdWSng3VmFQWkdycHQwYnBwVjJ1Q0hWcE1Zd2dtQUVnOGdLVEU3UEpiR0M3ZlhtU1RWViswT0l4cUp4OUg0Z3hlSk01SEhMMjBzellJZGR5RmpDbFRMd09nTFVjVnRQcjVVY2tjTUtkQkJOMUxBMGdRcGprTzJBPT0=&quot;,
+        &quot;sign_type&quot;: &quot;RSA2&quot;,
+        &quot;subject&quot;: &quot;this is a dubject&quot;,
+        &quot;total_amount&quot;: &quot;2&quot;,
+        &quot;trade_no&quot;: &quot;20181212150833854000110978&quot;,
+        &quot;trade_status&quot;: &quot;TRADE_SUCCESS&quot;,
+        &quot;version&quot;: &quot;1.0&quot;
+    }
+}
+</code></pre></div><table><thead><tr><th>param</th> <th>类型</th> <th>是否必要</th> <th>描述</th></tr></thead> <tbody><tr><td>appID</td> <td>String</td> <td>是</td> <td>应用ID，需要申请</td></tr> <tr><td>merchantID</td> <td>String</td> <td>是</td> <td>商户ID，需要申请</td></tr> <tr><td>signData</td> <td>JSON对象</td> <td>是</td> <td>需要签名参数对象</td></tr> <tr><td>notify_time</td> <td>String</td> <td>是</td> <td>异步通知时间</td></tr> <tr><td>notify_type</td> <td>String</td> <td>是</td> <td>异步通知类型：默认trade_status_sync</td></tr> <tr><td>merchant_id</td> <td>String</td> <td>是</td> <td>商户ID，申请所得</td></tr> <tr><td>app_id</td> <td>String</td> <td>是</td> <td>应用ID，申请所得</td></tr> <tr><td>charset</td> <td>String</td> <td>否</td> <td>编码类型，默认UTF-8</td></tr> <tr><td>version</td> <td>String</td> <td>否</td> <td>版本，默认1.0</td></tr> <tr><td>sign_type</td> <td>String</td> <td>否</td> <td>签名类型，默认是RSA2，目前只支持RSA2</td></tr> <tr><td>trade_no</td> <td>String</td> <td>是</td> <td>摩尔支付订单号</td></tr> <tr><td>out_trade_no</td> <td>String</td> <td>是</td> <td>商户订单号</td></tr> <tr><td>subject</td> <td>String</td> <td>是</td> <td>商户统一下单时传的标题，支付中心原样返回</td></tr> <tr><td>body</td> <td>String</td> <td>是</td> <td>商户统一下单时传的自定义数据，支付中心原样返回</td></tr> <tr><td>deduct_address</td> <td>String</td> <td>是</td> <td>扣款地址</td></tr> <tr><td>hash_value</td> <td>String</td> <td>是</td> <td>交易hash，可在摩尔区块链浏览器查询交易块</td></tr> <tr><td>gmt_create</td> <td>String</td> <td>是</td> <td>订单创建时间</td></tr> <tr><td>gmt_close</td> <td>String</td> <td>是</td> <td>订单完成时间</td></tr> <tr><td>trade_status</td> <td>String</td> <td>是</td> <td>订单状态，TRADE_SUCCESS：支付成功，TRADE_CLOSED：支付失败</td></tr> <tr><td>gmt_payment</td> <td>String</td> <td>是</td> <td>订单支付时间，只有当订单状态为TRADE_SUCCESS时，才有该值</td></tr> <tr><td>total_amount</td> <td>String</td> <td>是</td> <td>该笔交易总金额（摩尔数量）</td></tr></tbody></table> <h5 id="响应头-3"><a href="#响应头-3" aria-hidden="true" class="header-anchor">#</a> 响应头</h5> <div class="language- extra-class"><pre class="language-text"><code>HTTP/1.1 200 OK
+Content-Type:application/json; charset=utf-8
+Cache-Control: no-store
+Pragma: no-cache
+</code></pre></div><h5 id="响应-3"><a href="#响应-3" aria-hidden="true" class="header-anchor">#</a> 响应</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+    &quot;code&quot;: 200,
+    &quot;message&quot;: &quot;success&quot;,
+    &quot;data&quot;: {
+        &quot;appID&quot;: &quot;2018121078000359&quot;,
+        &quot;merchantID&quot;: &quot;2088121024000228&quot;,
+        &quot;signData&quot;: {
+            &quot;app_id&quot;: &quot;2018121078000359&quot;,
+            &quot;body&quot;: &quot;this is a body&quot;,
+            &quot;charset&quot;: &quot;UTF-8&quot;,
+            &quot;deduct_address&quot;: &quot;mol_39z9yx6h6hoixztrsam9ikjkr5zxo1h66zx6g89giqtwc1yeyptqqx8jwy4o&quot;,
+            &quot;gmt_close&quot;: &quot;2018-12-12 15:08:46&quot;,
+            &quot;gmt_create&quot;: &quot;2018-12-12 15:08:33&quot;,
+            &quot;gmt_payment&quot;: &quot;2018-12-12 15:08:45&quot;,
+            &quot;hash_value&quot;: &quot;8F4F97EA543CB7A4D299700D3B17355125499742AC88F544ADD672F77ED7DB21&quot;,
+            &quot;merchant_id&quot;: &quot;2088121024000228&quot;,
+            &quot;notify_time&quot;: &quot;2018-12-12 15:08:46&quot;,
+            &quot;notify_type&quot;: &quot;trade_status_sync&quot;,
+            &quot;out_trade_no&quot;: &quot;348F241F4645C9D7E69E7FBC300C253F&quot;,
+            &quot;sign&quot;: &quot;TGlRY2N3eFNhT2ZtUWpPUmJMNGhFam9lb3Rla2l3NU43RGRITDBKbVMxT0E4OXpjaTk1Q0xBSEMxL0xscnpKMkFBQyt5NzFyU00xak8rOERMMTlJK1Y3Nkl3NlBqUXNIYWtZdFFBeWhaQ1FNaWhUTndHS1c2c3ZwdXY3MVdYbGJTRDZ5TWpRM2dsVEJvcVpNenhvTDBJMld0TlJKcTlUY05YL0t3NHkzRHVMcHB2dk9oajdXeE5GMmx0N2V5aTI2ZDN1WjhRc2RiVG1KNGp2TmZLME9vUG15V29xdjhxWFdWSng3VmFQWkdycHQwYnBwVjJ1Q0hWcE1Zd2dtQUVnOGdLVEU3UEpiR0M3ZlhtU1RWViswT0l4cUp4OUg0Z3hlSk01SEhMMjBzellJZGR5RmpDbFRMd09nTFVjVnRQcjVVY2tjTUtkQkJOMUxBMGdRcGprTzJBPT0=&quot;,
+            &quot;sign_type&quot;: &quot;RSA2&quot;,
+            &quot;subject&quot;: &quot;this is a dubject&quot;,
+            &quot;total_amount&quot;: &quot;2&quot;,
+            &quot;trade_no&quot;: &quot;20181212150833854000110978&quot;,
+            &quot;trade_status&quot;: &quot;TRADE_SUCCESS&quot;,
+            &quot;version&quot;: &quot;1.0&quot;
+        },
+        &quot;verifyResult&quot;: true
+    }
+}
+</code></pre></div><table><thead><tr><th>key</th> <th>类型</th> <th>是否必要</th> <th>描述</th></tr></thead> <tbody><tr><td>message</td> <td>String</td> <td>是</td> <td>接口响应描述，由摩尔去中心化支付系统根据当前请求实际情况而定，方便开发者调试</td></tr> <tr><td>code</td> <td>int</td> <td>是</td> <td>状态码，200为正确解决，其他均为异常结果</td></tr> <tr><td>data</td> <td>JSON对象</td> <td>是</td> <td>返回接口正文数据</td></tr> <tr><td>……</td> <td>……</td> <td>……</td> <td>……</td></tr> <tr><td>data.verifyResult</td> <td>boolean</td> <td>是</td> <td>true为验签通过，false为验签失败</td></tr></tbody></table> <ul><li><p>浏览器回调url</p> <p>该url为商户申请时填写，在支付完成后，摩尔钱包会调起浏览器并打开该url，如果不填则没有该动作。</p></li></ul> <h2 id="商户管理"><a href="#商户管理" aria-hidden="true" class="header-anchor">#</a> 商户管理</h2> <p>商户暂时只需要通过接口控制自己支付系统中的币，我们提供如下接口：</p> <ul><li>商户余额</li> <li>商户提现</li></ul> <h4 id="商户余额"><a href="#商户余额" aria-hidden="true" class="header-anchor">#</a> 商户余额</h4> <p>通过该接口可以查询商户在支付系统中的MOL数量。</p> <blockquote><p>地址：https://api.imfmf.com/payment-console/v1/merchant/balance</p></blockquote> <h5 id="请求头-4"><a href="#请求头-4" aria-hidden="true" class="header-anchor">#</a> 请求头</h5> <div class="language- extra-class"><pre class="language-text"><code>GET /payment-console/v1/merchant/balance
+Accept: application/json
+Content-Type: application/json;charset=UTF-8
+Platform: Android
+Locale: zh
+</code></pre></div><h5 id="参数-4"><a href="#参数-4" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <div class="language- extra-class"><pre class="language-text"><code>?merchantID=2088120323000120
+</code></pre></div><table><thead><tr><th>param</th> <th>类型</th> <th>是否必要</th> <th>描述</th></tr></thead> <tbody><tr><td>merchantID</td> <td>String</td> <td>是</td> <td>商户ID，需要申请</td></tr></tbody></table> <h5 id="响应头-4"><a href="#响应头-4" aria-hidden="true" class="header-anchor">#</a> 响应头</h5> <div class="language- extra-class"><pre class="language-text"><code>HTTP/1.1 200 OK
+Content-Type:application/json; charset=utf-8
+Cache-Control: no-store
+Pragma: no-cache
+</code></pre></div><h5 id="响应-4"><a href="#响应-4" aria-hidden="true" class="header-anchor">#</a> 响应</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+    &quot;code&quot;: 200,
+    &quot;message&quot;: &quot;success&quot;,
+    &quot;data&quot;: {
+        &quot;accountAddress&quot;: &quot;mol_xxx&quot;,
+        &quot;accumulation&quot;: &quot;14.281283&quot;,
+        &quot;balance&quot;: &quot;14.281283&quot;,
+        &quot;merchantID&quot;: &quot;2088120323000120&quot;
+    }
+}
+</code></pre></div><table><thead><tr><th>key</th> <th>类型</th> <th>是否必要</th> <th>描述</th></tr></thead> <tbody><tr><td>message</td> <td>String</td> <td>是</td> <td>接口响应描述，由摩尔去中心化支付系统根据当前请求实际情况而定，方便开发者调试</td></tr> <tr><td>code</td> <td>int</td> <td>是</td> <td>状态码，200为正确解决，其他均为异常结果</td></tr> <tr><td>data</td> <td>JSON对象</td> <td>是</td> <td>返回接口正文数据</td></tr> <tr><td>data.accountAddress</td> <td>String</td> <td>是</td> <td>商户提供的提现地址</td></tr> <tr><td>data.accumulation</td> <td>String</td> <td>是</td> <td>商户在支付系统中累积的币</td></tr> <tr><td>data.balance</td> <td>String</td> <td>是</td> <td>商户在支付系统中的余额</td></tr> <tr><td>data.merchantID</td> <td>String</td> <td>是</td> <td>商户ID</td></tr></tbody></table> <h4 id="商户提现"><a href="#商户提现" aria-hidden="true" class="header-anchor">#</a> 商户提现</h4> <p>通过该接口可以查询商户在支付系统中的MOL数量。</p> <blockquote><p>地址：https://api.imfmf.com/payment-console/v1/merchant/withdraw</p></blockquote> <h5 id="请求头-5"><a href="#请求头-5" aria-hidden="true" class="header-anchor">#</a> 请求头</h5> <div class="language- extra-class"><pre class="language-text"><code>POST /payment-console/v1/merchant/withdraw
+Accept: application/json
+Content-Type: application/json;charset=UTF-8
+Platform: Android
+Locale: zh
+</code></pre></div><h5 id="参数-5"><a href="#参数-5" aria-hidden="true" class="header-anchor">#</a> 参数</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;amount&quot;: &quot;提取金额&quot;,
+  &quot;merchantID&quot;: &quot;商户ID&quot;
+}
+</code></pre></div><table><thead><tr><th>param</th> <th>类型</th> <th>是否必要</th> <th>描述</th></tr></thead> <tbody><tr><td>amount</td> <td>String</td> <td>是</td> <td>提现MOL数量</td></tr> <tr><td>merchantID</td> <td>String</td> <td>是</td> <td>商户ID</td></tr></tbody></table> <h5 id="响应头-5"><a href="#响应头-5" aria-hidden="true" class="header-anchor">#</a> 响应头</h5> <div class="language- extra-class"><pre class="language-text"><code>HTTP/1.1 200 OK
+Content-Type:application/json; charset=utf-8
+Cache-Control: no-store
+Pragma: no-cache
+</code></pre></div><h5 id="响应-5"><a href="#响应-5" aria-hidden="true" class="header-anchor">#</a> 响应</h5> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;code&quot;: 200,
+  &quot;message&quot;: &quot;success&quot;
+}
+</code></pre></div><table><thead><tr><th>key</th> <th>类型</th> <th>是否必要</th> <th>描述</th></tr></thead> <tbody><tr><td>message</td> <td>String</td> <td>是</td> <td>接口响应描述，由摩尔去中心化支付系统根据当前请求实际情况而定，方便开发者调试</td></tr> <tr><td>code</td> <td>int</td> <td>是</td> <td>状态码，200为正确解决，其他均为异常结果</td></tr></tbody></table> <h2 id="常见问题"><a href="#常见问题" aria-hidden="true" class="header-anchor">#</a> 常见问题</h2> <h3 id="接口状态码"><a href="#接口状态码" aria-hidden="true" class="header-anchor">#</a> 接口状态码</h3> <p>接口常见状态码如下所示：</p> <table><thead><tr><th>状态码</th> <th>类型</th> <th>描述</th></tr></thead> <tbody><tr><td>200</td> <td>int</td> <td>表示成功调用</td></tr> <tr><td>400</td> <td>int</td> <td>请求错误，请重试</td></tr> <tr><td>500</td> <td>int</td> <td>请求异常，请重试</td></tr> <tr><td>410</td> <td>int</td> <td>商户不存在</td></tr> <tr><td>411</td> <td>int</td> <td>商户审核中</td></tr> <tr><td>412</td> <td>int</td> <td>商户应用不存在</td></tr> <tr><td>413</td> <td>int</td> <td>商户应用审核中</td></tr> <tr><td>414</td> <td>int</td> <td>商户订单号重复</td></tr> <tr><td>415</td> <td>int</td> <td>订单金额需大于0</td></tr> <tr><td>416</td> <td>int</td> <td>订单标题(subject)过长</td></tr> <tr><td>417</td> <td>int</td> <td>签名类型只支持RSA2</td></tr> <tr><td>418</td> <td>int</td> <td>订单自定义数据(body)过长</td></tr> <tr><td>419</td> <td>int</td> <td>订单过期时间无效</td></tr> <tr><td>420</td> <td>int</td> <td>签名不正确</td></tr> <tr><td>421</td> <td>int</td> <td>订单不存在</td></tr> <tr><td>422</td> <td>int</td> <td>请勿重复支付</td></tr> <tr><td>423</td> <td>int</td> <td>商户ID和订单号不匹配</td></tr> <tr><td>424</td> <td>int</td> <td>商户应用ID和订单号不匹配</td></tr> <tr><td>425</td> <td>int</td> <td>支付金额错误</td></tr></tbody></table> <h3 id="调用顺序"><a href="#调用顺序" aria-hidden="true" class="header-anchor">#</a> 调用顺序</h3> <ol><li>调用统一下单接口之前，要对参数进行签名，这一步本该是由SDK完成，如果没有相应平台的SDK，则通过接口下单之前要对参数签名。</li> <li>下单成功后会返回4个参数，此时得到的uri是无法调起摩尔钱包进行支付的，需要对返回的参数进行重新签名后替换掉uri中的sign参数的值。</li></ol> <h3 id="异步通知"><a href="#异步通知" aria-hidden="true" class="header-anchor">#</a> 异步通知</h3> <p>关于异步通知，是需要第三方开发者提供一个http接口，摩尔去中心化支付系统在公链成功确认该区块，即完成该笔交易，会调用该接口，并且得到该接口返回 “success” 字符即表示成功回调，否则会重复回调。</p> <h2 id="js模板"><a href="#js模板" aria-hidden="true" class="header-anchor">#</a> JS模板</h2> <p>当前端拿到后台申请到的统一订单参数后，可调用如下代码唤起摩尔钱包App进行支付：</p> <div class="language- extra-class"><pre class="language-text"><code>var uri = &quot;mol://pay?prepayID=20181208100352191000123970&amp;appID=2018120543000134&amp;merchantID=2088120323000120&amp;sign=RWp2eVhsR2NOTUFTcU9FZUgvWGZwUUVpNmUvNHQ4YTYzVVhLUEpIYjk4ZkNxUGNlVjJiNGYxdjl1WG5YSGFWS1JjUnRlS1BwS29TN2FJcW8xeUhuYzhsVmJoU2xUQTNkNEVFb1pjaEdJbytYUlRpSWwzb0tTb2tXalpDTXZPTkNpZ1F5KzA5bDlCNzQvZGNRQTZWV05YMUlJZE8vUWNMMG4xMGdLbUs2cDZ2L3dpTml5VGQra0xBc1IwZzVmajRtYWNOSk9LcEhwcDlBM3U4Y2JBckFKdlpVamV3dXNQVzBtU09TMlNVbXNnbFFwaXE5aDZpVmc0MDZLLzRmaitRbUwvRkRhUXpYRG1scWJHVVZYWmRuUUFRMzJiWVVRbVFkQ012SERDc2crK2FaZG1vR0c0ZE9CRFVBb2ZBTUo0UzA5K3NCWk4wN2tHZTRNbVBKNFNzWUVnPT0=&quot;;
+top.location.href = uri;
+</code></pre></div></div> <div class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated: </span> <span class="time">3/4/2019, 10:12:42 AM</span></div></div> <!----> </div> <!----></div></div>
+    <script src="/assets/js/app.4c782fad.js" defer></script><script src="/assets/js/27.68e8506f.js" defer></script>
+  </body>
+</html>
+
+        
+      </div>
+      
+      
+      
+    </div>
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/favicon.ico"
+               alt="Leguang" />
+          <p class="site-author-name" itemprop="name">Leguang</p>
+           
+              <p class="site-description motion-element" itemprop="description">浮生若戏悲欢聚 笑看天风扫寰宇</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/leguang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:langmanleguang@qq.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#h5支付"><span class="nav-number">1.</span> <span class="nav-text"># H5支付</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.1.</span> <span class="nav-text"># 概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#阅读对象"><span class="nav-number">1.2.</span> <span class="nav-text"># 阅读对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#产品介绍"><span class="nav-number">1.3.</span> <span class="nav-text"># 产品介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#产品演示"><span class="nav-number">1.4.</span> <span class="nav-text"># 产品演示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#android演示"><span class="nav-number">1.4.1.</span> <span class="nav-text"># Android演示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ios端演示"><span class="nav-number">1.4.2.</span> <span class="nav-text"># iOS端演示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开发准备工作"><span class="nav-number">1.5.</span> <span class="nav-text"># 开发准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快速接入"><span class="nav-number">1.6.</span> <span class="nav-text"># 快速接入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一步：搭建和配置开发环境"><span class="nav-number">1.6.1.</span> <span class="nav-text"># 第一步：搭建和配置开发环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二步：调用接口"><span class="nav-number">1.6.2.</span> <span class="nav-text"># 第二步：调用接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#流程"><span class="nav-number">1.6.2.1.</span> <span class="nav-text"># 流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#统一下单接口"><span class="nav-number">1.6.2.2.</span> <span class="nav-text"># 统一下单接口</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#请求头"><span class="nav-number">1.6.2.2.1.</span> <span class="nav-text"># 请求头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数"><span class="nav-number">1.6.2.2.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应头"><span class="nav-number">1.6.2.2.3.</span> <span class="nav-text"># 响应头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应"><span class="nav-number">1.6.2.2.4.</span> <span class="nav-text"># 响应</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#异常"><span class="nav-number">1.6.2.2.5.</span> <span class="nav-text"># 异常</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#签名"><span class="nav-number">1.6.2.3.</span> <span class="nav-text"># 签名</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#请求头-2"><span class="nav-number">1.6.2.3.1.</span> <span class="nav-text"># 请求头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-2"><span class="nav-number">1.6.2.3.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应头-2"><span class="nav-number">1.6.2.3.3.</span> <span class="nav-text"># 响应头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应-2"><span class="nav-number">1.6.2.3.4.</span> <span class="nav-text"># 响应</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#异常-2"><span class="nav-number">1.6.2.3.5.</span> <span class="nav-text"># 异常</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异步接口"><span class="nav-number">1.7.</span> <span class="nav-text"># 异步接口</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#请求头-3"><span class="nav-number">1.7.0.0.1.</span> <span class="nav-text"># 请求头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-3"><span class="nav-number">1.7.0.0.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应头-3"><span class="nav-number">1.7.0.0.3.</span> <span class="nav-text"># 响应头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应-3"><span class="nav-number">1.7.0.0.4.</span> <span class="nav-text"># 响应</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#商户管理"><span class="nav-number">1.8.</span> <span class="nav-text"># 商户管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#商户余额"><span class="nav-number">1.8.0.1.</span> <span class="nav-text"># 商户余额</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#请求头-4"><span class="nav-number">1.8.0.1.1.</span> <span class="nav-text"># 请求头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-4"><span class="nav-number">1.8.0.1.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应头-4"><span class="nav-number">1.8.0.1.3.</span> <span class="nav-text"># 响应头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应-4"><span class="nav-number">1.8.0.1.4.</span> <span class="nav-text"># 响应</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#商户提现"><span class="nav-number">1.8.0.2.</span> <span class="nav-text"># 商户提现</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#请求头-5"><span class="nav-number">1.8.0.2.1.</span> <span class="nav-text"># 请求头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数-5"><span class="nav-number">1.8.0.2.2.</span> <span class="nav-text"># 参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应头-5"><span class="nav-number">1.8.0.2.3.</span> <span class="nav-text"># 响应头</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应-5"><span class="nav-number">1.8.0.2.4.</span> <span class="nav-text"># 响应</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见问题"><span class="nav-number">1.9.</span> <span class="nav-text"># 常见问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#接口状态码"><span class="nav-number">1.9.1.</span> <span class="nav-text"># 接口状态码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调用顺序"><span class="nav-number">1.9.2.</span> <span class="nav-text"># 调用顺序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异步通知"><span class="nav-number">1.9.3.</span> <span class="nav-text"># 异步通知</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#js模板"><span class="nav-number">1.10.</span> <span class="nav-text"># JS模板</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Leguang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 访问总量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("UUrijxLg3YUcx9WIg5UlJchI-gzGzoHsz", "m6wXtGXT8NUa5W4TiErrXWpO");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
